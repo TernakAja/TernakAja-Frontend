@@ -36,6 +36,7 @@ import MarketplaceDetailPage from "./pages/Marketplace/[id]/page";
 import MarketplacePage from "./pages/Marketplace/page";
 import ForumPage from "./pages/Forum/page";
 import ArticlePage from "./pages/Article/page";
+import ArticleDetailPage from "./pages/Article/[id]/page";
 
 // Loading Screen Animation
 
@@ -89,6 +90,7 @@ function App() {
                 <Route path="/coming-soon" element={<ComingSoonPage/>} />
                 
                 <Route path="/article" element={<ArticlePage/>} />
+                <Route path="/article/:id" element={<ArticleDetailPage/>} />
 
                 <Route path="/marketplace" element={<MarketplacePage/>} />
                 <Route path="/marketplace/:id" element={<MarketplaceDetailPage/>} />
