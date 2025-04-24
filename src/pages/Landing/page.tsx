@@ -45,7 +45,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Animated Template of <span className="text-[#D7E026]">Vite+TypeScript+ShadcnUI</span>
+            Moooooo <span className="text-[#D7E026]">Moorgan</span>
           </motion.h1>
 
           <motion.p
@@ -54,7 +54,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Created by: Stanley Nathanael Wijaya
+            By: Moorganino
           </motion.p>
 
           <motion.div
@@ -64,18 +64,18 @@ const Hero = () => {
             className="flex flex-col sm:flex-row justify-center gap-4"
           >
             <a
-              href="https://github.com/StyNW7/Vite-TypeScript-ShadcnUI-Template"
+              href="https://github.com/StyNW7/moorgan-frontend"
               target="_blank"
               className="px-8 py-3 rounded-full bg-white text-[#0097DA] font-bold hover:bg-gray-100 transition-colors duration-300"
             >
               View GitHub
             </a>
             <a
-              href="https://www.linkedin.com/in/stanley-nathanael-wijaya/"
+              href="https://ui.shadcn.com/"
               target="_blank"
               className="px-8 py-3 rounded-full bg-[#D7E026] text-gray-900 font-bold hover:bg-opacity-90 transition-colors duration-300"
             >
-              Linkedin
+              Docs
             </a>
           </motion.div>
         </motion.div>
