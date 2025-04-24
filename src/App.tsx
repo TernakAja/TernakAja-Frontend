@@ -18,6 +18,14 @@ import ScrollToTopFunction from "./utility/ScrollToTopFunction";
 
 import Layout from "./components/Layout/Layout";
 import LandingPage from "./pages/Landing/page";
+import TeamPage from "./pages/Team/page";
+import ContactPage from "./pages/Contact/page";
+
+// Utility Pages
+
+import NotFoundPage from "./pages/Utility/not-found";
+import LegalPage from "./pages/Utility/legal";
+import ComingSoonPage from "./pages/Utility/coming-soon";
 
 // Loading Screen Animation
 
@@ -72,8 +80,15 @@ function App() {
             <Route path="/" element={<Layout />}>
               
                 <Route index element={<LandingPage/>} />
+                <Route path="/team" element={<TeamPage/>} />
+                <Route path="/contact" element={<ContactPage/>} />
+
+                <Route path="/legal" element={<LegalPage/>} />
+                <Route path="/coming-soon" element={<ComingSoonPage/>} />
 
             </Route>
+
+            <Route path="*" element={<NotFoundPage/>} />
 
           </Routes>
 
