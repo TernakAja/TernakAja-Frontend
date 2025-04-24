@@ -95,10 +95,10 @@ function App() {
 
                 <Route path="/forum" element={<ForumPage/>} />
 
-            </Route>
+                <Route path="/login" element={<LoginPage/>} />
+                <Route path="/register" element={<RegisterPage/>} />
 
-            <Route path="/login" element={<LoginPage/>} />
-            <Route path="/register" element={<RegisterPage/>} />
+            </Route>
 
             <Route path="*" element={<NotFoundPage/>} />
 
