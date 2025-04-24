@@ -57,7 +57,7 @@ export default function ForumCta() {
 
             <AnimatedDiv className="relative hidden lg:block" direction="left">
               <img
-                src="/placeholder.svg?height=600&width=800"
+                src="/images/Livestocks/dairy-cow-1.png"
                 alt="Moorgan Community"
                 className="h-full w-full object-cover"
               />

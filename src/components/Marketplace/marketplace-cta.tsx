@@ -46,7 +46,7 @@ export default function MarketplaceCta() {
                   <ShoppingBag className="mr-2 h-5 w-5" />
                   List Your Livestock
                 </Button>
-                <Button variant="outline" className="border-white text-white hover:bg-white/20">
+                <Button variant="outline" className="border-white text-black hover:bg-white/20">
                   Learn More
                 </Button>
               </motion.div>
@@ -54,7 +54,7 @@ export default function MarketplaceCta() {
 
             <AnimatedDiv className="relative hidden lg:block" direction="left">
               <img
-                src="/placeholder.svg?height=600&width=800"
+                src="/images/Livestocks/dairy-cow-1.png"
                 alt="Livestock Marketplace"
                 className="h-full w-full object-cover"
               />

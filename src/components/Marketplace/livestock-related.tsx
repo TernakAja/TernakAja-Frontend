@@ -9,7 +9,7 @@ export default function LivestockRelated() {
     {
       id: "2",
       title: "Holstein Dairy Cow - 3 Years Old",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/images/Livestocks/dairy-cow-2.png",
       price: 2300,
       location: "Madison, WI",
       seller: {
@@ -23,8 +23,8 @@ export default function LivestockRelated() {
     },
     {
       id: "3",
-      title: "Holstein Heifer - 18 Months",
-      image: "/placeholder.svg?height=300&width=400",
+      title: "Lovely Cutest Pig",
+      image: "/images/Livestocks/pigs.png",
       price: 1800,
       location: "Milwaukee, WI",
       seller: {
@@ -39,7 +39,7 @@ export default function LivestockRelated() {
     {
       id: "4",
       title: "Jersey Dairy Cow - 4 Years Old",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/images/Livestocks/dairy-cow-1.png",
       price: 2400,
       location: "Green Bay, WI",
       seller: {

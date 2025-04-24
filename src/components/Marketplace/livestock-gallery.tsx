@@ -9,10 +9,10 @@ export default function LivestockGallery() {
 
   // Mock data - in a real app, this would come from an API based on the ID
   const images = [
-    "/placeholder.svg?height=600&width=800",
-    "/placeholder.svg?height=600&width=800",
-    "/placeholder.svg?height=600&width=800",
-    "/placeholder.svg?height=600&width=800",
+    "/images/Livestocks/dairy-cow-1.png",
+    "/images/Livestocks/dairy-cow-2.png",
+    "/images/Livestocks/dairy-cow-1.png",
+    "/images/Livestocks/dairy-cow-2.png",
   ]
 
   const nextImage = () => {
@@ -27,7 +27,7 @@ export default function LivestockGallery() {
     <AnimatedDiv direction="right" className="space-y-4">
       <div className="relative rounded-xl overflow-hidden bg-gray-100">
         <img
-          src={images[activeImage] || "/placeholder.svg"}
+          src={images[activeImage] || "/images/logo.png"}
           alt={`Livestock image ${activeImage + 1}`}
           className="w-full h-[400px] md:h-[500px] object-cover object-center"
         />
@@ -63,7 +63,7 @@ export default function LivestockGallery() {
             onClick={() => setActiveImage(index)}
           >
             <img
-              src={image || "/placeholder.svg"}
+              src={image || "/images/logo.png"}
               alt={`Thumbnail ${index + 1}`}
               className="w-full h-20 object-cover object-center"
             />

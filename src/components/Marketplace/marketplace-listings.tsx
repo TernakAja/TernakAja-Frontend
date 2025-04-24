@@ -8,7 +8,7 @@ export default function MarketplaceListings() {
     {
       id: "1",
       title: "Holstein Dairy Cow - 4 Years Old",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "./images/Livestocks/dairy-cow-1.png",
       price: 2500,
       location: "Madison, WI",
       seller: {
@@ -31,7 +31,7 @@ export default function MarketplaceListings() {
     {
       id: "2",
       title: "Angus Beef Cattle - Breeding Pair",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "./images/Livestocks/beef-cattle.png",
       price: 4800,
       location: "Austin, TX",
       seller: {
@@ -54,7 +54,7 @@ export default function MarketplaceListings() {
     {
       id: "3",
       title: "Merino Sheep - Flock of 5",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "./images/Livestocks/sheep.png",
       price: 1800,
       location: "Boise, ID",
       seller: {
@@ -77,7 +77,7 @@ export default function MarketplaceListings() {
     {
       id: "4",
       title: "Nubian Goats - Mother and Kids",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "./images/Livestocks/goats.png",
       price: 1200,
       location: "Portland, OR",
       seller: {
@@ -100,7 +100,7 @@ export default function MarketplaceListings() {
     {
       id: "5",
       title: "Berkshire Pigs - Breeding Pair",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "./images/Livestocks/pigs.png",
       price: 1500,
       location: "Des Moines, IA",
       seller: {
@@ -123,7 +123,7 @@ export default function MarketplaceListings() {
     {
       id: "6",
       title: "Jersey Dairy Cow - 3 Years Old",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "./images/Livestocks/dairy-cow-2.png",
       price: 2200,
       location: "Burlington, VT",
       seller: {

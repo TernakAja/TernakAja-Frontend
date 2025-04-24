@@ -18,7 +18,7 @@ export default function LivestockDetails() {
       rating: 4.8,
       verified: true,
       memberSince: "2019",
-      image: "/placeholder.svg?height=40&width=40",
+      image: "/images/logo.png",
     },
     details: {
       type: "Cattle",
@@ -123,7 +123,7 @@ export default function LivestockDetails() {
         <div className="flex items-center gap-4">
           <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-100">
             <img
-              src={livestock.seller.image || "/placeholder.svg"}
+              src={livestock.seller.image || "./images/Livestocks/dairy-cow-1.png"}
               alt={livestock.seller.name}
               className="w-full h-full object-cover"
             />

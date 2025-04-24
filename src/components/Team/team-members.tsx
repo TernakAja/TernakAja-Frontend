@@ -88,18 +88,21 @@ export default function TeamMembers() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#328E6E]/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
                   <div className="flex gap-4">
                     <a
+                      target="_blank"
                       href={member.social.instagram}
                       className="text-white hover:text-[#E1EEBC] transition-colors bg-black/20 p-2 rounded-full"
                     >
                       <Instagram size={20} />
                     </a>
                     <a
+                      target="_blank"
                       href={member.social.linkedin}
                       className="text-white hover:text-[#E1EEBC] transition-colors bg-black/20 p-2 rounded-full"
                     >
                       <Linkedin size={20} />
                     </a>
                     <a
+                      target="_blank"
                       href={member.social.github}
                       className="text-white hover:text-[#E1EEBC] transition-colors bg-black/20 p-2 rounded-full"
                     >
