@@ -3,7 +3,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-// import Logo from "/images/logo.png";
 
 import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
