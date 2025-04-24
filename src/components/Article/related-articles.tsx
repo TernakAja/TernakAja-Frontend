@@ -30,7 +30,7 @@ export default function RelatedArticles({
             <p className="text-gray-600 text-sm mb-4 line-clamp-2">{article.excerpt}</p>
 
             <Link
-              to={`/healthcare/article/${article.id}`}
+              to={`/article/${article.id}`}
               className="text-[#328E6E] hover:text-[#67AE6E] font-medium text-sm inline-flex items-center"
             >
               Read more →
