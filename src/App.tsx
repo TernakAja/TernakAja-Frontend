@@ -21,6 +21,9 @@ import LandingPage from "./pages/Landing/page";
 import TeamPage from "./pages/Team/page";
 import ContactPage from "./pages/Contact/page";
 
+import LoginPage from "./pages/Login/page";
+import RegisterPage from "./pages/Register/page";
+
 // Utility Pages
 
 import NotFoundPage from "./pages/Utility/not-found";
@@ -87,6 +90,9 @@ function App() {
                 <Route path="/coming-soon" element={<ComingSoonPage/>} />
 
             </Route>
+
+            <Route path="/login" element={<LoginPage/>} />
+            <Route path="/register" element={<RegisterPage/>} />
 
             <Route path="*" element={<NotFoundPage/>} />
 
