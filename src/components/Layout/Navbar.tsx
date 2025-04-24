@@ -6,15 +6,15 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useNavigate } from "react-router-dom"
 
 const navas = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Features", href: "#features" },
-  { name: "Products", href: "#products" },
-  { name: "Team", href: "#developers" },
-  { name: "FAQ", href: "#faq" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/team" },
+  { name: "Article", href: "/article" },
+  { name: "Community Forum", href: "/forum" },
+  { name: "Marketplace", href: "/marketplace" },
 ]
 
 export default function Navbar() {
+
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const navigate = useNavigate()
@@ -59,7 +59,7 @@ export default function Navbar() {
           <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white" onClick={() => navigate("/login")}>
             Login
           </Button>
-          <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white">Get Started</Button>
+          <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white" onClick={() => navigate("/register")}>Sign In</Button>
         </div>
 
         {/* Mobile Menu Button */}
