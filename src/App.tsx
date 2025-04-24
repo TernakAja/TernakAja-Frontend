@@ -37,6 +37,7 @@ import MarketplacePage from "./pages/Marketplace/page";
 import ForumPage from "./pages/Forum/page";
 import ArticlePage from "./pages/Article/page";
 import ArticleDetailPage from "./pages/Article/[id]/page";
+import { AuthProvider } from "./context/auth-context";
 
 // Loading Screen Animation
 
@@ -48,70 +49,59 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
     return () => clearTimeout(timer);
   }, [onComplete]);
 
-  return (
-    <LoadingScreenPage/>
-  )
+  return <LoadingScreenPage />;
 };
 
 function App() {
-
   const [loading, setLoading] = useState(true);
 
   return (
-
     // Providers, Router, Scroll to Top Function and Button, and Custom Cursor
+    <AuthProvider>
+      <BrowserRouter>
+        <ScrollToTopFunction />
+        <ScrollToTop />
+        <CustomCursor />
 
-    <BrowserRouter>
-      <ScrollToTopFunction />
-      <ScrollToTop />
-      <CustomCursor />
+        {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
 
-      {loading && (
-        <LoadingScreen onComplete={() => setLoading(false)} />
-      )}
+        <AnimatePresence mode="wait">
+          {!loading && (
+            <Routes>
+              {/* Default Pages */}
 
-      <AnimatePresence mode="wait">
+              {/* <Route path="*" element={<NotFoundPage />} /> */}
 
-        {!loading && (
+              <Route path="/" element={<Layout />}>
+                <Route index element={<LandingPage />} />
+                <Route path="/team" element={<TeamPage />} />
+                <Route path="/contact" element={<ContactPage />} />
 
-          <Routes>
+                <Route path="/legal" element={<LegalPage />} />
+                <Route path="/coming-soon" element={<ComingSoonPage />} />
 
-            {/* Default Pages */}
+                <Route path="/article" element={<ArticlePage />} />
+                <Route path="/article/:id" element={<ArticleDetailPage />} />
 
-            {/* <Route path="*" element={<NotFoundPage />} /> */}
+                <Route path="/marketplace" element={<MarketplacePage />} />
+                <Route
+                  path="/marketplace/:id"
+                  element={<MarketplaceDetailPage />}
+                />
 
-            <Route path="/" element={<Layout />}>
-              
-                <Route index element={<LandingPage/>} />
-                <Route path="/team" element={<TeamPage/>} />
-                <Route path="/contact" element={<ContactPage/>} />
+                <Route path="/forum" element={<ForumPage />} />
 
-                <Route path="/legal" element={<LegalPage/>} />
-                <Route path="/coming-soon" element={<ComingSoonPage/>} />
-                
-                <Route path="/article" element={<ArticlePage/>} />
-                <Route path="/article/:id" element={<ArticleDetailPage/>} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+              </Route>
 
-                <Route path="/marketplace" element={<MarketplacePage/>} />
-                <Route path="/marketplace/:id" element={<MarketplaceDetailPage/>} />
-
-                <Route path="/forum" element={<ForumPage/>} />
-
-                <Route path="/login" element={<LoginPage/>} />
-                <Route path="/register" element={<RegisterPage/>} />
-
-            </Route>
-
-            <Route path="*" element={<NotFoundPage/>} />
-
-          </Routes>
-
-        )}
-
-      </AnimatePresence>
-      <Toaster position="top-center" />
-    </BrowserRouter>
-
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          )}
+        </AnimatePresence>
+        <Toaster position="top-center" />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
