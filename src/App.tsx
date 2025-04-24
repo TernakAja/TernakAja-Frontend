@@ -30,6 +30,8 @@ import NotFoundPage from "./pages/Utility/not-found";
 import LegalPage from "./pages/Utility/legal";
 import ComingSoonPage from "./pages/Utility/coming-soon";
 
+import ArticlePage from "./pages/Article/page";
+
 // Loading Screen Animation
 
 const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
@@ -88,6 +90,8 @@ function App() {
 
                 <Route path="/legal" element={<LegalPage/>} />
                 <Route path="/coming-soon" element={<ComingSoonPage/>} />
+                
+                <Route path="/article" element={<ArticlePage/>} />
 
             </Route>
 
