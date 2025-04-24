@@ -53,7 +53,7 @@ export default function Vision() {
 
           <AnimatedDiv direction="left" className="relative">
             <img
-              src="/placeholder.svg?height=400&width=600"
+              src="./images/Landing/healthy-cow.png"
               alt="Sustainable Farming"
               className="w-full h-auto rounded-2xl shadow-lg"
             />

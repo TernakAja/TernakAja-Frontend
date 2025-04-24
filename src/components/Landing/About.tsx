@@ -23,7 +23,7 @@ export default function About() {
           <AnimatedDiv className="order-2 lg:order-1" direction="right">
             <div className="relative">
               <img
-                src="/placeholder.svg?height=500&width=600"
+                src="./images/Landing/green-farm.png"
                 alt="About Moorgan"
                 className="w-full h-auto rounded-2xl shadow-lg"
               />

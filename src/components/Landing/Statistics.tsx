@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { AnimatedDiv, AnimatedSection, SectionHeading } from "../ui-components"
+import { AnimatedDiv, AnimatedSection, SectionHeadingWhite } from "../ui-components"
 import { motion } from "framer-motion"
 
 export default function Statistics() {
@@ -13,7 +13,7 @@ export default function Statistics() {
   return (
     <AnimatedSection id="statistics" className="py-20 bg-[#328E6E]">
       <div className="container mx-auto px-4">
-        <SectionHeading title="Our Impact" subtitle="Transforming livestock management with measurable results" />
+        <SectionHeadingWhite title="Our Impact" subtitle="Transforming livestock management with measurable results" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (

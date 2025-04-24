@@ -1,52 +1,20 @@
-"use client"
-
-import { Github, Linkedin, Twitter } from "lucide-react"
+import { Github } from "lucide-react"
 import { AnimatedDiv, AnimatedSection, SectionHeading } from "../ui-components"
 import { motion } from "framer-motion"
+import { Button } from "../ui/button"
+import { useNavigate } from "react-router-dom"
 
 export default function Developers() {
+
+  const navigate = useNavigate();
+
   const team = [
     {
-      name: "Dr. Sarah Chen",
-      role: "Chief AI Scientist",
-      bio: "PhD in Machine Learning with 10+ years experience in agricultural AI applications",
-      image: "/placeholder.svg?height=300&width=300",
+      name: "Team: Moorganino",
+      role: "Application: Moorgan",
+      bio: "Monitoring Your Livestock",
+      image: "./images/Landing/team.png",
       social: {
-        twitter: "#",
-        linkedin: "#",
-        github: "#",
-      },
-    },
-    {
-      name: "Michael Rodriguez",
-      role: "IoT Systems Architect",
-      bio: "Expert in designing scalable IoT solutions for agricultural applications",
-      image: "/placeholder.svg?height=300&width=300",
-      social: {
-        twitter: "#",
-        linkedin: "#",
-        github: "#",
-      },
-    },
-    {
-      name: "Aisha Patel",
-      role: "Lead Software Engineer",
-      bio: "Full-stack developer specializing in Azure cloud solutions and data visualization",
-      image: "/placeholder.svg?height=300&width=300",
-      social: {
-        twitter: "#",
-        linkedin: "#",
-        github: "#",
-      },
-    },
-    {
-      name: "Dr. James Wilson",
-      role: "Veterinary Consultant",
-      bio: "Veterinarian with expertise in livestock health monitoring and preventive care",
-      image: "/placeholder.svg?height=300&width=300",
-      social: {
-        twitter: "#",
-        linkedin: "#",
         github: "#",
       },
     },
@@ -57,7 +25,7 @@ export default function Developers() {
       <div className="container mx-auto px-4">
         <SectionHeading title="Meet Our Team" subtitle="The experts behind Moorgan's innovative technology" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="justify-center items-center">
           {team.map((member, index) => (
             <AnimatedDiv
               key={index}
@@ -67,18 +35,12 @@ export default function Developers() {
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={member.image || "/placeholder.svg"}
+                  src={member.image || "./images/Landing/team-png"}
                   alt={member.name}
                   className="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#328E6E]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
                   <div className="flex gap-4">
-                    <a href={member.social.twitter} className="text-white hover:text-[#E1EEBC] transition-colors">
-                      <Twitter size={20} />
-                    </a>
-                    <a href={member.social.linkedin} className="text-white hover:text-[#E1EEBC] transition-colors">
-                      <Linkedin size={20} />
-                    </a>
                     <a href={member.social.github} className="text-white hover:text-[#E1EEBC] transition-colors">
                       <Github size={20} />
                     </a>
@@ -101,12 +63,20 @@ export default function Developers() {
           transition={{ delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Our diverse team combines expertise in artificial intelligence, IoT engineering, veterinary science, and
-            software development to create innovative solutions for livestock management challenges.
-          </p>
+
+          <Button
+            variant="outline"
+            className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white px-6 py-6 rounded-lg text-lg"
+            onClick={() => navigate("/landing")}
+          >
+            View Team Details
+          </Button>
+
         </motion.div>
       </div>
+
     </AnimatedSection>
+
   )
+
 }

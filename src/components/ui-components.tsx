@@ -135,3 +135,29 @@ export const SectionHeading = ({
     </div>
   )
 }
+
+export const SectionHeadingWhite = ({
+  title,
+  subtitle,
+  centered = true,
+}: {
+  title: string
+  subtitle?: string
+  centered?: boolean
+}) => {
+  return (
+    <div className={`mb-12 ${centered ? "text-center" : ""}`}>
+      <AnimatedHeading
+        className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-[rgb(181,237,218)] to-[#c5dabd] bg-clip-text text-transparent"
+        direction="up"
+      >
+        {title}
+      </AnimatedHeading>
+      {subtitle && (
+        <AnimatedDiv className="text-white max-w-2xl mx-auto" direction="up" delay={0.1}>
+          {subtitle}
+        </AnimatedDiv>
+      )}
+    </div>
+  )
+}

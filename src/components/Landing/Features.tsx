@@ -106,7 +106,7 @@ export default function Features() {
             </div>
             <div className="flex justify-center">
               <motion.img
-                src="/placeholder.svg?height=200&width=300"
+                src="./images/Media/microsoft-azure.png"
                 alt="Microsoft Azure Integration"
                 className="max-w-full h-auto"
                 initial={{ opacity: 0, scale: 0.8 }}

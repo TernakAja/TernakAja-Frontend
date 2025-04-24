@@ -6,7 +6,7 @@ export default function App() {
     <AnimatedCursor
       innerSize={10}
       outerSize={45}
-      color='255, 171, 91'
+      color='99, 111, 71'
       outerAlpha={0.2}
       innerScale={0.7}
       outerScale={1.5}

@@ -10,21 +10,21 @@ export default function Testimonials() {
       role: "Dairy Farm Owner",
       content:
         "Moorgan has transformed how we manage our dairy farm. The real-time health monitoring has reduced disease outbreaks by 70% and improved our overall productivity.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/images/Testimonial/farmer-1.png",
     },
     {
       name: "Maria Garcia",
       role: "Livestock Researcher",
       content:
         "As a researcher, I'm impressed by the quality and accuracy of data provided by Moorgan. It's revolutionizing how we understand livestock behavior and health patterns.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/images/Testimonial/girl-1.png",
     },
     {
       name: "Robert Chen",
       role: "Agricultural Consultant",
       content:
         "I've recommended Moorgan to dozens of my clients, and the feedback has been overwhelmingly positive. The ROI is clear within just a few months of implementation.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/images/Testimonial/boy-1.png",
     },
   ]
 

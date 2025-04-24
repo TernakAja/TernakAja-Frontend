@@ -16,6 +16,7 @@ import ScrollToTopFunction from "./utility/ScrollToTopFunction";
 
 // Default Pages
 
+import Layout from "./components/Layout/Layout";
 import LandingPage from "./pages/Landing/page";
 
 // Loading Screen Animation
@@ -68,13 +69,11 @@ function App() {
 
             {/* <Route path="*" element={<NotFoundPage />} /> */}
 
-            {/* <Route path="/" element={<Layout />}>
+            <Route path="/" element={<Layout />}>
               
                 <Route index element={<LandingPage/>} />
 
-            </Route> */}
-
-            <Route path="/" element={<LandingPage/>} />
+            </Route>
 
           </Routes>
 
