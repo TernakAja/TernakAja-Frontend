@@ -1,10 +1,10 @@
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { AnimatedDiv } from "../ui-components"
-import { motion } from "framer-motion"
-import { Check, Send } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { AnimatedDiv } from "../ui-components";
+import { motion } from "framer-motion";
+import { Check, Send } from "lucide-react";
 
 export default function ContactForm() {
   const [formState, setFormState] = useState({
@@ -13,42 +13,44 @@ export default function ContactForm() {
     phone: "",
     subject: "",
     message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e: { target: { name: string; value: string } }) => {
-    const { name, value } = e.target
-    setFormState((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormState((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     // Simulate form submission
     setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSubmitted(true)
+      setIsSubmitting(false);
+      setIsSubmitted(true);
       setFormState({
         name: "",
         email: "",
         phone: "",
         subject: "",
         message: "",
-      })
+      });
 
       // Reset success message after 5 seconds
       setTimeout(() => {
-        setIsSubmitted(false)
-      }, 5000)
-    }, 1500)
-  }
+        setIsSubmitted(false);
+      }, 5000);
+    }, 1500);
+  };
 
   return (
     <AnimatedDiv direction="right">
       <div className="bg-white rounded-xl shadow-md p-8">
-        <h2 className="text-2xl font-bold mb-6 text-gray-800">Send Us a Message</h2>
+        <h2 className="text-2xl font-bold mb-6 text-gray-800">
+          Send Us a Message
+        </h2>
 
         {isSubmitted ? (
           <motion.div
@@ -60,16 +62,22 @@ export default function ContactForm() {
             <div className="mx-auto w-16 h-16 bg-[#328E6E] rounded-full flex items-center justify-center text-white mb-4">
               <Check size={32} />
             </div>
-            <h3 className="text-xl font-bold text-[#328E6E] mb-2">Message Sent!</h3>
+            <h3 className="text-xl font-bold text-[#328E6E] mb-2">
+              Message Sent!
+            </h3>
             <p className="text-gray-600">
-              Thank you for contacting us. We've received your message and will get back to you shortly.
+              Thank you for contacting us. We've received your message and will
+              get back to you shortly.
             </p>
           </motion.div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Your Name <span className="text-red-500">*</span>
                 </label>
                 <Input
@@ -82,7 +90,10 @@ export default function ContactForm() {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Email Address <span className="text-red-500">*</span>
                 </label>
                 <Input
@@ -99,13 +110,25 @@ export default function ContactForm() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Phone Number
                 </label>
-                <Input id="phone" name="phone" value={formState.phone} onChange={handleChange} className="w-full" />
+                <Input
+                  id="phone"
+                  name="phone"
+                  value={formState.phone}
+                  onChange={handleChange}
+                  className="w-full"
+                />
               </div>
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Subject <span className="text-red-500">*</span>
                 </label>
                 <Input
@@ -120,7 +143,10 @@ export default function ContactForm() {
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="message"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Message <span className="text-red-500">*</span>
               </label>
               <Textarea
@@ -179,5 +205,5 @@ export default function ContactForm() {
         )}
       </div>
     </AnimatedDiv>
-  )
+  );
 }
