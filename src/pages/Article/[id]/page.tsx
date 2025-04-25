@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, Calendar, User, Tag } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-import DOMPurify from "dompurify";
+// import DOMPurify from "dompurify";
 import { getArticleById } from "@/handler/article-handler";
 import { Article } from "@/model/article-model";
+import { motion } from "framer-motion";
 import RelatedArticles from "@/components/Article/related-articles";
 import LoadingScreen from "@/utility/LoadingScreen";
 
@@ -30,6 +31,7 @@ export default function ArticleDetailPage() {
         }
         setLoading(false);
       } catch (err) {
+        console.error(err)
         setError("Failed to load article. Please try again later.");
         setLoading(false);
       }
@@ -61,7 +63,7 @@ export default function ArticleDetailPage() {
     );
   }
 
-  const cleanHtml = DOMPurify.sanitize(article.content);
+  // const cleanHtml = DOMPurify.sanitize(article.content);
 
   return (
     <div className="min-h-screen bg-white">
@@ -112,10 +114,80 @@ export default function ArticleDetailPage() {
           </p>
         </div>
 
-        <div
+        {/* <div
           className="prose max-w-none mb-12"
           dangerouslySetInnerHTML={{ __html: cleanHtml }}
-        />
+        /> */}
+        <div className="mt-8 space-y-6">
+          {article.content.map((block, index) => {
+            switch (block.type) {
+              case 'paragraph':
+                return (
+                  <motion.p 
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 * index }}
+                    className="text-gray-700 leading-relaxed"
+                  >
+                    {block.text}
+                  </motion.p>
+                );
+              case 'heading':
+                return (
+                  <motion.h2 
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 * index }}
+                    className="text-2xl font-bold text-[#328E6E] mt-8 mb-4"
+                  >
+                    {block.text}
+                  </motion.h2>
+                );
+              case 'image':
+                return (
+                  <motion.div 
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 0.1 * index }}
+                    className="my-8"
+                  >
+                    <img 
+                      src={block.src} 
+                      alt={block.alt} 
+                      className="w-full rounded-lg shadow-md"
+                    />
+                    {block.caption && (
+                      <p className="text-sm text-gray-500 mt-2 text-center italic">
+                        {block.caption}
+                      </p>
+                    )}
+                  </motion.div>
+                );
+              case 'quote':
+                return (
+                  <motion.blockquote 
+                    key={index}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.7, delay: 0.1 * index }}
+                    className="border-l-4 border-[#90C67C] pl-4 italic bg-[#E1EEBC]/20 p-4 rounded-r-md"
+                  >
+                    <p className="text-gray-700">{block.text}</p>
+                    {block.author && (
+                      <cite className="text-[#328E6E] font-medium block mt-2">
+                        — {block.author}
+                      </cite>
+                    )}
+                  </motion.blockquote>
+                );
+              default:
+                return null;
+            }
+          })}
+        </div>
 
         <div className="mb-12">
           <h3 className="text-lg font-semibold text-[#328E6E] mb-3">

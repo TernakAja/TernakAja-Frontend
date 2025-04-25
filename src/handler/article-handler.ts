@@ -20,93 +20,49 @@ const staticArticles: Article[] = [
       "Cattle Health",
       "Herd Management",
     ],
-    content: `
-      <h2>Why Vaccination is Critical for Cattle Health</h2>
-      <p>Vaccination is one of the most effective tools for preventing disease in cattle herds. A well-planned vaccination program can significantly reduce the incidence of common diseases, decrease mortality rates, and improve overall herd productivity. This article outlines the essential vaccines and timing for a comprehensive cattle vaccination program.</p>
-      
-      <h3>Core Vaccines for All Cattle</h3>
-      <p>Regardless of operation type, certain vaccines are considered essential for all cattle. These include:</p>
-      <ul>
-        <li><strong>Clostridial diseases (7-way or 8-way vaccines)</strong> - Protects against blackleg, malignant edema, and other clostridial diseases</li>
-        <li><strong>Infectious Bovine Rhinotracheitis (IBR)</strong> - A highly contagious respiratory disease</li>
-        <li><strong>Bovine Viral Diarrhea (BVD)</strong> - Can cause respiratory disease, reproductive issues, and immunosuppression</li>
-        <li><strong>Parainfluenza-3 (PI3)</strong> - A common respiratory pathogen</li>
-        <li><strong>Bovine Respiratory Syncytial Virus (BRSV)</strong> - A major cause of respiratory disease</li>
-      </ul>
-      
-      <h3>Recommended Vaccination Schedule</h3>
-      <p>For optimal protection, follow this general timeline:</p>
-      
-      <h4>Calves (2-4 months)</h4>
-      <ul>
-        <li>First round of clostridial vaccines (7-way or 8-way)</li>
-        <li>Initial respiratory vaccines (modified live or killed, depending on herd status)</li>
-      </ul>
-      
-      <h4>Calves (Pre-weaning, 4-6 weeks before weaning)</h4>
-      <ul>
-        <li>Booster for clostridial vaccines</li>
-        <li>Respiratory vaccine boosters</li>
-        <li>Consider adding Mannheimia haemolytica and Pasteurella multocida vaccines</li>
-      </ul>
-      
-      <h4>Replacement Heifers (Pre-breeding)</h4>
-      <ul>
-        <li>Reproductive vaccines including IBR, BVD, Leptospirosis, Vibriosis</li>
-        <li>Booster respiratory vaccines</li>
-      </ul>
-      
-      <h4>Adult Cows (Annual)</h4>
-      <ul>
-        <li>Reproductive vaccines (30-60 days before breeding)</li>
-        <li>Respiratory boosters</li>
-        <li>Clostridial boosters</li>
-      </ul>
-      
-      <h2>Special Considerations</h2>
-      <p>While the above schedule provides a general framework, several factors may influence your specific vaccination program:</p>
-      
-      <h3>Regional Disease Risks</h3>
-      <p>Certain diseases are more prevalent in specific regions. Consult with your local veterinarian about additional vaccines that might be necessary based on your location, such as:</p>
-      <ul>
-        <li>Anaplasmosis in southern and western states</li>
-        <li>Anthrax in endemic areas</li>
-        <li>Pinkeye in high-UV environments</li>
-      </ul>
-      
-      <h3>Operation Type</h3>
-      <p>Different types of cattle operations may require modified vaccination protocols:</p>
-      <ul>
-        <li><strong>Cow-calf operations</strong> - Focus on reproductive vaccines and calf health</li>
-        <li><strong>Stocker operations</strong> - Emphasis on respiratory disease prevention</li>
-        <li><strong>Feedlots</strong> - Targeted approach to respiratory disease and clostridial issues</li>
-      </ul>
-      
-      <h2>Implementing Your Vaccination Program</h2>
-      <p>For maximum effectiveness, consider these best practices when implementing your vaccination program:</p>
-      
-      <h3>Proper Handling and Administration</h3>
-      <ul>
-        <li>Store vaccines according to label directions (usually refrigerated at 35-45°F)</li>
-        <li>Use clean needles and syringes</li>
-        <li>Follow label directions for dose and route of administration</li>
-        <li>Administer subcutaneous injections in the neck region when possible</li>
-      </ul>
-      
-      <h3>Record Keeping</h3>
-      <p>Maintain detailed records of all vaccinations, including:</p>
-      <ul>
-        <li>Date of administration</li>
-        <li>Product name and serial number</li>
-        <li>Animals treated (individual ID or group)</li>
-        <li>Person administering the vaccine</li>
-      </ul>
-      
-      <h2>Conclusion</h2>
-      <p>A well-designed vaccination program is a critical component of preventive healthcare for cattle. By following the recommended schedules and working closely with your veterinarian to customize a program for your specific operation, you can significantly reduce disease risks and improve the overall health and productivity of your herd.</p>
-      
-      <p>Remember that vaccination is just one part of a comprehensive herd health program that should also include proper nutrition, parasite control, biosecurity measures, and good management practices.</p>
-    `,
+    content:[
+    {
+      type: "paragraph",
+      text: "The integration of Artificial Intelligence (AI) and Internet of Things (IoT) technologies has transformed modern farming practices, particularly in livestock management. At Moorgan, we're at the forefront of this revolution, providing farmers with intelligent tools to monitor animal health, optimize feed efficiency, and improve overall farm productivity."
+    },
+    {
+      type: "heading",
+      text: "Real-time Health Monitoring"
+    },
+    {
+      type: "paragraph",
+      text: "Our advanced sensors collect vital data points such as temperature, heart rate, and movement patterns, allowing for early detection of health issues before they become critical. This proactive approach has been shown to reduce veterinary costs by up to 30% and significantly decrease mortality rates across herds."
+    },
+    {
+      type: "heading",
+      text: "Predictive Analytics for Optimal Decision Making"
+    },
+    {
+      type: "paragraph",
+      text: "By analyzing historical data alongside real-time information, our AI algorithms provide predictive insights that help farmers make informed decisions. From optimizing feeding schedules to identifying the perfect breeding times, these data-driven recommendations have helped our customers increase productivity by an average of 18% in the first year alone."
+    },
+    {
+      type: "paragraph",
+      text: "The power of machine learning enables our system to continuously improve, becoming more accurate and tailored to your specific livestock needs over time. This adaptive intelligence is what sets Moorgan apart from traditional monitoring solutions."
+    },
+    {
+      type: "heading",
+      text: "Sustainable Farming Practices"
+    },
+    {
+      type: "paragraph",
+      text: "Beyond productivity and health benefits, our smart monitoring system contributes to more sustainable farming practices. By optimizing resource allocation and reducing waste, farmers can minimize their environmental footprint while maximizing profitability."
+    },
+    {
+      type: "quote",
+      text: "Since implementing Moorgan's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
+      author: "James Wilson, Wilson Family Farms"
+    },
+    {
+      type: "paragraph",
+      text: "As we continue to develop our technology, we remain committed to our vision of empowering farmers with accessible, intuitive tools that transform the way livestock is managed across the globe."
+    }
+  ],
   },
   {
     id: 2,
@@ -127,14 +83,49 @@ const staticArticles: Article[] = [
       "Milk Production",
       "Cost Management",
     ],
-    content: `
-      <h3>List Test</h3>
-      <ul>
-        <li>One</li>
-        <li>Two</li>
-        <li>Three</li>
-      </ul>
-    `,
+    content: [
+      {
+        type: "paragraph",
+        text: "The integration of Artificial Intelligence (AI) and Internet of Things (IoT) technologies has transformed modern farming practices, particularly in livestock management. At Moorgan, we're at the forefront of this revolution, providing farmers with intelligent tools to monitor animal health, optimize feed efficiency, and improve overall farm productivity."
+      },
+      {
+        type: "heading",
+        text: "Real-time Health Monitoring"
+      },
+      {
+        type: "paragraph",
+        text: "Our advanced sensors collect vital data points such as temperature, heart rate, and movement patterns, allowing for early detection of health issues before they become critical. This proactive approach has been shown to reduce veterinary costs by up to 30% and significantly decrease mortality rates across herds."
+      },
+      {
+        type: "heading",
+        text: "Predictive Analytics for Optimal Decision Making"
+      },
+      {
+        type: "paragraph",
+        text: "By analyzing historical data alongside real-time information, our AI algorithms provide predictive insights that help farmers make informed decisions. From optimizing feeding schedules to identifying the perfect breeding times, these data-driven recommendations have helped our customers increase productivity by an average of 18% in the first year alone."
+      },
+      {
+        type: "paragraph",
+        text: "The power of machine learning enables our system to continuously improve, becoming more accurate and tailored to your specific livestock needs over time. This adaptive intelligence is what sets Moorgan apart from traditional monitoring solutions."
+      },
+      {
+        type: "heading",
+        text: "Sustainable Farming Practices"
+      },
+      {
+        type: "paragraph",
+        text: "Beyond productivity and health benefits, our smart monitoring system contributes to more sustainable farming practices. By optimizing resource allocation and reducing waste, farmers can minimize their environmental footprint while maximizing profitability."
+      },
+      {
+        type: "quote",
+        text: "Since implementing Moorgan's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
+        author: "James Wilson, Wilson Family Farms"
+      },
+      {
+        type: "paragraph",
+        text: "As we continue to develop our technology, we remain committed to our vision of empowering farmers with accessible, intuitive tools that transform the way livestock is managed across the globe."
+      }
+    ],
     imageUrl: "https://placehold.co/600x400",
   },
   {
@@ -156,7 +147,49 @@ const staticArticles: Article[] = [
       "Cattle Health",
       "Preventive Care",
     ],
-    content: `<p>This is a sample article about early detection of respiratory issues in livestock...</p>`,
+    content: [
+      {
+        type: "paragraph",
+        text: "The integration of Artificial Intelligence (AI) and Internet of Things (IoT) technologies has transformed modern farming practices, particularly in livestock management. At Moorgan, we're at the forefront of this revolution, providing farmers with intelligent tools to monitor animal health, optimize feed efficiency, and improve overall farm productivity."
+      },
+      {
+        type: "heading",
+        text: "Real-time Health Monitoring"
+      },
+      {
+        type: "paragraph",
+        text: "Our advanced sensors collect vital data points such as temperature, heart rate, and movement patterns, allowing for early detection of health issues before they become critical. This proactive approach has been shown to reduce veterinary costs by up to 30% and significantly decrease mortality rates across herds."
+      },
+      {
+        type: "heading",
+        text: "Predictive Analytics for Optimal Decision Making"
+      },
+      {
+        type: "paragraph",
+        text: "By analyzing historical data alongside real-time information, our AI algorithms provide predictive insights that help farmers make informed decisions. From optimizing feeding schedules to identifying the perfect breeding times, these data-driven recommendations have helped our customers increase productivity by an average of 18% in the first year alone."
+      },
+      {
+        type: "paragraph",
+        text: "The power of machine learning enables our system to continuously improve, becoming more accurate and tailored to your specific livestock needs over time. This adaptive intelligence is what sets Moorgan apart from traditional monitoring solutions."
+      },
+      {
+        type: "heading",
+        text: "Sustainable Farming Practices"
+      },
+      {
+        type: "paragraph",
+        text: "Beyond productivity and health benefits, our smart monitoring system contributes to more sustainable farming practices. By optimizing resource allocation and reducing waste, farmers can minimize their environmental footprint while maximizing profitability."
+      },
+      {
+        type: "quote",
+        text: "Since implementing Moorgan's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
+        author: "James Wilson, Wilson Family Farms"
+      },
+      {
+        type: "paragraph",
+        text: "As we continue to develop our technology, we remain committed to our vision of empowering farmers with accessible, intuitive tools that transform the way livestock is managed across the globe."
+      }
+    ],
   },
   {
     id: 4,
@@ -177,7 +210,25 @@ const staticArticles: Article[] = [
       "Farm Management",
       "Preventive Care",
     ],
-    content: `<p>This is a sample article about water quality management for healthy herds...</p>`,
+    content: [
+      {
+        type: "heading",
+        text: "Sustainable Farming Practices"
+      },
+      {
+        type: "paragraph",
+        text: "Beyond productivity and health benefits, our smart monitoring system contributes to more sustainable farming practices. By optimizing resource allocation and reducing waste, farmers can minimize their environmental footprint while maximizing profitability."
+      },
+      {
+        type: "quote",
+        text: "Since implementing Moorgan's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
+        author: "James Wilson, Wilson Family Farms"
+      },
+      {
+        type: "paragraph",
+        text: "As we continue to develop our technology, we remain committed to our vision of empowering farmers with accessible, intuitive tools that transform the way livestock is managed across the globe."
+      }
+    ],
   },
   {
     id: 5,
@@ -198,7 +249,25 @@ const staticArticles: Article[] = [
       "Farm Management",
       "Herd Health",
     ],
-    content: `<p>This is a sample article about building effective biosecurity protocols...</p>`,
+    content: [
+      {
+        type: "heading",
+        text: "Sustainable Farming Practices"
+      },
+      {
+        type: "paragraph",
+        text: "Beyond productivity and health benefits, our smart monitoring system contributes to more sustainable farming practices. By optimizing resource allocation and reducing waste, farmers can minimize their environmental footprint while maximizing profitability."
+      },
+      {
+        type: "quote",
+        text: "Since implementing Moorgan's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
+        author: "James Wilson, Wilson Family Farms"
+      },
+      {
+        type: "paragraph",
+        text: "As we continue to develop our technology, we remain committed to our vision of empowering farmers with accessible, intuitive tools that transform the way livestock is managed across the globe."
+      }
+    ],
   },
   {
     id: 6,
@@ -219,7 +288,25 @@ const staticArticles: Article[] = [
       "Livestock Management",
       "Seasonal Planning",
     ],
-    content: `<p>This is a sample article about preparing livestock for summer...</p>`,
+    content: [
+      {
+        type: "heading",
+        text: "Sustainable Farming Practices"
+      },
+      {
+        type: "paragraph",
+        text: "Beyond productivity and health benefits, our smart monitoring system contributes to more sustainable farming practices. By optimizing resource allocation and reducing waste, farmers can minimize their environmental footprint while maximizing profitability."
+      },
+      {
+        type: "quote",
+        text: "Since implementing Moorgan's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
+        author: "James Wilson, Wilson Family Farms"
+      },
+      {
+        type: "paragraph",
+        text: "As we continue to develop our technology, we remain committed to our vision of empowering farmers with accessible, intuitive tools that transform the way livestock is managed across the globe."
+      }
+    ],
   },
 ];
 

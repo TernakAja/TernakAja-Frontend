@@ -36,6 +36,7 @@ export default function HealthcareArticles() {
         setArticles(data);
         setLoading(false);
       } catch (err) {
+        console.error(err)
         setError("Failed to load articles. Please try again later.");
         setLoading(false);
       }
