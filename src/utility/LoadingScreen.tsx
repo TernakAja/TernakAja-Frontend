@@ -1,4 +1,4 @@
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 export default function LoadingScreen() {
   return (
@@ -7,19 +7,31 @@ export default function LoadingScreen() {
         <motion.div
           className="w-24 h-24 rounded-full border-4 border-[#E1EEBC]"
           animate={{ scale: [1, 1.1, 1], opacity: [0.5, 1, 0.5] }}
-          transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1, ease: "easeInOut" }}
+          transition={{
+            repeat: Number.POSITIVE_INFINITY,
+            duration: 1,
+            ease: "easeInOut",
+          }}
         />
 
         <motion.div
           className="absolute top-0 left-0 w-24 h-24 rounded-full border-t-4 border-[#328E6E]"
           animate={{ rotate: 360 }}
-          transition={{ repeat: Number.POSITIVE_INFINITY, duration: 0.5, ease: "linear" }}
+          transition={{
+            repeat: Number.POSITIVE_INFINITY,
+            duration: 0.5,
+            ease: "linear",
+          }}
         />
 
         <motion.div
           className="absolute top-0 left-0 w-24 h-24 rounded-full border-b-4 border-[#90C67C]"
           animate={{ rotate: -360 }}
-          transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1, ease: "linear" }}
+          transition={{
+            repeat: Number.POSITIVE_INFINITY,
+            duration: 1,
+            ease: "linear",
+          }}
         />
 
         <motion.div
@@ -28,7 +40,13 @@ export default function LoadingScreen() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
               stroke="#328E6E"
@@ -112,5 +130,5 @@ export default function LoadingScreen() {
         }}
       />
     </div>
-  )
+  );
 }

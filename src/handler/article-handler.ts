@@ -1,4 +1,6 @@
-export const articles = [
+import { Article } from "@/model/article-model";
+
+const staticArticles: Article[] = [
   {
     id: 1,
     title: "Essential Vaccination Schedule for Cattle",
@@ -9,8 +11,14 @@ export const articles = [
     author: "Dr. Sarah Johnson",
     readTime: 8,
     image: "/images/Articles/vaccine.png",
-    imageCaption: "Proper vaccination is essential for maintaining herd health and preventing disease outbreaks.",
-    tags: ["Vaccination", "Disease Prevention", "Cattle Health", "Herd Management"],
+    imageCaption:
+      "Proper vaccination is essential for maintaining herd health and preventing disease outbreaks.",
+    tags: [
+      "Vaccination",
+      "Disease Prevention",
+      "Cattle Health",
+      "Herd Management",
+    ],
     content: `
       <h2>Why Vaccination is Critical for Cattle Health</h2>
       <p>Vaccination is one of the most effective tools for preventing disease in cattle herds. A well-planned vaccination program can significantly reduce the incidence of common diseases, decrease mortality rates, and improve overall herd productivity. This article outlines the essential vaccines and timing for a comprehensive cattle vaccination program.</p>
@@ -102,84 +110,133 @@ export const articles = [
   {
     id: 2,
     title: "Optimizing Feed Efficiency in Dairy Cows",
-    excerpt: "Learn how to maximize milk production while minimizing feed costs with these nutrition strategies.",
+    excerpt:
+      "Learn how to maximize milk production while minimizing feed costs with these nutrition strategies.",
     category: "Nutrition",
     date: "May 10, 2025",
     author: "Dr. Michael Rodriguez",
     readTime: 6,
     image: "/images/Articles/feed.png",
-    imageCaption: "Proper nutrition management is key to dairy cow productivity and health.",
-    tags: ["Dairy Nutrition", "Feed Efficiency", "Milk Production", "Cost Management"],
+    imageCaption:
+      "Proper nutrition management is key to dairy cow productivity and health.",
+    tags: [
+      "Dairy Nutrition",
+      "Feed Efficiency",
+      "Milk Production",
+      "Cost Management",
+    ],
     content: `
-<h3>List Test</h3>
-<ul>
-  <li>One</li>
-  <li>Two</li>
-  <li>Three</li>
-</ul>
+      <h3>List Test</h3>
+      <ul>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+      </ul>
     `,
-    imageUrl: 'https://placehold.co/600x400',
+    imageUrl: "https://placehold.co/600x400",
   },
   {
     id: 3,
     title: "Early Detection of Respiratory Issues in Livestock",
-    excerpt: "Identifying the warning signs of respiratory problems before they become serious health concerns.",
+    excerpt:
+      "Identifying the warning signs of respiratory problems before they become serious health concerns.",
     category: "Disease Management",
     date: "May 5, 2025",
     author: "Dr. Emily Chen",
     readTime: 7,
     image: "/images/Articles/respiratory.png",
-    imageCaption: "Early detection of respiratory issues can prevent serious outbreaks in your herd.",
-    tags: ["Respiratory Health", "Disease Detection", "Cattle Health", "Preventive Care"],
+    imageCaption:
+      "Early detection of respiratory issues can prevent serious outbreaks in your herd.",
+    tags: [
+      "Respiratory Health",
+      "Disease Detection",
+      "Cattle Health",
+      "Preventive Care",
+    ],
     content: `<p>This is a sample article about early detection of respiratory issues in livestock...</p>`,
   },
   {
     id: 4,
     title: "Water Quality Management for Healthy Herds",
-    excerpt: "Ensuring clean water access is crucial for livestock health. Learn testing and treatment methods.",
+    excerpt:
+      "Ensuring clean water access is crucial for livestock health. Learn testing and treatment methods.",
     category: "Preventive Care",
     date: "April 28, 2025",
     author: "Dr. James Wilson",
     readTime: 5,
     image: "/images/Articles/water-quality.png",
-    imageCaption: "Clean water is essential for maintaining livestock health and productivity.",
-    tags: ["Water Quality", "Livestock Health", "Farm Management", "Preventive Care"],
+    imageCaption:
+      "Clean water is essential for maintaining livestock health and productivity.",
+    tags: [
+      "Water Quality",
+      "Livestock Health",
+      "Farm Management",
+      "Preventive Care",
+    ],
     content: `<p>This is a sample article about water quality management for healthy herds...</p>`,
   },
   {
     id: 5,
     title: "Building Effective Biosecurity Protocols",
-    excerpt: "Protect your farm from disease outbreaks with these essential biosecurity measures.",
+    excerpt:
+      "Protect your farm from disease outbreaks with these essential biosecurity measures.",
     category: "Disease Management",
     date: "April 22, 2025",
     author: "Dr. Lisa Thompson",
     readTime: 9,
     image: "/images/Articles/protocol.png",
-    imageCaption: "Strong biosecurity measures are your first line of defense against disease outbreaks.",
-    tags: ["Biosecurity", "Disease Prevention", "Farm Management", "Herd Health"],
+    imageCaption:
+      "Strong biosecurity measures are your first line of defense against disease outbreaks.",
+    tags: [
+      "Biosecurity",
+      "Disease Prevention",
+      "Farm Management",
+      "Herd Health",
+    ],
     content: `<p>This is a sample article about building effective biosecurity protocols...</p>`,
   },
   {
     id: 6,
     title: "Seasonal Care: Preparing Livestock for Summer",
-    excerpt: "Steps to take now to ensure your animals stay healthy and comfortable during hot weather.",
+    excerpt:
+      "Steps to take now to ensure your animals stay healthy and comfortable during hot weather.",
     category: "Seasonal Care",
     date: "April 15, 2025",
     author: "Dr. Robert Anderson",
     readTime: 6,
     image: "/images/Articles/livestock.png",
-    imageCaption: "Proper preparation can help livestock thrive even during the hottest summer months.",
-    tags: ["Summer Care", "Heat Stress", "Livestock Management", "Seasonal Planning"],
+    imageCaption:
+      "Proper preparation can help livestock thrive even during the hottest summer months.",
+    tags: [
+      "Summer Care",
+      "Heat Stress",
+      "Livestock Management",
+      "Seasonal Planning",
+    ],
     content: `<p>This is a sample article about preparing livestock for summer...</p>`,
   },
-]
+];
 
-// Function to get article by ID
-export function getArticleById(id: number) {
-  return articles.find((article) => article.id === id)
+export async function getAllArticles(): Promise<Article[]> {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  return Promise.resolve(staticArticles);
 }
 
-// Function to get related articles
-export function getRelatedArticles(currentId: number, category: string) {
-  return articles.filter((article) => article.id !== currentId && article.category === category).slice(0, 3)
+export async function getArticleById(id: number): Promise<Article | null> {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  const article = staticArticles.find((article) => article.id === id);
+  return Promise.resolve(article || null);
+}
+
+export async function getRelatedArticles(
+  currentId: number,
+  category: string
+): Promise<Article[]> {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  const relatedArticles = staticArticles
+    .filter(
+      (article) => article.id !== currentId && article.category === category
+    )
+    .slice(0, 3);
+  return Promise.resolve(relatedArticles);
 }

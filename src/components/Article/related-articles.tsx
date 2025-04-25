@@ -1,12 +1,53 @@
-import { motion } from "framer-motion"
-import { getRelatedArticles } from "@/lib/articles"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { getRelatedArticles } from "@/handler/article-handler";
+import { Article } from "@/model/article-model";
+import LoadingScreen from "@/utility/LoadingScreen";
+
+interface RelatedArticlesProps {
+  currentArticleId: number;
+  category: string;
+}
 
 export default function RelatedArticles({
   currentArticleId,
   category,
-}: { currentArticleId: number; category: string }) {
-  const relatedArticles = getRelatedArticles(currentArticleId, category)
+}: RelatedArticlesProps) {
+  const [relatedArticles, setRelatedArticles] = useState<Article[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchRelatedArticles = async () => {
+      try {
+        const articles = await getRelatedArticles(currentArticleId, category);
+        setRelatedArticles(articles);
+        setLoading(false);
+      } catch (err) {
+        setError("Failed to load related articles. Please try again later.");
+        setLoading(false);
+      }
+    };
+
+    fetchRelatedArticles();
+  }, [currentArticleId, category]);
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
+  if (error) {
+    return <div className="text-center py-10 text-red-600">{error}</div>;
+  }
+
+  if (relatedArticles.length === 0) {
+    return (
+      <div className="text-center py-10 text-gray-600">
+        No related articles found.
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -25,9 +66,13 @@ export default function RelatedArticles({
               </span>
             </div>
 
-            <h3 className="text-lg font-semibold text-[#328E6E] mb-2">{article.title}</h3>
+            <h3 className="text-lg font-semibold text-[#328E6E] mb-2">
+              {article.title}
+            </h3>
 
-            <p className="text-gray-600 text-sm mb-4 line-clamp-2">{article.excerpt}</p>
+            <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+              {article.excerpt}
+            </p>
 
             <Link
               to={`/article/${article.id}`}
@@ -39,5 +84,5 @@ export default function RelatedArticles({
         </motion.div>
       ))}
     </div>
-  )
+  );
 }
