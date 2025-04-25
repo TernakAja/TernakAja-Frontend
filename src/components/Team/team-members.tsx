@@ -19,7 +19,7 @@ export default function TeamMembers() {
       name: "Nathaniel Alexander",
       role: "Fullstack Developer",
       bio: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      image: "./images/Team/stanley.png",
+      image: "./images/Team/Nathan.jpg",
       social: {
         instagram: "https://www.instagram.com/nathaniel.alexander/",
         linkedin: "https://www.linkedin.com/in/nathaniel-alexander-a33530226/",
@@ -39,7 +39,7 @@ export default function TeamMembers() {
     },
     {
       name: "David Christian",
-      role: "Backend Developer",
+      role: "Fullstack Developer",
       bio: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       image: "./images/Team/stanley.png",
       social: {
@@ -50,9 +50,9 @@ export default function TeamMembers() {
     },
     {
       name: "Farrel Tobias Saputro",
-      role: "AI Developer",
+      role: "Fullstack Developer",
       bio: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      image: "./images/Team/stanley.png",
+      image: "./images/Team/Farrel.jpg",
       social: {
         instagram: "https://www.instagram.com/farrel2407/",
         linkedin: "https://www.linkedin.com/in/farrel-tobias-saputro-41034b21a/",

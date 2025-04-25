@@ -38,11 +38,11 @@ export default function TeamHero() {
             <div className="text-gray-600">Years Experience</div>
           </div>
           <div className="bg-white rounded-lg p-4 shadow-sm">
-            <div className="text-3xl font-bold text-[#328E6E]">12+</div>
+            <div className="text-3xl font-bold text-[#328E6E]">5</div>
             <div className="text-gray-600">Team Members</div>
           </div>
           <div className="bg-white rounded-lg p-4 shadow-sm">
-            <div className="text-3xl font-bold text-[#328E6E]">8+</div>
+            <div className="text-3xl font-bold text-[#328E6E]">7+</div>
             <div className="text-gray-600">Patents Filed</div>
           </div>
           <div className="bg-white rounded-lg p-4 shadow-sm">
