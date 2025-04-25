@@ -37,7 +37,22 @@ import MarketplacePage from "./pages/Marketplace/page";
 import ForumPage from "./pages/Forum/page";
 import ArticlePage from "./pages/Article/page";
 import ArticleDetailPage from "./pages/Article/[id]/page";
+
+
+
+// Dashboard
+
+import DashboardAnalyticsPage from "./pages/Dashboard/Analytics/page";
+import DashboardFeedingPage from "./pages/Dashboard/Feeding/page";
+import DashboardHealthPage from "./pages/Dashboard/Health/page";
+import DashboardLivestockPage from "./pages/Dashboard/Livestock/page";
+import DashboardLivestockDetailPage from "./pages/Dashboard/Livestock/[id]/page";
+import DashboardPage from "./pages/Dashboard/page";
+
+// Context / Providers
+
 import { AuthProvider } from "./context/auth-context";
+
 
 // Loading Screen Animation
 
@@ -73,6 +88,7 @@ function App() {
               {/* <Route path="*" element={<NotFoundPage />} /> */}
 
               <Route path="/" element={<Layout />}>
+              
                 <Route index element={<LandingPage />} />
                 <Route path="/team" element={<TeamPage />} />
                 <Route path="/contact" element={<ContactPage />} />
@@ -93,9 +109,19 @@ function App() {
 
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
+
               </Route>
 
+              <Route path="/dashboard" element={<DashboardPage/>} />
+              <Route path="/dashboard/livestock" element={<DashboardLivestockPage/>} />
+              <Route path="/dashboard/livestock/:id" element={<DashboardLivestockDetailPage />} />
+
+              <Route path="/dashboard/health" element={<DashboardHealthPage/>} />
+              <Route path="/dashboard/feeding" element={<DashboardFeedingPage/>} />
+              <Route path="/dashboard/analytics" element={<DashboardAnalyticsPage/>} />
+
               <Route path="*" element={<NotFoundPage />} />
+
             </Routes>
           )}
         </AnimatePresence>
