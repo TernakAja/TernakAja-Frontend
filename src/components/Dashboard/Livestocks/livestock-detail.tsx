@@ -318,336 +318,335 @@ export default function LivestockDetail() {
                   <TabsTrigger value="production">Production</TabsTrigger>
                   <TabsTrigger value="genetics">Genetics</TabsTrigger>
                 </TabsList>
+              
+                <TabsContent value="overview" className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium flex items-center gap-2">
+                          <Heart className="h-4 w-4 text-red-500" />
+                          Heart Rate
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-2xl font-bold">{livestock.vitalSigns.heartRate.current}</div>
+                        <div className="flex items-center justify-between mt-1">
+                          <span className="text-xs text-gray-500">Normal: {livestock.vitalSigns.heartRate.normal}</span>
+                          <Badge variant="outline" className="text-green-500 border-green-200">
+                            Normal
+                          </Badge>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium flex items-center gap-2">
+                          <Thermometer className="h-4 w-4 text-amber-500" />
+                          Temperature
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-2xl font-bold">{livestock.vitalSigns.temperature.current}</div>
+                        <div className="flex items-center justify-between mt-1">
+                          <span className="text-xs text-gray-500">Normal: {livestock.vitalSigns.temperature.normal}</span>
+                          <Badge variant="outline" className="text-green-500 border-green-200">
+                            Normal
+                          </Badge>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium flex items-center gap-2">
+                          <Activity className="h-4 w-4 text-blue-500" />
+                          Respiratory Rate
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-2xl font-bold">{livestock.vitalSigns.respiratoryRate.current}</div>
+                        <div className="flex items-center justify-between mt-1">
+                          <span className="text-xs text-gray-500">
+                            Normal: {livestock.vitalSigns.respiratoryRate.normal}
+                          </span>
+                          <Badge variant="outline" className="text-green-500 border-green-200">
+                            Normal
+                          </Badge>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle>Vital Signs Trend</CardTitle>
+                      <CardDescription>Last 7 days monitoring data</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="h-[250px]">
+                        <LineChart />
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="flex items-center gap-2">
+                          <Utensils className="h-5 w-5 text-[#328E6E]" />
+                          Feeding Information
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Diet</div>
+                            <div className="font-medium">{livestock.feeding.diet}</div>
+                          </div>
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Feeding Schedule</div>
+                            <div className="font-medium">{livestock.feeding.schedule}</div>
+                          </div>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">Daily Consumption</div>
+                              <div className="font-medium">{livestock.feeding.consumption}</div>
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">Water Intake</div>
+                              <div className="font-medium">{livestock.feeding.waterIntake}</div>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="flex items-center gap-2">
+                          <FileText className="h-5 w-5 text-[#328E6E]" />
+                          Notes
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-600">{livestock.notes}</p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="health" className="space-y-6">
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-2">
+                        <CheckCircle2 className="h-5 w-5 text-green-500" />
+                        Vaccination Records
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        {livestock.health.vaccinations.map((vaccination, index) => (
+                          <div key={index} className="flex items-start gap-4 pb-4 border-b border-gray-100">
+                            <div className="bg-green-100 p-2 rounded-full text-green-600">
+                              <CheckCircle2 className="h-4 w-4" />
+                            </div>
+                            <div className="flex-1">
+                              <div className="font-medium">{vaccination.name}</div>
+                              <div className="text-sm text-gray-500">Administered: {vaccination.date}</div>
+                              <div className="text-sm text-gray-500">Next Due: {vaccination.nextDue}</div>
+                            </div>
+                            <Badge variant="outline" className="text-green-500 border-green-200">
+                              Up to date
+                            </Badge>
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-2">
+                        <History className="h-5 w-5 text-[#328E6E]" />
+                        Medical History
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="relative">
+                        <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                        <div className="space-y-6">
+                          {livestock.health.medicalHistory.map((event, index) => (
+                            <div key={index} className="relative pl-10">
+                              <div className="absolute left-0 top-1 w-8 h-8 bg-[#328E6E] rounded-full flex items-center justify-center text-white">
+                                {event.event.includes("Check") ? (
+                                  <CheckCircle2 className="h-4 w-4" />
+                                ) : event.event.includes("Vaccination") ? (
+                                  <CheckCircle2 className="h-4 w-4" />
+                                ) : (
+                                  <FileText className="h-4 w-4" />
+                                )}
+                              </div>
+                              <div className="bg-gray-50 rounded-lg p-4">
+                                <div className="flex justify-between items-start mb-2">
+                                  <h4 className="font-bold text-gray-800">{event.event}</h4>
+                                  <div className="flex items-center text-sm text-gray-500">
+                                    <Calendar className="h-3 w-3 mr-1" />
+                                    {event.date}
+                                  </div>
+                                </div>
+                                <p className="text-gray-600">{event.notes}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+
+                <TabsContent value="production" className="space-y-6">
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-2">
+                        <Leaf className="h-5 w-5 text-[#328E6E]" />
+                        Milk Production
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div>
+                          <div className="text-sm text-gray-500 mb-1">Daily Average</div>
+                          <div className="font-medium">{livestock.production.milkProduction.average}</div>
+                        </div>
+                        <div>
+                          <div className="text-sm text-gray-500 mb-1">Trend</div>
+                          <div className="font-medium">{livestock.production.milkProduction.trend}</div>
+                        </div>
+                        <div>
+                          <div className="text-sm text-gray-500 mb-1">Quality</div>
+                          <div className="font-medium">{livestock.production.milkProduction.quality}</div>
+                        </div>
+                      </div>
+                      <div className="mt-6 h-[200px] bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
+                        Milk Production Chart
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-2">
+                        <Calendar className="h-5 w-5 text-[#328E6E]" />
+                        Reproduction Status
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-4">
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Status</div>
+                            <div className="font-medium">{livestock.reproduction.status}</div>
+                          </div>
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Breeding Date</div>
+                            <div className="font-medium">{livestock.reproduction.breedingDate}</div>
+                          </div>
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Due Date</div>
+                            <div className="font-medium">{livestock.reproduction.dueDate}</div>
+                          </div>
+                        </div>
+                        <div className="space-y-4">
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Previous Calvings</div>
+                            <div className="font-medium">{livestock.reproduction.previousCalvings}</div>
+                          </div>
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Last Calving Date</div>
+                            <div className="font-medium">{livestock.reproduction.lastCalvingDate}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+
+                <TabsContent value="genetics" className="space-y-6">
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-2">
+                        <Cow className="h-5 w-5 text-[#328E6E]" />
+                        Genetic Information
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <div className="text-sm text-gray-500 mb-1">Sire</div>
+                          <div className="font-medium">{livestock.genetics.sire}</div>
+                        </div>
+                        <div>
+                          <div className="text-sm text-gray-500 mb-1">Dam</div>
+                          <div className="font-medium">{livestock.genetics.dam}</div>
+                        </div>
+                      </div>
+                      <div className="mt-6">
+                        <div className="text-sm text-gray-500 mb-3">Genetic Traits</div>
+                        <div className="flex flex-wrap gap-2">
+                          {livestock.genetics.geneticTraits.map((trait, index) => (
+                            <Badge key={index} variant="outline" className="text-[#328E6E] border-[#328E6E]/30">
+                              {trait}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-2">
+                        <Scale className="h-5 w-5 text-[#328E6E]" />
+                        Genetic Merit
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div>
+                          <div className="flex items-center justify-between mb-1">
+                            <div className="text-sm font-medium">Milk Production</div>
+                            <div className="text-sm text-gray-500">85%</div>
+                          </div>
+                          <Progress value={85} className="h-2" />
+                        </div>
+                        <div>
+                          <div className="flex items-center justify-between mb-1">
+                            <div className="text-sm font-medium">Fertility</div>
+                            <div className="text-sm text-gray-500">75%</div>
+                          </div>
+                          <Progress value={75} className="h-2" />
+                        </div>
+                        <div>
+                          <div className="flex items-center justify-between mb-1">
+                            <div className="text-sm font-medium">Longevity</div>
+                            <div className="text-sm text-gray-500">80%</div>
+                          </div>
+                          <Progress value={80} className="h-2" />
+                        </div>
+                        <div>
+                          <div className="flex items-center justify-between mb-1">
+                            <div className="text-sm font-medium">Health Traits</div>
+                            <div className="text-sm text-gray-500">90%</div>
+                          </div>
+                          <Progress value={90} className="h-2" />
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
               </Tabs>
             </CardHeader>
-            <CardContent>
-              <TabsContent value="overview" className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <Card>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-medium flex items-center gap-2">
-                        <Heart className="h-4 w-4 text-red-500" />
-                        Heart Rate
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold">{livestock.vitalSigns.heartRate.current}</div>
-                      <div className="flex items-center justify-between mt-1">
-                        <span className="text-xs text-gray-500">Normal: {livestock.vitalSigns.heartRate.normal}</span>
-                        <Badge variant="outline" className="text-green-500 border-green-200">
-                          Normal
-                        </Badge>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-medium flex items-center gap-2">
-                        <Thermometer className="h-4 w-4 text-amber-500" />
-                        Temperature
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold">{livestock.vitalSigns.temperature.current}</div>
-                      <div className="flex items-center justify-between mt-1">
-                        <span className="text-xs text-gray-500">Normal: {livestock.vitalSigns.temperature.normal}</span>
-                        <Badge variant="outline" className="text-green-500 border-green-200">
-                          Normal
-                        </Badge>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-medium flex items-center gap-2">
-                        <Activity className="h-4 w-4 text-blue-500" />
-                        Respiratory Rate
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold">{livestock.vitalSigns.respiratoryRate.current}</div>
-                      <div className="flex items-center justify-between mt-1">
-                        <span className="text-xs text-gray-500">
-                          Normal: {livestock.vitalSigns.respiratoryRate.normal}
-                        </span>
-                        <Badge variant="outline" className="text-green-500 border-green-200">
-                          Normal
-                        </Badge>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle>Vital Signs Trend</CardTitle>
-                    <CardDescription>Last 7 days monitoring data</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="h-[250px]">
-                      <LineChart />
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Card>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="flex items-center gap-2">
-                        <Utensils className="h-5 w-5 text-[#328E6E]" />
-                        Feeding Information
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div>
-                          <div className="text-sm text-gray-500 mb-1">Diet</div>
-                          <div className="font-medium">{livestock.feeding.diet}</div>
-                        </div>
-                        <div>
-                          <div className="text-sm text-gray-500 mb-1">Feeding Schedule</div>
-                          <div className="font-medium">{livestock.feeding.schedule}</div>
-                        </div>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <div className="text-sm text-gray-500 mb-1">Daily Consumption</div>
-                            <div className="font-medium">{livestock.feeding.consumption}</div>
-                          </div>
-                          <div>
-                            <div className="text-sm text-gray-500 mb-1">Water Intake</div>
-                            <div className="font-medium">{livestock.feeding.waterIntake}</div>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="flex items-center gap-2">
-                        <FileText className="h-5 w-5 text-[#328E6E]" />
-                        Notes
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600">{livestock.notes}</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              </TabsContent>
-
-              <TabsContent value="health" className="space-y-6">
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="flex items-center gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-green-500" />
-                      Vaccination Records
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      {livestock.health.vaccinations.map((vaccination, index) => (
-                        <div key={index} className="flex items-start gap-4 pb-4 border-b border-gray-100">
-                          <div className="bg-green-100 p-2 rounded-full text-green-600">
-                            <CheckCircle2 className="h-4 w-4" />
-                          </div>
-                          <div className="flex-1">
-                            <div className="font-medium">{vaccination.name}</div>
-                            <div className="text-sm text-gray-500">Administered: {vaccination.date}</div>
-                            <div className="text-sm text-gray-500">Next Due: {vaccination.nextDue}</div>
-                          </div>
-                          <Badge variant="outline" className="text-green-500 border-green-200">
-                            Up to date
-                          </Badge>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="flex items-center gap-2">
-                      <History className="h-5 w-5 text-[#328E6E]" />
-                      Medical History
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="relative">
-                      <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-                      <div className="space-y-6">
-                        {livestock.health.medicalHistory.map((event, index) => (
-                          <div key={index} className="relative pl-10">
-                            <div className="absolute left-0 top-1 w-8 h-8 bg-[#328E6E] rounded-full flex items-center justify-center text-white">
-                              {event.event.includes("Check") ? (
-                                <CheckCircle2 className="h-4 w-4" />
-                              ) : event.event.includes("Vaccination") ? (
-                                <CheckCircle2 className="h-4 w-4" />
-                              ) : (
-                                <FileText className="h-4 w-4" />
-                              )}
-                            </div>
-                            <div className="bg-gray-50 rounded-lg p-4">
-                              <div className="flex justify-between items-start mb-2">
-                                <h4 className="font-bold text-gray-800">{event.event}</h4>
-                                <div className="flex items-center text-sm text-gray-500">
-                                  <Calendar className="h-3 w-3 mr-1" />
-                                  {event.date}
-                                </div>
-                              </div>
-                              <p className="text-gray-600">{event.notes}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="production" className="space-y-6">
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="flex items-center gap-2">
-                      <Leaf className="h-5 w-5 text-[#328E6E]" />
-                      Milk Production
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div>
-                        <div className="text-sm text-gray-500 mb-1">Daily Average</div>
-                        <div className="font-medium">{livestock.production.milkProduction.average}</div>
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-500 mb-1">Trend</div>
-                        <div className="font-medium">{livestock.production.milkProduction.trend}</div>
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-500 mb-1">Quality</div>
-                        <div className="font-medium">{livestock.production.milkProduction.quality}</div>
-                      </div>
-                    </div>
-                    <div className="mt-6 h-[200px] bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
-                      Milk Production Chart
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="flex items-center gap-2">
-                      <Calendar className="h-5 w-5 text-[#328E6E]" />
-                      Reproduction Status
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-4">
-                        <div>
-                          <div className="text-sm text-gray-500 mb-1">Status</div>
-                          <div className="font-medium">{livestock.reproduction.status}</div>
-                        </div>
-                        <div>
-                          <div className="text-sm text-gray-500 mb-1">Breeding Date</div>
-                          <div className="font-medium">{livestock.reproduction.breedingDate}</div>
-                        </div>
-                        <div>
-                          <div className="text-sm text-gray-500 mb-1">Due Date</div>
-                          <div className="font-medium">{livestock.reproduction.dueDate}</div>
-                        </div>
-                      </div>
-                      <div className="space-y-4">
-                        <div>
-                          <div className="text-sm text-gray-500 mb-1">Previous Calvings</div>
-                          <div className="font-medium">{livestock.reproduction.previousCalvings}</div>
-                        </div>
-                        <div>
-                          <div className="text-sm text-gray-500 mb-1">Last Calving Date</div>
-                          <div className="font-medium">{livestock.reproduction.lastCalvingDate}</div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="genetics" className="space-y-6">
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="flex items-center gap-2">
-                      <Cow className="h-5 w-5 text-[#328E6E]" />
-                      Genetic Information
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <div className="text-sm text-gray-500 mb-1">Sire</div>
-                        <div className="font-medium">{livestock.genetics.sire}</div>
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-500 mb-1">Dam</div>
-                        <div className="font-medium">{livestock.genetics.dam}</div>
-                      </div>
-                    </div>
-                    <div className="mt-6">
-                      <div className="text-sm text-gray-500 mb-3">Genetic Traits</div>
-                      <div className="flex flex-wrap gap-2">
-                        {livestock.genetics.geneticTraits.map((trait, index) => (
-                          <Badge key={index} variant="outline" className="text-[#328E6E] border-[#328E6E]/30">
-                            {trait}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="flex items-center gap-2">
-                      <Scale className="h-5 w-5 text-[#328E6E]" />
-                      Genetic Merit
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <div className="text-sm font-medium">Milk Production</div>
-                          <div className="text-sm text-gray-500">85%</div>
-                        </div>
-                        <Progress value={85} className="h-2" />
-                      </div>
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <div className="text-sm font-medium">Fertility</div>
-                          <div className="text-sm text-gray-500">75%</div>
-                        </div>
-                        <Progress value={75} className="h-2" />
-                      </div>
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <div className="text-sm font-medium">Longevity</div>
-                          <div className="text-sm text-gray-500">80%</div>
-                        </div>
-                        <Progress value={80} className="h-2" />
-                      </div>
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <div className="text-sm font-medium">Health Traits</div>
-                          <div className="text-sm text-gray-500">90%</div>
-                        </div>
-                        <Progress value={90} className="h-2" />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </CardContent>
           </Card>
         </motion.div>
       </div>
