@@ -10,7 +10,8 @@ const staticArticles: Article[] = [
     date: "May 15, 2025",
     author: "Dr. Sarah Johnson",
     readTime: 8,
-    image: "/images/Articles/vaccine.png",
+    image:
+      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/Moorgan/Articles/z1dmnlmdq9ueqlkurjls",
     imageCaption:
       "Proper vaccination is essential for maintaining herd health and preventing disease outbreaks.",
     tags: [
@@ -116,7 +117,8 @@ const staticArticles: Article[] = [
     date: "May 10, 2025",
     author: "Dr. Michael Rodriguez",
     readTime: 6,
-    image: "/images/Articles/feed.png",
+    image:
+      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/Moorgan/Articles/sbql5jjncdatfixfbvk0",
     imageCaption:
       "Proper nutrition management is key to dairy cow productivity and health.",
     tags: [
@@ -144,7 +146,8 @@ const staticArticles: Article[] = [
     date: "May 5, 2025",
     author: "Dr. Emily Chen",
     readTime: 7,
-    image: "/images/Articles/respiratory.png",
+    image:
+      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/Moorgan/Articles/hzgdfa9fxlkkcptimxap",
     imageCaption:
       "Early detection of respiratory issues can prevent serious outbreaks in your herd.",
     tags: [
@@ -164,7 +167,8 @@ const staticArticles: Article[] = [
     date: "April 28, 2025",
     author: "Dr. James Wilson",
     readTime: 5,
-    image: "/images/Articles/water-quality.png",
+    image:
+      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/Moorgan/Articles/dek4d5mh3wntjkk4uz1y",
     imageCaption:
       "Clean water is essential for maintaining livestock health and productivity.",
     tags: [
@@ -184,7 +188,8 @@ const staticArticles: Article[] = [
     date: "April 22, 2025",
     author: "Dr. Lisa Thompson",
     readTime: 9,
-    image: "/images/Articles/protocol.png",
+    image:
+      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/Moorgan/Articles/s2infagubauncyye8ijd",
     imageCaption:
       "Strong biosecurity measures are your first line of defense against disease outbreaks.",
     tags: [
@@ -204,7 +209,8 @@ const staticArticles: Article[] = [
     date: "April 15, 2025",
     author: "Dr. Robert Anderson",
     readTime: 6,
-    image: "/images/Articles/livestock.png",
+    image:
+      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/Moorgan/Articles/dwraioes97indjeurt3h",
     imageCaption:
       "Proper preparation can help livestock thrive even during the hottest summer months.",
     tags: [

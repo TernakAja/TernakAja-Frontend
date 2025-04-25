@@ -1,13 +1,17 @@
-import { AnimatedDiv } from "../ui-components"
-import { motion } from "framer-motion"
-import { Clock, Mail, MapPin, Phone } from "lucide-react"
+import { AnimatedDiv } from "../ui-components";
+import { motion } from "framer-motion";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 export default function ContactInfo() {
   const contactDetails = [
     {
       icon: <MapPin className="h-6 w-6" />,
       title: "Our Location",
-      details: ["123 Innovation Drive", "Tech Valley, CA 94043", "United States"],
+      details: [
+        "123 Innovation Drive",
+        "Tech Valley, CA 94043",
+        "United States",
+      ],
     },
     {
       icon: <Phone className="h-6 w-6" />,
@@ -22,14 +26,20 @@ export default function ContactInfo() {
     {
       icon: <Clock className="h-6 w-6" />,
       title: "Working Hours",
-      details: ["Monday - Friday: 9:00 AM - 6:00 PM", "Saturday: 10:00 AM - 2:00 PM", "Sunday: Closed"],
+      details: [
+        "Monday - Friday: 9:00 AM - 6:00 PM",
+        "Saturday: 10:00 AM - 2:00 PM",
+        "Sunday: Closed",
+      ],
     },
-  ]
+  ];
 
   return (
     <AnimatedDiv direction="left">
       <div className="h-full">
-        <h2 className="text-2xl font-bold mb-6 text-gray-800">Contact Information</h2>
+        <h2 className="text-2xl font-bold mb-6 text-gray-800">
+          Contact Information
+        </h2>
 
         <div className="bg-gradient-to-br from-[#328E6E] to-[#67AE6E] rounded-xl p-8 text-white h-[calc(100%-3rem)]">
           <div className="space-y-8">
@@ -42,7 +52,9 @@ export default function ContactInfo() {
                 transition={{ delay: index * 0.1 + 0.3 }}
                 viewport={{ once: true }}
               >
-                <div className="bg-white/20 p-3 rounded-lg h-fit">{item.icon}</div>
+                <div className="bg-white/20 p-3 rounded-lg h-fit">
+                  {item.icon}
+                </div>
                 <div>
                   <h3 className="font-bold text-lg mb-2">{item.title}</h3>
                   <div className="space-y-1 text-white/90">
@@ -149,5 +161,5 @@ export default function ContactInfo() {
         </div>
       </div>
     </AnimatedDiv>
-  )
+  );
 }

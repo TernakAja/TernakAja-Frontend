@@ -1,12 +1,22 @@
-import { AnimatedDiv, AnimatedSection, SectionHeading } from "../ui-components"
-import { BarChart2, BookOpen, HelpCircle, Leaf, MessageCircle, Settings, ShieldAlert, Users } from "lucide-react"
+import { AnimatedDiv, AnimatedSection, SectionHeading } from "../ui-components";
+import {
+  BarChart2,
+  BookOpen,
+  HelpCircle,
+  Leaf,
+  MessageCircle,
+  Settings,
+  ShieldAlert,
+  Users,
+} from "lucide-react";
 
 export default function ForumCategories() {
   const categories = [
     {
       icon: <Leaf className="h-6 w-6" />,
       name: "Livestock Health",
-      description: "Discuss animal health, disease prevention, and wellness strategies",
+      description:
+        "Discuss animal health, disease prevention, and wellness strategies",
       posts: 128,
       color: "#328E6E",
     },
@@ -59,12 +69,15 @@ export default function ForumCategories() {
       posts: 98,
       color: "#67AE6E",
     },
-  ]
+  ];
 
   return (
     <AnimatedSection className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <SectionHeading title="Forum Categories" subtitle="Browse discussions by topic" />
+        <SectionHeading
+          title="Forum Categories"
+          subtitle="Browse discussions by topic"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {categories.map((category, index) => (
@@ -86,7 +99,10 @@ export default function ForumCategories() {
                 </h3>
                 <p className="text-gray-600 mb-4">{category.description}</p>
                 <div className="text-sm text-gray-500">
-                  <span className="font-medium text-[#328E6E]">{category.posts}</span> posts
+                  <span className="font-medium text-[#328E6E]">
+                    {category.posts}
+                  </span>{" "}
+                  posts
                 </div>
               </a>
             </AnimatedDiv>
@@ -94,5 +110,5 @@ export default function ForumCategories() {
         </div>
       </div>
     </AnimatedSection>
-  )
+  );
 }
