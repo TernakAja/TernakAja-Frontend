@@ -8,8 +8,11 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
 import { Link } from "react-router-dom"
+import { useAuth } from "@/context/auth-context"
 
 export default function RegisterForm() {
+
+  const {register} = useAuth();
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -42,6 +45,10 @@ export default function RegisterForm() {
     setIsLoading(true)
 
     // Simulate API call
+
+    const response = register(email, password, name, "user", 0);
+
+    console.log(response);
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
     // Reset loading state

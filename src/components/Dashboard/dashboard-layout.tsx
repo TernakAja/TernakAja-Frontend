@@ -22,13 +22,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
+
+  const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
   const location = useLocation();
@@ -124,6 +126,11 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="text-xs text-gray-500">Farm Manager</div>
             </div>
           </div>
+          <Button variant="ghost" className="w-full justify-start mt-4 text-gray-600" onClick={() => navigate("/")}>
+            <Home className="h-4 w-4 mr-2" />
+            Home
+          </Button>
+          {/* For logout */}
           <Button variant="ghost" className="w-full justify-start mt-4 text-gray-600">
             <LogOut className="h-4 w-4 mr-2" />
             Log out
