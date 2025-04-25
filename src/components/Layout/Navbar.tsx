@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "@/context/auth-context"
 
 const navas = [
   { name: "Home", href: "/" },
@@ -18,6 +19,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const navigate = useNavigate()
+  const { isAuthenticated, logout } = useAuth()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,10 +58,20 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
-          <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white" onClick={() => navigate("/login")}>
-            Login
-          </Button>
-          <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white" onClick={() => navigate("/register")}>Sign In</Button>
+          {
+            isAuthenticated ? (
+              <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white" onClick={logout}>
+                Logout
+              </Button>
+            ) : (
+              <div className="hidden md:flex items-center gap-4">
+                <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white" onClick={() => navigate("/login")}>
+                  Login
+                </Button>
+                <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white" onClick={() => navigate("/register")}>Sign In</Button>
+              </div>
+            )
+          }
         </div>
 
         {/* Mobile Menu Button */}

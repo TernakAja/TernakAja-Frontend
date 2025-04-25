@@ -105,6 +105,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       setUser(response.data.user);
       setIsAuthenticated(true);
     } catch (error) {
+      console.error(error)
       setIsAuthenticated(false);
       setUser(null);
       setToken(null);
