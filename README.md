@@ -1,54 +1,153 @@
-# React + TypeScript + Vite
+<h1 align="center"> Moorgan </h1> <br>
+<p align="center">
+  <a href="">
+    <img alt="Moorgan" title="Moorgan" src="public/images/logo.png" width="360px">
+  </a>
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <a href="https://education.elevaite.id/" target="_blank"><b>Microsoft ElevAIte - 2025</b></a><br>
+  <b>Moorgan</b> is an <b>intelligent livestock monitoring system</b> to solve SDG Number 2 Zero Hunger (Especially in Agriculture).
+  <br>
+  <b>Moorgan</b>  helps farmers monitor the health and behavior of their livestock in real-time using <b>IoT</b> and <b>AI anomaly detection</b>.
+</p>
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📃 Table of Contents
+- [Complete Documentation](#📚-complete-documentation)
+- [All GitHub Repository](#🌐-all-github-repository)
+- [Introduction](#🌟-introduction)
+- [Technology Stack](#🛠️-technology-stack)
+- [Core Features](#🧩-core-features)
+- [Live Demo](#🚀-live-demo)
+- [Getting Started Locally](#🧰-getting-started-locally-monorepo-version)
+- [Screenshots](#🖼️-screenshots)
+- [Architecture Diagram](#🧭-erd-diagram)
+- [Attachment](#⚙️-attachment)
+- [Team](#👥-team)
+- [Contact](#📬-contact)
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📚 Complete Documentation
+
+<ul>
+    <li><b>Notion Documentation (Detail Documentation)</b></li>
+    <a href="https://stanley-n-wijaya.notion.site/Moorgan-Documentation-1df73555b71f80fd9fd9dbfc655ce5a7?pvs=4">Notion Documentation</a>
+    <li><b>Demo Video</b></li>
+    <a href="https://drive.google.com/drive/folders/1XjZfySvS92iNH79hF5l6FU3b2-mCguZh?usp=sharing">Link Demo Video (Google Drive)</a>
+    <li><b>Moorgan Google Drive</b></li>
+    <a href="https://drive.google.com/drive/folders/1Slexo254LAhwieCQazA-peBe4Vl8fZJ5?usp=sharing">Moorgan Documents + Preliminary Research (Google Drive)</a>
+</ul>
+
+---
+
+## 🌐 All GitHub Repository
+
+<ul>
+    <li><b>Main Repository</b></li>
+    <a href="https://github.com/StyNW7/Moorgan">https://github.com/StyNW7/Moorgan</a>
+    <li><b>Frontend Repository</b></li>
+    <a href="https://github.com/StyNW7/Moorgan-Frontend">https://github.com/StyNW7/Moorgan-Frontend</a>
+    <li><b>Backend Repository</b></li>
+    <a href="https://github.com/StyNW7/Moorgan-Backend">https://github.com/StyNW7/Moorgan-Backend</a>
+    <li><b>AI Repository</b></li>
+    <a href="https://github.com/StyNW7/Moorgan-AI">https://github.com/StyNW7/Moorgan-AI</a>
+    <li><b>IoT Repository</b></li>
+    <a href="https://github.com/StyNW7/Moorgan-IoT">https://github.com/StyNW7/Moorgan-IoT</a>
+</ul>
+
+---
+
+
+## 🌟 Introduction
+**Moorgan** revolutionizes livestock farming through intelligent, real-time health and behavior monitoring. Combining IoT sensors and AI anomaly detection, Moorgan empowers farmers to detect health issues early, prevent loss, and optimize livestock productivity.
+> "Every heartbeat, every step, every breath of your livestock matters. Moorgan listens and protects."   
+> — *Moorgan Manifesto*
+
+---
+
+## 🛠️ Technology Stack
+- **Frontend**: Vite, TypeScript, TailwindCSS, and ShadcnUI
+- **Backend**: Express.js & Node.js
+- **Database**: Azure PostgreSQL Flexible Server
+- **AI Integration**: Python  & Hugging Face API
+- **IoT Device**: Arduino C++ (ESP32 + Sensors)
+- **Version Control**: Git & GitHub (Submodule Monorepo)
+- **Deployment**:
+  - Frontend: [Vercel](https://vercel.com)
+  - Backend, AI, Database: Coming Soon!
+
+---
+
+## 🧩 Core Features
+
+- 🔥 **Real-Time Livestock Monitoring**  
+  Monitor temperature, heart rate, and motion of each livestock in real-time via IoT integration.
+
+- 🧠 **AI Anomaly Detection**  
+  Smart detection of anomalies such as fever, stress, reduced activity, and fertility prediction.
+
+- 🐄 **Livestock Management System**  
+  Manage livestock profiles, health history, vaccination records, and behavior patterns.
+
+- 📈 **Data Analytics and Trends**  
+  Visualize livestock health trends and detect early warning signs before problems escalate.
+
+- 🚨 **Instant Alert System**  
+  Receive instant notifications for any detected anomalies on your mobile or desktop.
+
+- 🛒 **Marketplace & Community Forum**  
+  Sell livestock and discuss farming tips with the community.
+
+- 📚 **Knowledge Center**  
+  Educational articles about livestock health, farming techniques, and veterinary advice.
+
+- 🔒 **Role-Based Access Control**  
+  Different dashboards and access for peternak, dokter hewan, and admin.
+
+---
+
+## 🚀 Live Demo
+Visit the deployed application here (frontend only):
+<br>
+👉 [https://ablework.vercel.app](https://ablework.vercel.app)
+
+---
+
+## 🧰 Getting Started Locally (Frontend Version)
+
+### Prerequisites
+- **Node.js** (v18 or above)
+- **Git**
+
+### Run Local for Moorgan Frontend
+```bash
+git clone https://github.com/StyNW7/Moorgan-Frontend.git
+cd moorgan-frontend
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 👥 Team
+This project was created for Microsoft ElevAIte 2025 by:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- **Stanley Nathanael Wijaya** - 2702217125
+- **Nathaniel Alexander** - 2702276872
+- **Jason Melvin Hartono** - 2702281481
+- **David Christian** - 2702253143
+- **Farrel Tobias Saputro** - 2702224036
+
+---
+
+## 📬 Contact
+Have questions or want to collaborate?
+
+- 📧 Email: stanley.n.wijaya7@gmail.com
+- 💬 Discord: `stynw7`
+
+<code>For a Better World by Monitoring Livestocks through Moorgan 🐮🌿</code>
