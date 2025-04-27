@@ -21,6 +21,11 @@ export default function Navbar() {
   const navigate = useNavigate()
   const { isAuthenticated, logout } = useAuth()
 
+  const handleLogout = () => {
+    logout()
+    navigate("/login")
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10)
@@ -60,7 +65,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-4">
           {
             isAuthenticated ? (
-              <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white" onClick={logout}>
+              <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white" onClick={handleLogout}>
                 Logout
               </Button>
             ) : (
@@ -101,13 +106,20 @@ export default function Navbar() {
                 </a>
               ))}
               <div className="flex flex-col gap-2 mt-4">
-                <Button
-                  variant="outline"
-                  className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white w-full"
-                >
-                  Login
-                </Button>
-                <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white w-full">Get Started</Button>
+                {
+                  isAuthenticated ? (
+                    <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white" onClick={handleLogout}>
+                      Logout
+                    </Button>
+                  ) : (
+                    <div className="flex flex-col gap-2 mt-4">
+                      <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white" onClick={() => navigate("/login")}>
+                        Login
+                      </Button>
+                      <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white" onClick={() => navigate("/register")}>Sign In</Button>
+                    </div>
+                  )
+                }
               </div>
             </div>
           </motion.div>

@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "@/context/auth-context"
 
 export default function RegisterForm() {
@@ -20,18 +20,27 @@ export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [passwordError, setPasswordError] = useState("")
+  const [passwordError1, setPasswordError1] = useState("")
+  const [passwordError2, setPasswordError2] = useState("")
+  const navigate = useNavigate();
+
+  function matchPasswords(
+    pw: string = password,
+    cpw: string = confirmPassword
+  ): void {
+    if (pw.trim() !== cpw.trim()) {
+      setPasswordError2("Passwords do not match");
+    } else {
+      setPasswordError2("");
+    }
+  }
 
   const validatePasswords = () => {
-    if (password !== confirmPassword) {
-      setPasswordError("Passwords do not match")
-      return false
-    }
     if (password.length < 8) {
-      setPasswordError("Password must be at least 8 characters")
+      setPasswordError1("Password must be at least 8 characters")
       return false
     }
-    setPasswordError("")
+    setPasswordError1("")
     return true
   }
 
@@ -44,18 +53,20 @@ export default function RegisterForm() {
 
     setIsLoading(true)
 
-    // Simulate API call
+    try {
+      const response = await register(email, password, name, "user", 1);
+      console.log("Registration response:", response);
 
-    const response = register(email, password, name, "user", 0);
+      //short delay
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    console.log(response);
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    // Reset loading state
-    setIsLoading(false)
-
-    // Here you would typically handle registration
-    console.log("Registration attempt with:", { name, email, password })
+      navigate("/login");
+    } catch (error) {
+      console.error("Registration failed:", error);
+    } finally {
+      setIsLoading(false);
+    }
+    // console.log("Registration attempt with:", { name, email, password })
   }
 
   return (
@@ -111,7 +122,7 @@ export default function RegisterForm() {
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value)
-                  if (confirmPassword) validatePasswords()
+                  if (password) validatePasswords()
                 }}
                 required
                 className="border-[#90C67C] focus-visible:ring-[#67AE6E] pr-10"
@@ -124,7 +135,7 @@ export default function RegisterForm() {
                 {showPassword ? <EyeOffIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
               </button>
             </div>
-            <p className="text-xs text-gray-500">Password must be at least 8 characters</p>
+            {passwordError1 && <p className="text-red-500 text-xs mt-1">{passwordError1}</p>}
           </div>
 
           <div className="space-y-2">
@@ -139,7 +150,7 @@ export default function RegisterForm() {
                 value={confirmPassword}
                 onChange={(e) => {
                   setConfirmPassword(e.target.value)
-                  if (password) validatePasswords()
+                  if (password) matchPasswords(password, e.target.value)
                 }}
                 required
                 className="border-[#90C67C] focus-visible:ring-[#67AE6E] pr-10"
@@ -152,7 +163,7 @@ export default function RegisterForm() {
                 {showConfirmPassword ? <EyeOffIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
               </button>
             </div>
-            {passwordError && <p className="text-red-500 text-xs mt-1">{passwordError}</p>}
+            {passwordError2 && <p className="text-red-500 text-xs mt-1">{passwordError2}</p>}
           </div>
 
           <div className="flex items-center space-x-2">

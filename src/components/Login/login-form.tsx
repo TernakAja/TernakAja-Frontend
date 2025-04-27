@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/auth-context";
 
 export default function LoginForm() {
@@ -16,19 +16,22 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
+  const navigate = useNavigate()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate API call
-    await login(email, password);
+    try {
+      await login(email, password);
 
-    // Reset loading state
-    setIsLoading(false);
-
-    // Here you would typically handle authentication
-    console.log("Login attempt with:", { email, password });
+      navigate("/");
+    } catch (error) {
+      console.error("Login failed:", error);
+    } finally {
+      setIsLoading(false);
+    }
+    // console.log("Login attempt with:", { email, password });
   };
 
   return (
