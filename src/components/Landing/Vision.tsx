@@ -74,7 +74,7 @@ export default function Vision() {
             <AnimatedDiv
               key={index}
               className="bg-white rounded-xl p-6 shadow-md border-t-4"
-              style={{ borderColor: goal.color }}
+              // style={{ borderColor: goal.color }}
               direction="up"
               delay={index * 0.1}
             >

@@ -37,7 +37,7 @@ export default function Statistics() {
   )
 }
 
-function CountUp({ target, suffix = "", className = "" }) {
+function CountUp({ target = 0, suffix = "", className = "" }) {
   const [count, setCount] = useState(0)
 
   useEffect(() => {

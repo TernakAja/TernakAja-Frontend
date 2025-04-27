@@ -24,7 +24,7 @@ export default function RelatedArticles({
         const articles = await getRelatedArticles(currentArticleId, category);
         setRelatedArticles(articles);
         setLoading(false);
-      } catch (err) {
+      } catch {
         setError("Failed to load related articles. Please try again later.");
         setLoading(false);
       }

@@ -25,7 +25,7 @@ export default function ForumPosts() {
         const data = await getForumPosts(activeTab);
         setPosts(data);
         setLoading(false);
-      } catch (err) {
+      } catch {
         setError("Failed to load forum posts. Please try again later.");
         setLoading(false);
       }

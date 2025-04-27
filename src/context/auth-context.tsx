@@ -2,6 +2,9 @@ import React, { createContext, useState, useEffect, ReactNode } from "react";
 import axios from "axios";
 import { User, AuthResponse, ErrorResponse } from "../types";
 
+import { AxiosError } from 'axios';
+
+
 interface AuthContextType {
   user: User | null;
   token: string | null;
@@ -60,9 +63,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       setToken(token);
       setIsAuthenticated(true);
       localStorage.setItem("token", token);
-    } catch (error: any) {
-      const errorResponse = error.response?.data as ErrorResponse;
-      throw new Error(errorResponse?.error || "Registration failed");
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const errorResponse = error.response?.data as ErrorResponse;
+        throw new Error(errorResponse?.error || "Registration failed");
+      } else {
+        // Handle other types of errors if necessary
+        throw new Error("An unknown error occurred");
+      }
     }
   };
 
@@ -81,9 +89,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       setToken(token);
       setIsAuthenticated(true);
       localStorage.setItem("token", token);
-    } catch (error: any) {
-      const errorResponse = error.response?.data as ErrorResponse;
-      throw new Error(errorResponse?.error || "Login failed");
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const errorResponse = error.response?.data as ErrorResponse;
+        throw new Error(errorResponse?.error || "Login failed");
+      } else {
+        // Handle other types of errors if necessary
+        throw new Error("An unknown error occurred");
+      }
     }
   };
 
