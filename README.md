@@ -1,4 +1,4 @@
-<h1 align="center"> Moorgan </h1> <br>
+<h1 align="center"> Moorgan - Frontend </h1> <br>
 <p align="center">
   <a href="">
     <img alt="Moorgan" title="Moorgan" src="public/images/logo.png" width="360px">
@@ -20,10 +20,7 @@
 - [Technology Stack](#🛠️-technology-stack)
 - [Core Features](#🧩-core-features)
 - [Live Demo](#🚀-live-demo)
-- [Getting Started Locally](#🧰-getting-started-locally-monorepo-version)
-- [Screenshots](#🖼️-screenshots)
-- [Architecture Diagram](#🧭-erd-diagram)
-- [Attachment](#⚙️-attachment)
+- [Getting Started Locally](#🧰-getting-started-locally-frontend-version)
 - [Team](#👥-team)
 - [Contact](#📬-contact)
 
