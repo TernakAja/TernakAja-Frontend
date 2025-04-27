@@ -130,7 +130,7 @@ npm run dev
 ---
 
 ## 👥 Team
-This project was created for Microsoft ElevAIte 2025 by:
+This project was created for Microsoft ElevAIte 2025 by Team Moorganino:
 
 - **Stanley Nathanael Wijaya** - 2702217125
 - **Nathaniel Alexander** - 2702276872
