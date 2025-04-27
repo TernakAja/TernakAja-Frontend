@@ -65,9 +65,12 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-4">
           {
             isAuthenticated ? (
-              <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white" onClick={handleLogout}>
-                Logout
-              </Button>
+              <div className="hidden md:flex items-center gap-4">
+                <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white" onClick={handleLogout}>
+                  Logout
+                </Button>
+                <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white" onClick={() => navigate("/dashboard")}>Dashboard</Button>
+              </div>
             ) : (
               <div className="hidden md:flex items-center gap-4">
                 <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white" onClick={() => navigate("/login")}>
@@ -108,9 +111,12 @@ export default function Navbar() {
               <div className="flex flex-col gap-2 mt-4">
                 {
                   isAuthenticated ? (
-                    <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white" onClick={handleLogout}>
-                      Logout
-                    </Button>
+                    <div className="flex flex-col gap-2 mt-4">
+                      <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white" onClick={handleLogout}>
+                        Logout
+                      </Button>
+                      <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white" onClick={() => navigate("/dashboard")}>Dashboard</Button>
+                    </div>
                   ) : (
                     <div className="flex flex-col gap-2 mt-4">
                       <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white" onClick={() => navigate("/login")}>
