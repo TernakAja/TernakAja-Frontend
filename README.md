@@ -8,7 +8,6 @@
 <p align="center">
   <a href="https://education.elevaite.id/" target="_blank"><b>Microsoft ElevAIte - 2025</b></a><br>
   <b>Moorgan</b> is an <b>intelligent livestock monitoring system</b> to solve SDG Number 2 Zero Hunger (Especially in Agriculture).
-  <br>
   <b>Moorgan</b>  helps farmers monitor the health and behavior of their livestock in real-time using <b>IoT</b> and <b>AI anomaly detection</b>.
 </p>
 
