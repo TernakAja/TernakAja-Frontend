@@ -42,6 +42,9 @@ import ArticleDetailPage from "./pages/Article/[id]/page";
 
 // Dashboard
 
+import WeatherPage from "./pages/Dashboard/Weather/page";
+import AddLivestockPage from "./pages/Dashboard/Livestock/add/page";
+
 import DashboardAnalyticsPage from "./pages/Dashboard/Analytics/page";
 import DashboardFeedingPage from "./pages/Dashboard/Feeding/page";
 import DashboardHealthPage from "./pages/Dashboard/Health/page";
@@ -114,11 +117,14 @@ function App() {
 
               <Route path="/dashboard" element={<DashboardPage/>} />
               <Route path="/dashboard/livestock" element={<DashboardLivestockPage/>} />
+              <Route path="/dashboard/livestock/add" element={<AddLivestockPage/>} />
               <Route path="/dashboard/livestock/:id" element={<DashboardLivestockDetailPage />} />
 
               <Route path="/dashboard/health" element={<DashboardHealthPage/>} />
               <Route path="/dashboard/feeding" element={<DashboardFeedingPage/>} />
               <Route path="/dashboard/analytics" element={<DashboardAnalyticsPage/>} />
+
+              <Route path="/dashboard/weather" element={<WeatherPage/>} />
 
               <Route path="*" element={<NotFoundPage />} />
 

@@ -67,7 +67,7 @@ export default function Developers() {
           <Button
             variant="outline"
             className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white px-6 py-6 rounded-lg text-lg"
-            onClick={() => navigate("/landing")}
+            onClick={() => navigate("/team")}
           >
             View Team Details
           </Button>

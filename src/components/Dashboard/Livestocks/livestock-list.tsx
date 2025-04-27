@@ -27,8 +27,11 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useNavigate } from "react-router-dom"
 
 export default function LivestockList() {
+
+  const navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
 
@@ -160,7 +163,7 @@ export default function LivestockList() {
           <h1 className="text-2xl font-bold tracking-tight">Livestock Management</h1>
           <p className="text-muted-foreground">View and manage all your livestock in one place.</p>
         </div>
-        <Button className="bg-[#328E6E] hover:bg-[#67AE6E]">
+        <Button className="bg-[#328E6E] hover:bg-[#67AE6E]" onClick={() => navigate("/dashboard/livestock/add")}>
           <Plus className="mr-2 h-4 w-4" />
           Add Livestock
         </Button>

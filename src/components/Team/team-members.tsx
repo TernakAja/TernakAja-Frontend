@@ -30,7 +30,7 @@ export default function TeamMembers() {
       name: "Jason Melvin Hartono",
       role: "IoT Engineer",
       bio: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      image: "./images/Team/stanley.png",
+      image: "./images/Team/Jason.png",
       social: {
         instagram: "https://www.instagram.com/jason689melvin/",
         linkedin: "https://www.linkedin.com/in/jason-melvin-hartono-07329328b/",
@@ -41,7 +41,7 @@ export default function TeamMembers() {
       name: "David Christian",
       role: "Fullstack Developer",
       bio: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      image: "./images/Team/stanley.png",
+      image: "./images/Team/David.png",
       social: {
         instagram: "https://www.instagram.com/davidchristian._/",
         linkedin: "https://www.linkedin.com/in/david-christian-933545293/",
