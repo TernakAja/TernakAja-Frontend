@@ -15,6 +15,7 @@ import {
   Menu,
   MessageSquare,
   Settings,
+  Sun,
   Utensils,
   X,
 } from "lucide-react"
@@ -62,6 +63,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     { name: "Analytics", href: "/dashboard/analytics", icon: <BarChart3 className="h-5 w-5" /> },
     { name: "Activity Tracking", href: "/dashboard/activity", icon: <Activity className="h-5 w-5" /> },
     { name: "Feeding Management", href: "/dashboard/feeding", icon: <Utensils className="h-5 w-5" /> },
+    { name: "Weather", href: "/dashboard/weather", icon: <Sun className="h-5 w-5" /> },
     { name: "Reports", href: "/dashboard/reports", icon: <FileText className="h-5 w-5" /> },
     { name: "Messages", href: "/dashboard/messages", icon: <MessageSquare className="h-5 w-5" /> },
     { name: "Settings", href: "/dashboard/settings", icon: <Settings className="h-5 w-5" /> },

@@ -114,7 +114,7 @@ export default function TeamMembers() {
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-800 mb-1">{member.name}</h3>
                 <div className="text-[#328E6E] font-medium mb-3">{member.role}</div>
-                <p className="text-gray-600">{member.bio}</p>
+                {/* <p className="text-gray-600">{member.bio}</p> */}
               </div>
             </AnimatedDiv>
           ))}

@@ -300,7 +300,7 @@ export default function LivestockList() {
                 </TableHeader>
                 <TableBody>
                   {filteredLivestock.map((animal) => (
-                    <TableRow key={animal.id}>
+                    <TableRow key={animal.id} onClick={() => navigate(`/dashboard/livestock/${animal.id}`)}>
                       <TableCell className="font-medium">{animal.tag}</TableCell>
                       <TableCell>
                         <div className="flex items-center gap-3">
