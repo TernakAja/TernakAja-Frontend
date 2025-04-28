@@ -29,28 +29,28 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Quick as</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#home" className="text-[#E1EEBC] hover:text-white transition-colors">
+                <a href="/" className="text-[#E1EEBC] hover:text-white transition-colors">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#about" className="text-[#E1EEBC] hover:text-white transition-colors">
+                <a href="/about" className="text-[#E1EEBC] hover:text-white transition-colors">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="#features" className="text-[#E1EEBC] hover:text-white transition-colors">
-                  Features
+                <a href="/article" className="text-[#E1EEBC] hover:text-white transition-colors">
+                  Article
                 </a>
               </li>
               <li>
-                <a href="#products" className="text-[#E1EEBC] hover:text-white transition-colors">
-                  Products
+                <a href="/forum" className="text-[#E1EEBC] hover:text-white transition-colors">
+                  Community Forum
                 </a>
               </li>
               <li>
-                <a href="#faq" className="text-[#E1EEBC] hover:text-white transition-colors">
-                  FAQ
+                <a href="/marketplace" className="text-[#E1EEBC] hover:text-white transition-colors">
+                  Marketplace
                 </a>
               </li>
             </ul>

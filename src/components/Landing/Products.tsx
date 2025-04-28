@@ -9,19 +9,19 @@ export default function Products() {
       name: "Moorgan Sense",
       description: "IoT sensors and wearables for real-time livestock monitoring",
       features: ["Health tracking", "Location monitoring", "Behavior analysis", "Long battery life"],
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/images/Products/Moorgan-IoT-Schema.png",
     },
     {
       name: "Moorgan Insight",
       description: "AI-powered analytics platform for data-driven decision making",
       features: ["Predictive health alerts", "Performance metrics", "Custom reports", "Mobile dashboard"],
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/images/Products/mobile.png",
     },
     {
       name: "Moorgan Connect",
       description: "Complete farm management system with integrated IoT and AI",
       features: ["End-to-end solution", "Cloud integration", "Advanced analytics", "Technical support"],
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/images/Products/dashboard-overview.png",
     },
   ]
 
