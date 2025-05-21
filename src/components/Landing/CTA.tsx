@@ -60,13 +60,13 @@ export default function Cta() {
                     <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
                       First Name
                     </label>
-                    <Input id="firstName" placeholder="John" className="w-full" />
+                    <Input id="firstName" placeholder="John" className="w-full text-black" />
                   </div>
                   <div>
                     <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
                       Last Name
                     </label>
-                    <Input id="lastName" placeholder="Doe" className="w-full" />
+                    <Input id="lastName" placeholder="Doe" className="w-full text-black" />
                   </div>
                 </div>
 
@@ -74,21 +74,21 @@ export default function Cta() {
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                     Email
                   </label>
-                  <Input id="email" type="email" placeholder="john@example.com" className="w-full" />
+                  <Input id="email" type="email" placeholder="john@example.com" className="w-full text-black" />
                 </div>
 
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
                     Phone
                   </label>
-                  <Input id="phone" placeholder="+1 (555) 123-4567" className="w-full" />
+                  <Input id="phone" placeholder="+1 (555) 123-4567" className="w-full text-black" />
                 </div>
 
                 <div>
                   <label htmlFor="farmSize" className="block text-sm font-medium text-gray-700 mb-1">
                     Farm Size (number of animals)
                   </label>
-                  <Input id="farmSize" placeholder="e.g., 100" className="w-full" />
+                  <Input id="farmSize" placeholder="e.g., 100" className="w-full text-black" />
                 </div>
 
                 <Button className="w-full bg-[#328E6E] hover:bg-[#67AE6E] text-white">

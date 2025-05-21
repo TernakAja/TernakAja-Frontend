@@ -38,6 +38,7 @@ import ForumPage from "./pages/Forum/page";
 import ArticlePage from "./pages/Article/page";
 import ArticleDetailPage from "./pages/Article/[id]/page";
 
+import ChatbotPage from "./pages/Chatbot/page";
 
 
 // Dashboard
@@ -103,12 +104,11 @@ function App() {
                 <Route path="/article/:id" element={<ArticleDetailPage />} />
 
                 <Route path="/marketplace" element={<MarketplacePage />} />
-                <Route
-                  path="/marketplace/:id"
-                  element={<MarketplaceDetailPage />}
-                />
+                <Route path="/marketplace/:id" element={<MarketplaceDetailPage />} />
 
                 <Route path="/forum" element={<ForumPage />} />
+
+                <Route path="/chatbot" element={<ChatbotPage />} />
 
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />

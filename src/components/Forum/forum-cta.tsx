@@ -27,7 +27,7 @@ export default function ForumCta() {
                   <MessageSquarePlus className="mr-2 h-5 w-5" />
                   Start a Discussion
                 </Button>
-                <Button variant="outline" className="border-white text-white hover:bg-white/20">
+                <Button variant="outline" className="border-white text-black hover:bg-white/20">
                   <Users className="mr-2 h-5 w-5" />
                   Browse Community
                 </Button>

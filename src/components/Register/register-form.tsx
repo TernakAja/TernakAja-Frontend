@@ -174,11 +174,11 @@ export default function RegisterForm() {
             />
             <Label htmlFor="terms" className="text-sm text-gray-600">
               I agree to the{" "}
-              <a href="#" className="text-[#328E6E] hover:text-[#67AE6E] hover:underline">
+              <a href="/legal" className="text-[#328E6E] hover:text-[#67AE6E] hover:underline">
                 Terms of Service
               </a>{" "}
               and{" "}
-              <a href="#" className="text-[#328E6E] hover:text-[#67AE6E] hover:underline">
+              <a href="/legal" className="text-[#328E6E] hover:text-[#67AE6E] hover:underline">
                 Privacy Policy
               </a>
             </Label>
