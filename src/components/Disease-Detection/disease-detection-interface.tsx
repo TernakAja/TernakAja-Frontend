@@ -1,0 +1,668 @@
+import type React from "react"
+
+import { useState, useRef } from "react"
+import { motion } from "framer-motion"
+import { Upload, X, CheckCircle, AlertTriangle, UploadCloud, ImageIcon, Layers, Search, RefreshCw } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+// Interface
+
+interface DiseaseInterface {
+  disease : {
+    name: string,
+    probability : number,
+    description: string,
+    symptoms: string[],
+    recommendations : string[],
+  }
+  hasDisease: boolean,
+}
+
+// Disease detection results simulation
+const diseaseDatabase = [
+  {
+    id: 1,
+    name: "Bovine Respiratory Disease",
+    probability: 0.87,
+    description:
+      "Bovine respiratory disease (BRD) is the most common and costly disease affecting cattle in the world. It is a complex, bacterial infection that causes pneumonia in cattle.",
+    symptoms: ["Nasal discharge", "Coughing", "Rapid breathing", "Fever", "Decreased appetite"],
+    recommendations: [
+      "Isolate affected animals",
+      "Consult veterinarian immediately",
+      "Start antibiotics as prescribed",
+      "Ensure good ventilation",
+      "Monitor temperature",
+    ],
+  },
+  {
+    id: 2,
+    name: "Foot and Mouth Disease",
+    probability: 0.35,
+    description:
+      "Foot-and-mouth disease (FMD) is a highly contagious viral disease affecting cloven-hoofed animals including cattle, sheep, and pigs.",
+    symptoms: [
+      "Fever",
+      "Blisters on feet, mouth and teats",
+      "Excessive salivation",
+      "Lameness",
+      "Reduced milk production",
+    ],
+    recommendations: [
+      "Immediately notify regulatory officials",
+      "Quarantine the entire farm",
+      "Disinfect all areas",
+      "Restrict movement of animals",
+      "Follow veterinary protocols",
+    ],
+  },
+  {
+    id: 3,
+    name: "Bovine Viral Diarrhea",
+    probability: 0.08,
+    description:
+      "Bovine viral diarrhea (BVD) is a viral disease of cattle that can cause a variety of clinical problems including reproductive issues, respiratory disease, and gastrointestinal illness.",
+    symptoms: ["Diarrhea", "Fever", "Oral erosions", "Nasal discharge", "Reduced milk production"],
+    recommendations: [
+      "Test for persistent infection",
+      "Implement vaccination program",
+      "Isolate new animals",
+      "Improve biosecurity measures",
+      "Consult with veterinarian",
+    ],
+  },
+]
+
+// Simulated history items
+const historyItems = [
+  {
+    id: "hist-1",
+    filename: "cattle_checkup_march.jpg",
+    date: "2023-03-15",
+    result: "Detected: Bovine Respiratory Disease (87%)",
+    thumbnail: "/images/logo.png",
+    status: "detected",
+  },
+  {
+    id: "hist-2",
+    filename: "herd_inspection_feb.jpg",
+    date: "2023-02-28",
+    result: "No disease detected",
+    thumbnail: "/images/logo.png",
+    status: "healthy",
+  },
+  {
+    id: "hist-3",
+    filename: "dairy_cow_inspection.jpg",
+    date: "2023-01-22",
+    result: "Detected: Mastitis (92%)",
+    thumbnail: "/images/logo.png",
+    status: "detected",
+  },
+]
+
+export default function DiseaseDetectionInterface() {
+    
+  const [activeTab, setActiveTab] = useState("upload")
+  const [isDragging, setIsDragging] = useState(false)
+
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null)
+
+  const [isAnalyzing, setIsAnalyzing] = useState(false)
+  const [analysisComplete, setAnalysisComplete] = useState(false)
+  const [detectionResults, setDetectionResults] = useState<DiseaseInterface | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragging(true)
+  }
+
+  const handleDragLeave = () => {
+    setIsDragging(false)
+  }
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragging(false)
+
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFileUpload(e.dataTransfer.files[0])
+    }
+  }
+
+  const triggerFileInput = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click()
+    }
+  }
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      handleFileUpload(e.target.files[0])
+    }
+  }
+
+  const handleFileUpload = (file: File) => {
+    setImageFile(file)
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      if (e.target && typeof e.target.result === "string") {
+        setUploadedImage(e.target.result)
+        simulateAnalysis()
+      }
+    }
+    reader.readAsDataURL(file)
+  }
+
+  const simulateAnalysis = () => {
+
+    setIsAnalyzing(true)
+
+    // Simulate analysis delay
+
+    setTimeout( async () => {
+      setIsAnalyzing(false)
+      setAnalysisComplete(true)
+      // Randomly pick a disease or no disease
+      const randomValue = Math.random()
+      if (randomValue > 0.3) {
+        // Detected disease
+        const randomDiseaseIndex = Math.floor(Math.random() * diseaseDatabase.length)
+        setDetectionResults({
+          hasDisease: true,
+          disease: diseaseDatabase[randomDiseaseIndex],
+        })
+      } else {
+        // No disease detected
+        setDetectionResults({
+          hasDisease: false,
+          disease: diseaseDatabase[1],
+        })
+      }
+
+    //   const endpoint = "https://moorgancustomvision-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/2a019930-9e8c-47a3-9e6e-7258de4f3a1f/classify/iterations/Iteration1/url";
+
+    //     const response = await fetch(endpoint, {
+    //         method: "POST",
+    //         headers: {
+    //             "Prediction-Key": "BoUOB4MsH0X9hhIHVFLD374OcG3zEkshzJvxXQKD0Vcha2TfUaMaJQQJ99BEACYeBjFXJ3w3AAAIACOGwpXV",
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: {
+    //             "url" : "https://upload.wikimedia.org/wikipedia/commons/0/0c/Cow_female_black_white.jpg"
+    //         }
+    //     });
+
+    //     const result = await response.json();
+    //     console.log("Prediction result from file: " + result.message);
+
+
+    const endpoint =
+    "https://moorgancustomvision-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/2a019930-9e8c-47a3-9e6e-7258de4f3a1f/classify/iterations/Iteration1/image";
+
+    const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+        "Prediction-Key": "BoUOB4MsH0X9hhIHVFLD374OcG3zEkshzJvxXQKD0Vcha2TfUaMaJQQJ99BEACYeBjFXJ3w3AAAIACOGwpXV",
+        "Content-Type": "application/octet-stream",
+        },
+        body: imageFile,
+    });
+
+    const result = await response.json();
+    console.log("Prediction result from file:" + result.message);
+
+
+
+    }, 3000)
+
+  }
+
+  const resetDetection = () => {
+    setUploadedImage(null)
+    setAnalysisComplete(false)
+    setDetectionResults(null)
+  }
+
+  return (
+
+    <div className="flex flex-col min-h-screen">
+
+      {/* Hero Section */}
+      <section className="bg-gradient-to-b from-[#328E6E] to-[#67AE6E] py-16 px-4 sm:px-6 lg:px-8 text-white">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Livestock Disease Detection</h1>
+            <p className="text-xl md:text-2xl max-w-3xl mx-auto">
+              Upload an image of your livestock to detect potential diseases using our advanced AI technology
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid grid-cols-2 w-full max-w-md mx-auto mb-8">
+              <TabsTrigger value="upload" className="text-lg py-3">
+                <UploadCloud className="mr-2 h-5 w-5" />
+                Upload & Detect
+              </TabsTrigger>
+              <TabsTrigger value="history" className="text-lg py-3">
+                <Layers className="mr-2 h-5 w-5" />
+                Detection History
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="upload" className="space-y-8">
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Upload Area */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <Card className="p-6 h-full">
+                    <div className="flex flex-col h-full">
+                      <h2 className="text-2xl font-semibold mb-4 text-[#328E6E]">Upload Image</h2>
+
+                      {!uploadedImage ? (
+                        <div
+                          className={`flex-1 border-2 border-dashed rounded-lg flex flex-col items-center justify-center p-8 transition-colors ${
+                            isDragging ? "border-[#328E6E] bg-[#E1EEBC]/20" : "border-gray-300"
+                          }`}
+                          onDragOver={handleDragOver}
+                          onDragLeave={handleDragLeave}
+                          onDrop={handleDrop}
+                        >
+                          <Upload className="h-16 w-16 text-[#67AE6E] mb-4" />
+                          <p className="text-lg text-center mb-2">Drag and drop your image here</p>
+                          <p className="text-gray-500 text-center mb-6">or</p>
+                          <Button onClick={triggerFileInput} className="bg-[#328E6E] hover:bg-[#277559] text-white">
+                            Browse Files
+                          </Button>
+                          <input
+                            type="file"
+                            ref={fileInputRef}
+                            onChange={handleFileChange}
+                            accept="image/*"
+                            className="hidden"
+                          />
+                          <p className="text-sm text-gray-500 mt-4">Supported formats: JPG, PNG, WEBP (Max 10MB)</p>
+                        </div>
+                      ) : (
+                        <div className="flex-1 flex flex-col">
+                          <div className="relative flex-1 min-h-[300px] mb-4">
+                            <img
+                              src={uploadedImage || "/placeholder.svg"}
+                              alt="Uploaded livestock image"
+                              className="object-contain rounded-lg"
+                            />
+                            <button
+                              onClick={resetDetection}
+                              className="absolute top-2 right-2 bg-white/80 p-1 rounded-full text-gray-700 hover:bg-white"
+                            >
+                              <X className="h-5 w-5" />
+                            </button>
+                          </div>
+                          {!isAnalyzing && !analysisComplete && (
+                            <Button
+                              onClick={simulateAnalysis}
+                              className="bg-[#328E6E] hover:bg-[#277559] text-white w-full"
+                            >
+                              <Search className="mr-2 h-5 w-5" />
+                              Analyze Image
+                            </Button>
+                          )}
+                          {isAnalyzing && (
+                            <Button disabled className="w-full">
+                              <RefreshCw className="mr-2 h-5 w-5 animate-spin" />
+                              Analyzing...
+                            </Button>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </Card>
+                </motion.div>
+
+                {/* Results Area */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <Card className="p-6 h-full">
+                    <h2 className="text-2xl font-semibold mb-4 text-[#328E6E]">Detection Results</h2>
+
+                    {!analysisComplete ? (
+                      <div className="flex-1 flex flex-col items-center justify-center p-8 text-center text-gray-500">
+                        <ImageIcon className="h-16 w-16 mb-4 text-gray-300" />
+                        <p className="text-lg">
+                          {isAnalyzing ? "Analyzing your image..." : "Upload an image to see disease detection results"}
+                        </p>
+                        {isAnalyzing && (
+                          <div className="mt-4 w-full max-w-xs bg-gray-200 rounded-full h-2.5 overflow-hidden">
+                            <motion.div
+                              className="h-full bg-[#328E6E]"
+                              initial={{ width: "0%" }}
+                              animate={{ width: "100%" }}
+                              transition={{ duration: 3, ease: "easeInOut" }}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      detectionResults && (
+                        <div className="flex-1">
+                          <div
+                            className={`p-4 rounded-lg mb-6 flex items-start ${
+                              detectionResults.hasDisease
+                                ? "bg-red-50 text-red-800 border border-red-200"
+                                : "bg-green-50 text-green-800 border border-green-200"
+                            }`}
+                          >
+                            {detectionResults.hasDisease ? (
+                              <>
+                                <AlertTriangle className="h-6 w-6 mr-3 flex-shrink-0" />
+                                <div>
+                                  <p className="font-medium">Disease Detected</p>
+                                  <p>Our system has detected a potential disease in your livestock image.</p>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <CheckCircle className="h-6 w-6 mr-3 flex-shrink-0" />
+                                <div>
+                                  <p className="font-medium">No Disease Detected</p>
+                                  <p>Good news! No signs of disease were detected in your livestock image.</p>
+                                </div>
+                              </>
+                            )}
+                          </div>
+
+                          {detectionResults.hasDisease && detectionResults.disease && (
+                            <div className="space-y-6">
+                              <div>
+                                <h3 className="text-xl font-medium text-[#328E6E] mb-2">Detected Disease</h3>
+                                <div className="bg-[#E1EEBC]/30 p-4 rounded-lg">
+                                  <div className="flex justify-between items-center mb-2">
+                                    <span className="font-semibold text-lg">{detectionResults.disease.name}</span>
+                                    <span className="bg-[#328E6E] text-white px-2 py-1 rounded text-sm">
+                                      {Math.round(detectionResults.disease.probability * 100)}% Probability
+                                    </span>
+                                  </div>
+                                  <p className="text-gray-700 mb-4">{detectionResults.disease.description}</p>
+
+                                  <div className="mb-4">
+                                    <h4 className="font-medium text-[#328E6E] mb-2">Common Symptoms</h4>
+                                    <ul className="list-disc pl-5 text-gray-700 grid grid-cols-2 gap-x-4 gap-y-1">
+                                      {detectionResults.disease.symptoms.map((symptom: string, index: number) => (
+                                        <li key={index}>{symptom}</li>
+                                      ))}
+                                    </ul>
+                                  </div>
+
+                                  <div>
+                                    <h4 className="font-medium text-[#328E6E] mb-2">Recommendations</h4>
+                                    <ul className="list-disc pl-5 text-gray-700">
+                                      {detectionResults.disease.recommendations.map((rec: string, index: number) => (
+                                        <li key={index}>{rec}</li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="pt-4 border-t border-gray-200">
+                                <p className="text-gray-500 text-sm">
+                                  <strong>Note:</strong> This is an AI-assisted diagnosis and should be confirmed by a
+                                  veterinarian. Please consult with a professional for proper treatment.
+                                </p>
+                              </div>
+                            </div>
+                          )}
+
+                          {!detectionResults.hasDisease && (
+                            <div className="space-y-6">
+                              <div className="bg-[#E1EEBC]/30 p-4 rounded-lg">
+                                <h3 className="text-xl font-medium text-[#328E6E] mb-2">Healthy Livestock</h3>
+                                <p className="text-gray-700 mb-4">
+                                  Our AI analysis did not detect any signs of common livestock diseases in your image.
+                                  Your animal appears to be in good health based on visual indicators.
+                                </p>
+
+                                <h4 className="font-medium text-[#328E6E] mb-2">Recommendations</h4>
+                                <ul className="list-disc pl-5 text-gray-700">
+                                  <li>Continue regular health monitoring</li>
+                                  <li>Maintain proper nutrition and hydration</li>
+                                  <li>Follow your regular vaccination schedule</li>
+                                  <li>Conduct routine physical examinations</li>
+                                  <li>Keep monitoring for any behavioral changes</li>
+                                </ul>
+                              </div>
+
+                              <div className="pt-4 border-t border-gray-200">
+                                <p className="text-gray-500 text-sm">
+                                  <strong>Note:</strong> Regular veterinary check-ups are still recommended even when no
+                                  disease is detected by our system.
+                                </p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )
+                    )}
+                  </Card>
+                </motion.div>
+              </div>
+
+              {/* How It Works Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <Card className="p-6">
+                  <h2 className="text-2xl font-semibold mb-6 text-[#328E6E]">How It Works</h2>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="flex flex-col items-center text-center">
+                      <div className="w-16 h-16 rounded-full bg-[#E1EEBC] flex items-center justify-center mb-4">
+                        <Upload className="h-8 w-8 text-[#328E6E]" />
+                      </div>
+                      <h3 className="font-medium text-lg mb-2">1. Upload Image</h3>
+                      <p className="text-gray-600">
+                        Upload a clear image of your livestock from any angle that shows the animal clearly.
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col items-center text-center">
+                      <div className="w-16 h-16 rounded-full bg-[#E1EEBC] flex items-center justify-center mb-4">
+                        <Search className="h-8 w-8 text-[#328E6E]" />
+                      </div>
+                      <h3 className="font-medium text-lg mb-2">2. AI Analysis</h3>
+                      <p className="text-gray-600">
+                        Our advanced AI analyzes the image for visual signs of common livestock diseases.
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col items-center text-center">
+                      <div className="w-16 h-16 rounded-full bg-[#E1EEBC] flex items-center justify-center mb-4">
+                        <CheckCircle className="h-8 w-8 text-[#328E6E]" />
+                      </div>
+                      <h3 className="font-medium text-lg mb-2">3. Get Results</h3>
+                      <p className="text-gray-600">
+                        Receive detailed analysis with disease identification, symptoms, and recommended actions.
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            </TabsContent>
+
+            <TabsContent value="history">
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+                <Card className="p-6">
+                  <h2 className="text-2xl font-semibold mb-6 text-[#328E6E]">Detection History</h2>
+
+                  <div className="overflow-x-auto">
+                    <table className="w-full border-collapse">
+                      <thead>
+                        <tr className="border-b border-gray-200">
+                          <th className="py-3 px-4 text-left font-medium text-gray-600">Image</th>
+                          <th className="py-3 px-4 text-left font-medium text-gray-600">Filename</th>
+                          <th className="py-3 px-4 text-left font-medium text-gray-600">Date</th>
+                          <th className="py-3 px-4 text-left font-medium text-gray-600">Result</th>
+                          <th className="py-3 px-4 text-left font-medium text-gray-600">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {historyItems.map((item) => (
+                          <tr key={item.id} className="border-b border-gray-200 hover:bg-gray-50">
+                            <td className="py-3 px-4">
+                              <div className="w-12 h-12 relative rounded overflow-hidden">
+                                <img
+                                  src={item.thumbnail || "/placeholder.svg"}
+                                  alt={item.filename}
+                                  className="object-cover"
+                                />
+                              </div>
+                            </td>
+                            <td className="py-3 px-4 font-medium">{item.filename}</td>
+                            <td className="py-3 px-4 text-gray-600">{item.date}</td>
+                            <td className="py-3 px-4">
+                              <span
+                                className={`px-2 py-1 rounded text-sm ${
+                                  item.status === "detected" ? "bg-red-100 text-red-800" : "bg-green-100 text-green-800"
+                                }`}
+                              >
+                                {item.result}
+                              </span>
+                            </td>
+                            <td className="py-3 px-4">
+                              <div className="flex space-x-2">
+                                <Button variant="outline" size="sm">
+                                  View
+                                </Button>
+                                <Button variant="outline" size="sm">
+                                  Download
+                                </Button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {historyItems.length === 0 && (
+                    <div className="text-center py-8 text-gray-500">
+                      <p>No detection history available</p>
+                    </div>
+                  )}
+                </Card>
+              </motion.div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </section>
+
+      {/* Tips and Education Section */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-[#E1EEBC]/20">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <h2 className="text-3xl font-bold mb-8 text-center text-[#328E6E]">Livestock Disease Prevention Tips</h2>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-3 text-[#67AE6E]">Proper Sanitation</h3>
+                <p className="text-gray-700">
+                  Regularly clean and disinfect animal housing, feeding equipment, and water troughs. Proper sanitation
+                  is the first line of defense against disease spread.
+                </p>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-3 text-[#67AE6E]">Vaccination Programs</h3>
+                <p className="text-gray-700">
+                  Implement and maintain a comprehensive vaccination program based on regional disease risks. Consult
+                  with your veterinarian for a customized schedule.
+                </p>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-3 text-[#67AE6E]">Biosecurity Measures</h3>
+                <p className="text-gray-700">
+                  Control farm access, quarantine new animals, use clean equipment, and implement proper waste
+                  management to prevent disease introduction and spread.
+                </p>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-3 text-[#67AE6E]">Nutrition Management</h3>
+                <p className="text-gray-700">
+                  Provide balanced nutrition tailored to your livestock's needs. Proper nutrition strengthens immune
+                  systems and increases resistance to disease.
+                </p>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-3 text-[#67AE6E]">Regular Monitoring</h3>
+                <p className="text-gray-700">
+                  Observe your animals daily for unusual behavior or physical symptoms. Early detection is crucial for
+                  effective treatment and preventing spread.
+                </p>
+              </Card>
+
+              <Card className="p-6">
+                <h3 className="text-xl font-semibold mb-3 text-[#67AE6E]">Professional Guidance</h3>
+                <p className="text-gray-700">
+                  Establish a relationship with a veterinarian specialized in livestock. Regular check-ups and
+                  professional advice are essential for herd health.
+                </p>
+              </Card>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+
+      {/* <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#67AE6E] to-[#328E6E] text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Safeguard Your Livestock's Health</h2>
+            <p className="text-xl mb-8">
+              Join thousands of farmers using Moorgan's technology to detect and prevent livestock diseases early
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+              <Button className="bg-white text-[#328E6E] hover:bg-gray-100 text-lg px-8 py-6">Get Started</Button>
+              <Button variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8 py-6">
+                Learn More
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section> */}
+
+    </div>
+  )
+}

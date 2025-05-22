@@ -169,7 +169,7 @@ export default function ChatbotInterface() {
       // Buat pesan dari bot
       const botMessage: MessageType = {
         id: (Date.now() + 1).toString(),
-        content: data.response || "Maaf, saya tidak bisa menjawab saat ini.",
+        content: data.response || "I cannot answer this question...",
         sender: "bot",
         timestamp: new Date(),
       };
@@ -182,7 +182,7 @@ export default function ChatbotInterface() {
 
       const errorMessage: MessageType = {
         id: (Date.now() + 1).toString(),
-        content: "Terjadi kesalahan dalam memproses permintaan Anda.",
+        content: "There is error in the backend server.",
         sender: "bot",
         timestamp: new Date(),
       };

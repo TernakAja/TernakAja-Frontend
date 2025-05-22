@@ -38,8 +38,10 @@ import ForumPage from "./pages/Forum/page";
 import ArticlePage from "./pages/Article/page";
 import ArticleDetailPage from "./pages/Article/[id]/page";
 
-import ChatbotPage from "./pages/Chatbot/page";
+import FeaturesPage from "./pages/Features/page";
 
+import ChatbotPage from "./pages/Chatbot/page";
+import DiseaseDetectionPage from "./pages/Desease-Detection/page";
 
 // Dashboard
 
@@ -108,7 +110,10 @@ function App() {
 
                 <Route path="/forum" element={<ForumPage />} />
 
+                <Route path="/features" element={<FeaturesPage />} />
+
                 <Route path="/chatbot" element={<ChatbotPage />} />
+                <Route path="/disease-detection" element={<DiseaseDetectionPage />} />
 
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
