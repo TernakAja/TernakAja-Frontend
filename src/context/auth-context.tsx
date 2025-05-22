@@ -2,8 +2,7 @@ import React, { createContext, useState, useEffect, ReactNode } from "react";
 import axios from "axios";
 import { User, AuthResponse, ErrorResponse } from "../types";
 
-import { AxiosError } from 'axios';
-
+import { AxiosError } from "axios";
 
 interface AuthContextType {
   user: User | null;
@@ -14,8 +13,7 @@ interface AuthContextType {
     email: string,
     password: string,
     name: string,
-    role: string,
-    farm_id: number
+    role: string
   ) => Promise<void>;
   logout: () => void;
   checkAuth: () => Promise<void>;
@@ -44,20 +42,19 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     email: string,
     password: string,
     name: string,
-    role: string,
-    farm_id: number
+    role: string
   ) => {
     try {
       const response = await axios.post<AuthResponse>(
-        `http://localhost:3000/register`,
+        `${import.meta.env.VITE_API_BASE_URL}/register`,
         {
           email,
           password,
           name,
           role,
-          farm_id,
         }
       );
+      // console.log(response.data);
       const { user, token } = response.data;
       setUser(user);
       setToken(token);
@@ -78,7 +75,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const login = async (email: string, password: string) => {
     try {
       const response = await axios.post<AuthResponse>(
-        `http://localhost:3000/login`,
+        `${import.meta.env.VITE_API_BASE_URL}/login`,
         {
           email,
           password,
@@ -110,7 +107,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
     try {
       const response = await axios.get<AuthResponse>(
-        `http://localhost:3000/profile`,
+        `${import.meta.env.VITE_API_BASE_URL}/profile/${user?.id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -118,7 +115,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       setUser(response.data.user);
       setIsAuthenticated(true);
     } catch (error) {
-      console.error(error)
+      console.error(error);
       setIsAuthenticated(false);
       setUser(null);
       setToken(null);

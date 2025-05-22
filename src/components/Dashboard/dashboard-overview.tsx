@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import {
   Activity,
   AlertTriangle,
@@ -14,12 +14,18 @@ import {
   RefreshCw,
   Utensils,
   BarChart3,
-} from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,12 +33,36 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Progress } from "@/components/ui/progress"
-import { LineChart, BarChart, DonutChart } from "@/components/Dashboard/charts"
+} from "@/components/ui/dropdown-menu";
+import { Progress } from "@/components/ui/progress";
+import { LineChart, BarChart, DonutChart } from "@/components/Dashboard/charts";
+import { getAllLivestock } from "@/services/livestockService";
 
 export default function DashboardOverview() {
-  const [, setTimeRange] = useState("7d")
+  const [, setTimeRange] = useState("7d");
+  // const [, setError] = useState("")
+  const [, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchLivestock = async () => {
+      try {
+        const response = await getAllLivestock();
+        console.log(response);
+        // if (response.success) {
+        //   setLivestock(response.data);
+        // } else {
+        //   setError(response.message || "Failed to fetch livestock.");
+        // }
+      } catch (err) {
+        console.log(err);
+        // setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLivestock();
+  }, []);
 
   const stats = [
     {
@@ -67,7 +97,7 @@ export default function DashboardOverview() {
       icon: <Heart className="h-5 w-5" />,
       color: "bg-red-500",
     },
-  ]
+  ];
 
   const recentAlerts = [
     {
@@ -98,7 +128,7 @@ export default function DashboardOverview() {
       time: "2 hours ago",
       severity: "medium",
     },
-  ]
+  ];
 
   const upcomingTasks = [
     {
@@ -125,17 +155,26 @@ export default function DashboardOverview() {
       assigned: "Michael Rodriguez",
       avatar: "/placeholder.svg?height=32&width=32",
     },
-  ]
+  ];
 
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Dashboard Overview</h1>
-          <p className="text-muted-foreground">Welcome back! Here's what's happening with your livestock today.</p>
+          <h1 className="text-2xl font-bold tracking-tight">
+            Dashboard Overview
+          </h1>
+          <p className="text-muted-foreground">
+            Welcome back! Here's what's happening with your livestock today.
+          </p>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="h-8 gap-1 text-xs" onClick={() => window.location.reload()}>
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-8 gap-1 text-xs"
+            onClick={() => window.location.reload()}
+          >
             <RefreshCw className="h-3.5 w-3.5" />
             <span>Refresh</span>
           </Button>
@@ -147,10 +186,18 @@ export default function DashboardOverview() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setTimeRange("24h")}>Last 24 hours</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTimeRange("7d")}>Last 7 days</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTimeRange("30d")}>Last 30 days</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTimeRange("90d")}>Last 90 days</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTimeRange("24h")}>
+                Last 24 hours
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTimeRange("7d")}>
+                Last 7 days
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTimeRange("30d")}>
+                Last 30 days
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTimeRange("90d")}>
+                Last 90 days
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -167,14 +214,22 @@ export default function DashboardOverview() {
           >
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
-                <div className={`${stat.color} text-white p-1 rounded-md`}>{stat.icon}</div>
+                <CardTitle className="text-sm font-medium">
+                  {stat.title}
+                </CardTitle>
+                <div className={`${stat.color} text-white p-1 rounded-md`}>
+                  {stat.icon}
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{stat.value}</div>
                 <div className="flex items-center pt-1 text-xs">
                   <span
-                    className={stat.status === "increase" ? "text-green-500 font-medium" : "text-red-500 font-medium"}
+                    className={
+                      stat.status === "increase"
+                        ? "text-green-500 font-medium"
+                        : "text-red-500 font-medium"
+                    }
                   >
                     {stat.change}
                   </span>
@@ -197,7 +252,9 @@ export default function DashboardOverview() {
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <div>
                 <CardTitle>Health Metrics</CardTitle>
-                <CardDescription>Average vital signs across all livestock</CardDescription>
+                <CardDescription>
+                  Average vital signs across all livestock
+                </CardDescription>
               </div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -231,7 +288,9 @@ export default function DashboardOverview() {
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <div>
                 <CardTitle>Livestock Distribution</CardTitle>
-                <CardDescription>Breakdown by species and status</CardDescription>
+                <CardDescription>
+                  Breakdown by species and status
+                </CardDescription>
               </div>
               <Tabs defaultValue="species">
                 <TabsList className="grid w-[200px] grid-cols-2">
@@ -254,7 +313,11 @@ export default function DashboardOverview() {
                       </div>
                       <span className="text-sm font-medium">145</span>
                     </div>
-                    <Progress value={58} className="h-2 bg-gray-100" indicatorClassName="bg-[#328E6E]" />
+                    <Progress
+                      value={58}
+                      className="h-2 bg-gray-100"
+                      indicatorClassName="bg-[#328E6E]"
+                    />
                   </div>
                   <div>
                     <div className="flex items-center justify-between mb-1">
@@ -264,7 +327,11 @@ export default function DashboardOverview() {
                       </div>
                       <span className="text-sm font-medium">62</span>
                     </div>
-                    <Progress value={25} className="h-2 bg-gray-100" indicatorClassName="bg-[#67AE6E]" />
+                    <Progress
+                      value={25}
+                      className="h-2 bg-gray-100"
+                      indicatorClassName="bg-[#67AE6E]"
+                    />
                   </div>
                   <div>
                     <div className="flex items-center justify-between mb-1">
@@ -274,7 +341,11 @@ export default function DashboardOverview() {
                       </div>
                       <span className="text-sm font-medium">28</span>
                     </div>
-                    <Progress value={11} className="h-2 bg-gray-100" indicatorClassName="bg-[#90C67C]" />
+                    <Progress
+                      value={11}
+                      className="h-2 bg-gray-100"
+                      indicatorClassName="bg-[#90C67C]"
+                    />
                   </div>
                   <div>
                     <div className="flex items-center justify-between mb-1">
@@ -284,7 +355,11 @@ export default function DashboardOverview() {
                       </div>
                       <span className="text-sm font-medium">12</span>
                     </div>
-                    <Progress value={5} className="h-2 bg-gray-100" indicatorClassName="bg-[#E1EEBC]" />
+                    <Progress
+                      value={5}
+                      className="h-2 bg-gray-100"
+                      indicatorClassName="bg-[#E1EEBC]"
+                    />
                   </div>
                 </div>
               </div>
@@ -305,7 +380,9 @@ export default function DashboardOverview() {
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <div>
                 <CardTitle>Activity Metrics</CardTitle>
-                <CardDescription>Daily activity levels by livestock type</CardDescription>
+                <CardDescription>
+                  Daily activity levels by livestock type
+                </CardDescription>
               </div>
               <Button variant="outline" size="sm" className="h-8 gap-1 text-xs">
                 <span>View All</span>
@@ -329,7 +406,9 @@ export default function DashboardOverview() {
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <div>
                 <CardTitle>Recent Alerts</CardTitle>
-                <CardDescription>Notifications requiring attention</CardDescription>
+                <CardDescription>
+                  Notifications requiring attention
+                </CardDescription>
               </div>
               <Button variant="outline" size="sm" className="h-8 gap-1 text-xs">
                 <span>View All</span>
@@ -345,8 +424,8 @@ export default function DashboardOverview() {
                         alert.severity === "high"
                           ? "bg-red-100 text-red-600"
                           : alert.severity === "medium"
-                            ? "bg-amber-100 text-amber-600"
-                            : "bg-blue-100 text-blue-600"
+                          ? "bg-amber-100 text-amber-600"
+                          : "bg-blue-100 text-blue-600"
                       }`}
                     >
                       {alert.severity === "high" ? (
@@ -359,28 +438,32 @@ export default function DashboardOverview() {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
-                        <div className="font-medium text-sm">{alert.animal}</div>
+                        <div className="font-medium text-sm">
+                          {alert.animal}
+                        </div>
                         <Badge
                           variant={
                             alert.severity === "high"
                               ? "destructive"
                               : alert.severity === "medium"
-                                ? "default"
-                                : "outline"
+                              ? "default"
+                              : "outline"
                           }
                           className={
                             alert.severity === "high"
                               ? ""
                               : alert.severity === "medium"
-                                ? "bg-amber-500"
-                                : "text-blue-500 border-blue-200"
+                              ? "bg-amber-500"
+                              : "text-blue-500 border-blue-200"
                           }
                         >
                           {alert.severity}
                         </Badge>
                       </div>
                       <div className="text-sm text-gray-500">{alert.issue}</div>
-                      <div className="text-xs text-gray-400 mt-1">{alert.time}</div>
+                      <div className="text-xs text-gray-400 mt-1">
+                        {alert.time}
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -400,7 +483,9 @@ export default function DashboardOverview() {
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <div>
               <CardTitle>Upcoming Tasks</CardTitle>
-              <CardDescription>Scheduled activities and responsibilities</CardDescription>
+              <CardDescription>
+                Scheduled activities and responsibilities
+              </CardDescription>
             </div>
             <Button variant="outline" size="sm" className="h-8 gap-1 text-xs">
               <Calendar className="h-3.5 w-3.5 mr-1" />
@@ -422,10 +507,15 @@ export default function DashboardOverview() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Avatar className="h-8 w-8">
-                      <AvatarImage src={task.avatar || "/placeholder.svg"} alt={task.assigned} />
+                      <AvatarImage
+                        src={task.avatar || "/placeholder.svg"}
+                        alt={task.assigned}
+                      />
                       <AvatarFallback>{task.assigned.charAt(0)}</AvatarFallback>
                     </Avatar>
-                    <div className="text-sm hidden md:block">{task.assigned}</div>
+                    <div className="text-sm hidden md:block">
+                      {task.assigned}
+                    </div>
                   </div>
                   <Button variant="ghost" size="icon">
                     <MoreHorizontal className="h-4 w-4" />
@@ -452,7 +542,9 @@ export default function DashboardOverview() {
                     <Cow className="h-6 w-6 text-[#328E6E]" />
                   </div>
                   <h3 className="font-medium mb-1">Livestock Management</h3>
-                  <p className="text-sm text-gray-500">View and manage all livestock records</p>
+                  <p className="text-sm text-gray-500">
+                    View and manage all livestock records
+                  </p>
                   <div className="mt-4 flex items-center text-[#328E6E] text-sm font-medium">
                     <span>View Details</span>
                     <ArrowUpRight className="ml-1 h-4 w-4" />
@@ -476,7 +568,9 @@ export default function DashboardOverview() {
                     <Heart className="h-6 w-6 text-red-500" />
                   </div>
                   <h3 className="font-medium mb-1">Health Monitoring</h3>
-                  <p className="text-sm text-gray-500">Track vital signs and health status</p>
+                  <p className="text-sm text-gray-500">
+                    Track vital signs and health status
+                  </p>
                   <div className="mt-4 flex items-center text-[#328E6E] text-sm font-medium">
                     <span>View Details</span>
                     <ArrowUpRight className="ml-1 h-4 w-4" />
@@ -500,7 +594,9 @@ export default function DashboardOverview() {
                     <Utensils className="h-6 w-6 text-amber-500" />
                   </div>
                   <h3 className="font-medium mb-1">Feeding Management</h3>
-                  <p className="text-sm text-gray-500">Schedule and track feeding activities</p>
+                  <p className="text-sm text-gray-500">
+                    Schedule and track feeding activities
+                  </p>
                   <div className="mt-4 flex items-center text-[#328E6E] text-sm font-medium">
                     <span>View Details</span>
                     <ArrowUpRight className="ml-1 h-4 w-4" />
@@ -524,7 +620,9 @@ export default function DashboardOverview() {
                     <BarChart3 className="h-6 w-6 text-blue-500" />
                   </div>
                   <h3 className="font-medium mb-1">Analytics & Reports</h3>
-                  <p className="text-sm text-gray-500">View insights and generate reports</p>
+                  <p className="text-sm text-gray-500">
+                    View insights and generate reports
+                  </p>
                   <div className="mt-4 flex items-center text-[#328E6E] text-sm font-medium">
                     <span>View Details</span>
                     <ArrowUpRight className="ml-1 h-4 w-4" />
@@ -536,5 +634,5 @@ export default function DashboardOverview() {
         </motion.div>
       </div>
     </div>
-  )
+  );
 }
