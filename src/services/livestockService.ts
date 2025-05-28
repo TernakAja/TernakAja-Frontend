@@ -1,3 +1,4 @@
+import { LivestockSummaryItem, SensorDataWithLivestockAndAnomaly } from "@/types/livestockSchema";
 import { Livestock } from "@/types/schema";
 import axios from "axios";
 
@@ -49,3 +50,17 @@ export async function deleteLivestock(id: number): Promise<ApiResponse<void>> {
   const response = await api.delete(`/${id}`);
   return response.data;
 }
+
+export const getHealthSummary = async (
+  userId: number
+): Promise<ApiResponse<LivestockSummaryItem[]>> => {
+  const response = await api.get(`/${userId}/health-summary`);
+  return response.data;
+};
+
+export const getAllLivestockByUser = async (
+  userId: number
+): Promise<ApiResponse<SensorDataWithLivestockAndAnomaly[]>> => {
+  const response = await api.get(`/${userId}/sensor-livestock-anomaly`);
+  return response.data;
+};
