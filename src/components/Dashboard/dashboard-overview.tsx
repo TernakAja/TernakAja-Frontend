@@ -2,11 +2,9 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Activity,
-  AlertTriangle,
   ArrowRight,
   ArrowUpRight,
   Calendar,
-  CheckCircle2,
   ChevronDown,
   MilkIcon as Cow,
   Heart,
@@ -23,7 +21,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -38,6 +36,7 @@ import { Progress } from "@/components/ui/progress";
 import { LineChart, BarChart, DonutChart } from "@/components/Dashboard/charts";
 import { getAllLivestock } from "@/services/livestockService";
 import { DailySensorStats, SpeciesCount } from "@/types/livestockSchema";
+import StatsCards from "./stats-cards";
 
 const dailySensorStats: DailySensorStats[] = [
   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },
@@ -82,38 +81,22 @@ export default function DashboardOverview() {
     fetchLivestock();
   }, []);
 
-  const stats = [
+  const summary = [
     {
       title: "Total Livestock",
-      value: "247",
-      change: "+12",
-      status: "increase",
-      icon: <Cow className="h-5 w-5" />,
-      color: "bg-blue-500",
+      value: 247,
     },
     {
       title: "Healthy",
-      value: "231",
-      change: "+5",
-      status: "increase",
-      icon: <CheckCircle2 className="h-5 w-5" />,
-      color: "bg-green-500",
+      value: 231,
     },
     {
       title: "Needs Attention",
-      value: "12",
-      change: "-3",
-      status: "decrease",
-      icon: <AlertTriangle className="h-5 w-5" />,
-      color: "bg-amber-500",
+      value: 12,
     },
     {
       title: "Critical",
-      value: "4",
-      change: "+1",
-      status: "increase",
-      icon: <Heart className="h-5 w-5" />,
-      color: "bg-red-500",
+      value: 4,
     },
   ];
 
@@ -222,42 +205,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* Stats cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {stats.map((stat, index) => (
-          <motion.div
-            key={stat.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.3 }}
-          >
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">
-                  {stat.title}
-                </CardTitle>
-                <div className={`${stat.color} text-white p-1 rounded-md`}>
-                  {stat.icon}
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{stat.value}</div>
-                <div className="flex items-center pt-1 text-xs">
-                  <span
-                    className={
-                      stat.status === "increase"
-                        ? "text-green-500 font-medium"
-                        : "text-red-500 font-medium"
-                    }
-                  >
-                    {stat.change}
-                  </span>
-                  <span className="text-gray-500 ml-1">from last period</span>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
-      </div>
+      <StatsCards summary={summary}/>
 
       {/* Charts section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -307,15 +255,15 @@ export default function DashboardOverview() {
               <div>
                 <CardTitle>Livestock Distribution</CardTitle>
                 <CardDescription>
-                  Breakdown by species and status
+                  Breakdown by species
                 </CardDescription>
               </div>
-              <Tabs defaultValue="species">
+              {/* <Tabs defaultValue="species">
                 <TabsList className="grid w-[200px] grid-cols-2">
                   <TabsTrigger value="species">By Species</TabsTrigger>
                   <TabsTrigger value="status">By Status</TabsTrigger>
                 </TabsList>
-              </Tabs>
+              </Tabs> */}
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 gap-4">

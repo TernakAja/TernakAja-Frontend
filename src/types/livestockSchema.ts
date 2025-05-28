@@ -1,6 +1,6 @@
 export interface LivestockSummaryItem {
   title: string;
-  value: string;
+  value: number;
 }
 
 export interface SpeciesCount {
