@@ -14,4 +14,15 @@ export interface DailySensorStats {
     avg_heart_rate: number;
   }
   
+export interface NotificationWithLivestockFlat {
+  id: number;
+  livestock_id: number;
+  message: string;
+  type: string;
+  read: boolean;
+  sent_at: string;
+  l_id: number;
+  l_name: string | null;
+  l_species: string | null;
+}
   

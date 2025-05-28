@@ -35,7 +35,7 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { LineChart, BarChart, DonutChart } from "@/components/Dashboard/charts";
 import { getAllLivestock } from "@/services/livestockService";
-import { DailySensorStats, SpeciesCount } from "@/types/livestockSchema";
+import { DailySensorStats, NotificationWithLivestockFlat, SpeciesCount } from "@/types/livestockSchema";
 import StatsCards from "./stats-cards";
 
 const dailySensorStats: DailySensorStats[] = [
@@ -100,34 +100,50 @@ export default function DashboardOverview() {
     },
   ];
 
-  const recentAlerts = [
+  const recentAlerts : NotificationWithLivestockFlat[] = [
     {
-      id: "1",
-      animal: "Holstein #1234",
-      issue: "Elevated temperature",
-      time: "10 minutes ago",
-      severity: "high",
+      id: 1,
+      livestock_id: 101,
+      message: 'Elevated temperature detected',
+      type: 'critical',
+      read: false,
+      sent_at: new Date(Date.now() - 10 * 60 * 1000).toISOString(), // 10 minutes ago
+      l_id: 101,
+      l_name: 'Holstein #1234',
+      l_species: 'Cow',
     },
     {
-      id: "2",
-      animal: "Angus #5678",
-      issue: "Decreased activity",
-      time: "25 minutes ago",
-      severity: "medium",
+      id: 2,
+      livestock_id: 102,
+      message: 'Decreased activity level',
+      type: 'warning',
+      read: false,
+      sent_at: new Date(Date.now() - 25 * 60 * 1000).toISOString(), // 25 minutes ago
+      l_id: 102,
+      l_name: 'Angus #5678',
+      l_species: 'Cow',
     },
     {
-      id: "3",
-      animal: "Jersey #9012",
-      issue: "Missed feeding",
-      time: "1 hour ago",
-      severity: "low",
+      id: 3,
+      livestock_id: 103,
+      message: 'Missed feeding schedule',
+      type: 'info',
+      read: true,
+      sent_at: new Date(Date.now() - 60 * 60 * 1000).toISOString(), // 1 hour ago
+      l_id: 103,
+      l_name: 'Jersey #9012',
+      l_species: 'Cow',
     },
     {
-      id: "4",
-      animal: "Holstein #3456",
-      issue: "Irregular heart rate",
-      time: "2 hours ago",
-      severity: "medium",
+      id: 4,
+      livestock_id: 104,
+      message: 'Irregular heart rate',
+      type: 'warning',
+      read: false,
+      sent_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), // 2 hours ago
+      l_id: 104,
+      l_name: 'Holstein #3456',
+      l_species: 'Cow',
     },
   ];
 
@@ -387,16 +403,16 @@ export default function DashboardOverview() {
                   <div key={alert.id} className="flex items-start gap-3">
                     <div
                       className={`p-1.5 rounded-full mt-0.5 ${
-                        alert.severity === "high"
+                        alert.type === "critical"
                           ? "bg-red-100 text-red-600"
-                          : alert.severity === "medium"
+                          : alert.type === "warning"
                           ? "bg-amber-100 text-amber-600"
                           : "bg-blue-100 text-blue-600"
                       }`}
                     >
-                      {alert.severity === "high" ? (
+                      {alert.type === "critical" ? (
                         <Heart className="h-4 w-4" />
-                      ) : alert.severity === "medium" ? (
+                      ) : alert.type === "warning" ? (
                         <Activity className="h-4 w-4" />
                       ) : (
                         <Utensils className="h-4 w-4" />
@@ -405,30 +421,30 @@ export default function DashboardOverview() {
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
                         <div className="font-medium text-sm">
-                          {alert.animal}
+                          {alert.l_name}
                         </div>
                         <Badge
                           variant={
-                            alert.severity === "high"
+                            alert.type === "critical"
                               ? "destructive"
-                              : alert.severity === "medium"
+                              : alert.type === "warning"
                               ? "default"
                               : "outline"
                           }
                           className={
-                            alert.severity === "high"
+                            alert.type === "critical"
                               ? ""
-                              : alert.severity === "medium"
+                              : alert.type === "warning"
                               ? "bg-amber-500"
                               : "text-blue-500 border-blue-200"
                           }
                         >
-                          {alert.severity}
+                          {alert.type}
                         </Badge>
                       </div>
-                      <div className="text-sm text-gray-500">{alert.issue}</div>
+                      <div className="text-sm text-gray-500">{alert.message}</div>
                       <div className="text-xs text-gray-400 mt-1">
-                        {alert.time}
+                        {alert.sent_at}
                       </div>
                     </div>
                   </div>

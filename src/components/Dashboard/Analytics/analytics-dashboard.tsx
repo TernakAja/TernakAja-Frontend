@@ -29,6 +29,24 @@ import {
   BarChart as BarChartComponent,
   DonutChart,
 } from "@/components/Dashboard/charts"
+import { DailySensorStats, SpeciesCount } from "@/types/livestockSchema"
+
+const dailySensorStats: DailySensorStats[] = [
+  { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },
+  { day: "Tue", avg_temperature: 101.3, avg_heart_rate: 68 },
+  { day: "Wed", avg_temperature: 101.6, avg_heart_rate: 64 },
+  { day: "Thu", avg_temperature: 101.8, avg_heart_rate: 66 },
+  { day: "Fri", avg_temperature: 101.4, avg_heart_rate: 67 },
+  { day: "Sat", avg_temperature: 101.2, avg_heart_rate: 65 },
+  { day: "Sun", avg_temperature: 101.5, avg_heart_rate: 63 },
+];
+
+const speciesData: SpeciesCount[] = [
+  { species: "Cattle", total: 145 },
+  { species: "Sheep", total: 62 },
+  { species: "Goats", total: 28 },
+  { species: "Pigs", total: 12 },
+];
 
 export default function AnalyticsDashboard() {
   const [, setTimeRange] = useState("7d")
@@ -190,12 +208,12 @@ export default function AnalyticsDashboard() {
                 </TabsList>
                 <TabsContent value="milk" className="pt-4">
                   <div className="h-[300px]">
-                    <LineChartComponent />
+                    <LineChartComponent dailySensorStats={dailySensorStats}/>
                   </div>
                 </TabsContent>
                 <TabsContent value="feed" className="pt-4">
                   <div className="h-[300px]">
-                    <LineChartComponent />
+                    <LineChartComponent dailySensorStats={dailySensorStats}/>
                   </div>
                 </TabsContent>
               </Tabs>
@@ -250,7 +268,7 @@ export default function AnalyticsDashboard() {
             </CardHeader>
             <CardContent>
               <div className="h-[250px] flex items-center justify-center">
-                <DonutChart />
+                <DonutChart speciesData={speciesData}/>
               </div>
               <div className="space-y-4 mt-4">
                 <div>
