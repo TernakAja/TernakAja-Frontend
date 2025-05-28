@@ -37,6 +37,24 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { LineChart, BarChart, DonutChart } from "@/components/Dashboard/charts";
 import { getAllLivestock } from "@/services/livestockService";
+import { DailySensorStats, SpeciesCount } from "@/types/livestockSchema";
+
+const dailySensorStats: DailySensorStats[] = [
+  { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },
+  { day: "Tue", avg_temperature: 101.3, avg_heart_rate: 68 },
+  { day: "Wed", avg_temperature: 101.6, avg_heart_rate: 64 },
+  { day: "Thu", avg_temperature: 101.8, avg_heart_rate: 66 },
+  { day: "Fri", avg_temperature: 101.4, avg_heart_rate: 67 },
+  { day: "Sat", avg_temperature: 101.2, avg_heart_rate: 65 },
+  { day: "Sun", avg_temperature: 101.5, avg_heart_rate: 63 },
+];
+
+const speciesData: SpeciesCount[] = [
+  { species: "Cattle", total: 145 },
+  { species: "Sheep", total: 62 },
+  { species: "Goats", total: 28 },
+  { species: "Pigs", total: 12 },
+];
 
 export default function DashboardOverview() {
   const [, setTimeRange] = useState("7d");
@@ -273,7 +291,7 @@ export default function DashboardOverview() {
             </CardHeader>
             <CardContent>
               <div className="h-[300px]">
-                <LineChart />
+                <LineChart dailySensorStats={dailySensorStats}/>
               </div>
             </CardContent>
           </Card>
@@ -302,7 +320,7 @@ export default function DashboardOverview() {
             <CardContent>
               <div className="grid grid-cols-2 gap-4">
                 <div className="h-[300px] flex items-center justify-center">
-                  <DonutChart />
+                  <DonutChart speciesData={speciesData}/>
                 </div>
                 <div className="space-y-4">
                   <div>

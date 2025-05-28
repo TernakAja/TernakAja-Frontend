@@ -1,9 +1,14 @@
 import { useEffect, useRef } from "react"
 import { Chart, registerables } from "chart.js"
+import { DailySensorStats, SpeciesCount } from "@/types/livestockSchema"
 
 Chart.register(...registerables)
 
-export function LineChart() {
+interface LineChartProps {
+  dailySensorStats: DailySensorStats[];
+}
+
+export function LineChart({ dailySensorStats }: LineChartProps) {
   const chartRef = useRef<HTMLCanvasElement>(null)
   const chartInstance = useRef<Chart | null>(null)
 
@@ -18,11 +23,11 @@ export function LineChart() {
     const ctx = chartRef.current.getContext("2d")
     if (!ctx) return
 
-    // Sample data
-    const labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-    const temperatureData = [101.5, 101.3, 101.6, 101.8, 101.4, 101.2, 101.5]
-    const heartRateData = [65, 68, 64, 66, 67, 65, 63]
-    const respiratoryRateData = [28, 27, 29, 30, 28, 26, 27]
+    // const respiratoryRateData = [28, 27, 29, 30, 28, 26, 27]
+
+    const labels = dailySensorStats.map((item) => item.day);
+    const temperatureData = dailySensorStats.map((item) => item.avg_temperature);
+    const heartRateData = dailySensorStats.map((item) => item.avg_heart_rate);
 
     // Create new chart
     chartInstance.current = new Chart(ctx, {
@@ -48,15 +53,15 @@ export function LineChart() {
             fill: true,
             yAxisID: "y1",
           },
-          {
-            label: "Respiratory Rate",
-            data: respiratoryRateData,
-            borderColor: "#FFA726",
-            backgroundColor: "rgba(255, 167, 38, 0.1)",
-            tension: 0.4,
-            fill: true,
-            yAxisID: "y2",
-          },
+          // {
+          //   label: "Respiratory Rate",
+          //   data: respiratoryRateData,
+          //   borderColor: "#FFA726",
+          //   backgroundColor: "rgba(255, 167, 38, 0.1)",
+          //   tension: 0.4,
+          //   fill: true,
+          //   yAxisID: "y2",
+          // },
         ],
       },
       options: {
@@ -213,7 +218,11 @@ export function BarChart() {
   return <canvas ref={chartRef} />
 }
 
-export function DonutChart() {
+interface DonutChartProps {
+  speciesData: SpeciesCount[];
+}
+
+export function DonutChart({ speciesData }: DonutChartProps) {
   const chartRef = useRef<HTMLCanvasElement>(null)
   const chartInstance = useRef<Chart | null>(null)
 
@@ -229,8 +238,8 @@ export function DonutChart() {
     if (!ctx) return
 
     // Sample data
-    const data = [145, 62, 28, 12]
-    const labels = ["Cattle", "Sheep", "Goats", "Pigs"]
+    const labels = speciesData.map((item) => item.species);
+    const data = speciesData.map((item) => item.total);
     const colors = ["#328E6E", "#67AE6E", "#90C67C", "#E1EEBC"]
 
     // Create new chart
