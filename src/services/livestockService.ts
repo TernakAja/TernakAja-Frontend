@@ -1,4 +1,4 @@
-import { LivestockSummaryItem, SensorDataWithLivestockAndAnomaly } from "@/types/livestockSchema";
+import { LivestockStatusCounts, NotificationWithLivestockFlat, SensorDataWithLivestockAndAnomaly, SpeciesCount } from "@/types/dataSchema";
 import { Livestock } from "@/types/schema";
 import axios from "axios";
 
@@ -7,15 +7,21 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: `${import.meta.env.VITE_API_BASE_URL}/livestock`,
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-  },
 });
+
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 
 export interface ApiResponse<T> {
   message: string;
   error?: string;
-  livestock?: T;
+  data?: T;
 }
 
 export async function createLivestock(
@@ -51,16 +57,31 @@ export async function deleteLivestock(id: number): Promise<ApiResponse<void>> {
   return response.data;
 }
 
-export const getHealthSummary = async (
+export const getStatusCount = async (
   userId: number
-): Promise<ApiResponse<LivestockSummaryItem[]>> => {
-  const response = await api.get(`/${userId}/health-summary`);
+): Promise<ApiResponse<LivestockStatusCounts>> => {
+  const response = await api.get(`/${userId}/status-counts`);
+  return response.data;
+};
+
+export const getSpeciesCount = async (
+  userId: number
+): Promise<ApiResponse<SpeciesCount[]>> => {
+  const response = await api.get(`/${userId}/species-counts`);
+  return response.data;
+};
+
+export const getRecentNotifs = async (
+  userId: number
+): Promise<ApiResponse<NotificationWithLivestockFlat[]>> => {
+  const response = await api.get(`/${userId}/recent-notifs`);
   return response.data;
 };
 
 export const getAllLivestockByUser = async (
   userId: number
 ): Promise<ApiResponse<SensorDataWithLivestockAndAnomaly[]>> => {
-  const response = await api.get(`/${userId}/sensor-livestock-anomaly`);
+  const response = await api.get(`/${userId}/sensor-anomalies`);
   return response.data;
 };
+

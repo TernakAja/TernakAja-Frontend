@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 import { Chart, registerables } from "chart.js"
-import { DailySensorStats, SpeciesCount } from "@/types/livestockSchema"
+import { DailySensorStats, SpeciesCount } from "@/types/dataSchema"
 
 Chart.register(...registerables)
 
@@ -219,7 +219,7 @@ export function BarChart() {
 }
 
 interface DonutChartProps {
-  speciesData: SpeciesCount[];
+  speciesData: SpeciesCount[] | undefined;
 }
 
 export function DonutChart({ speciesData }: DonutChartProps) {
@@ -238,42 +238,45 @@ export function DonutChart({ speciesData }: DonutChartProps) {
     if (!ctx) return
 
     // Sample data
-    const labels = speciesData.map((item) => item.species);
-    const data = speciesData.map((item) => item.total);
-    const colors = ["#328E6E", "#67AE6E", "#90C67C", "#E1EEBC"]
+    if(speciesData){
 
-    // Create new chart
-    chartInstance.current = new Chart(ctx, {
-      type: "doughnut",
-      data: {
-        labels,
-        datasets: [
-          {
-            data,
-            backgroundColor: colors,
-            borderColor: "white",
-            borderWidth: 2,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          },
+      const labels = speciesData.map((item) => item.species);
+      const data = speciesData.map((item) => item.total);
+      const colors = ["#328E6E", "#67AE6E", "#90C67C", "#E1EEBC"]
+  
+      // Create new chart
+      chartInstance.current = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels,
+          datasets: [
+            {
+              data,
+              backgroundColor: colors,
+              borderColor: "white",
+              borderWidth: 2,
+            },
+          ],
         },
-        cutout: "65%",
-      },
-    })
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+          cutout: "65%",
+        },
+      })
+    }
 
     return () => {
       if (chartInstance.current) {
         chartInstance.current.destroy()
       }
     }
-  }, [])
+  }, [speciesData])
 
   return <canvas ref={chartRef} />
 }

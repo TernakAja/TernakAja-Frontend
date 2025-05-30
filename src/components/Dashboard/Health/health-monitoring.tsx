@@ -30,7 +30,7 @@ import {
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { LineChart } from "@/components/Dashboard/charts"
-import { DailySensorStats } from "@/types/livestockSchema"
+import { DailySensorStats } from "@/types/dataSchema"
 
 const dailySensorStats: DailySensorStats[] = [
   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },

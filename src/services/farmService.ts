@@ -14,7 +14,7 @@ const api = axios.create({
 export interface ApiResponse<T> {
   message: string;
   error?: string;
-  farm?: T;
+  data?: T;
 }
 
 export const createFarm = async (

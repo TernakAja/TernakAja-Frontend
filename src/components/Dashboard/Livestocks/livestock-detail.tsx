@@ -39,7 +39,7 @@ import {
 import { Progress } from "@/components/ui/progress"
 import { LineChart } from "@/components/Dashboard/charts"
 import { useParams } from "react-router-dom"
-import { DailySensorStats } from "@/types/livestockSchema"
+import { DailySensorStats } from "@/types/dataSchema"
 
 const dailySensorStats: DailySensorStats[] = [
   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },

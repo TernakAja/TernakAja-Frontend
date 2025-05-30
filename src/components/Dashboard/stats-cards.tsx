@@ -6,13 +6,13 @@ import {
     CardTitle,
   } from "@/components/ui/card";
 import { AlertTriangle, CheckCircle2, Heart, MilkIcon } from "lucide-react";
-import { LivestockSummaryItem } from "@/types/livestockSchema";
+import { LivestockStatusCounts } from "@/types/dataSchema";
 
 interface StatProps {
-  summary: LivestockSummaryItem[];
+  status: LivestockStatusCounts | undefined;
 }
 
-export default function StatsCards({ summary }: StatProps){
+export default function StatsCards({ status }: StatProps){
     return(
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <motion.div
@@ -23,14 +23,14 @@ export default function StatsCards({ summary }: StatProps){
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium">
-                  {summary[0].title}
+                  Total Livestock
                 </CardTitle>
                 <div className="bg-blue-500 text-white p-1 rounded-md">
                     <MilkIcon className="h-5 w-5" />
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{summary[0].value}</div>
+                <div className="text-2xl font-bold">{status.total}</div>
               </CardContent>
             </Card>
           </motion.div>
@@ -42,14 +42,14 @@ export default function StatsCards({ summary }: StatProps){
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium">
-                  {summary[1].title}
+                  Healthy
                 </CardTitle>
                 <div className="bg-green-500 text-white p-1 rounded-md">
                     <CheckCircle2 className="h-5 w-5" />
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{summary[1].value}</div>
+                <div className="text-2xl font-bold">{status.healthy}</div>
               </CardContent>
             </Card>
           </motion.div>
@@ -61,14 +61,14 @@ export default function StatsCards({ summary }: StatProps){
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium">
-                  {summary[2].title}
+                  Needs Attention
                 </CardTitle>
                 <div className="bg-amber-500 text-white p-1 rounded-md">
                     <AlertTriangle className="h-5 w-5" />
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{summary[2].value}</div>
+                <div className="text-2xl font-bold">{status.needs_attention}</div>
               </CardContent>
             </Card>
           </motion.div>
@@ -80,14 +80,14 @@ export default function StatsCards({ summary }: StatProps){
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium">
-                  {summary[3].title}
+                  Critical
                 </CardTitle>
                 <div className="bg-red-500 text-white p-1 rounded-md">
                     <Heart className="h-5 w-5" />
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{summary[3].value}</div>
+                <div className="text-2xl font-bold">{status.critical}</div>
               </CardContent>
             </Card>
           </motion.div>

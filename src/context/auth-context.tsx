@@ -107,7 +107,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
     try {
       const response = await axios.get<AuthResponse>(
-        `${import.meta.env.VITE_API_BASE_URL}/profile/${user?.id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/profile`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

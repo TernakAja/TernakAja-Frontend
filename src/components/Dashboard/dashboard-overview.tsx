@@ -32,11 +32,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Progress } from "@/components/ui/progress";
 import { LineChart, BarChart, DonutChart } from "@/components/Dashboard/charts";
-import { getAllLivestock } from "@/services/livestockService";
-import { DailySensorStats, NotificationWithLivestockFlat, SpeciesCount } from "@/types/livestockSchema";
+import { getRecentNotifs, getSpeciesCount, getStatusCount } from "@/services/livestockService";
+import { DailySensorStats, LivestockStatusCounts, NotificationWithLivestockFlat, SpeciesCount } from "@/types/dataSchema";
 import StatsCards from "./stats-cards";
+import { useAuth } from "@/context/auth-context";
+import LoadingScreenPage from "../../utility/LoadingScreen";
 
 const dailySensorStats: DailySensorStats[] = [
   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },
@@ -48,104 +49,48 @@ const dailySensorStats: DailySensorStats[] = [
   { day: "Sun", avg_temperature: 101.5, avg_heart_rate: 63 },
 ];
 
-const speciesData: SpeciesCount[] = [
-  { species: "Cattle", total: 145 },
-  { species: "Sheep", total: 62 },
-  { species: "Goats", total: 28 },
-  { species: "Pigs", total: 12 },
-];
 
 export default function DashboardOverview() {
   const [, setTimeRange] = useState("7d");
   // const [, setError] = useState("")
-  const [, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState<LivestockStatusCounts>();
+  const [speciesCount, setSpeciesCount] = useState<SpeciesCount[]>([]);
+  const [notifications, setNotifications] = useState<NotificationWithLivestockFlat[]>([]);
+  const { user } = useAuth()
+  const colors = ["#328E6E", "#67AE6E", "#90C67C", "#E1EEBC"];
 
   useEffect(() => {
-    const fetchLivestock = async () => {
+    const fetchData = async () => {
+      if (!user) return;
+  
+      setLoading(true);
       try {
-        const response = await getAllLivestock();
-        console.log(response);
-        // if (response.success) {
-        //   setLivestock(response.data);
-        // } else {
-        //   setError(response.message || "Failed to fetch livestock.");
-        // }
+        const [statusResponse, speciesResponse, notifResponse] = await Promise.all([
+          getStatusCount(user.id),
+          getSpeciesCount(user.id),
+          getRecentNotifs(user.id)
+        ]);
+
+        if(notifResponse.data){
+          setNotifications(notifResponse.data);
+        }
+  
+        setStatus(statusResponse.data);
+        if(speciesResponse.data){
+          setSpeciesCount(speciesResponse.data);
+        }
+        // const totalAll = speciesCount.reduce((sum, s) => sum + s.total, 0);
       } catch (err) {
-        console.log(err);
-        // setError(err);
+        console.error("Error fetching data:", err);
+        // setError(err.message || "Something went wrong");
       } finally {
         setLoading(false);
       }
     };
-
-    fetchLivestock();
-  }, []);
-
-  const summary = [
-    {
-      title: "Total Livestock",
-      value: 247,
-    },
-    {
-      title: "Healthy",
-      value: 231,
-    },
-    {
-      title: "Needs Attention",
-      value: 12,
-    },
-    {
-      title: "Critical",
-      value: 4,
-    },
-  ];
-
-  const recentAlerts : NotificationWithLivestockFlat[] = [
-    {
-      id: 1,
-      livestock_id: 101,
-      message: 'Elevated temperature detected',
-      type: 'critical',
-      read: false,
-      sent_at: new Date(Date.now() - 10 * 60 * 1000).toISOString(), // 10 minutes ago
-      l_id: 101,
-      l_name: 'Holstein #1234',
-      l_species: 'Cow',
-    },
-    {
-      id: 2,
-      livestock_id: 102,
-      message: 'Decreased activity level',
-      type: 'warning',
-      read: false,
-      sent_at: new Date(Date.now() - 25 * 60 * 1000).toISOString(), // 25 minutes ago
-      l_id: 102,
-      l_name: 'Angus #5678',
-      l_species: 'Cow',
-    },
-    {
-      id: 3,
-      livestock_id: 103,
-      message: 'Missed feeding schedule',
-      type: 'info',
-      read: true,
-      sent_at: new Date(Date.now() - 60 * 60 * 1000).toISOString(), // 1 hour ago
-      l_id: 103,
-      l_name: 'Jersey #9012',
-      l_species: 'Cow',
-    },
-    {
-      id: 4,
-      livestock_id: 104,
-      message: 'Irregular heart rate',
-      type: 'warning',
-      read: false,
-      sent_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), // 2 hours ago
-      l_id: 104,
-      l_name: 'Holstein #3456',
-      l_species: 'Cow',
-    },
-  ];
+  
+    fetchData();
+  }, [user]);
 
   const upcomingTasks = [
     {
@@ -173,6 +118,10 @@ export default function DashboardOverview() {
       avatar: "/placeholder.svg?height=32&width=32",
     },
   ];
+
+  if (loading) {
+    return <LoadingScreenPage />;
+  }
 
   return (
     <div className="space-y-6">
@@ -221,7 +170,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* Stats cards */}
-      <StatsCards summary={summary}/>
+      <StatsCards status={status}/>
 
       {/* Charts section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -282,67 +231,27 @@ export default function DashboardOverview() {
               </Tabs> */}
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-7">
                 <div className="h-[300px] flex items-center justify-center">
-                  <DonutChart speciesData={speciesData}/>
+                  <DonutChart speciesData={speciesCount}/>
                 </div>
-                <div className="space-y-4">
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-[#328E6E]"></div>
-                        <span className="text-sm font-medium">Cattle</span>
+                <div className="space-y-2 px-10 w-2/3">
+                  {speciesCount.map(({ species, total }, index) => {
+                    const color = colors[index % colors.length];
+
+                    return (
+                      <div key={species} className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-1.5">
+                          <div
+                            className="w-3 h-3 rounded-full"
+                            style={{ backgroundColor: color }}
+                          ></div>
+                          <span className="text-md font-medium">{species}</span>
+                        </div>
+                        <span className="text-md font-medium">{total}</span>
                       </div>
-                      <span className="text-sm font-medium">145</span>
-                    </div>
-                    <Progress
-                      value={58}
-                      className="h-2 bg-gray-100"
-                      indicatorClassName="bg-[#328E6E]"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-[#67AE6E]"></div>
-                        <span className="text-sm font-medium">Sheep</span>
-                      </div>
-                      <span className="text-sm font-medium">62</span>
-                    </div>
-                    <Progress
-                      value={25}
-                      className="h-2 bg-gray-100"
-                      indicatorClassName="bg-[#67AE6E]"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-[#90C67C]"></div>
-                        <span className="text-sm font-medium">Goats</span>
-                      </div>
-                      <span className="text-sm font-medium">28</span>
-                    </div>
-                    <Progress
-                      value={11}
-                      className="h-2 bg-gray-100"
-                      indicatorClassName="bg-[#90C67C]"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-[#E1EEBC]"></div>
-                        <span className="text-sm font-medium">Pigs</span>
-                      </div>
-                      <span className="text-sm font-medium">12</span>
-                    </div>
-                    <Progress
-                      value={5}
-                      className="h-2 bg-gray-100"
-                      indicatorClassName="bg-[#E1EEBC]"
-                    />
-                  </div>
+                    );
+                  })}
                 </div>
               </div>
             </CardContent>
@@ -399,7 +308,7 @@ export default function DashboardOverview() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {recentAlerts.map((alert) => (
+                {notifications.map((alert) => (
                   <div key={alert.id} className="flex items-start gap-3">
                     <div
                       className={`p-1.5 rounded-full mt-0.5 ${

@@ -7,7 +7,7 @@ const API_URL = `${API_BASE_URL}/livestock`;
 export interface ApiResponse<T> {
   message: string;
   error?: string;
-  sensorData?: T;
+  data?: T;
 }
 
 const api = axios.create({
@@ -24,7 +24,7 @@ export const getSensorData = async (
     const response = await api.get(`/livestock/${livestockId}/sensor-data`);
     return {
       message: response.data.message,
-      sensorData: response.data.sensorData || null,
+      data: response.data.sensorData || null,
     };
   } catch (error) {
     console.error("Error fetching sensor data:", error);
@@ -53,7 +53,7 @@ export const updateSensorData = async (
 
     return {
       message: response.data.message,
-      sensorData: response.data.sensorData,
+      data: response.data.sensorData,
     };
   } catch (error) {
     console.error("Error updating sensor data:", error);
@@ -82,7 +82,7 @@ export const createSensorData = async (
 
     return {
       message: response.data.message,
-      sensorData: response.data.sensorData,
+      data: response.data.sensorData,
     };
   } catch (error) {
     console.error("Error creating sensor data:", error);
@@ -100,7 +100,7 @@ export const deleteSensorData = async (
     const response = await api.delete(`/livestock/${livestockId}/sensor-data`);
     return {
       message: response.data.message,
-      sensorData: null,
+      data: null,
     };
   } catch (error) {
     console.error("Error deleting sensor data:", error);

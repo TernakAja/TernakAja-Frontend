@@ -41,21 +41,31 @@ import {
 } from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
-import { getAllLivestock } from "@/services/livestockService";
-import { SensorDataWithLivestockAndAnomaly } from "@/types/livestockSchema";
+import { getAllLivestockByUser } from "@/services/livestockService";
+import { SensorDataWithLivestockAndAnomaly } from "@/types/dataSchema";
+import { useAuth } from "@/context/auth-context";
+import LoadingScreenPage from "../../../utility/LoadingScreen";
 
 export default function LivestockList() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
-
-  // const [livestock, setLivestock] = useState<Livestock>()
+  const { user } = useAuth()
+  const [loading, setLoading] = useState(true)
+  const [livestock, setLivestock] = useState<SensorDataWithLivestockAndAnomaly[]>([])
 
   useEffect(() => {
     const fetchLivestock = async () => {
       try {
-        const response = await getAllLivestock();
-        console.log(response);
+        if(user){
+          const response = await getAllLivestockByUser(user.id);
+          console.log(response);
+          
+          if(response.data){
+            setLivestock(response.data)
+          }
+
+        }
         // if (response.success) {
         //   setLivestock(response.data);
         // } else {
@@ -65,7 +75,7 @@ export default function LivestockList() {
         console.log(err);
         // setError(err);
       } finally {
-        // setLoading(false);
+        setLoading(false);
       }
     };
 
@@ -73,110 +83,110 @@ export default function LivestockList() {
   }, []);
 
   // Sample livestock data
-  const livestock: SensorDataWithLivestockAndAnomaly[] = [
-    {
-      sd_id: 101,
-      sd_livestock_id: 1,
-      sd_temperature: 101.5,
-      sd_heart_rate: 65,
-      sd_motion_level: 3,
-      sd_timestamp: "2025-05-28T14:30:00Z",
+  // const livestock: SensorDataWithLivestockAndAnomaly[] = [
+  //   {
+  //     sd_id: 101,
+  //     sd_livestock_id: 1,
+  //     sd_temperature: 101.5,
+  //     sd_heart_rate: 65,
+  //     sd_motion_level: 3,
+  //     sd_timestamp: "2025-05-28T14:30:00Z",
   
-      l_id: 1,
-      l_farm_id: 10,
-      l_user_id: 100,
-      l_name: "Bella",
-      l_species: "Cattle",
-      l_breed: "Holstein",
-      l_gender: "Female",
-      l_birth_date: "2019-04-15",
-      l_photo_url: "/images/bella.jpg",
-      l_status: "healthy",
-      l_height: 140,
-      l_weight: 600,
-      l_body_condition_score: 3,
-      l_notes: "No health issues.",
-      l_recorded_at: "2025-05-28T14:00:00Z",
-      l_created_at: "2019-04-16T09:00:00Z",
-      l_updated_at: "2025-05-28T14:15:00Z",
+  //     l_id: 1,
+  //     l_farm_id: 10,
+  //     l_user_id: 100,
+  //     l_name: "Bella",
+  //     l_species: "Cattle",
+  //     l_breed: "Holstein",
+  //     l_gender: "Female",
+  //     l_birth_date: "2019-04-15",
+  //     l_photo_url: "/images/bella.jpg",
+  //     l_status: "healthy",
+  //     l_height: 140,
+  //     l_weight: 600,
+  //     l_body_condition_score: 3,
+  //     l_notes: "No health issues.",
+  //     l_recorded_at: "2025-05-28T14:00:00Z",
+  //     l_created_at: "2019-04-16T09:00:00Z",
+  //     l_updated_at: "2025-05-28T14:15:00Z",
   
-      a_id: 0,
-      a_livestock_id: 1,
-      a_type: "",
-      a_severity: "",
-      a_notes: "",
-      a_detected_at: "",
-      a_resolved: true,
-    },
-    {
-      sd_id: 102,
-      sd_livestock_id: 2,
-      sd_temperature: 102.8,
-      sd_heart_rate: 72,
-      sd_motion_level: 5,
-      sd_timestamp: "2025-05-28T14:32:00Z",
+  //     a_id: 0,
+  //     a_livestock_id: 1,
+  //     a_type: "",
+  //     a_severity: "",
+  //     a_notes: "",
+  //     a_detected_at: "",
+  //     a_resolved: true,
+  //   },
+  //   {
+  //     sd_id: 102,
+  //     sd_livestock_id: 2,
+  //     sd_temperature: 102.8,
+  //     sd_heart_rate: 72,
+  //     sd_motion_level: 5,
+  //     sd_timestamp: "2025-05-28T14:32:00Z",
   
-      l_id: 2,
-      l_farm_id: 10,
-      l_user_id: 101,
-      l_name: "Max",
-      l_species: "Cattle",
-      l_breed: "Angus",
-      l_gender: "Male",
-      l_birth_date: "2020-06-10",
-      l_photo_url: "/images/max.jpg",
-      l_status: "attention",
-      l_height: 145,
-      l_weight: 650,
-      l_body_condition_score: 2.5,
-      l_notes: "Slight fever detected.",
-      l_recorded_at: "2025-05-28T14:05:00Z",
-      l_created_at: "2020-06-11T10:00:00Z",
-      l_updated_at: "2025-05-28T14:20:00Z",
+  //     l_id: 2,
+  //     l_farm_id: 10,
+  //     l_user_id: 101,
+  //     l_name: "Max",
+  //     l_species: "Cattle",
+  //     l_breed: "Angus",
+  //     l_gender: "Male",
+  //     l_birth_date: "2020-06-10",
+  //     l_photo_url: "/images/max.jpg",
+  //     l_status: "attention",
+  //     l_height: 145,
+  //     l_weight: 650,
+  //     l_body_condition_score: 2.5,
+  //     l_notes: "Slight fever detected.",
+  //     l_recorded_at: "2025-05-28T14:05:00Z",
+  //     l_created_at: "2020-06-11T10:00:00Z",
+  //     l_updated_at: "2025-05-28T14:20:00Z",
   
-      a_id: 201,
-      a_livestock_id: 2,
-      a_type: "Fever",
-      a_severity: "medium",
-      a_notes: "Monitor temperature closely, possible infection.",
-      a_detected_at: "2025-05-28T14:25:00Z",
-      a_resolved: false,
-    },
-    {
-      sd_id: 103,
-      sd_livestock_id: 3,
-      sd_temperature: 101.3,
-      sd_heart_rate: 64,
-      sd_motion_level: 2,
-      sd_timestamp: "2025-05-28T14:40:00Z",
+  //     a_id: 201,
+  //     a_livestock_id: 2,
+  //     a_type: "Fever",
+  //     a_severity: "medium",
+  //     a_notes: "Monitor temperature closely, possible infection.",
+  //     a_detected_at: "2025-05-28T14:25:00Z",
+  //     a_resolved: false,
+  //   },
+  //   {
+  //     sd_id: 103,
+  //     sd_livestock_id: 3,
+  //     sd_temperature: 101.3,
+  //     sd_heart_rate: 64,
+  //     sd_motion_level: 2,
+  //     sd_timestamp: "2025-05-28T14:40:00Z",
   
-      l_id: 3,
-      l_farm_id: 10,
-      l_user_id: 102,
-      l_name: "Daisy",
-      l_species: "Cattle",
-      l_breed: "Jersey",
-      l_gender: "Female",
-      l_birth_date: "2018-09-21",
-      l_photo_url: "/images/daisy.jpg",
-      l_status: "healthy",
-      l_height: 135,
-      l_weight: 580,
-      l_body_condition_score: 3.2,
-      l_notes: "Healthy and active.",
-      l_recorded_at: "2025-05-28T14:10:00Z",
-      l_created_at: "2018-09-22T08:00:00Z",
-      l_updated_at: "2025-05-28T14:30:00Z",
+  //     l_id: 3,
+  //     l_farm_id: 10,
+  //     l_user_id: 102,
+  //     l_name: "Daisy",
+  //     l_species: "Cattle",
+  //     l_breed: "Jersey",
+  //     l_gender: "Female",
+  //     l_birth_date: "2018-09-21",
+  //     l_photo_url: "/images/daisy.jpg",
+  //     l_status: "healthy",
+  //     l_height: 135,
+  //     l_weight: 580,
+  //     l_body_condition_score: 3.2,
+  //     l_notes: "Healthy and active.",
+  //     l_recorded_at: "2025-05-28T14:10:00Z",
+  //     l_created_at: "2018-09-22T08:00:00Z",
+  //     l_updated_at: "2025-05-28T14:30:00Z",
   
-      a_id: 0,
-      a_livestock_id: 3,
-      a_type: "",
-      a_severity: "",
-      a_notes: "",
-      a_detected_at: "",
-      a_resolved: true,
-    }
-  ];
+  //     a_id: 0,
+  //     a_livestock_id: 3,
+  //     a_type: "",
+  //     a_severity: "",
+  //     a_notes: "",
+  //     a_detected_at: "",
+  //     a_resolved: true,
+  //   }
+  // ];
   
 
   // const livestock = [
@@ -287,14 +297,18 @@ export default function LivestockList() {
   //   },
   // ];
 
+  if (loading) {
+    return <LoadingScreenPage />;
+  }
+
   // Filter livestock based on search query and status filter
   const filteredLivestock = livestock.filter((animal) => {
     const matchesSearch =
-      animal.l_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      animal.l_breed.toLowerCase().includes(searchQuery.toLowerCase());
+      animal.livestock.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      animal.livestock.species.toLowerCase().includes(searchQuery.toLowerCase());
 
     const matchesStatus =
-      statusFilter === "all" || animal.l_status === statusFilter;
+      statusFilter === "all" || animal.livestock.status === statusFilter;
 
     return matchesSearch && matchesStatus;
   });
@@ -334,7 +348,7 @@ export default function LivestockList() {
                 <div className="text-sm text-gray-500">Healthy</div>
                 <div className="text-2xl font-bold">
                   {
-                    livestock.filter((animal) => animal.l_status === "healthy")
+                    livestock.filter((animal) => animal.livestock.status === "healthy")
                       .length
                   }
                 </div>
@@ -357,7 +371,7 @@ export default function LivestockList() {
                 <div className="text-sm text-gray-500">Needs Attention</div>
                 <div className="text-2xl font-bold">
                   {
-                    livestock.filter((animal) => animal.l_status === "attention")
+                    livestock.filter((animal) => animal.livestock.status === "attention")
                       .length
                   }
                 </div>
@@ -380,7 +394,7 @@ export default function LivestockList() {
                 <div className="text-sm text-gray-500">Critical</div>
                 <div className="text-2xl font-bold">
                   {
-                    livestock.filter((animal) => animal.l_status === "critical")
+                    livestock.filter((animal) => animal.livestock.status === "critical")
                       .length
                   }
                 </div>
@@ -476,77 +490,77 @@ export default function LivestockList() {
                 <TableBody>
                   {filteredLivestock.map((animal) => (
                     <TableRow
-                      key={animal.l_id}
+                      key={animal.livestock.id}
                       onClick={() =>
-                        navigate(`/dashboard/livestock/${animal.l_id}`)
+                        navigate(`/dashboard/livestock/${animal.livestock.id}`)
                       }
                     >
                       <TableCell className="font-medium">
-                        {animal.l_id}
+                        {animal.livestock.id}
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-3">
                           <Avatar>
                             <AvatarImage
-                              src={animal.l_photo_url || "/placeholder.svg"}
-                              alt={animal.l_name}
+                              src={animal.livestock.photoUrl || "/placeholder.svg"}
+                              alt={animal.livestock.name}
                             />
                             <AvatarFallback>
-                              {animal.l_name.charAt(0)}
+                              {animal.livestock.name.charAt(0)}
                             </AvatarFallback>
                           </Avatar>
                           <div>
                             <a
-                              href={`/dashboard/livestock/${animal.l_id}`}
+                              href={`/dashboard/livestock/${animal.livestock.id}`}
                               className="font-medium text-blue-600 hover:underline"
                             >
-                              {animal.l_name}
+                              {animal.livestock.name}
                             </a>
                           </div>
                         </div>
                       </TableCell>
                       <TableCell>
-                        <div>{animal.l_species}</div>
+                        <div>{animal.livestock.species}</div>
                         <div className="text-gray-500 text-sm">
-                          {animal.l_breed}
+                          {animal.livestock.breed}
                         </div>
                       </TableCell>
                       <TableCell>
-                        <div>{animal.l_gender}</div>
+                        <div>{animal.livestock.gender}</div>
                         <div className="text-gray-500 text-sm">
-                          {animal.l_birth_date}
+                          {animal.livestock.birthDate}
                         </div>
                       </TableCell>
                       <TableCell>
                         <Badge
                           className={
-                            animal.l_status === "healthy"
+                            animal.livestock.status === "healthy"
                               ? "bg-green-500"
-                              : animal.l_status === "attention"
+                              : animal.livestock.status === "attention"
                               ? "bg-amber-500"
                               : "bg-red-500"
                           }
                         >
-                          {animal.l_status === "healthy"
+                          {animal.livestock.status === "healthy"
                             ? "Healthy"
-                            : animal.l_status === "attention"
+                            : animal.livestock.status === "attention"
                             ? "Needs Attention"
                             : "Critical"}
                         </Badge>
                       </TableCell>
-                      <TableCell>{animal.l_farm_id}</TableCell>
+                      <TableCell>{animal.livestock.farmId}</TableCell>
                       <TableCell>
                         <div className="flex items-center gap-1">
                           <Heart className="h-4 w-4 text-red-500" />
-                          <span>{animal.sd_heart_rate}</span>
+                          <span>{animal.sensor_data.heartRate}</span>
                         </div>
                         <div className="flex items-center gap-1 mt-1">
                           <Thermometer className="h-4 w-4 text-amber-500" />
-                          <span>{animal.sd_temperature}</span>
+                          <span>{animal.sensor_data.temperature}</span>
                         </div>
                       </TableCell>
                       <TableCell className="text-gray-500">
-                        {animal.sd_timestamp}
+                        {animal.sensor_data.timestamp}
                       </TableCell>
                       <TableCell>
                         <DropdownMenu>
@@ -558,7 +572,7 @@ export default function LivestockList() {
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem>
                               <a
-                                href={`/dashboard/livestock/${animal.l_id}`}
+                                href={`/dashboard/livestock/${animal.livestock.id}`}
                                 className="w-full"
                               >
                                 View Details

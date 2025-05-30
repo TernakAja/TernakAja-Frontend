@@ -29,7 +29,7 @@ import {
   BarChart as BarChartComponent,
   DonutChart,
 } from "@/components/Dashboard/charts"
-import { DailySensorStats, SpeciesCount } from "@/types/livestockSchema"
+import { DailySensorStats, SpeciesCount } from "@/types/dataSchema"
 
 const dailySensorStats: DailySensorStats[] = [
   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },

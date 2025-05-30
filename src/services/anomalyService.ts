@@ -14,7 +14,7 @@ const api = axios.create({
 export interface ApiResponse<T> {
   message: string;
   error?: string;
-  anomaly?: T;
+  data?: T;
 }
 
 export const getAnomaliesData = async (
