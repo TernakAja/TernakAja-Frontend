@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import {
-  Activity,
   AlertTriangle,
   ArrowLeft,
   Calendar,
@@ -39,7 +38,9 @@ import {
 import { Progress } from "@/components/ui/progress"
 import { LineChart } from "@/components/Dashboard/charts"
 import { useParams } from "react-router-dom"
-import { DailySensorStats } from "@/types/dataSchema"
+import { DailySensorStats, SensorDataWithLivestockAndAnomaly } from "@/types/dataSchema"
+import { getLivestockDetailById } from "@/services/livestockService"
+import LoadingScreenPage from "../../../utility/LoadingScreen";
 
 const dailySensorStats: DailySensorStats[] = [
   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },
@@ -51,122 +52,186 @@ const dailySensorStats: DailySensorStats[] = [
   { day: "Sun", avg_temperature: 101.5, avg_heart_rate: 63 },
 ];
 
+const defaultSensorDataWithLivestockAndAnomaly: SensorDataWithLivestockAndAnomaly = {
+  sensor_data: {
+    livestockId: 0,
+    temperature: 0,
+    heartRate: 0,
+    motionLevel: 0,
+    timestamp: new Date().toISOString(),
+  },
+  livestock: {
+    id: 0,
+    farmId: 0,
+    userId: 0,
+    name: "",
+    species: "",
+    breed: "",
+    gender: "",
+    birthDate: new Date().toISOString(),
+    photoUrl: null,
+    status: "",
+    height: 0,
+    weight: 0,
+    bodyConditionScore: 0,
+    notes: "",
+    recordedAt: new Date().toISOString(),
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  anomaly: {
+    livestockId: 0,
+    type: "",
+    severity: "",
+    notes: "",
+    detectedAt: new Date().toISOString(),
+    resolved: false,
+  },
+};
+
+
 export default function LivestockDetail() {
 
   const { id } = useParams<{ id: string }>();
+  const [livestock, setLivestock] = useState<SensorDataWithLivestockAndAnomaly>(defaultSensorDataWithLivestockAndAnomaly)  
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    console.log("Current ID:", id);
+    const fetchLivestockDetail = async () => {
+
+      try {
+        if(!id){
+          return
+        }
+
+        const livestockResponse = await getLivestockDetailById(parseInt(id));
+        
+        if(livestockResponse.data){
+          setLivestock(livestockResponse.data)
+        }
+      } catch (err) {
+        console.log(err);
+        // setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLivestockDetail();
   }, [id]);
 
   const [, setActiveTab] = useState("overview")
 
   // Mock data for a specific livestock - in a real app, this would be fetched based on the ID
-  const livestock = {
-    id: "1",
-    name: "Bella",
-    tag: "HOL-1234",
-    species: "Cattle",
-    breed: "Holstein",
-    gender: "Female",
-    birthDate: "March 15, 2019",
-    age: "4 years",
-    weight: "1,200 lbs",
-    status: "healthy",
-    location: "Barn A",
-    pen: "A-12",
-    acquisition: {
-      date: "April 10, 2019",
-      source: "Green Valley Farms",
-      price: "$2,500",
-    },
-    vitalSigns: {
-      heartRate: {
-        current: "65 BPM",
-        normal: "60-70 BPM",
-        status: "normal",
-      },
-      temperature: {
-        current: "101.5°F",
-        normal: "101.5°F",
-        status: "normal",
-      },
-      respiratoryRate: {
-        current: "28 breaths/min",
-        normal: "26-30 breaths/min",
-        status: "normal",
-      },
-      rumination: {
-        current: "8 hours/day",
-        normal: "7-9 hours/day",
-        status: "normal",
-      },
-    },
-    feeding: {
-      diet: "High-quality forage with grain supplement",
-      schedule: "Twice daily",
-      consumption: "55 lbs/day",
-      waterIntake: "25 gallons/day",
-    },
-    reproduction: {
-      status: "Pregnant",
-      breedingDate: "October 15, 2022",
-      dueDate: "July 24, 2023",
-      previousCalvings: 2,
-      lastCalvingDate: "May 10, 2022",
-    },
-    health: {
-      vaccinations: [
-        {
-          name: "Bovine Viral Diarrhea (BVD)",
-          date: "January 15, 2023",
-          nextDue: "January 15, 2024",
-        },
-        {
-          name: "Infectious Bovine Rhinotracheitis (IBR)",
-          date: "January 15, 2023",
-          nextDue: "January 15, 2024",
-        },
-        {
-          name: "Leptospirosis",
-          date: "January 15, 2023",
-          nextDue: "January 15, 2024",
-        },
-      ],
-      medicalHistory: [
-        {
-          event: "Routine Check-up",
-          date: "January 10, 2023",
-          notes: "All vital signs normal. No issues detected.",
-        },
-        {
-          event: "Hoof Trimming",
-          date: "November 5, 2022",
-          notes: "Routine maintenance. No issues detected.",
-        },
-        {
-          event: "Vaccination",
-          date: "June 10, 2022",
-          notes: "Annual vaccinations administered. No adverse reactions.",
-        },
-      ],
-    },
-    production: {
-      milkProduction: {
-        average: "22 liters per day",
-        trend: "Stable over past 12 months",
-        quality: "High butterfat content",
-      },
-    },
-    genetics: {
-      sire: "Champion's Pride (CP-789)",
-      dam: "Meadow Beauty (MB-456)",
-      geneticTraits: ["High milk production", "Good udder conformation", "Docile temperament"],
-    },
-    notes:
-      "Bella is one of our top milk producers with an excellent temperament. She has had no significant health issues and has produced two healthy calves.",
-    lastUpdated: "10 minutes ago",
-    image: "/placeholder.svg?height=300&width=300",
+  // const livestock = {
+  //   id: "1",
+  //   name: "Bella",
+  //   tag: "HOL-1234",
+  //   species: "Cattle",
+  //   breed: "Holstein",
+  //   gender: "Female",
+  //   birthDate: "March 15, 2019",
+  //   age: "4 years",
+  //   weight: "1,200 lbs",
+  //   status: "healthy",
+  //   location: "Barn A",
+  //   pen: "A-12",
+  //   acquisition: {
+  //     date: "April 10, 2019",
+  //     source: "Green Valley Farms",
+  //     price: "$2,500",
+  //   },
+  //   vitalSigns: {
+  //     heartRate: {
+  //       current: "65 BPM",
+  //       normal: "60-70 BPM",
+  //       status: "normal",
+  //     },
+  //     temperature: {
+  //       current: "101.5°F",
+  //       normal: "101.5°F",
+  //       status: "normal",
+  //     },
+  //     respiratoryRate: {
+  //       current: "28 breaths/min",
+  //       normal: "26-30 breaths/min",
+  //       status: "normal",
+  //     },
+  //     rumination: {
+  //       current: "8 hours/day",
+  //       normal: "7-9 hours/day",
+  //       status: "normal",
+  //     },
+  //   },
+  //   feeding: {
+  //     diet: "High-quality forage with grain supplement",
+  //     schedule: "Twice daily",
+  //     consumption: "55 lbs/day",
+  //     waterIntake: "25 gallons/day",
+  //   },
+  //   reproduction: {
+  //     status: "Pregnant",
+  //     breedingDate: "October 15, 2022",
+  //     dueDate: "July 24, 2023",
+  //     previousCalvings: 2,
+  //     lastCalvingDate: "May 10, 2022",
+  //   },
+  //   health: {
+  //     vaccinations: [
+  //       {
+  //         name: "Bovine Viral Diarrhea (BVD)",
+  //         date: "January 15, 2023",
+  //         nextDue: "January 15, 2024",
+  //       },
+  //       {
+  //         name: "Infectious Bovine Rhinotracheitis (IBR)",
+  //         date: "January 15, 2023",
+  //         nextDue: "January 15, 2024",
+  //       },
+  //       {
+  //         name: "Leptospirosis",
+  //         date: "January 15, 2023",
+  //         nextDue: "January 15, 2024",
+  //       },
+  //     ],
+  //     medicalHistory: [
+  //       {
+  //         event: "Routine Check-up",
+  //         date: "January 10, 2023",
+  //         notes: "All vital signs normal. No issues detected.",
+  //       },
+  //       {
+  //         event: "Hoof Trimming",
+  //         date: "November 5, 2022",
+  //         notes: "Routine maintenance. No issues detected.",
+  //       },
+  //       {
+  //         event: "Vaccination",
+  //         date: "June 10, 2022",
+  //         notes: "Annual vaccinations administered. No adverse reactions.",
+  //       },
+  //     ],
+  //   },
+  //   production: {
+  //     milkProduction: {
+  //       average: "22 liters per day",
+  //       trend: "Stable over past 12 months",
+  //       quality: "High butterfat content",
+  //     },
+  //   },
+  //   genetics: {
+  //     sire: "Champion's Pride (CP-789)",
+  //     dam: "Meadow Beauty (MB-456)",
+  //     geneticTraits: ["High milk production", "Good udder conformation", "Docile temperament"],
+  //   },
+  //   notes:
+  //     "Bella is one of our top milk producers with an excellent temperament. She has had no significant health issues and has produced two healthy calves.",
+  //   lastUpdated: "10 minutes ago",
+  //   image: "/placeholder.svg?height=300&width=300",
+  // }
+
+  if (loading && !livestock) {
+    return <LoadingScreenPage />;
   }
 
   return (
@@ -216,21 +281,21 @@ export default function LivestockDetail() {
               <div className="flex flex-col items-center text-center">
                 <div className="relative mb-4">
                   <Avatar className="h-32 w-32">
-                    <AvatarImage src={livestock.image || "/placeholder.svg"} alt={livestock.name} />
-                    <AvatarFallback className="text-4xl">{livestock.name.charAt(0)}</AvatarFallback>
+                    <AvatarImage src={livestock.livestock.photoUrl || "/placeholder.svg"} alt={livestock.livestock.name} />
+                    <AvatarFallback className="text-4xl">{livestock.livestock.name.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <div
                     className={`absolute bottom-0 right-0 p-1 rounded-full ${
-                      livestock.status === "healthy"
+                      livestock.livestock.status === "Healthy"
                         ? "bg-green-500"
-                        : livestock.status === "attention"
+                        : livestock.livestock.status === "Attention"
                           ? "bg-amber-500"
                           : "bg-red-500"
                     }`}
                   >
-                    {livestock.status === "healthy" ? (
+                    {livestock.livestock.status === "Healthy" ? (
                       <CheckCircle2 className="h-5 w-5 text-white" />
-                    ) : livestock.status === "attention" ? (
+                    ) : livestock.livestock.status === "Attention" ? (
                       <AlertTriangle className="h-5 w-5 text-white" />
                     ) : (
                       <Heart className="h-5 w-5 text-white" />
@@ -238,20 +303,20 @@ export default function LivestockDetail() {
                   </div>
                 </div>
 
-                <h2 className="text-2xl font-bold mb-1">{livestock.name}</h2>
-                <div className="text-gray-500 mb-2">ID: {livestock.tag}</div>
+                <h2 className="text-2xl font-bold mb-1">{livestock.livestock.name}</h2>
+                <div className="text-gray-500 mb-2">ID: {livestock.livestock.id}</div>
                 <Badge
                   className={
-                    livestock.status === "healthy"
+                    livestock.livestock.status === "Healthy"
                       ? "bg-green-500"
-                      : livestock.status === "attention"
+                      : livestock.livestock.status === "Attention"
                         ? "bg-amber-500"
                         : "bg-red-500"
                   }
                 >
-                  {livestock.status === "healthy"
+                  {livestock.livestock.status === "Healthy"
                     ? "Healthy"
-                    : livestock.status === "attention"
+                    : livestock.livestock.status === "Attention"
                       ? "Needs Attention"
                       : "Critical"}
                 </Badge>
@@ -262,35 +327,35 @@ export default function LivestockDetail() {
                       <Cow className="h-4 w-4" />
                       <span>Species</span>
                     </div>
-                    <span className="font-medium">{livestock.species}</span>
+                    <span className="font-medium">{livestock.livestock.species}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-gray-500">
                       <Info className="h-4 w-4" />
                       <span>Breed</span>
                     </div>
-                    <span className="font-medium">{livestock.breed}</span>
+                    <span className="font-medium">{livestock.livestock.breed}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-gray-500">
                       <Calendar className="h-4 w-4" />
                       <span>Birth Date</span>
                     </div>
-                    <span className="font-medium">{livestock.birthDate}</span>
+                    <span className="font-medium">{livestock.livestock.birthDate}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-gray-500">
                       <Clock className="h-4 w-4" />
                       <span>Age</span>
                     </div>
-                    <span className="font-medium">{livestock.age}</span>
+                    <span className="font-medium">{livestock.livestock.birthDate}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-gray-500">
                       <Weight className="h-4 w-4" />
                       <span>Weight</span>
                     </div>
-                    <span className="font-medium">{livestock.weight}</span>
+                    <span className="font-medium">{livestock.livestock.weight}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-gray-500">
@@ -298,13 +363,14 @@ export default function LivestockDetail() {
                       <span>Location</span>
                     </div>
                     <span className="font-medium">
-                      {livestock.location}, Pen {livestock.pen}
+                      {livestock.livestock.farmId}, 
+                      {/* Pen {livestock.pen} */}
                     </span>
                   </div>
                 </div>
 
                 <div className="w-full border-t border-gray-200 mt-6 pt-6">
-                  <div className="text-sm text-gray-500 mb-2">Last updated {livestock.lastUpdated}</div>
+                  <div className="text-sm text-gray-500 mb-2">Last updated {livestock.sensor_data.timestamp}</div>
                   <Button variant="outline" className="w-full">
                     View Full Profile
                   </Button>
@@ -340,9 +406,9 @@ export default function LivestockDetail() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <div className="text-2xl font-bold">{livestock.vitalSigns.heartRate.current}</div>
+                        <div className="text-2xl font-bold">{livestock.sensor_data.heartRate}</div>
                         <div className="flex items-center justify-between mt-1">
-                          <span className="text-xs text-gray-500">Normal: {livestock.vitalSigns.heartRate.normal}</span>
+                          <span className="text-xs text-gray-500">Normal: {livestock.sensor_data.heartRate}</span>
                           <Badge variant="outline" className="text-green-500 border-green-200">
                             Normal
                           </Badge>
@@ -358,9 +424,9 @@ export default function LivestockDetail() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <div className="text-2xl font-bold">{livestock.vitalSigns.temperature.current}</div>
+                        <div className="text-2xl font-bold">{livestock.sensor_data.temperature}</div>
                         <div className="flex items-center justify-between mt-1">
-                          <span className="text-xs text-gray-500">Normal: {livestock.vitalSigns.temperature.normal}</span>
+                          <span className="text-xs text-gray-500">Normal: {livestock.sensor_data.temperature}</span>
                           <Badge variant="outline" className="text-green-500 border-green-200">
                             Normal
                           </Badge>
@@ -368,7 +434,7 @@ export default function LivestockDetail() {
                       </CardContent>
                     </Card>
 
-                    <Card>
+                    {/* <Card>
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium flex items-center gap-2">
                           <Activity className="h-4 w-4 text-blue-500" />
@@ -376,7 +442,7 @@ export default function LivestockDetail() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <div className="text-2xl font-bold">{livestock.vitalSigns.respiratoryRate.current}</div>
+                        <div className="text-2xl font-bold">{livestock.sensor_data.}</div>
                         <div className="flex items-center justify-between mt-1">
                           <span className="text-xs text-gray-500">
                             Normal: {livestock.vitalSigns.respiratoryRate.normal}
@@ -386,7 +452,7 @@ export default function LivestockDetail() {
                           </Badge>
                         </div>
                       </CardContent>
-                    </Card>
+                    </Card> */}
                   </div>
 
                   <Card>
@@ -413,20 +479,20 @@ export default function LivestockDetail() {
                         <div className="space-y-4">
                           <div>
                             <div className="text-sm text-gray-500 mb-1">Diet</div>
-                            <div className="font-medium">{livestock.feeding.diet}</div>
+                            {/* <div className="font-medium">{livestock.feeding.diet}</div> */}
                           </div>
                           <div>
                             <div className="text-sm text-gray-500 mb-1">Feeding Schedule</div>
-                            <div className="font-medium">{livestock.feeding.schedule}</div>
+                            {/* <div className="font-medium">{livestock.feeding.schedule}</div> */}
                           </div>
                           <div className="grid grid-cols-2 gap-4">
                             <div>
                               <div className="text-sm text-gray-500 mb-1">Daily Consumption</div>
-                              <div className="font-medium">{livestock.feeding.consumption}</div>
+                              {/* <div className="font-medium">{livestock.feeding.consumption}</div> */}
                             </div>
                             <div>
                               <div className="text-sm text-gray-500 mb-1">Water Intake</div>
-                              <div className="font-medium">{livestock.feeding.waterIntake}</div>
+                              {/* <div className="font-medium">{livestock.feeding.waterIntake}</div> */}
                             </div>
                           </div>
                         </div>
@@ -441,7 +507,7 @@ export default function LivestockDetail() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-gray-600">{livestock.notes}</p>
+                        <p className="text-gray-600">{livestock.livestock.notes}</p>
                       </CardContent>
                     </Card>
                   </div>
@@ -457,7 +523,7 @@ export default function LivestockDetail() {
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
-                        {livestock.health.vaccinations.map((vaccination, index) => (
+                        {/* {livestock.health.vaccinations.map((vaccination, index) => (
                           <div key={index} className="flex items-start gap-4 pb-4 border-b border-gray-100">
                             <div className="bg-green-100 p-2 rounded-full text-green-600">
                               <CheckCircle2 className="h-4 w-4" />
@@ -471,7 +537,7 @@ export default function LivestockDetail() {
                               Up to date
                             </Badge>
                           </div>
-                        ))}
+                        ))} */}
                       </div>
                     </CardContent>
                   </Card>
@@ -487,7 +553,7 @@ export default function LivestockDetail() {
                       <div className="relative">
                         <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200"></div>
                         <div className="space-y-6">
-                          {livestock.health.medicalHistory.map((event, index) => (
+                          {/* {livestock.health.medicalHistory.map((event, index) => (
                             <div key={index} className="relative pl-10">
                               <div className="absolute left-0 top-1 w-8 h-8 bg-[#328E6E] rounded-full flex items-center justify-center text-white">
                                 {event.event.includes("Check") ? (
@@ -509,7 +575,7 @@ export default function LivestockDetail() {
                                 <p className="text-gray-600">{event.notes}</p>
                               </div>
                             </div>
-                          ))}
+                          ))} */}
                         </div>
                       </div>
                     </CardContent>
@@ -528,15 +594,15 @@ export default function LivestockDetail() {
                       <div className="space-y-4">
                         <div>
                           <div className="text-sm text-gray-500 mb-1">Daily Average</div>
-                          <div className="font-medium">{livestock.production.milkProduction.average}</div>
+                          {/* <div className="font-medium">{livestock.production.milkProduction.average}</div> */}
                         </div>
                         <div>
                           <div className="text-sm text-gray-500 mb-1">Trend</div>
-                          <div className="font-medium">{livestock.production.milkProduction.trend}</div>
+                          {/* <div className="font-medium">{livestock.production.milkProduction.trend}</div> */}
                         </div>
                         <div>
                           <div className="text-sm text-gray-500 mb-1">Quality</div>
-                          <div className="font-medium">{livestock.production.milkProduction.quality}</div>
+                          {/* <div className="font-medium">{livestock.production.milkProduction.quality}</div> */}
                         </div>
                       </div>
                       <div className="mt-6 h-[200px] bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
@@ -557,25 +623,25 @@ export default function LivestockDetail() {
                         <div className="space-y-4">
                           <div>
                             <div className="text-sm text-gray-500 mb-1">Status</div>
-                            <div className="font-medium">{livestock.reproduction.status}</div>
+                            {/* <div className="font-medium">{livestock.reproduction.status}</div> */}
                           </div>
                           <div>
                             <div className="text-sm text-gray-500 mb-1">Breeding Date</div>
-                            <div className="font-medium">{livestock.reproduction.breedingDate}</div>
+                            {/* <div className="font-medium">{livestock.reproduction.breedingDate}</div> */}
                           </div>
                           <div>
                             <div className="text-sm text-gray-500 mb-1">Due Date</div>
-                            <div className="font-medium">{livestock.reproduction.dueDate}</div>
+                            {/* <div className="font-medium">{livestock.reproduction.dueDate}</div> */}
                           </div>
                         </div>
                         <div className="space-y-4">
                           <div>
                             <div className="text-sm text-gray-500 mb-1">Previous Calvings</div>
-                            <div className="font-medium">{livestock.reproduction.previousCalvings}</div>
+                            {/* <div className="font-medium">{livestock.reproduction.previousCalvings}</div> */}
                           </div>
                           <div>
                             <div className="text-sm text-gray-500 mb-1">Last Calving Date</div>
-                            <div className="font-medium">{livestock.reproduction.lastCalvingDate}</div>
+                            {/* <div className="font-medium">{livestock.reproduction.lastCalvingDate}</div> */}
                           </div>
                         </div>
                       </div>
@@ -595,21 +661,21 @@ export default function LivestockDetail() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                           <div className="text-sm text-gray-500 mb-1">Sire</div>
-                          <div className="font-medium">{livestock.genetics.sire}</div>
+                          {/* <div className="font-medium">{livestock.genetics.sire}</div> */}
                         </div>
                         <div>
                           <div className="text-sm text-gray-500 mb-1">Dam</div>
-                          <div className="font-medium">{livestock.genetics.dam}</div>
+                          {/* <div className="font-medium">{livestock.genetics.dam}</div> */}
                         </div>
                       </div>
                       <div className="mt-6">
                         <div className="text-sm text-gray-500 mb-3">Genetic Traits</div>
                         <div className="flex flex-wrap gap-2">
-                          {livestock.genetics.geneticTraits.map((trait, index) => (
+                          {/* {livestock.genetics.geneticTraits.map((trait, index) => (
                             <Badge key={index} variant="outline" className="text-[#328E6E] border-[#328E6E]/30">
                               {trait}
                             </Badge>
-                          ))}
+                          ))} */}
                         </div>
                       </div>
                     </CardContent>

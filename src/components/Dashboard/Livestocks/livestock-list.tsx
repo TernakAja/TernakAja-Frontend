@@ -52,25 +52,18 @@ export default function LivestockList() {
   const [statusFilter, setStatusFilter] = useState("all");
   const { user } = useAuth()
   const [loading, setLoading] = useState(true)
-  const [livestock, setLivestock] = useState<SensorDataWithLivestockAndAnomaly[]>([])
+  const [livestock, setLivestock] = useState<SensorDataWithLivestockAndAnomaly[]>([])  
 
   useEffect(() => {
     const fetchLivestock = async () => {
-      try {
-        if(user){
-          const response = await getAllLivestockByUser(user.id);
-          console.log(response);
-          
-          if(response.data){
-            setLivestock(response.data)
-          }
+      if (!user) return;
 
+      try {
+        const livestockResponse = await getAllLivestockByUser(user.id);
+        
+        if(livestockResponse.data){
+          setLivestock(livestockResponse.data)
         }
-        // if (response.success) {
-        //   setLivestock(response.data);
-        // } else {
-        //   setError(response.message || "Failed to fetch livestock.");
-        // }
       } catch (err) {
         console.log(err);
         // setError(err);
@@ -80,222 +73,8 @@ export default function LivestockList() {
     };
 
     fetchLivestock();
-  }, []);
+  }, [user]);
 
-  // Sample livestock data
-  // const livestock: SensorDataWithLivestockAndAnomaly[] = [
-  //   {
-  //     sd_id: 101,
-  //     sd_livestock_id: 1,
-  //     sd_temperature: 101.5,
-  //     sd_heart_rate: 65,
-  //     sd_motion_level: 3,
-  //     sd_timestamp: "2025-05-28T14:30:00Z",
-  
-  //     l_id: 1,
-  //     l_farm_id: 10,
-  //     l_user_id: 100,
-  //     l_name: "Bella",
-  //     l_species: "Cattle",
-  //     l_breed: "Holstein",
-  //     l_gender: "Female",
-  //     l_birth_date: "2019-04-15",
-  //     l_photo_url: "/images/bella.jpg",
-  //     l_status: "healthy",
-  //     l_height: 140,
-  //     l_weight: 600,
-  //     l_body_condition_score: 3,
-  //     l_notes: "No health issues.",
-  //     l_recorded_at: "2025-05-28T14:00:00Z",
-  //     l_created_at: "2019-04-16T09:00:00Z",
-  //     l_updated_at: "2025-05-28T14:15:00Z",
-  
-  //     a_id: 0,
-  //     a_livestock_id: 1,
-  //     a_type: "",
-  //     a_severity: "",
-  //     a_notes: "",
-  //     a_detected_at: "",
-  //     a_resolved: true,
-  //   },
-  //   {
-  //     sd_id: 102,
-  //     sd_livestock_id: 2,
-  //     sd_temperature: 102.8,
-  //     sd_heart_rate: 72,
-  //     sd_motion_level: 5,
-  //     sd_timestamp: "2025-05-28T14:32:00Z",
-  
-  //     l_id: 2,
-  //     l_farm_id: 10,
-  //     l_user_id: 101,
-  //     l_name: "Max",
-  //     l_species: "Cattle",
-  //     l_breed: "Angus",
-  //     l_gender: "Male",
-  //     l_birth_date: "2020-06-10",
-  //     l_photo_url: "/images/max.jpg",
-  //     l_status: "attention",
-  //     l_height: 145,
-  //     l_weight: 650,
-  //     l_body_condition_score: 2.5,
-  //     l_notes: "Slight fever detected.",
-  //     l_recorded_at: "2025-05-28T14:05:00Z",
-  //     l_created_at: "2020-06-11T10:00:00Z",
-  //     l_updated_at: "2025-05-28T14:20:00Z",
-  
-  //     a_id: 201,
-  //     a_livestock_id: 2,
-  //     a_type: "Fever",
-  //     a_severity: "medium",
-  //     a_notes: "Monitor temperature closely, possible infection.",
-  //     a_detected_at: "2025-05-28T14:25:00Z",
-  //     a_resolved: false,
-  //   },
-  //   {
-  //     sd_id: 103,
-  //     sd_livestock_id: 3,
-  //     sd_temperature: 101.3,
-  //     sd_heart_rate: 64,
-  //     sd_motion_level: 2,
-  //     sd_timestamp: "2025-05-28T14:40:00Z",
-  
-  //     l_id: 3,
-  //     l_farm_id: 10,
-  //     l_user_id: 102,
-  //     l_name: "Daisy",
-  //     l_species: "Cattle",
-  //     l_breed: "Jersey",
-  //     l_gender: "Female",
-  //     l_birth_date: "2018-09-21",
-  //     l_photo_url: "/images/daisy.jpg",
-  //     l_status: "healthy",
-  //     l_height: 135,
-  //     l_weight: 580,
-  //     l_body_condition_score: 3.2,
-  //     l_notes: "Healthy and active.",
-  //     l_recorded_at: "2025-05-28T14:10:00Z",
-  //     l_created_at: "2018-09-22T08:00:00Z",
-  //     l_updated_at: "2025-05-28T14:30:00Z",
-  
-  //     a_id: 0,
-  //     a_livestock_id: 3,
-  //     a_type: "",
-  //     a_severity: "",
-  //     a_notes: "",
-  //     a_detected_at: "",
-  //     a_resolved: true,
-  //   }
-  // ];
-  
-
-  // const livestock = [
-  //   {
-  //     id: "1",
-  //     name: "Bella",
-  //     tag: "HOL-1234",
-  //     species: "Cattle",
-  //     breed: "Holstein",
-  //     gender: "Female",
-  //     age: "4 years",
-  //     status: "healthy",
-  //     location: "Barn A",
-  //     heartRate: "65 BPM",
-  //     temperature: "101.5°F",
-  //     lastUpdated: "10 minutes ago",
-  //     image: "/placeholder.svg?height=40&width=40",
-  //   },
-  //   {
-  //     id: "2",
-  //     name: "Max",
-  //     tag: "ANG-5678",
-  //     species: "Cattle",
-  //     breed: "Angus",
-  //     gender: "Male",
-  //     age: "3 years",
-  //     status: "attention",
-  //     location: "Barn B",
-  //     heartRate: "72 BPM",
-  //     temperature: "102.8°F",
-  //     lastUpdated: "25 minutes ago",
-  //     image: "/placeholder.svg?height=40&width=40",
-  //   },
-  //   {
-  //     id: "3",
-  //     name: "Daisy",
-  //     tag: "JER-9012",
-  //     species: "Cattle",
-  //     breed: "Jersey",
-  //     gender: "Female",
-  //     age: "5 years",
-  //     status: "healthy",
-  //     location: "Barn A",
-  //     heartRate: "64 BPM",
-  //     temperature: "101.3°F",
-  //     lastUpdated: "1 hour ago",
-  //     image: "/placeholder.svg?height=40&width=40",
-  //   },
-  //   {
-  //     id: "4",
-  //     name: "Rocky",
-  //     tag: "HOL-3456",
-  //     species: "Cattle",
-  //     breed: "Holstein",
-  //     gender: "Male",
-  //     age: "2 years",
-  //     status: "critical",
-  //     location: "Barn C",
-  //     heartRate: "85 BPM",
-  //     temperature: "104.2°F",
-  //     lastUpdated: "5 minutes ago",
-  //     image: "/placeholder.svg?height=40&width=40",
-  //   },
-  //   {
-  //     id: "5",
-  //     name: "Lucy",
-  //     tag: "MER-7890",
-  //     species: "Sheep",
-  //     breed: "Merino",
-  //     gender: "Female",
-  //     age: "3 years",
-  //     status: "healthy",
-  //     location: "Pen 1",
-  //     heartRate: "75 BPM",
-  //     temperature: "102.1°F",
-  //     lastUpdated: "30 minutes ago",
-  //     image: "/placeholder.svg?height=40&width=40",
-  //   },
-  //   {
-  //     id: "6",
-  //     name: "Charlie",
-  //     tag: "NUB-1357",
-  //     species: "Goat",
-  //     breed: "Nubian",
-  //     gender: "Male",
-  //     age: "2 years",
-  //     status: "attention",
-  //     location: "Pen 2",
-  //     heartRate: "80 BPM",
-  //     temperature: "103.0°F",
-  //     lastUpdated: "45 minutes ago",
-  //     image: "/placeholder.svg?height=40&width=40",
-  //   },
-  //   {
-  //     id: "7",
-  //     name: "Wilbur",
-  //     tag: "BER-2468",
-  //     species: "Pig",
-  //     breed: "Berkshire",
-  //     gender: "Male",
-  //     age: "1 year",
-  //     status: "healthy",
-  //     location: "Pen 3",
-  //     heartRate: "70 BPM",
-  //     temperature: "101.8°F",
-  //     lastUpdated: "2 hours ago",
-  //     image: "/placeholder.svg?height=40&width=40",
-  //   },
-  // ];
 
   if (loading) {
     return <LoadingScreenPage />;
@@ -348,7 +127,7 @@ export default function LivestockList() {
                 <div className="text-sm text-gray-500">Healthy</div>
                 <div className="text-2xl font-bold">
                   {
-                    livestock.filter((animal) => animal.livestock.status === "healthy")
+                    livestock.filter((animal) => animal.livestock.status === "Healthy")
                       .length
                   }
                 </div>
@@ -371,7 +150,7 @@ export default function LivestockList() {
                 <div className="text-sm text-gray-500">Needs Attention</div>
                 <div className="text-2xl font-bold">
                   {
-                    livestock.filter((animal) => animal.livestock.status === "attention")
+                    livestock.filter((animal) => animal.livestock.status === "Attention")
                       .length
                   }
                 </div>
@@ -394,7 +173,7 @@ export default function LivestockList() {
                 <div className="text-sm text-gray-500">Critical</div>
                 <div className="text-2xl font-bold">
                   {
-                    livestock.filter((animal) => animal.livestock.status === "critical")
+                    livestock.filter((animal) => animal.livestock.status === "Critical")
                       .length
                   }
                 </div>
@@ -534,16 +313,16 @@ export default function LivestockList() {
                       <TableCell>
                         <Badge
                           className={
-                            animal.livestock.status === "healthy"
+                            animal.livestock.status === "Healthy"
                               ? "bg-green-500"
-                              : animal.livestock.status === "attention"
+                              : animal.livestock.status === "Attention"
                               ? "bg-amber-500"
                               : "bg-red-500"
                           }
                         >
-                          {animal.livestock.status === "healthy"
+                          {animal.livestock.status === "Healthy"
                             ? "Healthy"
-                            : animal.livestock.status === "attention"
+                            : animal.livestock.status === "Attention"
                             ? "Needs Attention"
                             : "Critical"}
                         </Badge>

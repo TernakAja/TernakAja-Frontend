@@ -85,3 +85,10 @@ export const getAllLivestockByUser = async (
   return response.data;
 };
 
+export const getLivestockDetailById = async (
+  livestockId: number
+): Promise<ApiResponse<SensorDataWithLivestockAndAnomaly>> => {
+  const response = await api.get(`/${livestockId}/detail`);
+  return response.data;
+};
+
