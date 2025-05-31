@@ -38,7 +38,7 @@ import {
 import { Progress } from "@/components/ui/progress"
 import { LineChart } from "@/components/Dashboard/charts"
 import { useParams } from "react-router-dom"
-import { DailySensorStats, SensorDataWithLivestockAndAnomaly } from "@/types/dataSchema"
+import { DailySensorStats, SensorDataWithLivestock } from "@/types/dataSchema"
 import { getLivestockDetailById } from "@/services/livestockService"
 import LoadingScreenPage from "../../../utility/LoadingScreen";
 
@@ -52,8 +52,9 @@ const dailySensorStats: DailySensorStats[] = [
   { day: "Sun", avg_temperature: 101.5, avg_heart_rate: 63 },
 ];
 
-const defaultSensorDataWithLivestockAndAnomaly: SensorDataWithLivestockAndAnomaly = {
+const defaultSensorDataWithLivestockAndAnomaly: SensorDataWithLivestock = {
   sensor_data: {
+    id: 0,
     livestockId: 0,
     temperature: 0,
     heartRate: 0,
@@ -69,7 +70,7 @@ const defaultSensorDataWithLivestockAndAnomaly: SensorDataWithLivestockAndAnomal
     breed: "",
     gender: "",
     birthDate: new Date().toISOString(),
-    photoUrl: null,
+    photoUrl: "",
     status: "",
     height: 0,
     weight: 0,
@@ -78,22 +79,14 @@ const defaultSensorDataWithLivestockAndAnomaly: SensorDataWithLivestockAndAnomal
     recordedAt: new Date().toISOString(),
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
-  },
-  anomaly: {
-    livestockId: 0,
-    type: "",
-    severity: "",
-    notes: "",
-    detectedAt: new Date().toISOString(),
-    resolved: false,
-  },
+  }
 };
 
 
 export default function LivestockDetail() {
 
   const { id } = useParams<{ id: string }>();
-  const [livestock, setLivestock] = useState<SensorDataWithLivestockAndAnomaly>(defaultSensorDataWithLivestockAndAnomaly)  
+  const [livestock, setLivestock] = useState<SensorDataWithLivestock>(defaultSensorDataWithLivestockAndAnomaly)  
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
