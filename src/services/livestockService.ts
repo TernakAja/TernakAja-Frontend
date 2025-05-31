@@ -78,6 +78,13 @@ export const getRecentNotifs = async (
   return response.data;
 };
 
+export const gettAllNotifDetail = async (
+  userId: number
+): Promise<ApiResponse<INotificationData[]>> => {
+  const response = await api.get(`/${userId}/notif-detail`);
+  return response.data;
+};
+
 export const getAllLivestockByUser = async (
   userId: number
 ): Promise<ApiResponse<SensorDataWithLivestockAndAnomaly[]>> => {

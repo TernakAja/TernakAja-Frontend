@@ -75,3 +75,19 @@ export interface SensorDataWithLivestockAndAnomaly {
   livestock: Livestock;
   anomaly: Anomaly;
 }
+
+interface INotification {
+  id: number;
+  userId: number;
+  livestockId: number;
+  message: string;
+  type: string; // Or string if there can be other types
+  read: boolean;
+  sentAt: string;
+}
+
+export interface INotificationData {
+  notification: INotification;
+  livestock: Livestock;
+  sensor_data: SensorData;
+}

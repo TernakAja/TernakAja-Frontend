@@ -58,6 +58,7 @@ import DashboardPage from "./pages/Dashboard/page";
 // Context / Providers
 
 import { AuthProvider } from "./context/auth-context";
+import ProtectedRoute from "./components/protectedRoute";
 
 // Loading Screen Animation
 
@@ -73,8 +74,7 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
 };
 
 function App() {
-  // const [loading, setLoading] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   return (
     // Providers, Router, Scroll to Top Function and Button, and Custom Cursor
@@ -124,35 +124,16 @@ function App() {
                 <Route path="/register" element={<RegisterPage />} />
               </Route>
 
-              <Route path="/dashboard" element={<DashboardPage />} />
-              <Route
-                path="/dashboard/livestock"
-                element={<DashboardLivestockPage />}
-              />
-              <Route
-                path="/dashboard/livestock/add"
-                element={<AddLivestockPage />}
-              />
-              <Route
-                path="/dashboard/livestock/:id"
-                element={<DashboardLivestockDetailPage />}
-              />
-
-              <Route
-                path="/dashboard/health"
-                element={<DashboardHealthPage />}
-              />
-              <Route
-                path="/dashboard/feeding"
-                element={<DashboardFeedingPage />}
-              />
-              <Route
-                path="/dashboard/analytics"
-                element={<DashboardAnalyticsPage />}
-              />
-
-              <Route path="/dashboard/weather" element={<WeatherPage />} />
-
+              <Route element={<ProtectedRoute />}>
+                <Route path="/dashboard" element={<DashboardPage />} />
+                <Route path="/dashboard/livestock" element={<DashboardLivestockPage />} />
+                <Route path="/dashboard/livestock/add" element={<AddLivestockPage />} />
+                <Route path="/dashboard/livestock/:id" element={<DashboardLivestockDetailPage />} />
+                <Route path="/dashboard/health" element={<DashboardHealthPage />} />
+                <Route path="/dashboard/feeding" element={<DashboardFeedingPage />} />
+                <Route path="/dashboard/analytics" element={<DashboardAnalyticsPage />} />
+                <Route path="/dashboard/weather" element={<WeatherPage />} />
+              </Route>
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           )}
