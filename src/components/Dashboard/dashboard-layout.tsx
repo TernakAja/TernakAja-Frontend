@@ -24,13 +24,14 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { useLocation, useNavigate } from "react-router-dom"
+import { useAuth } from "@/context/auth-context"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-
+  const { logout } = useAuth();
   const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
@@ -133,7 +134,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             Home
           </Button>
           {/* For logout */}
-          <Button variant="ghost" className="w-full justify-start mt-4 text-gray-600">
+          <Button variant="ghost" className="w-full justify-start mt-4 text-gray-600" onClick={() => (logout())}>
             <LogOut className="h-4 w-4 mr-2" />
             Log out
           </Button>
