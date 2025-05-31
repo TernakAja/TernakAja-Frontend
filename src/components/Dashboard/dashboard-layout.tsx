@@ -157,7 +157,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                   <ChevronLeft className="h-5 w-5" />
                 </Button>
               )}
-              <div className="relative w-64 max-w-full">
+              <div className="relative w-full max-w-xs">
                 <Input
                   type="search"
                   placeholder="Search..."
