@@ -1,4 +1,10 @@
-import { INotificationData, LivestockStatusCounts, NotificationWithLivestockFlat, SensorDataWithLivestockAndAnomaly, SpeciesCount } from "@/types/dataSchema";
+import {
+  INotificationData,
+  LivestockStatusCounts,
+  NotificationWithLivestockFlat,
+  SensorDataWithLivestock,
+  SpeciesCount,
+} from "@/types/dataSchema";
 import { Livestock } from "@/types/schema";
 import axios from "axios";
 
@@ -17,7 +23,6 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-
 export interface ApiResponse<T> {
   message: string;
   error?: string;
@@ -25,9 +30,47 @@ export interface ApiResponse<T> {
 }
 
 export async function createLivestock(
-  data: Livestock
+  userId: number,
+  farmId: number,
+  deviceId: number,
+  deviceType: string,
+  firmware: string,
+  wifiSsid: string | null,
+  wifiPassword: string | null,
+  name: string,
+  species: string,
+  breed: string,
+  gender: string,
+  birthDate: string,
+  photoUrl: string | null,
+  status: string,
+  height: number,
+  weight: number,
+  bodyConditionScore?: number | null,
+  notes?: string | null
 ): Promise<ApiResponse<Livestock>> {
-  const response = await api.post("", data);
+  const data = {
+    userId,
+    farmId,
+    deviceId,
+    deviceType,
+    firmware,
+    wifiSsid,
+    wifiPassword,
+    name,
+    species,
+    breed,
+    gender,
+    birthDate,
+    photoUrl,
+    status,
+    height,
+    weight,
+    bodyConditionScore:
+      bodyConditionScore !== undefined ? bodyConditionScore : null,
+    notes: notes !== undefined ? notes : null,
+  };
+  const response = await api.post("/livestock", data);
   return response.data;
 }
 
@@ -87,15 +130,14 @@ export const gettAllNotifDetail = async (
 
 export const getAllLivestockByUser = async (
   userId: number
-): Promise<ApiResponse<SensorDataWithLivestockAndAnomaly[]>> => {
-  const response = await api.get(`/${userId}/sensor-anomalies`);
+): Promise<ApiResponse<SensorDataWithLivestock[]>> => {
+  const response = await api.get(`/${userId}/sensor-data`);
   return response.data;
 };
 
 export const getLivestockDetailById = async (
   livestockId: number
-): Promise<ApiResponse<SensorDataWithLivestockAndAnomaly>> => {
+): Promise<ApiResponse<SensorDataWithLivestock>> => {
   const response = await api.get(`/${livestockId}/detail`);
   return response.data;
 };
-

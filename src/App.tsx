@@ -126,12 +126,30 @@ function App() {
 
               <Route element={<ProtectedRoute />}>
                 <Route path="/dashboard" element={<DashboardPage />} />
-                <Route path="/dashboard/livestock" element={<DashboardLivestockPage />} />
-                <Route path="/dashboard/livestock/add" element={<AddLivestockPage />} />
-                <Route path="/dashboard/livestock/:id" element={<DashboardLivestockDetailPage />} />
-                <Route path="/dashboard/health" element={<DashboardHealthPage />} />
-                <Route path="/dashboard/feeding" element={<DashboardFeedingPage />} />
-                <Route path="/dashboard/analytics" element={<DashboardAnalyticsPage />} />
+                <Route
+                  path="/dashboard/livestock"
+                  element={<DashboardLivestockPage />}
+                />
+                <Route
+                  path="/dashboard/livestock/add"
+                  element={<AddLivestockPage />}
+                />
+                <Route
+                  path="/dashboard/livestock/:id"
+                  element={<DashboardLivestockDetailPage />}
+                />
+                <Route
+                  path="/dashboard/health"
+                  element={<DashboardHealthPage />}
+                />
+                <Route
+                  path="/dashboard/feeding"
+                  element={<DashboardFeedingPage />}
+                />
+                <Route
+                  path="/dashboard/analytics"
+                  element={<DashboardAnalyticsPage />}
+                />
                 <Route path="/dashboard/weather" element={<WeatherPage />} />
               </Route>
               <Route path="*" element={<NotFoundPage />} />

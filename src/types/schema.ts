@@ -14,6 +14,8 @@ export interface Livestock {
   bodyConditionScore?: number;
   notes?: string;
   recordedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Farm {

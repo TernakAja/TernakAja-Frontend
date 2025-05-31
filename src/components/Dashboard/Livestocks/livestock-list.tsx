@@ -42,17 +42,17 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
 import { getAllLivestockByUser } from "@/services/livestockService";
-import { SensorDataWithLivestockAndAnomaly } from "@/types/dataSchema";
 import { useAuth } from "@/context/auth-context";
 import LoadingScreenPage from "../../../utility/LoadingScreen";
+import { SensorDataWithLivestock } from "@/types/dataSchema";
 
 export default function LivestockList() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
-  const { user } = useAuth()
-  const [loading, setLoading] = useState(true)
-  const [livestock, setLivestock] = useState<SensorDataWithLivestockAndAnomaly[]>([])  
+  const { user } = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [livestock, setLivestock] = useState<SensorDataWithLivestock[]>([]);
 
   useEffect(() => {
     const fetchLivestock = async () => {
@@ -60,9 +60,9 @@ export default function LivestockList() {
 
       try {
         const livestockResponse = await getAllLivestockByUser(user.id);
-        
-        if(livestockResponse.data){
-          setLivestock(livestockResponse.data)
+        if (livestockResponse.data) {
+          console.log(livestockResponse.data);
+          setLivestock(livestockResponse.data);
         }
       } catch (err) {
         console.log(err);
@@ -75,7 +75,6 @@ export default function LivestockList() {
     fetchLivestock();
   }, [user]);
 
-
   if (loading) {
     return <LoadingScreenPage />;
   }
@@ -84,7 +83,9 @@ export default function LivestockList() {
   const filteredLivestock = livestock.filter((animal) => {
     const matchesSearch =
       animal.livestock.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      animal.livestock.species.toLowerCase().includes(searchQuery.toLowerCase());
+      animal.livestock.species
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
 
     const matchesStatus =
       statusFilter === "all" || animal.livestock.status === statusFilter;
@@ -127,8 +128,9 @@ export default function LivestockList() {
                 <div className="text-sm text-gray-500">Healthy</div>
                 <div className="text-2xl font-bold">
                   {
-                    livestock.filter((animal) => animal.livestock.status === "Healthy")
-                      .length
+                    livestock.filter(
+                      (animal) => animal.livestock.status === "Healthy"
+                    ).length
                   }
                 </div>
               </div>
@@ -150,8 +152,9 @@ export default function LivestockList() {
                 <div className="text-sm text-gray-500">Needs Attention</div>
                 <div className="text-2xl font-bold">
                   {
-                    livestock.filter((animal) => animal.livestock.status === "Attention")
-                      .length
+                    livestock.filter(
+                      (animal) => animal.livestock.status === "Attention"
+                    ).length
                   }
                 </div>
               </div>
@@ -173,8 +176,9 @@ export default function LivestockList() {
                 <div className="text-sm text-gray-500">Critical</div>
                 <div className="text-2xl font-bold">
                   {
-                    livestock.filter((animal) => animal.livestock.status === "Critical")
-                      .length
+                    livestock.filter(
+                      (animal) => animal.livestock.status === "Critical"
+                    ).length
                   }
                 </div>
               </div>
@@ -281,7 +285,9 @@ export default function LivestockList() {
                         <div className="flex items-center gap-3">
                           <Avatar>
                             <AvatarImage
-                              src={animal.livestock.photoUrl || "/placeholder.svg"}
+                              src={
+                                animal.livestock.photoUrl || "/placeholder.svg"
+                              }
                               alt={animal.livestock.name}
                             />
                             <AvatarFallback>
