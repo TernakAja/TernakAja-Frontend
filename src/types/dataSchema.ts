@@ -55,3 +55,46 @@ export interface INotificationData {
   livestock: Livestock;
   sensor_data: SensorData;
 }
+
+interface SensorData2 {
+  livestockId: number;
+  temperature: number;
+  heartRate: number;
+  motionLevel: number;
+  timestamp: string;
+}
+
+interface Livestock2 {
+  id: number;
+  farmId: number;
+  userId: number;
+  name: string;
+  species: string;
+  breed: string;
+  gender: string;
+  birthDate: string;
+  photoUrl: string | null;
+  status: string;
+  height: number;
+  weight: number;
+  bodyConditionScore: number;
+  notes: string;
+  recordedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface Anomaly {
+  livestockId: number;
+  type: string;
+  severity: string;
+  notes: string;
+  detectedAt: string;
+  resolved: boolean;
+}
+
+export interface SensorDataWithLivestockAndAnomaly {
+  sensor_data: SensorData2;
+  livestock: Livestock2;
+  anomaly: Anomaly;
+}

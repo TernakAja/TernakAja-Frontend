@@ -156,7 +156,7 @@ export default function ChatbotInterface() {
     // setShowSuggestions(false);
 
     try {
-      const response = await fetch("http://localhost:5000/ask", {
+      const response = await fetch("https://moorgan-ai-ewcub4cafphtgfar.eastus-01.azurewebsites.net/ask", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
