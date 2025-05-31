@@ -52,9 +52,9 @@ const dailySensorStats: DailySensorStats[] = [
 
 export default function DashboardOverview() {
   const [, setTimeRange] = useState("7d");
-  const [error, setError] = useState("")
+  const [, setError] = useState("")
   const [loading, setLoading] = useState(true);
-  const [status, setStatus] = useState<LivestockStatusCounts>({
+  const [status, setStatus] = useState<LivestockStatusCounts | undefined>({
     total: '0',
     healthy: '0',
     needs_attention: '0',
