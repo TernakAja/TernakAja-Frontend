@@ -52,9 +52,14 @@ const dailySensorStats: DailySensorStats[] = [
 
 export default function DashboardOverview() {
   const [, setTimeRange] = useState("7d");
-  // const [, setError] = useState("")
+  const [error, setError] = useState("")
   const [loading, setLoading] = useState(true);
-  const [status, setStatus] = useState<LivestockStatusCounts>();
+  const [status, setStatus] = useState<LivestockStatusCounts>({
+    total: '0',
+    healthy: '0',
+    needs_attention: '0',
+    critical: '0',
+  });
   const [speciesCount, setSpeciesCount] = useState<SpeciesCount[]>([]);
   const [notifications, setNotifications] = useState<NotificationWithLivestockFlat[]>([]);
   const { user } = useAuth()
@@ -62,6 +67,7 @@ export default function DashboardOverview() {
 
   useEffect(() => {
     const fetchData = async () => {
+
       if (!user) return;
   
       setLoading(true);
@@ -83,7 +89,7 @@ export default function DashboardOverview() {
         // const totalAll = speciesCount.reduce((sum, s) => sum + s.total, 0);
       } catch (err) {
         console.error("Error fetching data:", err);
-        // setError(err.message || "Something went wrong");
+        setError("error");
       } finally {
         setLoading(false);
       }

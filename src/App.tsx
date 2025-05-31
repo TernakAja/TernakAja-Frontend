@@ -74,7 +74,7 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
 };
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   return (
     // Providers, Router, Scroll to Top Function and Button, and Custom Cursor

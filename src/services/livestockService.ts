@@ -1,4 +1,4 @@
-import { LivestockStatusCounts, NotificationWithLivestockFlat, SensorDataWithLivestockAndAnomaly, SpeciesCount } from "@/types/dataSchema";
+import { INotificationData, LivestockStatusCounts, NotificationWithLivestockFlat, SensorDataWithLivestockAndAnomaly, SpeciesCount } from "@/types/dataSchema";
 import { Livestock } from "@/types/schema";
 import axios from "axios";
 
