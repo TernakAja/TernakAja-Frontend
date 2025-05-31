@@ -2,6 +2,7 @@ import {
   INotificationData,
   LivestockStatusCounts,
   NotificationWithLivestockFlat,
+  RecentAvgSensorData,
   SensorDataWithLivestock,
   SpeciesCount,
 } from "@/types/dataSchema";
@@ -139,5 +140,12 @@ export const getLivestockDetailById = async (
   livestockId: number
 ): Promise<ApiResponse<SensorDataWithLivestock>> => {
   const response = await api.get(`/${livestockId}/detail`);
+  return response.data;
+};
+
+export const getRecentAverageSensorData = async (
+  userId: number
+): Promise<ApiResponse<RecentAvgSensorData>> => {
+  const response = await api.get(`/${userId}/sensor-data/average-recent`);
   return response.data;
 };

@@ -102,20 +102,20 @@ export function LineChart({ dailySensorStats }: LineChartProps) {
               drawOnChartArea: false,
             },
           },
-          y2: {
-            type: "linear",
-            display: true,
-            position: "right",
-            title: {
-              display: true,
-              text: "Respiratory Rate",
-            },
-            min: 20,
-            max: 40,
-            grid: {
-              drawOnChartArea: false,
-            },
-          },
+          // y2: {
+          //   type: "linear",
+          //   display: true,
+          //   position: "right",
+          //   title: {
+          //     display: true,
+          //     text: "Respiratory Rate",
+          //   },
+          //   min: 20,
+          //   max: 40,
+          //   grid: {
+          //     drawOnChartArea: false,
+          //   },
+          // },
         },
         plugins: {
           legend: {
@@ -165,21 +165,21 @@ export function BarChart() {
       data: {
         labels,
         datasets: [
-          {
-            label: "Morning",
-            data: morningData,
-            backgroundColor: "#328E6E",
-          },
+          // {
+          //   label: "Morning",
+          //   data: morningData,
+          //   backgroundColor: "#328E6E",
+          // },
           {
             label: "Afternoon",
             data: afternoonData,
             backgroundColor: "#67AE6E",
           },
-          {
-            label: "Evening",
-            data: eveningData,
-            backgroundColor: "#90C67C",
-          },
+          // {
+          //   label: "Evening",
+          //   data: eveningData,
+          //   backgroundColor: "#90C67C",
+          // },
         ],
       },
       options: {

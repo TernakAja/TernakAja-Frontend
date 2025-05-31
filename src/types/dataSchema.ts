@@ -98,3 +98,9 @@ export interface SensorDataWithLivestockAndAnomaly {
   livestock: Livestock2;
   anomaly: Anomaly;
 }
+
+export interface RecentAvgSensorData {
+  avgHeartRate: string;
+  avgTemperature: number;
+  avgMotionLevel: number;
+};

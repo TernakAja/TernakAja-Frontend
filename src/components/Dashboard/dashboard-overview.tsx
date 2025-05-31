@@ -32,12 +32,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LineChart, BarChart, DonutChart } from "@/components/Dashboard/charts";
+import { LineChart, DonutChart } from "@/components/Dashboard/charts";
 import { getRecentNotifs, getSpeciesCount, getStatusCount } from "@/services/livestockService";
-import { DailySensorStats, LivestockStatusCounts, NotificationWithLivestockFlat, SpeciesCount } from "@/types/dataSchema";
+import { DailySensorStats, LivestockStatusCounts, NotificationWithLivestockFlat, RecentAvgSensorData, SpeciesCount } from "@/types/dataSchema";
 import StatsCards from "./stats-cards";
 import { useAuth } from "@/context/auth-context";
 import LoadingScreenPage from "../../utility/LoadingScreen";
+import { getRecentAverageSensorData } from "@/services/livestockService";
+import LastHourMetrics from "./average-metrics";
 
 const dailySensorStats: DailySensorStats[] = [
   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },
@@ -62,6 +64,7 @@ export default function DashboardOverview() {
   });
   const [speciesCount, setSpeciesCount] = useState<SpeciesCount[]>([]);
   const [notifications, setNotifications] = useState<NotificationWithLivestockFlat[]>([]);
+  const [avgSensor, setAvgSensor] = useState<RecentAvgSensorData>();
   const { user } = useAuth()
   const colors = ["#328E6E", "#67AE6E", "#90C67C", "#E1EEBC"];
 
@@ -72,14 +75,20 @@ export default function DashboardOverview() {
   
       setLoading(true);
       try {
-        const [statusResponse, speciesResponse, notifResponse] = await Promise.all([
+        const [statusResponse, speciesResponse, notifResponse, avgResponse] = await Promise.all([
           getStatusCount(user.id),
           getSpeciesCount(user.id),
-          getRecentNotifs(user.id)
+          getRecentNotifs(user.id),
+          getRecentAverageSensorData(user.id)
         ]);
 
         if(notifResponse.data){
           setNotifications(notifResponse.data);
+        }
+        // console.log(avgResponse.data)
+
+        if(avgResponse.data){
+          setAvgSensor(avgResponse.data);
         }
   
         setStatus(statusResponse.data);
@@ -267,32 +276,7 @@ export default function DashboardOverview() {
 
       {/* Activity and alerts section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <motion.div
-          className="lg:col-span-2"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.3 }}
-        >
-          <Card className="h-full">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <div>
-                <CardTitle>Activity Metrics</CardTitle>
-                <CardDescription>
-                  Daily activity levels by livestock type
-                </CardDescription>
-              </div>
-              <Button variant="outline" size="sm" className="h-8 gap-1 text-xs">
-                <span>View All</span>
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Button>
-            </CardHeader>
-            <CardContent>
-              <div className="h-[300px]">
-                <BarChart />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+        <LastHourMetrics heartRateAverage={avgSensor?.avgHeartRate} temperatureAverage={avgSensor?.avgTemperature} motionLevelAverage={avgSensor?.avgMotionLevel}/>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
