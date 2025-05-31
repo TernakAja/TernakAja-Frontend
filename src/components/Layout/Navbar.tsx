@@ -12,6 +12,7 @@ const navas = [
   { name: "Article", href: "/article" },
   { name: "Community Forum", href: "/forum" },
   { name: "Marketplace", href: "/marketplace" },
+  { name: "All Features", href: "/features" },
 ]
 
 export default function Navbar() {
