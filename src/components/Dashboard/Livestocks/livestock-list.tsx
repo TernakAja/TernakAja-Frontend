@@ -335,17 +335,23 @@ export default function LivestockList() {
                       </TableCell>
                       <TableCell>{animal.livestock.farmId}</TableCell>
                       <TableCell>
-                        <div className="flex items-center gap-1">
-                          <Heart className="h-4 w-4 text-red-500" />
-                          <span>{animal.sensor_data.heartRate}</span>
-                        </div>
-                        <div className="flex items-center gap-1 mt-1">
-                          <Thermometer className="h-4 w-4 text-amber-500" />
-                          <span>{animal.sensor_data.temperature}</span>
-                        </div>
+                        {animal.sensor_data ? (
+                          <>
+                            <div className="flex items-center gap-1">
+                              <Heart className="h-4 w-4 text-red-500" />
+                              <span>{animal.sensor_data.heartRate ?? 'N/A'}</span>
+                            </div>
+                            <div className="flex items-center gap-1 mt-1">
+                              <Thermometer className="h-4 w-4 text-amber-500" />
+                              <span>{animal.sensor_data.temperature ?? 'N/A'}</span>
+                            </div>
+                          </>
+                        ) : (
+                          <span>No sensor data</span>
+                        )}
                       </TableCell>
                       <TableCell className="text-gray-500">
-                        {animal.sensor_data.timestamp}
+                      {animal.sensor_data?.timestamp ? new Date(animal.sensor_data.timestamp).toLocaleDateString() : 'N/A'}
                       </TableCell>
                       <TableCell>
                         <DropdownMenu>
