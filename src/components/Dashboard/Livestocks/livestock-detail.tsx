@@ -58,7 +58,7 @@ const defaultSensorDataWithLivestockAndAnomaly: SensorDataWithLivestock = {
     livestockId: 0,
     temperature: 0,
     heartRate: 0,
-    motionLevel: 0,
+    respiratoryRate: 0,
     timestamp: new Date().toISOString(),
   },
   livestock: {

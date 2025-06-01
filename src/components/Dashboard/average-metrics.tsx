@@ -12,13 +12,13 @@ import { Progress } from "@/components/ui/progress";
 interface LastHourMetricsProps {
   heartRateAverage: string | undefined;
   temperatureAverage: number | undefined;
-  motionLevelAverage: number | undefined;
+  respiratoryRateAverage: number | undefined;
 }
 
 export default function LastHourMetrics({
   heartRateAverage,
   temperatureAverage,
-  motionLevelAverage,
+  respiratoryRateAverage,
 }: LastHourMetricsProps) {
   // Static data except average
   const heartRate = {
@@ -38,7 +38,7 @@ export default function LastHourMetrics({
   };
 
   const motionLevel = {
-    average: Math.round((motionLevelAverage ?? 0) * 100),
+    average: Math.round((respiratoryRateAverage ?? 0) * 100),
     min: 0,
     max: 100,
     unit: "%",

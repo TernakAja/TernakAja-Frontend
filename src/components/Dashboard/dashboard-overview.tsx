@@ -297,7 +297,7 @@ export default function DashboardOverview() {
         <LastHourMetrics
           heartRateAverage={avgSensor?.avgHeartRate}
           temperatureAverage={avgSensor?.avgTemperature}
-          motionLevelAverage={avgSensor?.avgMotionLevel}
+          respiratoryRateAverage={avgSensor?.avgRespiratoryRate}
         />
 
         <motion.div
