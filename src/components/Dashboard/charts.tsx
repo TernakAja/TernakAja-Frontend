@@ -155,9 +155,9 @@ export function BarChart() {
 
     // Sample data
     const labels = ["Cattle", "Sheep", "Goats", "Pigs"]
-    const morningData = [75, 65, 70, 60]
+    // const morningData = [75, 65, 70, 60]
     const afternoonData = [85, 75, 80, 70]
-    const eveningData = [65, 55, 60, 50]
+    // const eveningData = [65, 55, 60, 50]
 
     // Create new chart
     chartInstance.current = new Chart(ctx, {

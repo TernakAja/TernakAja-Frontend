@@ -30,7 +30,7 @@ export default function StatsCards({ status }: StatProps){
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{status.total}</div>
+                <div className="text-2xl font-bold">{status?.total}</div>
               </CardContent>
             </Card>
           </motion.div>
@@ -49,7 +49,7 @@ export default function StatsCards({ status }: StatProps){
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{status.healthy}</div>
+                <div className="text-2xl font-bold">{status?.healthy}</div>
               </CardContent>
             </Card>
           </motion.div>
@@ -68,7 +68,7 @@ export default function StatsCards({ status }: StatProps){
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{status.needs_attention}</div>
+                <div className="text-2xl font-bold">{status?.needs_attention}</div>
               </CardContent>
             </Card>
           </motion.div>
@@ -87,7 +87,7 @@ export default function StatsCards({ status }: StatProps){
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{status.critical}</div>
+                <div className="text-2xl font-bold">{status?.critical}</div>
               </CardContent>
             </Card>
           </motion.div>
