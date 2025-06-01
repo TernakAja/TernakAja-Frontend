@@ -71,7 +71,7 @@ export async function createLivestock(
       bodyConditionScore !== undefined ? bodyConditionScore : null,
     notes: notes !== undefined ? notes : null,
   };
-  const response = await api.post("/livestock", data);
+  const response = await api.post("", data);
   return response.data;
 }
 
