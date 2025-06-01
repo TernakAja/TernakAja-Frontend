@@ -60,7 +60,7 @@ interface SensorData2 {
   livestockId: number;
   temperature: number;
   heartRate: number;
-  motionLevel: number;
+  respiratoryRate: number;
   timestamp: string;
 }
 
@@ -102,5 +102,5 @@ export interface SensorDataWithLivestockAndAnomaly {
 export interface RecentAvgSensorData {
   avgHeartRate: string;
   avgTemperature: number;
-  avgMotionLevel: number;
+  avgRespiratoryRate: number;
 };

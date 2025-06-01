@@ -32,7 +32,7 @@ export interface SensorData {
   livestockId: number;
   temperature: number;
   heartRate: number;
-  motionLevel: number;
+  respiratoryRate: number;
   timestamp: string;
 }
 
