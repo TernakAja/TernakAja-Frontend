@@ -1,12 +1,18 @@
-import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Heart, Thermometer, Activity } from "lucide-react"
-import { Progress } from "@/components/ui/progress"
+import { motion } from "framer-motion";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Heart, Thermometer, Activity, AlertCircle } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
 
 interface LastHourMetricsProps {
-  heartRateAverage: string | undefined
-  temperatureAverage: number | undefined
-  motionLevelAverage: number | undefined
+  heartRateAverage: string | undefined;
+  temperatureAverage: number | undefined;
+  motionLevelAverage: number | undefined;
 }
 
 export default function LastHourMetrics({
@@ -21,7 +27,7 @@ export default function LastHourMetrics({
     max: 100,
     unit: "bpm",
     status: "normal",
-  }
+  };
 
   const temperature = {
     average: Math.round((temperatureAverage ?? 0) * 100) / 100,
@@ -29,7 +35,7 @@ export default function LastHourMetrics({
     max: 39.5,
     unit: "°C",
     status: "normal",
-  }
+  };
 
   const motionLevel = {
     average: Math.round((motionLevelAverage ?? 0) * 100),
@@ -37,43 +43,69 @@ export default function LastHourMetrics({
     max: 100,
     unit: "%",
     status: "active",
-  }
+  };
 
-  if(!heartRate.average || !temperature.average || !motionLevel.average){
-    return <div>empty</div>
+  if (!heartRate.average || !temperature.average || !motionLevel.average) {
+    return (
+      <motion.div
+        className="lg:col-span-2"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.3 }}
+      >
+        <Card className="h-full">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <div>
+              <CardTitle>Last Hour Averages</CardTitle>
+              <CardDescription>
+                Average health metrics in the last hour
+              </CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent className="flex flex-col items-center justify-center h-[300px] text-center">
+            <AlertCircle className="h-12 w-12 mb-4 text-[#328E6E]" />
+            <p className="text-lg font-medium text-gray-600">
+              Missing metric data in the last hour.
+            </p>
+            <p className="text-sm text-gray-500">
+              Try checking the IoT devices.
+            </p>
+          </CardContent>
+        </Card>
+      </motion.div>
+    );
   }
 
   // Helper function to determine status color
   const getStatusColor = (status: string) => {
-    if (status === "normal" || status === "active") return "text-[#67AE6E]"
-    if (status === "high") return "text-amber-500"
-    if (status === "low") return "text-red-500"
-    return "text-gray-500"
-  }
+    if (status === "normal" || status === "active") return "text-[#67AE6E]";
+    if (status === "high") return "text-amber-500";
+    if (status === "low") return "text-red-500";
+    return "text-gray-500";
+  };
 
   function determineBPM(average: number): "low" | "normal" | "high" {
-    if (average < 60) return "low"
-    if (average > 84) return "high"
-    return "normal"
+    if (average < 60) return "low";
+    if (average > 84) return "high";
+    return "normal";
   }
 
   function determineMotion(average: number): "low" | "normal" | "high" {
-    if (average < 30) return "low"
-    if (average > 70) return "high"
-    return "normal"
+    if (average < 30) return "low";
+    if (average > 70) return "high";
+    return "normal";
   }
 
   function determineTemp(average: number): "low" | "normal" | "high" {
-    if (average < 37.8) return "low"
-    if (average > 39.2) return "high"
-    return "normal"
+    if (average < 37.8) return "low";
+    if (average > 39.2) return "high";
+    return "normal";
   }
-  
 
   // Calculate progress percentage
   const getProgressPercentage = (value: number, min: number, max: number) => {
-    return ((value - min) / (max - min)) * 100
-  }
+    return ((value - min) / (max - min)) * 100;
+  };
 
   return (
     <motion.div
@@ -86,7 +118,9 @@ export default function LastHourMetrics({
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <div>
             <CardTitle>Last Hour Averages</CardTitle>
-            <CardDescription>Average health metrics in the last hour</CardDescription>
+            <CardDescription>
+              Average health metrics in the last hour
+            </CardDescription>
           </div>
         </CardHeader>
         <CardContent>
@@ -103,10 +137,16 @@ export default function LastHourMetrics({
 
               <div className="my-4 flex flex-col items-center justify-center">
                 <div className="flex items-end">
-                  <span className={`text-4xl font-bold ${getStatusColor(determineBPM(heartRate.average))}`}>
+                  <span
+                    className={`text-4xl font-bold ${getStatusColor(
+                      determineBPM(heartRate.average)
+                    )}`}
+                  >
                     {heartRate.average}
                   </span>
-                  <span className="text-lg text-gray-500 ml-1 mb-1">{heartRate.unit}</span>
+                  <span className="text-lg text-gray-500 ml-1 mb-1">
+                    {heartRate.unit}
+                  </span>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">
                   Range: {heartRate.min} - {heartRate.max} {heartRate.unit}
@@ -115,7 +155,11 @@ export default function LastHourMetrics({
 
               <div>
                 <Progress
-                  value={getProgressPercentage(heartRate.average, heartRate.min, heartRate.max)}
+                  value={getProgressPercentage(
+                    heartRate.average,
+                    heartRate.min,
+                    heartRate.max
+                  )}
                   className="h-2 bg-[#E1EEBC]"
                   indicatorClassName="bg-[#328E6E]"
                 />
@@ -138,25 +182,40 @@ export default function LastHourMetrics({
 
               <div className="my-4 flex flex-col items-center justify-center">
                 <div className="flex items-end">
-                  <span className={`text-4xl font-bold ${getStatusColor(determineTemp(temperature.average))}`}>
+                  <span
+                    className={`text-4xl font-bold ${getStatusColor(
+                      determineTemp(temperature.average)
+                    )}`}
+                  >
                     {temperature.average}
                   </span>
-                  <span className="text-lg text-gray-500 ml-1 mb-1">{temperature.unit}</span>
+                  <span className="text-lg text-gray-500 ml-1 mb-1">
+                    {temperature.unit}
+                  </span>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">
-                  Range: {temperature.min} - {temperature.max} {temperature.unit}
+                  Range: {temperature.min} - {temperature.max}{" "}
+                  {temperature.unit}
                 </p>
               </div>
 
               <div>
                 <Progress
-                  value={getProgressPercentage(temperature.average, temperature.min, temperature.max)}
+                  value={getProgressPercentage(
+                    temperature.average,
+                    temperature.min,
+                    temperature.max
+                  )}
                   className="h-2 bg-[#E1EEBC]"
                   indicatorClassName="bg-[#328E6E]"
                 />
                 <div className="flex justify-between mt-1">
-                  <span className="text-xs text-gray-500">{temperature.min}</span>
-                  <span className="text-xs text-gray-500">{temperature.max}</span>
+                  <span className="text-xs text-gray-500">
+                    {temperature.min}
+                  </span>
+                  <span className="text-xs text-gray-500">
+                    {temperature.max}
+                  </span>
                 </div>
               </div>
             </div>
@@ -173,25 +232,40 @@ export default function LastHourMetrics({
 
               <div className="my-4 flex flex-col items-center justify-center">
                 <div className="flex items-end">
-                  <span className={`text-4xl font-bold ${getStatusColor(determineMotion(motionLevel.average))}`}>
+                  <span
+                    className={`text-4xl font-bold ${getStatusColor(
+                      determineMotion(motionLevel.average)
+                    )}`}
+                  >
                     {motionLevel.average}
                   </span>
-                  <span className="text-lg text-gray-500 ml-1 mb-1">{motionLevel.unit}</span>
+                  <span className="text-lg text-gray-500 ml-1 mb-1">
+                    {motionLevel.unit}
+                  </span>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">
-                  Range: {motionLevel.min} - {motionLevel.max} {motionLevel.unit}
+                  Range: {motionLevel.min} - {motionLevel.max}{" "}
+                  {motionLevel.unit}
                 </p>
               </div>
 
               <div>
                 <Progress
-                  value={getProgressPercentage(motionLevel.average, motionLevel.min, motionLevel.max)}
+                  value={getProgressPercentage(
+                    motionLevel.average,
+                    motionLevel.min,
+                    motionLevel.max
+                  )}
                   className="h-2 bg-[#E1EEBC]"
                   indicatorClassName="bg-[#328E6E]"
                 />
                 <div className="flex justify-between mt-1">
-                  <span className="text-xs text-gray-500">{motionLevel.min}</span>
-                  <span className="text-xs text-gray-500">{motionLevel.max}</span>
+                  <span className="text-xs text-gray-500">
+                    {motionLevel.min}
+                  </span>
+                  <span className="text-xs text-gray-500">
+                    {motionLevel.max}
+                  </span>
                 </div>
               </div>
             </div>
@@ -199,5 +273,5 @@ export default function LastHourMetrics({
         </CardContent>
       </Card>
     </motion.div>
-  )
+  );
 }

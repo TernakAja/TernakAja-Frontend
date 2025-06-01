@@ -4,7 +4,6 @@ import {
   Activity,
   ArrowRight,
   ArrowUpRight,
-  Calendar,
   ChevronDown,
   MilkIcon as Cow,
   Heart,
@@ -12,6 +11,7 @@ import {
   RefreshCw,
   Utensils,
   BarChart3,
+  BellOff,
 } from "lucide-react";
 import {
   Card,
@@ -23,7 +23,6 @@ import {
 import { Button } from "@/components/ui/button";
 // import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -33,8 +32,18 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LineChart, DonutChart } from "@/components/Dashboard/charts";
-import { getRecentNotifs, getSpeciesCount, getStatusCount } from "@/services/livestockService";
-import { DailySensorStats, LivestockStatusCounts, NotificationWithLivestockFlat, RecentAvgSensorData, SpeciesCount } from "@/types/dataSchema";
+import {
+  getRecentNotifs,
+  getSpeciesCount,
+  getStatusCount,
+} from "@/services/livestockService";
+import {
+  DailySensorStats,
+  LivestockStatusCounts,
+  NotificationWithLivestockFlat,
+  RecentAvgSensorData,
+  SpeciesCount,
+} from "@/types/dataSchema";
 import StatsCards from "./stats-cards";
 import { useAuth } from "@/context/auth-context";
 import LoadingScreenPage from "../../utility/LoadingScreen";
@@ -51,48 +60,49 @@ const dailySensorStats: DailySensorStats[] = [
   { day: "Sun", avg_temperature: 101.5, avg_heart_rate: 63 },
 ];
 
-
 export default function DashboardOverview() {
   const [, setTimeRange] = useState("7d");
-  const [, setError] = useState("")
+  const [, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState<LivestockStatusCounts | undefined>({
-    total: '0',
-    healthy: '0',
-    needs_attention: '0',
-    critical: '0',
+    total: "0",
+    healthy: "0",
+    needs_attention: "0",
+    critical: "0",
   });
   const [speciesCount, setSpeciesCount] = useState<SpeciesCount[]>([]);
-  const [notifications, setNotifications] = useState<NotificationWithLivestockFlat[]>([]);
+  const [notifications, setNotifications] = useState<
+    NotificationWithLivestockFlat[]
+  >([]);
   const [avgSensor, setAvgSensor] = useState<RecentAvgSensorData>();
-  const { user } = useAuth()
+  const { user } = useAuth();
   const colors = ["#328E6E", "#67AE6E", "#90C67C", "#E1EEBC"];
 
   useEffect(() => {
     const fetchData = async () => {
-
       if (!user) return;
-  
+
       setLoading(true);
       try {
-        const [statusResponse, speciesResponse, notifResponse, avgResponse] = await Promise.all([
-          getStatusCount(user.id),
-          getSpeciesCount(user.id),
-          getRecentNotifs(user.id),
-          getRecentAverageSensorData(user.id)
-        ]);
+        const [statusResponse, speciesResponse, notifResponse, avgResponse] =
+          await Promise.all([
+            getStatusCount(user.id),
+            getSpeciesCount(user.id),
+            getRecentNotifs(user.id),
+            getRecentAverageSensorData(user.id),
+          ]);
 
-        if(notifResponse.data){
+        if (notifResponse.data) {
           setNotifications(notifResponse.data);
         }
         // console.log(avgResponse.data)
 
-        if(avgResponse.data){
+        if (avgResponse.data) {
           setAvgSensor(avgResponse.data);
         }
-  
+
         setStatus(statusResponse.data);
-        if(speciesResponse.data){
+        if (speciesResponse.data) {
           setSpeciesCount(speciesResponse.data);
         }
         // const totalAll = speciesCount.reduce((sum, s) => sum + s.total, 0);
@@ -103,36 +113,9 @@ export default function DashboardOverview() {
         setLoading(false);
       }
     };
-  
+
     fetchData();
   }, [user]);
-
-  const upcomingTasks = [
-    {
-      id: "1",
-      task: "Vaccination - Herd A",
-      date: "Today",
-      time: "2:00 PM",
-      assigned: "Dr. Sarah Chen",
-      avatar: "/placeholder.svg?height=32&width=32",
-    },
-    {
-      id: "2",
-      task: "Health Check - Cattle #1234-1245",
-      date: "Tomorrow",
-      time: "9:00 AM",
-      assigned: "Dr. James Wilson",
-      avatar: "/placeholder.svg?height=32&width=32",
-    },
-    {
-      id: "3",
-      task: "Feed Delivery - Barn 3",
-      date: "May 15, 2023",
-      time: "7:30 AM",
-      assigned: "Michael Rodriguez",
-      avatar: "/placeholder.svg?height=32&width=32",
-    },
-  ];
 
   if (loading) {
     return <LoadingScreenPage />;
@@ -185,7 +168,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* Stats cards */}
-      <StatsCards status={status}/>
+      <StatsCards status={status} />
 
       {/* Charts section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -219,7 +202,7 @@ export default function DashboardOverview() {
             </CardHeader>
             <CardContent>
               <div className="h-[300px]">
-                <LineChart dailySensorStats={dailySensorStats}/>
+                <LineChart dailySensorStats={dailySensorStats} />
               </div>
             </CardContent>
           </Card>
@@ -234,9 +217,7 @@ export default function DashboardOverview() {
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <div>
                 <CardTitle>Livestock Distribution</CardTitle>
-                <CardDescription>
-                  Breakdown by species
-                </CardDescription>
+                <CardDescription>Breakdown by species</CardDescription>
               </div>
               {/* <Tabs defaultValue="species">
                 <TabsList className="grid w-[200px] grid-cols-2">
@@ -246,28 +227,65 @@ export default function DashboardOverview() {
               </Tabs> */}
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 gap-7">
-                <div className="h-[300px] flex items-center justify-center">
-                  <DonutChart speciesData={speciesCount}/>
-                </div>
-                <div className="space-y-2 px-10 w-2/3">
-                  {speciesCount.map(({ species, total }, index) => {
-                    const color = colors[index % colors.length];
+              <div>
+                {speciesCount && speciesCount.length === 0 ? (
+                  <div className="h-[300px] flex flex-col items-center justify-center text-center text-gray-500 border border-dashed rounded-lg p-8">
+                    <svg
+                      className="h-16 w-16 mb-4 text-[#328E6E]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"
+                      />
+                    </svg>
+                    <p className="text-xl font-semibold mb-1">
+                      No Species Data
+                    </p>
+                    <p className="text-sm">
+                      There is currently no species count information to
+                      display.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-2 gap-7">
+                    <div className="h-[300px] flex items-center justify-center">
+                      {/* Ensure DonutChart can handle potentially empty but non-null speciesData if it passes the length check 
+            but is somehow malformed, or ensure speciesCount is guaranteed to be well-formed if not empty. */}
+                      <DonutChart speciesData={speciesCount} />
+                    </div>
+                    <div className="space-y-2 px-10 flex flex-col justify-center">
+                      {/* Removed w-2/3 to allow natural width or adjust as needed; added flex for centering legend items */}
+                      {speciesCount.map(({ species, total }, index) => {
+                        const color = colors[index % colors.length];
 
-                    return (
-                      <div key={species} className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-1.5">
+                        return (
                           <div
-                            className="w-3 h-3 rounded-full"
-                            style={{ backgroundColor: color }}
-                          ></div>
-                          <span className="text-md font-medium">{species}</span>
-                        </div>
-                        <span className="text-md font-medium">{total}</span>
-                      </div>
-                    );
-                  })}
-                </div>
+                            key={species}
+                            className="flex items-center justify-between gap-2"
+                          >
+                            <div className="flex items-center gap-1.5">
+                              <div
+                                className="w-3 h-3 rounded-full"
+                                style={{ backgroundColor: color }}
+                              ></div>
+                              <span className="text-md font-medium text-gray-700 dark:text-gray-300">
+                                {species}
+                              </span>
+                            </div>
+                            <span className="text-md font-medium text-gray-700 dark:text-gray-300">
+                              {total}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -276,7 +294,11 @@ export default function DashboardOverview() {
 
       {/* Activity and alerts section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <LastHourMetrics heartRateAverage={avgSensor?.avgHeartRate} temperatureAverage={avgSensor?.avgTemperature} motionLevelAverage={avgSensor?.avgMotionLevel}/>
+        <LastHourMetrics
+          heartRateAverage={avgSensor?.avgHeartRate}
+          temperatureAverage={avgSensor?.avgTemperature}
+          motionLevelAverage={avgSensor?.avgMotionLevel}
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -298,115 +320,75 @@ export default function DashboardOverview() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {notifications.map((alert) => (
-                  <div key={alert.id} className="flex items-start gap-3">
-                    <div
-                      className={`p-1.5 rounded-full mt-0.5 ${
-                        alert.type === "critical"
-                          ? "bg-red-100 text-red-600"
-                          : alert.type === "warning"
-                          ? "bg-amber-100 text-amber-600"
-                          : "bg-blue-100 text-blue-600"
-                      }`}
-                    >
-                      {alert.type === "critical" ? (
-                        <Heart className="h-4 w-4" />
-                      ) : alert.type === "warning" ? (
-                        <Activity className="h-4 w-4" />
-                      ) : (
-                        <Utensils className="h-4 w-4" />
-                      )}
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between">
-                        <div className="font-medium text-sm">
-                          {alert.l_name}
-                        </div>
-                        <Badge
-                          variant={
-                            alert.type === "critical"
-                              ? "destructive"
-                              : alert.type === "warning"
-                              ? "default"
-                              : "outline"
-                          }
-                          className={
-                            alert.type === "critical"
-                              ? ""
-                              : alert.type === "warning"
-                              ? "bg-amber-500"
-                              : "text-blue-500 border-blue-200"
-                          }
-                        >
-                          {alert.type}
-                        </Badge>
-                      </div>
-                      <div className="text-sm text-gray-500">{alert.message}</div>
-                      <div className="text-xs text-gray-400 mt-1">
-                        {alert.sent_at}
-                      </div>
-                    </div>
+                {notifications.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center py-8 text-center text-gray-500 h-full">
+                    <BellOff className="h-12 w-12 mb-3 text-[#328E6E]" />
+                    <p className="text-lg font-medium">No Notifications</p>
+                    <p className="text-sm">
+                      You will get to see notifications here when you receive
+                      one.
+                    </p>
                   </div>
-                ))}
+                ) : (
+                  notifications.map((alert) => (
+                    <div key={alert.id} className="flex items-start gap-3">
+                      <div
+                        className={`p-1.5 rounded-full mt-0.5 ${
+                          alert.type === "critical"
+                            ? "bg-red-100 text-red-600"
+                            : alert.type === "warning"
+                            ? "bg-amber-100 text-amber-600"
+                            : "bg-blue-100 text-blue-600" // Default for other types like "info"
+                        }`}
+                      >
+                        {alert.type === "critical" ? (
+                          <Heart className="h-4 w-4" />
+                        ) : alert.type === "warning" ? (
+                          <Activity className="h-4 w-4" />
+                        ) : (
+                          // Assuming 'Utensils' was for a general/info type, or you can pick another icon
+                          <Utensils className="h-4 w-4" />
+                        )}
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between">
+                          <div className="font-medium text-sm">
+                            {alert.l_name}
+                          </div>
+                          <Badge
+                            variant={
+                              alert.type === "critical"
+                                ? "destructive"
+                                : alert.type === "warning"
+                                ? "default" // 'default' variant might need specific styling if not black/white
+                                : "outline"
+                            }
+                            className={
+                              alert.type === "critical"
+                                ? "" // Destructive usually has its own full styling
+                                : alert.type === "warning"
+                                ? "bg-amber-500 text-white border-amber-500" // Ensure contrast and clear warning color
+                                : "text-blue-500 border-blue-300" // Adjusted for potentially better visibility
+                            }
+                          >
+                            {alert.type}
+                          </Badge>
+                        </div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
+                          {alert.message}
+                        </div>
+                        <div className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                          {alert.sent_at}
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                )}
               </div>
             </CardContent>
           </Card>
         </motion.div>
       </div>
-
-      {/* Upcoming tasks section */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.3 }}
-      >
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <div>
-              <CardTitle>Upcoming Tasks</CardTitle>
-              <CardDescription>
-                Scheduled activities and responsibilities
-              </CardDescription>
-            </div>
-            <Button variant="outline" size="sm" className="h-8 gap-1 text-xs">
-              <Calendar className="h-3.5 w-3.5 mr-1" />
-              <span>View Calendar</span>
-            </Button>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {upcomingTasks.map((task) => (
-                <div key={task.id} className="flex items-center gap-4">
-                  <div className="bg-[#E1EEBC]/30 p-2 rounded-md text-[#328E6E]">
-                    <Calendar className="h-5 w-5" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="font-medium">{task.task}</div>
-                    <div className="text-sm text-gray-500">
-                      {task.date} at {task.time}
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Avatar className="h-8 w-8">
-                      <AvatarImage
-                        src={task.avatar || "/placeholder.svg"}
-                        alt={task.assigned}
-                      />
-                      <AvatarFallback>{task.assigned.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    <div className="text-sm hidden md:block">
-                      {task.assigned}
-                    </div>
-                  </div>
-                  <Button variant="ghost" size="icon">
-                    <MoreHorizontal className="h-4 w-4" />
-                  </Button>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </motion.div>
 
       {/* Quick access section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
