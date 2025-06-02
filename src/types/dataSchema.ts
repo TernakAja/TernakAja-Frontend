@@ -23,12 +23,6 @@ export interface DailySensorStats {
   avg_heart_rate: number;
 }
 
-export interface DailyAvgSensor {
-  day: string;
-  avg_temperature: number;
-  avg_heart_rate: string;
-}
-
 export interface NotificationWithLivestockFlat {
   id: number;
   livestock_id: number;

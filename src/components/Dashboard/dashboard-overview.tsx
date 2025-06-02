@@ -38,7 +38,7 @@ import {
   getStatusCount,
 } from "@/services/livestockService";
 import {
-  DailyAvgSensor,
+  DailySensorStats,
   LivestockStatusCounts,
   NotificationWithLivestockFlat,
   RecentAvgSensorData,
@@ -76,7 +76,7 @@ export default function DashboardOverview() {
     NotificationWithLivestockFlat[]
   >([]);
   const [avgSensor, setAvgSensor] = useState<RecentAvgSensorData>();
-  const [sevenSensor, setSevenSensor] = useState<DailyAvgSensor[]>();
+  const [sevenSensor, setSevenSensor] = useState<DailySensorStats[]>();
   const { user } = useAuth();
   const colors = ["#328E6E", "#67AE6E", "#90C67C", "#E1EEBC"];
 

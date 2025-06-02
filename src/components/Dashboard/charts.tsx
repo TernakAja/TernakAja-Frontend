@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react"
 import { Chart, registerables } from "chart.js"
-import { DailyAvgSensor, SpeciesCount } from "@/types/dataSchema"
+import { DailySensorStats, SpeciesCount } from "@/types/dataSchema"
 
 Chart.register(...registerables)
 
 interface LineChartProps {
-  dailySensorStats: DailyAvgSensor[];
+  dailySensorStats: DailySensorStats[];
 }
 
 export function LineChart({ dailySensorStats }: LineChartProps) {
