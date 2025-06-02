@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { motion } from "framer-motion"
 import {
   Activity,
@@ -30,10 +30,10 @@ import {
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { LineChart } from "@/components/Dashboard/charts"
-import { DailySensorStats, INotificationData } from "@/types/dataSchema"
-import { useAuth } from "@/context/auth-context"
-import LoadingScreenPage from "../../../utility/LoadingScreen";
-import { gettAllNotifDetail } from "@/services/livestockService"
+import { DailySensorStats } from "@/types/dataSchema"
+// import { useAuth } from "@/context/auth-context"
+// import LoadingScreenPage from "../../../utility/LoadingScreen";
+// import { gettAllNotifDetail } from "@/services/livestockService"
 
 const dailySensorStats: DailySensorStats[] = [
   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },
@@ -48,31 +48,31 @@ const dailySensorStats: DailySensorStats[] = [
 export default function HealthMonitoring() {
   const [searchQuery, setSearchQuery] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
-  const { user } = useAuth()
-  const [loading, setLoading] = useState(true);
-  const [notifications, setNotifications] = useState<INotificationData[]>([])
+  // const { user } = useAuth()
+  // const [loading, setLoading] = useState(true);
+  // const [notifications, setNotifications] = useState<INotificationData[]>([])
 
-  useEffect(() => {
-      const fetchData = async () => {
-        if (!user) return;
+  // useEffect(() => {
+  //     const fetchData = async () => {
+  //       if (!user) return;
     
-        setLoading(true);
-        try {
-          const response = await gettAllNotifDetail(user.id);
+  //       setLoading(true);
+  //       try {
+  //         const response = await gettAllNotifDetail(user.id);
           
-          if(response.data){
-            setNotifications(response.data);
-          }
-        } catch (err) {
-          console.error("Error fetching data:", err);
-          // setError(err.message || "Something went wrong");
-        } finally {
-          setLoading(false);
-        }
-      };
+  //         if(response.data){
+  //           setNotifications(response.data);
+  //         }
+  //       } catch (err) {
+  //         console.error("Error fetching data:", err);
+  //         // setError(err.message || "Something went wrong");
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     };
     
-      fetchData();
-    }, [user]);
+  //     fetchData();
+  //   }, [user]);
 
   // Sample health alerts
   const healthAlerts = [
@@ -149,7 +149,7 @@ export default function HealthMonitoring() {
   ]
 
   // Filter alerts based on search query and status filter
-  const filteredAlerts = notifications.filter((alert) => {
+  const filteredAlerts = healthAlerts.filter((alert) => {
     const matchesSearch =
       alert.animal.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       alert.animal.tag.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -160,9 +160,9 @@ export default function HealthMonitoring() {
     return matchesSearch && matchesSeverity
   })
 
-  if (loading) {
-    return <LoadingScreenPage />;
-  }
+  // if (loading) {
+  //   return <LoadingScreenPage />;
+  // }
 
   return (
     <div className="space-y-6">
