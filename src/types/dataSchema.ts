@@ -20,6 +20,12 @@ export interface SpeciesCount {
 export interface DailySensorStats {
   day: string;
   avg_temperature: number;
+  avg_heart_rate: number;
+}
+
+export interface DailyAvgSensor {
+  day: string;
+  avg_temperature: number;
   avg_heart_rate: string;
 }
 

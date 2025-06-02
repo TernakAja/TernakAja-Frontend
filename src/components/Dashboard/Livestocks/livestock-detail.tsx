@@ -45,12 +45,12 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { LineChart } from "@/components/Dashboard/charts";
 import { useParams } from "react-router-dom";
-import { DailySensorStats, SensorDataWithLivestock } from "@/types/dataSchema";
+import { DailyAvgSensor, SensorDataWithLivestock } from "@/types/dataSchema";
 import { getLivestockDetailById } from "@/services/livestockService";
 import LoadingScreenPage from "../../../utility/LoadingScreen";
 import { getLivestockAge, getTimeSince } from "@/utility/util";
 
-const dailySensorStats: DailySensorStats[] = [
+const dailySensorStats: DailyAvgSensor[] = [
   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: "65" },
   { day: "Tue", avg_temperature: 101.3, avg_heart_rate: "68" },
   { day: "Wed", avg_temperature: 101.6, avg_heart_rate: "64" },

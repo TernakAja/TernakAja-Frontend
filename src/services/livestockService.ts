@@ -1,5 +1,5 @@
 import {
-  DailySensorStats,
+  DailyAvgSensor,
   INotificationData,
   LivestockStatusCounts,
   NotificationWithLivestockFlat,
@@ -153,7 +153,7 @@ export const getRecentAverageSensorData = async (
 
 export const getSevenDayAverage = async (
   userId: number
-): Promise<ApiResponse<DailySensorStats[]>> => {
+): Promise<ApiResponse<DailyAvgSensor[]>> => {
   const response = await api.get(`/${userId}/sensor-data/seven-day-average`);
   return response.data;
 };
