@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
-  AlertTriangle,
   ArrowUpDown,
   CheckCircle2,
   ChevronDown,
@@ -45,6 +44,7 @@ import { getAllLivestockByUser } from "@/services/livestockService";
 import { useAuth } from "@/context/auth-context";
 import LoadingScreenPage from "../../../utility/LoadingScreen";
 import { SensorDataWithLivestock } from "@/types/dataSchema";
+import { roundToTwoDecimals } from "@/utility/util";
 
 export default function LivestockList() {
   const navigate = useNavigate();
@@ -113,7 +113,7 @@ export default function LivestockList() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -138,7 +138,7 @@ export default function LivestockList() {
           </Card>
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.3 }}
@@ -160,7 +160,7 @@ export default function LivestockList() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </motion.div> */}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -173,11 +173,11 @@ export default function LivestockList() {
                 <Heart className="h-5 w-5 text-red-600" />
               </div>
               <div>
-                <div className="text-sm text-gray-500">Critical</div>
+                <div className="text-sm text-gray-500">Unhealthy</div>
                 <div className="text-2xl font-bold">
                   {
                     livestock.filter(
-                      (animal) => animal.livestock.status === "Critical"
+                      (animal) => animal.livestock.status === "Unhealthy"
                     ).length
                   }
                 </div>
@@ -232,14 +232,9 @@ export default function LivestockList() {
                       Healthy
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                      onClick={() => setStatusFilter("Attention")}
+                      onClick={() => setStatusFilter("Unhealthy")}
                     >
-                      Needs Attention
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      onClick={() => setStatusFilter("Critical")}
-                    >
-                      Critical
+                      Unhealthy
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -330,7 +325,7 @@ export default function LivestockList() {
                             ? "Healthy"
                             : animal.livestock.status === "Attention"
                             ? "Needs Attention"
-                            : "Critical"}
+                            : "Unhealthy"}
                         </Badge>
                       </TableCell>
                       <TableCell>Farm {animal.livestock.farmId}</TableCell>
@@ -340,13 +335,13 @@ export default function LivestockList() {
                             <div className="flex items-center gap-1">
                               <Heart className="h-4 w-4 text-red-500" />
                               <span>
-                                {animal.sensor_data.heartRate ?? "N/A"}
+                                {roundToTwoDecimals(animal.sensor_data.heartRate) ?? "N/A"}
                               </span>
                             </div>
                             <div className="flex items-center gap-1 mt-1">
                               <Thermometer className="h-4 w-4 text-amber-500" />
                               <span>
-                                {animal.sensor_data.temperature ?? "N/A"}
+                                {roundToTwoDecimals(animal.sensor_data.temperature) ?? "N/A"}
                               </span>
                             </div>
                           </>

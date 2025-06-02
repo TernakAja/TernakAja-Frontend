@@ -46,19 +46,21 @@ import { Progress } from "@/components/ui/progress";
 import { LineChart } from "@/components/Dashboard/charts";
 import { useParams } from "react-router-dom";
 import { DailySensorStats, SensorDataWithLivestock } from "@/types/dataSchema";
-import { getLivestockDetailById } from "@/services/livestockService";
+import { getLivestockDetailById, getSevenDayAverageById } from "@/services/livestockService";
 import LoadingScreenPage from "../../../utility/LoadingScreen";
-import { getLivestockAge, getTimeSince } from "@/utility/util";
+import { getLivestockAge, getTimeSince, roundToTwoDecimals } from "@/utility/util";
+import { ComingSoon } from "@/components/coming-soon";
+import { livestockData } from "@/lib/data";
 
-const dailySensorStats: DailySensorStats[] = [
-  { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },
-  { day: "Tue", avg_temperature: 101.3, avg_heart_rate: 68 },
-  { day: "Wed", avg_temperature: 101.6, avg_heart_rate: 64 },
-  { day: "Thu", avg_temperature: 101.8, avg_heart_rate: 66 },
-  { day: "Fri", avg_temperature: 101.4, avg_heart_rate: 67 },
-  { day: "Sat", avg_temperature: 101.2, avg_heart_rate: 65 },
-  { day: "Sun", avg_temperature: 101.5, avg_heart_rate: 63 },
-];
+// const dailySensorStats: DailySensorStats[] = [
+//   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },
+//   { day: "Tue", avg_temperature: 101.3, avg_heart_rate: 68 },
+//   { day: "Wed", avg_temperature: 101.6, avg_heart_rate: 64 },
+//   { day: "Thu", avg_temperature: 101.8, avg_heart_rate: 66 },
+//   { day: "Fri", avg_temperature: 101.4, avg_heart_rate: 67 },
+//   { day: "Sat", avg_temperature: 101.2, avg_heart_rate: 65 },
+//   { day: "Sun", avg_temperature: 101.5, avg_heart_rate: 63 },
+// ];
 
 const defaultSensorDataWithLivestockAndAnomaly: SensorDataWithLivestock = {
   sensor_data: {
@@ -95,6 +97,7 @@ export default function LivestockDetail() {
   const [livestock, setLivestock] = useState<SensorDataWithLivestock>(
     defaultSensorDataWithLivestockAndAnomaly
   );
+  const [avgMetrics, setAvgMetrics] = useState<DailySensorStats[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -105,9 +108,12 @@ export default function LivestockDetail() {
         }
 
         const livestockResponse = await getLivestockDetailById(parseInt(id));
-
+        const metricsResponse = await getSevenDayAverageById(parseInt(id));
         if (livestockResponse.data) {
           setLivestock(livestockResponse.data);
+        }
+        if (metricsResponse.data) {
+          setAvgMetrics(metricsResponse.data);
         }
       } catch (err) {
         console.log(err);
@@ -323,18 +329,18 @@ export default function LivestockDetail() {
                       </CardHeader>
                       <CardContent>
                         <div className="text-2xl font-bold">
-                          {livestock.sensor_data.heartRate}
+                          {roundToTwoDecimals(livestock.sensor_data.heartRate)}
                         </div>
                         <div className="flex items-center justify-between mt-1">
                           <span className="text-xs text-gray-500">
-                            Normal: {livestock.sensor_data.heartRate}
+                            Normal: 48-84 beats per minute
                           </span>
-                          <Badge
+                          {/* <Badge
                             variant="outline"
                             className="text-green-500 border-green-200"
                           >
                             Normal
-                          </Badge>
+                          </Badge> */}
                         </div>
                       </CardContent>
                     </Card>
@@ -348,18 +354,18 @@ export default function LivestockDetail() {
                       </CardHeader>
                       <CardContent>
                         <div className="text-2xl font-bold">
-                          {livestock.sensor_data.temperature}
+                          {roundToTwoDecimals(livestock.sensor_data.temperature)}
                         </div>
                         <div className="flex items-center justify-between mt-1">
                           <span className="text-xs text-gray-500">
-                            Normal: {livestock.sensor_data.temperature}
+                            Normal: 38.5-39.5°C
                           </span>
-                          <Badge
+                          {/* <Badge
                             variant="outline"
                             className="text-green-500 border-green-200"
                           >
                             Normal
-                          </Badge>
+                          </Badge> */}
                         </div>
                       </CardContent>
                     </Card>
@@ -372,14 +378,14 @@ export default function LivestockDetail() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <div className="text-2xl font-bold">{livestock.sensor_data.respiratoryRate}</div>
+                        <div className="text-2xl font-bold">{roundToTwoDecimals(livestock.sensor_data.respiratoryRate)}</div>
                         <div className="flex items-center justify-between mt-1">
                           <span className="text-xs text-gray-500">
-                            Normal: {livestock.sensor_data.respiratoryRate}
+                            Normal: 	26-50 breaths per minute
                           </span>
-                          <Badge variant="outline" className="text-green-500 border-green-200">
+                          {/* <Badge variant="outline" className="text-green-500 border-green-200">
                             Normal
-                          </Badge>
+                          </Badge> */}
                         </div>
                       </CardContent>
                     </Card>
@@ -394,7 +400,17 @@ export default function LivestockDetail() {
                     </CardHeader>
                     <CardContent>
                       <div className="h-[250px]">
-                        <LineChart dailySensorStats={dailySensorStats} />
+                        {avgMetrics ? (
+                          <LineChart dailySensorStats={avgMetrics} />
+                        ) : (
+                          <div className="h-[300px] flex flex-col items-center justify-center text-center text-gray-500 p-8">
+                            <Activity className="h-12 w-12 mb-3 text-[#328E6E]" />
+                            <p className="text-xl font-semibold mb-1">No Sensor Data</p>
+                            <p className="text-sm">
+                              Sensor statistics will appear here once available.
+                            </p>
+                          </div>
+                        )}
                       </div>
                     </CardContent>
                   </Card>
@@ -408,15 +424,25 @@ export default function LivestockDetail() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <div className="text-center py-8 text-[#328E6E]">
-                          <p className="text-4xl mb-4">🐄</p>{" "}
-                          <p className="text-lg font-medium">
-                            Feeding Information Coming Soon!
-                          </p>
-                          <p className="text-sm">
-                            This feature is currently under development. We're
-                            working hard on it!
-                          </p>
+                        <div className="space-y-4">
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Diet</div>
+                            <div className="font-medium">Forage</div>
+                          </div>
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Feeding Schedule</div>
+                            <div className="font-medium">Twice Daily</div>
+                          </div>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">Daily Consumption</div>
+                              <div className="font-medium">22.6 kg/day</div>
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">Water Intake</div>
+                              <div className="font-medium">25 gallons/day</div>
+                            </div>
+                          </div>
                         </div>
                       </CardContent>
                     </Card>
@@ -438,138 +464,227 @@ export default function LivestockDetail() {
                 </TabsContent>
 
                 <TabsContent value="health" className="space-y-6">
-                  <Card>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="flex items-center gap-2">
-                        <CheckCircle2 className="h-5 w-5 text-green-500" />
-                        Vaccination Records
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-center py-8 text-[#328E6E]">
-                        <p className="text-4xl mb-4">🐄</p>{" "}
-                        <p className="text-lg font-medium">
-                          Vaccination Records Coming Soon!
-                        </p>
-                        <p className="text-sm">
-                          This feature is currently under development. We're
-                          working hard on it!
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <ComingSoon>
 
-                  <Card>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="flex items-center gap-2">
-                        <History className="h-5 w-5 text-[#328E6E]" />
-                        Medical History
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-center py-8 text-[#328E6E]">
-                        <p className="text-4xl mb-4">🐄</p>{" "}
-                        <p className="text-lg font-medium">
-                          Medical History Coming Soon!
-                        </p>
-                        <p className="text-sm">
-                          This feature is currently under development. We're
-                          working hard on it!
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="flex items-center gap-2">
+                          <CheckCircle2 className="h-5 w-5 text-green-500" />
+                          Vaccination Records
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          {livestockData.health.vaccinations.map((vaccination, index) => (
+                            <div key={index} className="flex items-start gap-4 pb-4 border-b border-gray-100">
+                              <div className="bg-green-100 p-2 rounded-full text-green-600">
+                                <CheckCircle2 className="h-4 w-4" />
+                              </div>
+                              <div className="flex-1">
+                                <div className="font-medium">{vaccination.name}</div>
+                                <div className="text-sm text-gray-500">Administered: {vaccination.date}</div>
+                                <div className="text-sm text-gray-500">Next Due: {vaccination.nextDue}</div>
+                              </div>
+                              <Badge variant="outline" className="text-green-500 border-green-200">
+                                Up to date
+                              </Badge>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </ComingSoon>
+                  
+                  <ComingSoon>
+
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="flex items-center gap-2">
+                          <History className="h-5 w-5 text-[#328E6E]" />
+                          Medical History
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="relative">
+                          <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                          <div className="space-y-6">
+                            {livestockData.health.medicalHistory.map((event, index) => (
+                              <div key={index} className="relative pl-10">
+                                <div className="absolute left-0 top-1 w-8 h-8 bg-[#328E6E] rounded-full flex items-center justify-center text-white">
+                                  {event.event.includes("Check") ? (
+                                    <CheckCircle2 className="h-4 w-4" />
+                                  ) : event.event.includes("Vaccination") ? (
+                                    <CheckCircle2 className="h-4 w-4" />
+                                  ) : (
+                                    <FileText className="h-4 w-4" />
+                                  )}
+                                </div>
+                                <div className="bg-gray-50 rounded-lg p-4">
+                                  <div className="flex justify-between items-start mb-2">
+                                    <h4 className="font-bold text-gray-800">{event.event}</h4>
+                                    <div className="flex items-center text-sm text-gray-500">
+                                      <Calendar className="h-3 w-3 mr-1" />
+                                      {event.date}
+                                    </div>
+                                  </div>
+                                  <p className="text-gray-600">{event.notes}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </ComingSoon>
                 </TabsContent>
 
                 <TabsContent value="production" className="space-y-6">
-                  <Card>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="flex items-center gap-2">
-                        <Leaf className="h-5 w-5 text-[#328E6E]" />
-                        Milk Production
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-center py-8 text-[#328E6E]">
-                        <p className="text-4xl mb-4">🐄</p>{" "}
-                        <p className="text-lg font-medium">
-                          Milk Production Data Coming Soon!
-                        </p>
-                        <p className="text-sm">
-                          This feature is currently under development. We're
-                          working hard on it!
-                        </p>
-                      </div>
-                      <div className="mt-6 h-[200px] bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
-                        Milk Production Chart
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <ComingSoon>
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="flex items-center gap-2">
+                          <Leaf className="h-5 w-5 text-[#328E6E]" />
+                          Milk Production
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Daily Average</div>
+                            <div className="font-medium">{livestockData.production.milkProduction.average}</div>
+                          </div>
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Trend</div>
+                            <div className="font-medium">{livestockData.production.milkProduction.trend}</div>
+                          </div>
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Quality</div>
+                            <div className="font-medium">{livestockData.production.milkProduction.quality}</div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </ComingSoon>
+                  
+                  <ComingSoon>
 
-                  <Card>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="flex items-center gap-2">
-                        <Calendar className="h-5 w-5 text-[#328E6E]" />
-                        Reproduction Status
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-center py-8 text-[#328E6E]">
-                        <p className="text-4xl mb-4">🐄</p>{" "}
-                        <p className="text-lg font-medium">
-                          Reproduction Status Coming Soon!
-                        </p>
-                        <p className="text-sm">
-                          This feature is currently under development. We're
-                          working hard on it!
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="flex items-center gap-2">
+                          <Calendar className="h-5 w-5 text-[#328E6E]" />
+                          Reproduction Status
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="space-y-4">
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">Status</div>
+                              <div className="font-medium">{livestockData.reproduction.status}</div>
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">Breeding Date</div>
+                              <div className="font-medium">{livestockData.reproduction.breedingDate}</div>
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">Due Date</div>
+                              <div className="font-medium">{livestockData.reproduction.dueDate}</div>
+                            </div>
+                          </div>
+                          <div className="space-y-4">
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">Previous Calvings</div>
+                              <div className="font-medium">{livestockData.reproduction.previousCalvings}</div>
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">Last Calving Date</div>
+                              <div className="font-medium">{livestockData.reproduction.lastCalvingDate}</div>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </ComingSoon>
                 </TabsContent>
 
                 <TabsContent value="genetics" className="space-y-6">
-                  <Card>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="flex items-center gap-2">
-                        <Cow className="h-5 w-5 text-[#328E6E]" />
-                        Genetic Information
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-center py-8 text-[#328E6E]">
-                        <p className="text-4xl mb-4">🐄</p>{" "}
-                        <p className="text-lg font-medium">
-                          Genetic Information Coming Soon!
-                        </p>
-                        <p className="text-sm">
-                          This feature is currently under development. We're
-                          working hard on it!
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <ComingSoon>
 
-                  <Card>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="flex items-center gap-2">
-                        <Scale className="h-5 w-5 text-[#328E6E]" />
-                        Genetic Merit
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-center py-8 text-[#328E6E]">
-                        <p className="text-4xl mb-4">🐄</p>{" "}
-                        <p className="text-lg font-medium">
-                          Genetic Merit Coming Soon!
-                        </p>
-                        <p className="text-sm">
-                          This feature is currently under development. We're
-                          working hard on it!
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="flex items-center gap-2">
+                          <Cow className="h-5 w-5 text-[#328E6E]" />
+                          Genetic Information
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Sire</div>
+                            <div className="font-medium">{livestockData.genetics.sire}</div>
+                          </div>
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Dam</div>
+                            <div className="font-medium">{livestockData.genetics.dam}</div>
+                          </div>
+                        </div>
+                        <div className="mt-6">
+                          <div className="text-sm text-gray-500 mb-3">Genetic Traits</div>
+                          <div className="flex flex-wrap gap-2">
+                            {livestockData.genetics.geneticTraits.map((trait, index) => (
+                              <Badge key={index} variant="outline" className="text-[#328E6E] border-[#328E6E]/30">
+                                {trait}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </ComingSoon>
+                  
+                  <ComingSoon>
+
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="flex items-center gap-2">
+                          <Scale className="h-5 w-5 text-[#328E6E]" />
+                          Genetic Merit
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          <div>
+                            <div className="flex items-center justify-between mb-1">
+                              <div className="text-sm font-medium">Milk Production</div>
+                              <div className="text-sm text-gray-500">85%</div>
+                            </div>
+                            <Progress value={85} className="h-2" />
+                          </div>
+                          <div>
+                            <div className="flex items-center justify-between mb-1">
+                              <div className="text-sm font-medium">Fertility</div>
+                              <div className="text-sm text-gray-500">75%</div>
+                            </div>
+                            <Progress value={75} className="h-2" />
+                          </div>
+                          <div>
+                            <div className="flex items-center justify-between mb-1">
+                              <div className="text-sm font-medium">Longevity</div>
+                              <div className="text-sm text-gray-500">80%</div>
+                            </div>
+                            <Progress value={80} className="h-2" />
+                          </div>
+                          <div>
+                            <div className="flex items-center justify-between mb-1">
+                              <div className="text-sm font-medium">Health Traits</div>
+                              <div className="text-sm text-gray-500">90%</div>
+                            </div>
+                            <Progress value={90} className="h-2" />
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </ComingSoon>
                 </TabsContent>
               </Tabs>
             </CardHeader>
@@ -583,60 +698,62 @@ export default function LivestockDetail() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.3 }}
         >
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-5 w-5 text-[#328E6E]" />
-                  <span>Upcoming Events</span>
-                </div>
-                <Button variant="ghost" size="sm" className="gap-1 text-xs">
-                  <span>View All</span>
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-100 p-2 rounded-full text-blue-600">
-                    <Calendar className="h-4 w-4" />
+          <ComingSoon>
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="h-5 w-5 text-[#328E6E]" />
+                    <span>Upcoming Events</span>
                   </div>
-                  <div>
-                    <div className="font-medium">Vaccination Due</div>
-                    <div className="text-sm text-gray-500">
-                      January 15, 2024
+                  <Button variant="ghost" size="sm" className="gap-1 text-xs">
+                    <span>View All</span>
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-blue-100 p-2 rounded-full text-blue-600">
+                      <Calendar className="h-4 w-4" />
                     </div>
-                    <div className="text-sm text-gray-500">
-                      Bovine Viral Diarrhea (BVD)
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="bg-green-100 p-2 rounded-full text-green-600">
-                    <Calendar className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <div className="font-medium">Expected Calving</div>
-                    <div className="text-sm text-gray-500">July 24, 2023</div>
-                    <div className="text-sm text-gray-500">Third pregnancy</div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="bg-amber-100 p-2 rounded-full text-amber-600">
-                    <Calendar className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <div className="font-medium">Routine Check-up</div>
-                    <div className="text-sm text-gray-500">June 10, 2023</div>
-                    <div className="text-sm text-gray-500">
-                      Quarterly health assessment
+                    <div>
+                      <div className="font-medium">Vaccination Due</div>
+                      <div className="text-sm text-gray-500">
+                        January 15, 2024
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        Bovine Viral Diarrhea (BVD)
+                      </div>
                     </div>
                   </div>
+                  <div className="flex items-start gap-4">
+                    <div className="bg-green-100 p-2 rounded-full text-green-600">
+                      <Calendar className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <div className="font-medium">Expected Calving</div>
+                      <div className="text-sm text-gray-500">July 24, 2023</div>
+                      <div className="text-sm text-gray-500">Third pregnancy</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="bg-amber-100 p-2 rounded-full text-amber-600">
+                      <Calendar className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <div className="font-medium">Routine Check-up</div>
+                      <div className="text-sm text-gray-500">June 10, 2023</div>
+                      <div className="text-sm text-gray-500">
+                        Quarterly health assessment
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </ComingSoon>
         </motion.div>
 
         <motion.div
@@ -644,60 +761,63 @@ export default function LivestockDetail() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.3 }}
         >
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Ruler className="h-5 w-5 text-[#328E6E]" />
-                  <span>Growth & Development</span>
-                </div>
-                <Button variant="ghost" size="sm" className="gap-1 text-xs">
-                  <span>View All</span>
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <div className="text-sm font-medium">Weight Progress</div>
-                    <div className="text-sm text-gray-500">
-                      1,200 lbs (target: 1,300 lbs)
-                    </div>
+          <ComingSoon>
+
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Ruler className="h-5 w-5 text-[#328E6E]" />
+                    <span>Growth & Development</span>
                   </div>
-                  <Progress value={92} className="h-2" />
-                </div>
-                <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <div className="text-sm font-medium">Milk Production</div>
-                    <div className="text-sm text-gray-500">
-                      22 liters/day (target: 25 liters/day)
+                  <Button variant="ghost" size="sm" className="gap-1 text-xs">
+                    <span>View All</span>
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="text-sm font-medium">Weight Progress</div>
+                      <div className="text-sm text-gray-500">
+                        1,200 lbs (target: 1,300 lbs)
+                      </div>
                     </div>
+                    <Progress value={92} className="h-2" />
                   </div>
-                  <Progress value={88} className="h-2" />
-                </div>
-                <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <div className="text-sm font-medium">
-                      Body Condition Score
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="text-sm font-medium">Milk Production</div>
+                      <div className="text-sm text-gray-500">
+                        22 liters/day (target: 25 liters/day)
+                      </div>
                     </div>
-                    <div className="text-sm text-gray-500">3.5 out of 5</div>
+                    <Progress value={88} className="h-2" />
                   </div>
-                  <Progress value={70} className="h-2" />
-                </div>
-                <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <div className="text-sm font-medium">Feed Efficiency</div>
-                    <div className="text-sm text-gray-500">
-                      1.5 (milk:feed ratio)
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="text-sm font-medium">
+                        Body Condition Score
+                      </div>
+                      <div className="text-sm text-gray-500">3.5 out of 5</div>
                     </div>
+                    <Progress value={70} className="h-2" />
                   </div>
-                  <Progress value={75} className="h-2" />
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="text-sm font-medium">Feed Efficiency</div>
+                      <div className="text-sm text-gray-500">
+                        1.5 (milk:feed ratio)
+                      </div>
+                    </div>
+                    <Progress value={75} className="h-2" />
+                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </ComingSoon>
         </motion.div>
       </div>
     </div>

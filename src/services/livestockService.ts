@@ -157,3 +157,10 @@ export const getSevenDayAverage = async (
   const response = await api.get(`/${userId}/sensor-data/seven-day-average`);
   return response.data;
 };
+
+export const getSevenDayAverageById = async (
+  livestockId: number
+): Promise<ApiResponse<DailySensorStats[]>> => {
+  const response = await api.get(`/${livestockId}/sensor-data/average-detail`);
+  return response.data;
+};

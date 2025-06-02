@@ -42,7 +42,7 @@ export default function LastHourMetrics({
     average: Math.round((respiratoryRateAverage ?? 0) * 100) / 100,
     min: 20,
     max: 60,
-    unit: "%",
+    unit: "bpm",
     status: "active",
   };
 
