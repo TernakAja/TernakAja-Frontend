@@ -227,17 +227,17 @@ export default function LivestockList() {
                       All
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                      onClick={() => setStatusFilter("healthy")}
+                      onClick={() => setStatusFilter("Healthy")}
                     >
                       Healthy
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                      onClick={() => setStatusFilter("attention")}
+                      onClick={() => setStatusFilter("Attention")}
                     >
                       Needs Attention
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                      onClick={() => setStatusFilter("critical")}
+                      onClick={() => setStatusFilter("Critical")}
                     >
                       Critical
                     </DropdownMenuItem>
@@ -333,17 +333,21 @@ export default function LivestockList() {
                             : "Critical"}
                         </Badge>
                       </TableCell>
-                      <TableCell>{animal.livestock.farmId}</TableCell>
+                      <TableCell>Farm {animal.livestock.farmId}</TableCell>
                       <TableCell>
                         {animal.sensor_data ? (
                           <>
                             <div className="flex items-center gap-1">
                               <Heart className="h-4 w-4 text-red-500" />
-                              <span>{animal.sensor_data.heartRate ?? 'N/A'}</span>
+                              <span>
+                                {animal.sensor_data.heartRate ?? "N/A"}
+                              </span>
                             </div>
                             <div className="flex items-center gap-1 mt-1">
                               <Thermometer className="h-4 w-4 text-amber-500" />
-                              <span>{animal.sensor_data.temperature ?? 'N/A'}</span>
+                              <span>
+                                {animal.sensor_data.temperature ?? "N/A"}
+                              </span>
                             </div>
                           </>
                         ) : (
@@ -351,7 +355,11 @@ export default function LivestockList() {
                         )}
                       </TableCell>
                       <TableCell className="text-gray-500">
-                      {animal.sensor_data?.timestamp ? new Date(animal.sensor_data.timestamp).toLocaleDateString() : 'N/A'}
+                        {animal.sensor_data?.timestamp
+                          ? new Date(
+                              animal.sensor_data.timestamp
+                            ).toLocaleDateString()
+                          : "N/A"}
                       </TableCell>
                       <TableCell>
                         <DropdownMenu>

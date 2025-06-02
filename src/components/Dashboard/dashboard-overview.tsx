@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Activity,
-  ArrowRight,
   ArrowUpRight,
-  ChevronDown,
   MilkIcon as Cow,
   Heart,
   MoreHorizontal,
@@ -12,6 +10,7 @@ import {
   Utensils,
   BarChart3,
   BellOff,
+  PieChart,
 } from "lucide-react";
 import {
   Card,
@@ -34,6 +33,7 @@ import {
 import { LineChart, DonutChart } from "@/components/Dashboard/charts";
 import {
   getRecentNotifs,
+  getSevenDayAverage,
   getSpeciesCount,
   getStatusCount,
 } from "@/services/livestockService";
@@ -49,19 +49,20 @@ import { useAuth } from "@/context/auth-context";
 import LoadingScreenPage from "../../utility/LoadingScreen";
 import { getRecentAverageSensorData } from "@/services/livestockService";
 import LastHourMetrics from "./average-metrics";
+import { getTimeSince } from "@/utility/util";
 
-const dailySensorStats: DailySensorStats[] = [
-  { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },
-  { day: "Tue", avg_temperature: 101.3, avg_heart_rate: 68 },
-  { day: "Wed", avg_temperature: 101.6, avg_heart_rate: 64 },
-  { day: "Thu", avg_temperature: 101.8, avg_heart_rate: 66 },
-  { day: "Fri", avg_temperature: 101.4, avg_heart_rate: 67 },
-  { day: "Sat", avg_temperature: 101.2, avg_heart_rate: 65 },
-  { day: "Sun", avg_temperature: 101.5, avg_heart_rate: 63 },
-];
+// const dailySensorStats: DailySensorStats[] = [
+//   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: "65" },
+//   { day: "Tue", avg_temperature: 101.3, avg_heart_rate: "68" },
+//   { day: "Wed", avg_temperature: 101.6, avg_heart_rate: "64" },
+//   { day: "Thu", avg_temperature: 101.8, avg_heart_rate: "66" },
+//   { day: "Fri", avg_temperature: 101.4, avg_heart_rate: "67" },
+//   { day: "Sat", avg_temperature: 101.2, avg_heart_rate: "65" },
+//   { day: "Sun", avg_temperature: 101.5, avg_heart_rate: "63" },
+// ];
 
 export default function DashboardOverview() {
-  const [, setTimeRange] = useState("7d");
+  // const [, setTimeRange] = useState("7d");
   const [, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState<LivestockStatusCounts | undefined>({
@@ -75,6 +76,7 @@ export default function DashboardOverview() {
     NotificationWithLivestockFlat[]
   >([]);
   const [avgSensor, setAvgSensor] = useState<RecentAvgSensorData>();
+  const [sevenSensor, setSevenSensor] = useState<DailySensorStats[]>();
   const { user } = useAuth();
   const colors = ["#328E6E", "#67AE6E", "#90C67C", "#E1EEBC"];
 
@@ -84,27 +86,35 @@ export default function DashboardOverview() {
 
       setLoading(true);
       try {
-        const [statusResponse, speciesResponse, notifResponse, avgResponse] =
+        const [statusResponse, speciesResponse, notifResponse, sevenResponse] =
           await Promise.all([
             getStatusCount(user.id),
             getSpeciesCount(user.id),
             getRecentNotifs(user.id),
-            getRecentAverageSensorData(user.id),
+            getSevenDayAverage(user.id)
           ]);
 
         if (notifResponse.data) {
           setNotifications(notifResponse.data);
         }
-        // console.log(avgResponse.data)
-
-        if (avgResponse.data) {
-          setAvgSensor(avgResponse.data);
+        if(sevenResponse.data){
+          setSevenSensor(sevenResponse.data);
         }
-
-        setStatus(statusResponse.data);
+        if(statusResponse.data) {
+          setStatus(statusResponse.data);
+        }
         if (speciesResponse.data) {
           setSpeciesCount(speciesResponse.data);
         }
+        try {
+          const recentAvgResponse = await getRecentAverageSensorData(user.id);
+          if (recentAvgResponse.data) {
+            setAvgSensor(recentAvgResponse.data);
+          }
+        } catch (error) {
+          console.warn("No recent average sensor data found or error:", error);
+        }
+
         // const totalAll = speciesCount.reduce((sum, s) => sum + s.total, 0);
       } catch (err) {
         console.error("Error fetching data:", err);
@@ -142,7 +152,7 @@ export default function DashboardOverview() {
             <RefreshCw className="h-3.5 w-3.5" />
             <span>Refresh</span>
           </Button>
-          <DropdownMenu>
+          {/* <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="sm" className="h-8 gap-1 text-xs">
                 <span>Last 7 days</span>
@@ -163,7 +173,7 @@ export default function DashboardOverview() {
                 Last 90 days
               </DropdownMenuItem>
             </DropdownMenuContent>
-          </DropdownMenu>
+          </DropdownMenu> */}
         </div>
       </div>
 
@@ -202,7 +212,17 @@ export default function DashboardOverview() {
             </CardHeader>
             <CardContent>
               <div className="h-[300px]">
-                <LineChart dailySensorStats={dailySensorStats} />
+                {sevenSensor ? (
+                  <LineChart dailySensorStats={sevenSensor} />
+                ) : (
+                  <div className="h-[300px] flex flex-col items-center justify-center text-center text-gray-500 p-8">
+                    <Activity className="h-12 w-12 mb-3 text-[#328E6E]" />
+                    <p className="text-xl font-semibold mb-1">No Sensor Data</p>
+                    <p className="text-sm">
+                      Sensor statistics will appear here once available.
+                    </p>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -229,20 +249,8 @@ export default function DashboardOverview() {
             <CardContent>
               <div>
                 {speciesCount && speciesCount.length === 0 ? (
-                  <div className="h-[300px] flex flex-col items-center justify-center text-center text-gray-500 border border-dashed rounded-lg p-8">
-                    <svg
-                      className="h-16 w-16 mb-4 text-[#328E6E]"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"
-                      />
-                    </svg>
+                  <div className="h-[300px] flex flex-col items-center justify-center text-center text-gray-500 p-8">
+                    <PieChart className="h-12 w-12 mb-3 text-[#328E6E]"/>
                     <p className="text-xl font-semibold mb-1">
                       No Species Data
                     </p>
@@ -313,17 +321,13 @@ export default function DashboardOverview() {
                   Notifications requiring attention
                 </CardDescription>
               </div>
-              <Button variant="outline" size="sm" className="h-8 gap-1 text-xs">
-                <span>View All</span>
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Button>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
+            <CardContent className="h-full">
+              <div className="space-y-4 h-full">
                 {notifications.length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-8 text-center text-gray-500 h-full">
                     <BellOff className="h-12 w-12 mb-3 text-[#328E6E]" />
-                    <p className="text-lg font-medium">No Notifications</p>
+                    <p className="text-xl font-semibold mb-1">No Notifications</p>
                     <p className="text-sm">
                       You will get to see notifications here when you receive
                       one.
@@ -346,7 +350,6 @@ export default function DashboardOverview() {
                         ) : alert.type === "warning" ? (
                           <Activity className="h-4 w-4" />
                         ) : (
-                          // Assuming 'Utensils' was for a general/info type, or you can pick another icon
                           <Utensils className="h-4 w-4" />
                         )}
                       </div>
@@ -360,15 +363,15 @@ export default function DashboardOverview() {
                               alert.type === "critical"
                                 ? "destructive"
                                 : alert.type === "warning"
-                                ? "default" // 'default' variant might need specific styling if not black/white
+                                ? "default"
                                 : "outline"
                             }
                             className={
                               alert.type === "critical"
-                                ? "" // Destructive usually has its own full styling
+                                ? ""
                                 : alert.type === "warning"
-                                ? "bg-amber-500 text-white border-amber-500" // Ensure contrast and clear warning color
-                                : "text-blue-500 border-blue-300" // Adjusted for potentially better visibility
+                                ? "bg-amber-500 text-white border-amber-500"
+                                : "text-blue-500 border-blue-300"
                             }
                           >
                             {alert.type}
@@ -378,7 +381,7 @@ export default function DashboardOverview() {
                           {alert.message}
                         </div>
                         <div className="text-xs text-gray-400 dark:text-gray-500 mt-1">
-                          {alert.sent_at}
+                          {getTimeSince(alert.sent_at)}
                         </div>
                       </div>
                     </div>

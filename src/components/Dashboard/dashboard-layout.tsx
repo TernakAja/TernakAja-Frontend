@@ -1,7 +1,7 @@
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   Activity,
   BarChart3,
@@ -18,57 +18,98 @@ import {
   Sun,
   Utensils,
   X,
-} from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { cn } from "@/lib/utils"
-import { useLocation, useNavigate } from "react-router-dom"
-import { useAuth } from "@/context/auth-context"
+} from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "@/context/auth-context";
 
 interface DashboardLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const { logout } = useAuth();
   const navigate = useNavigate();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
-  const [isMobile, setIsMobile] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
   const pathname = location.pathname;
+  const { user } = useAuth();
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024)
+      setIsMobile(window.innerWidth < 1024);
       if (window.innerWidth < 1024) {
-        setIsSidebarOpen(false)
+        setIsSidebarOpen(false);
       } else {
-        setIsSidebarOpen(true)
+        setIsSidebarOpen(true);
       }
-    }
+    };
 
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen)
-  }
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   const navItems = [
-    { name: "Dashboard", href: "/dashboard", icon: <Home className="h-5 w-5" /> },
-    { name: "Livestock", href: "/dashboard/livestock", icon: <Cow className="h-5 w-5" /> },
-    { name: "Health Monitoring", href: "/dashboard/health", icon: <Heart className="h-5 w-5" /> },
-    { name: "Analytics", href: "/dashboard/analytics", icon: <BarChart3 className="h-5 w-5" /> },
-    { name: "Activity Tracking", href: "/dashboard/activity", icon: <Activity className="h-5 w-5" /> },
-    { name: "Feeding Management", href: "/dashboard/feeding", icon: <Utensils className="h-5 w-5" /> },
-    { name: "Weather", href: "/dashboard/weather", icon: <Sun className="h-5 w-5" /> },
-    { name: "Reports", href: "/dashboard/reports", icon: <FileText className="h-5 w-5" /> },
-    { name: "Messages", href: "/dashboard/messages", icon: <MessageSquare className="h-5 w-5" /> },
-    { name: "Settings", href: "/dashboard/settings", icon: <Settings className="h-5 w-5" /> },
-  ]
+    {
+      name: "Dashboard",
+      href: "/dashboard",
+      icon: <Home className="h-5 w-5" />,
+    },
+    {
+      name: "Livestock",
+      href: "/dashboard/livestock",
+      icon: <Cow className="h-5 w-5" />,
+    },
+    {
+      name: "Health Monitoring",
+      href: "/dashboard/health",
+      icon: <Heart className="h-5 w-5" />,
+    },
+    {
+      name: "Analytics",
+      href: "/dashboard/analytics",
+      icon: <BarChart3 className="h-5 w-5" />,
+    },
+    {
+      name: "Activity Tracking",
+      href: "/dashboard/activity",
+      icon: <Activity className="h-5 w-5" />,
+    },
+    {
+      name: "Feeding Management",
+      href: "/dashboard/feeding",
+      icon: <Utensils className="h-5 w-5" />,
+    },
+    {
+      name: "Weather",
+      href: "/dashboard/weather",
+      icon: <Sun className="h-5 w-5" />,
+    },
+    {
+      name: "Reports",
+      href: "/dashboard/reports",
+      icon: <FileText className="h-5 w-5" />,
+    },
+    {
+      name: "Messages",
+      href: "/dashboard/messages",
+      icon: <MessageSquare className="h-5 w-5" />,
+    },
+    {
+      name: "Settings",
+      href: "/dashboard/settings",
+      icon: <Settings className="h-5 w-5" />,
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
@@ -76,10 +117,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <motion.div
         className={cn(
           "fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ease-in-out",
-          isMobile && !isSidebarOpen && "-translate-x-full",
+          isMobile && !isSidebarOpen && "-translate-x-full"
         )}
         initial={isMobile ? { x: "-100%" } : { x: 0 }}
-        animate={isSidebarOpen ? { x: 0 } : isMobile ? { x: "-100%" } : { x: 0 }}
+        animate={
+          isSidebarOpen ? { x: 0 } : isMobile ? { x: "-100%" } : { x: 0 }
+        }
         transition={{ duration: 0.3 }}
       >
         <div className="p-4 border-b border-gray-200 flex items-center justify-between">
@@ -108,7 +151,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                   "flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
                   pathname === item.href
                     ? "bg-[#E1EEBC]/50 text-[#328E6E]"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900",
+                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                 )}
               >
                 {item.icon}
@@ -121,20 +164,31 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <div className="p-4 border-t border-gray-200">
           <div className="flex items-center gap-3">
             <Avatar>
-              <AvatarImage src="/placeholder.svg?height=32&width=32" alt="User" />
-              <AvatarFallback>JD</AvatarFallback>
+              <AvatarImage
+                src="/placeholder.svg?height=32&width=32"
+                alt="User"
+              />
+              <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>
             </Avatar>
             <div>
-              <div className="font-medium">John Doe</div>
+              <div className="font-medium">{user?.name}</div>
               <div className="text-xs text-gray-500">Farm Manager</div>
             </div>
           </div>
-          <Button variant="ghost" className="w-full justify-start mt-4 text-gray-600" onClick={() => navigate("/")}>
+          <Button
+            variant="ghost"
+            className="w-full justify-start mt-4 text-gray-600"
+            onClick={() => navigate("/")}
+          >
             <Home className="h-4 w-4 mr-2" />
             Home
           </Button>
           {/* For logout */}
-          <Button variant="ghost" className="w-full justify-start mt-4 text-gray-600" onClick={() => (logout())}>
+          <Button
+            variant="ghost"
+            className="w-full justify-start mt-4 text-gray-600"
+            onClick={() => logout()}
+          >
             <LogOut className="h-4 w-4 mr-2" />
             Log out
           </Button>
@@ -143,13 +197,21 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
       {/* Main content */}
       <div
-        className={cn("flex-1 transition-all duration-300 ease-in-out", isSidebarOpen && !isMobile ? "ml-64" : "ml-0")}
+        className={cn(
+          "flex-1 transition-all duration-300 ease-in-out",
+          isSidebarOpen && !isMobile ? "ml-64" : "ml-0"
+        )}
       >
         {/* Top navigation */}
         <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
           <div className="flex items-center justify-between h-16 px-4">
             <div className="flex items-center gap-3">
-              <Button variant="ghost" size="icon" onClick={toggleSidebar} className="lg:hidden">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleSidebar}
+                className="lg:hidden"
+              >
                 <Menu className="h-5 w-5" />
               </Button>
               {!isSidebarOpen && !isMobile && (
@@ -188,10 +250,15 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="h-6 w-px bg-gray-200"></div>
               <div className="flex items-center gap-2">
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src="/placeholder.svg?height=32&width=32" alt="User" />
-                  <AvatarFallback>JD</AvatarFallback>
+                  <AvatarImage
+                    src="/placeholder.svg?height=32&width=32"
+                    alt="User"
+                  />
+                  <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>
                 </Avatar>
-                <span className="text-sm font-medium hidden sm:inline-block">John Doe</span>
+                <span className="text-sm font-medium hidden sm:inline-block">
+                  {user?.name}
+                </span>
               </div>
             </div>
           </div>
@@ -201,5 +268,5 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <main className="p-6">{children}</main>
       </div>
     </div>
-  )
+  );
 }

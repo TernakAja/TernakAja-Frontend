@@ -20,7 +20,7 @@ export interface SpeciesCount {
 export interface DailySensorStats {
   day: string;
   avg_temperature: number;
-  avg_heart_rate: number;
+  avg_heart_rate: string;
 }
 
 export interface NotificationWithLivestockFlat {

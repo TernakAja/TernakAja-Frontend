@@ -27,7 +27,7 @@ export function LineChart({ dailySensorStats }: LineChartProps) {
 
     const labels = dailySensorStats.map((item) => item.day);
     const temperatureData = dailySensorStats.map((item) => item.avg_temperature);
-    const heartRateData = dailySensorStats.map((item) => item.avg_heart_rate);
+    const heartRateData = dailySensorStats.map(item => Number(item.avg_heart_rate));
 
     // Create new chart
     chartInstance.current = new Chart(ctx, {
@@ -83,10 +83,10 @@ export function LineChart({ dailySensorStats }: LineChartProps) {
             position: "left",
             title: {
               display: true,
-              text: "Temperature (°F)",
+              text: "Temperature (°C)",
             },
-            min: 100,
-            max: 103,
+            min: 35,
+            max: 42,
           },
           y1: {
             type: "linear",
@@ -133,7 +133,7 @@ export function LineChart({ dailySensorStats }: LineChartProps) {
         chartInstance.current.destroy()
       }
     }
-  }, [])
+  }, [dailySensorStats])
 
   return <canvas ref={chartRef} />
 }

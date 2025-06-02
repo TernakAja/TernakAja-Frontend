@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Heart, Thermometer, Activity, AlertCircle } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import { roundToTwoDecimals } from "@/utility/util";
 
 interface LastHourMetricsProps {
   heartRateAverage: string | undefined;
@@ -37,15 +38,15 @@ export default function LastHourMetrics({
     status: "normal",
   };
 
-  const motionLevel = {
-    average: Math.round((respiratoryRateAverage ?? 0) * 100),
-    min: 0,
-    max: 100,
+  const repiratoryRate = {
+    average: Math.round((respiratoryRateAverage ?? 0) * 100) / 100,
+    min: 20,
+    max: 60,
     unit: "%",
     status: "active",
   };
 
-  if (!heartRate.average || !temperature.average || !motionLevel.average) {
+  if (!heartRate.average || !temperature.average || !repiratoryRate.average) {
     return (
       <motion.div
         className="lg:col-span-2"
@@ -62,12 +63,12 @@ export default function LastHourMetrics({
               </CardDescription>
             </div>
           </CardHeader>
-          <CardContent className="flex flex-col items-center justify-center h-[300px] text-center">
-            <AlertCircle className="h-12 w-12 mb-4 text-[#328E6E]" />
-            <p className="text-lg font-medium text-gray-600">
-              Missing metric data in the last hour.
+          <CardContent className="flex flex-col items-center justify-center h-[300px] text-center text-gray-500">
+            <AlertCircle className="h-12 w-12 mb-3 text-[#328E6E]" />
+            <p className="text-xl font-semibold mb-1">
+              Missing metric data in the last hour
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm">
               Try checking the IoT devices.
             </p>
           </CardContent>
@@ -90,9 +91,9 @@ export default function LastHourMetrics({
     return "normal";
   }
 
-  function determineMotion(average: number): "low" | "normal" | "high" {
-    if (average < 30) return "low";
-    if (average > 70) return "high";
+  function determineResp(average: number): "low" | "normal" | "high" {
+    if (average < 26) return "low";
+    if (average > 50) return "high";
     return "normal";
   }
 
@@ -142,7 +143,7 @@ export default function LastHourMetrics({
                       determineBPM(heartRate.average)
                     )}`}
                   >
-                    {heartRate.average}
+                    {roundToTwoDecimals(heartRate.average)}
                   </span>
                   <span className="text-lg text-gray-500 ml-1 mb-1">
                     {heartRate.unit}
@@ -226,7 +227,7 @@ export default function LastHourMetrics({
                   <div className="bg-[#328E6E]/10 p-2 rounded-full">
                     <Activity className="h-5 w-5 text-[#328E6E]" />
                   </div>
-                  <h3 className="font-medium text-gray-700">Motion Level</h3>
+                  <h3 className="font-medium text-gray-700">Respiratory Rate</h3>
                 </div>
               </div>
 
@@ -234,37 +235,37 @@ export default function LastHourMetrics({
                 <div className="flex items-end">
                   <span
                     className={`text-4xl font-bold ${getStatusColor(
-                      determineMotion(motionLevel.average)
+                      determineResp(repiratoryRate.average)
                     )}`}
                   >
-                    {motionLevel.average}
+                    {repiratoryRate.average}
                   </span>
                   <span className="text-lg text-gray-500 ml-1 mb-1">
-                    {motionLevel.unit}
+                    {repiratoryRate.unit}
                   </span>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">
-                  Range: {motionLevel.min} - {motionLevel.max}{" "}
-                  {motionLevel.unit}
+                  Range: {repiratoryRate.min} - {repiratoryRate.max}{" "}
+                  {repiratoryRate.unit}
                 </p>
               </div>
 
               <div>
                 <Progress
                   value={getProgressPercentage(
-                    motionLevel.average,
-                    motionLevel.min,
-                    motionLevel.max
+                    repiratoryRate.average,
+                    repiratoryRate.min,
+                    repiratoryRate.max
                   )}
                   className="h-2 bg-[#E1EEBC]"
                   indicatorClassName="bg-[#328E6E]"
                 />
                 <div className="flex justify-between mt-1">
                   <span className="text-xs text-gray-500">
-                    {motionLevel.min}
+                    {repiratoryRate.min}
                   </span>
                   <span className="text-xs text-gray-500">
-                    {motionLevel.max}
+                    {repiratoryRate.max}
                   </span>
                 </div>
               </div>
