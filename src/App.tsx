@@ -156,7 +156,7 @@ function App() {
             </Routes>
           )}
         </AnimatePresence>
-        <Toaster position="top-center" />
+        <Toaster position="top-center" /> 
       </BrowserRouter>
     </AuthProvider>
   );
