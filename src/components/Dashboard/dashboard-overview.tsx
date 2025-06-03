@@ -86,26 +86,42 @@ export default function DashboardOverview() {
 
       setLoading(true);
       try {
-        const [statusResponse, speciesResponse, notifResponse, sevenResponse] =
-          await Promise.all([
-            getStatusCount(user.id),
-            getSpeciesCount(user.id),
-            getRecentNotifs(user.id),
-            getSevenDayAverage(user.id)
-          ]);
+        try {
+          const statusResponse = await getStatusCount(user.id);
+          if (statusResponse.data) {
+            setStatus(statusResponse.data);
+          }
+        } catch (error) {
+          console.error("Error fetching status count:", error);
+        }
 
-        if (notifResponse.data) {
-          setNotifications(notifResponse.data);
+        try {
+          const speciesResponse = await getSpeciesCount(user.id);
+          if (speciesResponse.data) {
+            setSpeciesCount(speciesResponse.data);
+          }
+        } catch (error) {
+          console.error("Error fetching species count:", error);
         }
-        if(sevenResponse.data){
-          setSevenSensor(sevenResponse.data);
+
+        try {
+          const notifResponse = await getRecentNotifs(user.id);
+          if (notifResponse.data) {
+            setNotifications(notifResponse.data);
+          }
+        } catch (error) {
+          console.error("Error fetching notifications:", error);
         }
-        if(statusResponse.data) {
-          setStatus(statusResponse.data);
+
+        try {
+          const sevenResponse = await getSevenDayAverage(user.id);
+          if (sevenResponse.data) {
+            setSevenSensor(sevenResponse.data);
+          }
+        } catch (error) {
+          console.error("Error fetching seven day average:", error);
         }
-        if (speciesResponse.data) {
-          setSpeciesCount(speciesResponse.data);
-        }
+
         try {
           const recentAvgResponse = await getRecentAverageSensorData(user.id);
           if (recentAvgResponse.data) {
@@ -114,10 +130,8 @@ export default function DashboardOverview() {
         } catch (error) {
           console.warn("No recent average sensor data found or error:", error);
         }
-
-        // const totalAll = speciesCount.reduce((sum, s) => sum + s.total, 0);
       } catch (err) {
-        console.error("Error fetching data:", err);
+        console.error("Unexpected error:", err);
         setError("error");
       } finally {
         setLoading(false);
@@ -250,7 +264,7 @@ export default function DashboardOverview() {
               <div>
                 {speciesCount && speciesCount.length === 0 ? (
                   <div className="h-[300px] flex flex-col items-center justify-center text-center text-gray-500 p-8">
-                    <PieChart className="h-12 w-12 mb-3 text-[#328E6E]"/>
+                    <PieChart className="h-12 w-12 mb-3 text-[#328E6E]" />
                     <p className="text-xl font-semibold mb-1">
                       No Species Data
                     </p>
@@ -327,7 +341,9 @@ export default function DashboardOverview() {
                 {notifications.length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-8 text-center text-gray-500 h-full">
                     <BellOff className="h-12 w-12 mb-3 text-[#328E6E]" />
-                    <p className="text-xl font-semibold mb-1">No Notifications</p>
+                    <p className="text-xl font-semibold mb-1">
+                      No Notifications
+                    </p>
                     <p className="text-sm">
                       You will get to see notifications here when you receive
                       one.
