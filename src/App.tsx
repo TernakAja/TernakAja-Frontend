@@ -38,6 +38,9 @@ import ForumPage from "./pages/Forum/page";
 import ArticlePage from "./pages/Article/page";
 import ArticleDetailPage from "./pages/Article/[id]/page";
 
+import BusinessPage from "./pages/Business/page";
+import PricingPage from "./pages/Pricing/page";
+
 import FeaturesPage from "./pages/Features/page";
 
 import ChatbotPage from "./pages/Chatbot/page";
@@ -122,10 +125,16 @@ function App() {
 
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
+
+                <Route path="/pricing" element={<PricingPage />} />
+                <Route path="/business" element={<BusinessPage />} />
+
               </Route>
 
               <Route element={<ProtectedRoute />}>
+
                 <Route path="/dashboard" element={<DashboardPage />} />
+
                 <Route
                   path="/dashboard/livestock"
                   element={<DashboardLivestockPage />}
@@ -151,7 +160,9 @@ function App() {
                   element={<DashboardAnalyticsPage />}
                 />
                 <Route path="/dashboard/weather" element={<WeatherPage />} />
+
               </Route>
+              
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           )}
