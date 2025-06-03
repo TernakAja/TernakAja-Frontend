@@ -46,9 +46,16 @@ import { Progress } from "@/components/ui/progress";
 import { LineChart } from "@/components/Dashboard/charts";
 import { useParams } from "react-router-dom";
 import { DailySensorStats, SensorDataWithLivestock } from "@/types/dataSchema";
-import { getLivestockDetailById, getSevenDayAverageById } from "@/services/livestockService";
+import {
+  getLivestockDetailById,
+  getSevenDayAverageById,
+} from "@/services/livestockService";
 import LoadingScreenPage from "../../../utility/LoadingScreen";
-import { getLivestockAge, getTimeSince, roundToTwoDecimals } from "@/utility/util";
+import {
+  getLivestockAge,
+  getTimeSince,
+  roundToTwoDecimals,
+} from "@/utility/util";
 import { ComingSoon } from "@/components/coming-soon";
 import { livestockData } from "@/lib/data";
 
@@ -229,7 +236,7 @@ export default function LivestockDetail() {
                     ? "Healthy"
                     : livestock.livestock.status === "Attention"
                     ? "Needs Attention"
-                    : "Critical"}
+                    : "Unhealthy"}
                 </Badge>
 
                 <div className="w-full mt-6 space-y-4">
@@ -354,7 +361,9 @@ export default function LivestockDetail() {
                       </CardHeader>
                       <CardContent>
                         <div className="text-2xl font-bold">
-                          {roundToTwoDecimals(livestock.sensor_data.temperature)}
+                          {roundToTwoDecimals(
+                            livestock.sensor_data.temperature
+                          )}
                         </div>
                         <div className="flex items-center justify-between mt-1">
                           <span className="text-xs text-gray-500">
@@ -378,10 +387,14 @@ export default function LivestockDetail() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <div className="text-2xl font-bold">{roundToTwoDecimals(livestock.sensor_data.respiratoryRate)}</div>
+                        <div className="text-2xl font-bold">
+                          {roundToTwoDecimals(
+                            livestock.sensor_data.respiratoryRate
+                          )}
+                        </div>
                         <div className="flex items-center justify-between mt-1">
                           <span className="text-xs text-gray-500">
-                            Normal: 	26-50 breaths per minute
+                            Normal: 26-50 breaths per minute
                           </span>
                           {/* <Badge variant="outline" className="text-green-500 border-green-200">
                             Normal
@@ -405,7 +418,9 @@ export default function LivestockDetail() {
                         ) : (
                           <div className="h-[300px] flex flex-col items-center justify-center text-center text-gray-500 p-8">
                             <Activity className="h-12 w-12 mb-3 text-[#328E6E]" />
-                            <p className="text-xl font-semibold mb-1">No Sensor Data</p>
+                            <p className="text-xl font-semibold mb-1">
+                              No Sensor Data
+                            </p>
                             <p className="text-sm">
                               Sensor statistics will appear here once available.
                             </p>
@@ -426,20 +441,28 @@ export default function LivestockDetail() {
                       <CardContent>
                         <div className="space-y-4">
                           <div>
-                            <div className="text-sm text-gray-500 mb-1">Diet</div>
+                            <div className="text-sm text-gray-500 mb-1">
+                              Diet
+                            </div>
                             <div className="font-medium">Forage</div>
                           </div>
                           <div>
-                            <div className="text-sm text-gray-500 mb-1">Feeding Schedule</div>
+                            <div className="text-sm text-gray-500 mb-1">
+                              Feeding Schedule
+                            </div>
                             <div className="font-medium">Twice Daily</div>
                           </div>
                           <div className="grid grid-cols-2 gap-4">
                             <div>
-                              <div className="text-sm text-gray-500 mb-1">Daily Consumption</div>
+                              <div className="text-sm text-gray-500 mb-1">
+                                Daily Consumption
+                              </div>
                               <div className="font-medium">22.6 kg/day</div>
                             </div>
                             <div>
-                              <div className="text-sm text-gray-500 mb-1">Water Intake</div>
+                              <div className="text-sm text-gray-500 mb-1">
+                                Water Intake
+                              </div>
                               <div className="font-medium">25 gallons/day</div>
                             </div>
                           </div>
@@ -465,7 +488,6 @@ export default function LivestockDetail() {
 
                 <TabsContent value="health" className="space-y-6">
                   <ComingSoon>
-
                     <Card>
                       <CardHeader className="pb-2">
                         <CardTitle className="flex items-center gap-2">
@@ -475,28 +497,41 @@ export default function LivestockDetail() {
                       </CardHeader>
                       <CardContent>
                         <div className="space-y-4">
-                          {livestockData.health.vaccinations.map((vaccination, index) => (
-                            <div key={index} className="flex items-start gap-4 pb-4 border-b border-gray-100">
-                              <div className="bg-green-100 p-2 rounded-full text-green-600">
-                                <CheckCircle2 className="h-4 w-4" />
+                          {livestockData.health.vaccinations.map(
+                            (vaccination, index) => (
+                              <div
+                                key={index}
+                                className="flex items-start gap-4 pb-4 border-b border-gray-100"
+                              >
+                                <div className="bg-green-100 p-2 rounded-full text-green-600">
+                                  <CheckCircle2 className="h-4 w-4" />
+                                </div>
+                                <div className="flex-1">
+                                  <div className="font-medium">
+                                    {vaccination.name}
+                                  </div>
+                                  <div className="text-sm text-gray-500">
+                                    Administered: {vaccination.date}
+                                  </div>
+                                  <div className="text-sm text-gray-500">
+                                    Next Due: {vaccination.nextDue}
+                                  </div>
+                                </div>
+                                <Badge
+                                  variant="outline"
+                                  className="text-green-500 border-green-200"
+                                >
+                                  Up to date
+                                </Badge>
                               </div>
-                              <div className="flex-1">
-                                <div className="font-medium">{vaccination.name}</div>
-                                <div className="text-sm text-gray-500">Administered: {vaccination.date}</div>
-                                <div className="text-sm text-gray-500">Next Due: {vaccination.nextDue}</div>
-                              </div>
-                              <Badge variant="outline" className="text-green-500 border-green-200">
-                                Up to date
-                              </Badge>
-                            </div>
-                          ))}
+                            )
+                          )}
                         </div>
                       </CardContent>
                     </Card>
                   </ComingSoon>
-                  
-                  <ComingSoon>
 
+                  <ComingSoon>
                     <Card>
                       <CardHeader className="pb-2">
                         <CardTitle className="flex items-center gap-2">
@@ -508,29 +543,35 @@ export default function LivestockDetail() {
                         <div className="relative">
                           <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200"></div>
                           <div className="space-y-6">
-                            {livestockData.health.medicalHistory.map((event, index) => (
-                              <div key={index} className="relative pl-10">
-                                <div className="absolute left-0 top-1 w-8 h-8 bg-[#328E6E] rounded-full flex items-center justify-center text-white">
-                                  {event.event.includes("Check") ? (
-                                    <CheckCircle2 className="h-4 w-4" />
-                                  ) : event.event.includes("Vaccination") ? (
-                                    <CheckCircle2 className="h-4 w-4" />
-                                  ) : (
-                                    <FileText className="h-4 w-4" />
-                                  )}
-                                </div>
-                                <div className="bg-gray-50 rounded-lg p-4">
-                                  <div className="flex justify-between items-start mb-2">
-                                    <h4 className="font-bold text-gray-800">{event.event}</h4>
-                                    <div className="flex items-center text-sm text-gray-500">
-                                      <Calendar className="h-3 w-3 mr-1" />
-                                      {event.date}
-                                    </div>
+                            {livestockData.health.medicalHistory.map(
+                              (event, index) => (
+                                <div key={index} className="relative pl-10">
+                                  <div className="absolute left-0 top-1 w-8 h-8 bg-[#328E6E] rounded-full flex items-center justify-center text-white">
+                                    {event.event.includes("Check") ? (
+                                      <CheckCircle2 className="h-4 w-4" />
+                                    ) : event.event.includes("Vaccination") ? (
+                                      <CheckCircle2 className="h-4 w-4" />
+                                    ) : (
+                                      <FileText className="h-4 w-4" />
+                                    )}
                                   </div>
-                                  <p className="text-gray-600">{event.notes}</p>
+                                  <div className="bg-gray-50 rounded-lg p-4">
+                                    <div className="flex justify-between items-start mb-2">
+                                      <h4 className="font-bold text-gray-800">
+                                        {event.event}
+                                      </h4>
+                                      <div className="flex items-center text-sm text-gray-500">
+                                        <Calendar className="h-3 w-3 mr-1" />
+                                        {event.date}
+                                      </div>
+                                    </div>
+                                    <p className="text-gray-600">
+                                      {event.notes}
+                                    </p>
+                                  </div>
                                 </div>
-                              </div>
-                            ))}
+                              )
+                            )}
                           </div>
                         </div>
                       </CardContent>
@@ -550,24 +591,35 @@ export default function LivestockDetail() {
                       <CardContent>
                         <div className="space-y-4">
                           <div>
-                            <div className="text-sm text-gray-500 mb-1">Daily Average</div>
-                            <div className="font-medium">{livestockData.production.milkProduction.average}</div>
+                            <div className="text-sm text-gray-500 mb-1">
+                              Daily Average
+                            </div>
+                            <div className="font-medium">
+                              {livestockData.production.milkProduction.average}
+                            </div>
                           </div>
                           <div>
-                            <div className="text-sm text-gray-500 mb-1">Trend</div>
-                            <div className="font-medium">{livestockData.production.milkProduction.trend}</div>
+                            <div className="text-sm text-gray-500 mb-1">
+                              Trend
+                            </div>
+                            <div className="font-medium">
+                              {livestockData.production.milkProduction.trend}
+                            </div>
                           </div>
                           <div>
-                            <div className="text-sm text-gray-500 mb-1">Quality</div>
-                            <div className="font-medium">{livestockData.production.milkProduction.quality}</div>
+                            <div className="text-sm text-gray-500 mb-1">
+                              Quality
+                            </div>
+                            <div className="font-medium">
+                              {livestockData.production.milkProduction.quality}
+                            </div>
                           </div>
                         </div>
                       </CardContent>
                     </Card>
                   </ComingSoon>
-                  
-                  <ComingSoon>
 
+                  <ComingSoon>
                     <Card>
                       <CardHeader className="pb-2">
                         <CardTitle className="flex items-center gap-2">
@@ -579,26 +631,46 @@ export default function LivestockDetail() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div className="space-y-4">
                             <div>
-                              <div className="text-sm text-gray-500 mb-1">Status</div>
-                              <div className="font-medium">{livestockData.reproduction.status}</div>
+                              <div className="text-sm text-gray-500 mb-1">
+                                Status
+                              </div>
+                              <div className="font-medium">
+                                {livestockData.reproduction.status}
+                              </div>
                             </div>
                             <div>
-                              <div className="text-sm text-gray-500 mb-1">Breeding Date</div>
-                              <div className="font-medium">{livestockData.reproduction.breedingDate}</div>
+                              <div className="text-sm text-gray-500 mb-1">
+                                Breeding Date
+                              </div>
+                              <div className="font-medium">
+                                {livestockData.reproduction.breedingDate}
+                              </div>
                             </div>
                             <div>
-                              <div className="text-sm text-gray-500 mb-1">Due Date</div>
-                              <div className="font-medium">{livestockData.reproduction.dueDate}</div>
+                              <div className="text-sm text-gray-500 mb-1">
+                                Due Date
+                              </div>
+                              <div className="font-medium">
+                                {livestockData.reproduction.dueDate}
+                              </div>
                             </div>
                           </div>
                           <div className="space-y-4">
                             <div>
-                              <div className="text-sm text-gray-500 mb-1">Previous Calvings</div>
-                              <div className="font-medium">{livestockData.reproduction.previousCalvings}</div>
+                              <div className="text-sm text-gray-500 mb-1">
+                                Previous Calvings
+                              </div>
+                              <div className="font-medium">
+                                {livestockData.reproduction.previousCalvings}
+                              </div>
                             </div>
                             <div>
-                              <div className="text-sm text-gray-500 mb-1">Last Calving Date</div>
-                              <div className="font-medium">{livestockData.reproduction.lastCalvingDate}</div>
+                              <div className="text-sm text-gray-500 mb-1">
+                                Last Calving Date
+                              </div>
+                              <div className="font-medium">
+                                {livestockData.reproduction.lastCalvingDate}
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -609,7 +681,6 @@ export default function LivestockDetail() {
 
                 <TabsContent value="genetics" className="space-y-6">
                   <ComingSoon>
-
                     <Card>
                       <CardHeader className="pb-2">
                         <CardTitle className="flex items-center gap-2">
@@ -620,30 +691,45 @@ export default function LivestockDetail() {
                       <CardContent>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div>
-                            <div className="text-sm text-gray-500 mb-1">Sire</div>
-                            <div className="font-medium">{livestockData.genetics.sire}</div>
+                            <div className="text-sm text-gray-500 mb-1">
+                              Sire
+                            </div>
+                            <div className="font-medium">
+                              {livestockData.genetics.sire}
+                            </div>
                           </div>
                           <div>
-                            <div className="text-sm text-gray-500 mb-1">Dam</div>
-                            <div className="font-medium">{livestockData.genetics.dam}</div>
+                            <div className="text-sm text-gray-500 mb-1">
+                              Dam
+                            </div>
+                            <div className="font-medium">
+                              {livestockData.genetics.dam}
+                            </div>
                           </div>
                         </div>
                         <div className="mt-6">
-                          <div className="text-sm text-gray-500 mb-3">Genetic Traits</div>
+                          <div className="text-sm text-gray-500 mb-3">
+                            Genetic Traits
+                          </div>
                           <div className="flex flex-wrap gap-2">
-                            {livestockData.genetics.geneticTraits.map((trait, index) => (
-                              <Badge key={index} variant="outline" className="text-[#328E6E] border-[#328E6E]/30">
-                                {trait}
-                              </Badge>
-                            ))}
+                            {livestockData.genetics.geneticTraits.map(
+                              (trait, index) => (
+                                <Badge
+                                  key={index}
+                                  variant="outline"
+                                  className="text-[#328E6E] border-[#328E6E]/30"
+                                >
+                                  {trait}
+                                </Badge>
+                              )
+                            )}
                           </div>
                         </div>
                       </CardContent>
                     </Card>
                   </ComingSoon>
-                  
-                  <ComingSoon>
 
+                  <ComingSoon>
                     <Card>
                       <CardHeader className="pb-2">
                         <CardTitle className="flex items-center gap-2">
@@ -655,28 +741,36 @@ export default function LivestockDetail() {
                         <div className="space-y-4">
                           <div>
                             <div className="flex items-center justify-between mb-1">
-                              <div className="text-sm font-medium">Milk Production</div>
+                              <div className="text-sm font-medium">
+                                Milk Production
+                              </div>
                               <div className="text-sm text-gray-500">85%</div>
                             </div>
                             <Progress value={85} className="h-2" />
                           </div>
                           <div>
                             <div className="flex items-center justify-between mb-1">
-                              <div className="text-sm font-medium">Fertility</div>
+                              <div className="text-sm font-medium">
+                                Fertility
+                              </div>
                               <div className="text-sm text-gray-500">75%</div>
                             </div>
                             <Progress value={75} className="h-2" />
                           </div>
                           <div>
                             <div className="flex items-center justify-between mb-1">
-                              <div className="text-sm font-medium">Longevity</div>
+                              <div className="text-sm font-medium">
+                                Longevity
+                              </div>
                               <div className="text-sm text-gray-500">80%</div>
                             </div>
                             <Progress value={80} className="h-2" />
                           </div>
                           <div>
                             <div className="flex items-center justify-between mb-1">
-                              <div className="text-sm font-medium">Health Traits</div>
+                              <div className="text-sm font-medium">
+                                Health Traits
+                              </div>
                               <div className="text-sm text-gray-500">90%</div>
                             </div>
                             <Progress value={90} className="h-2" />
@@ -735,7 +829,9 @@ export default function LivestockDetail() {
                     <div>
                       <div className="font-medium">Expected Calving</div>
                       <div className="text-sm text-gray-500">July 24, 2023</div>
-                      <div className="text-sm text-gray-500">Third pregnancy</div>
+                      <div className="text-sm text-gray-500">
+                        Third pregnancy
+                      </div>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -762,7 +858,6 @@ export default function LivestockDetail() {
           transition={{ delay: 0.4, duration: 0.3 }}
         >
           <ComingSoon>
-
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center justify-between">
