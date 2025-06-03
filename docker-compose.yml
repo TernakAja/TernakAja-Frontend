@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  vite-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: moorgan-frontend
+    ports:
+      - "80:80"
+    restart: unless-stopped
