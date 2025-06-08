@@ -1,0 +1,17 @@
+{
+  "poweredBy": "Powered by Microsoft Azure",
+  "heading": {
+    "beforeHighlight": "Smart Livestock Monitoring with",
+    "highlight": "AI & IoT"
+  },
+  "description": "Revolutionize your livestock management with real-time monitoring, predictive analytics, and sustainable farming practices powered by cutting-edge AI and IoT technology.",
+  "buttons": {
+    "getStarted": "Get Started",
+    "watchDemo": "Watch Demo"
+  },
+  "features": {
+    "realTimeData": "Real-time Data",
+    "securePlatform": "Secure Platform",
+    "fastInsights": "Fast Insights"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "poweredBy": "Didukung oleh Microsoft Azure",
+  "heading": {
+    "beforeHighlight": "Pemantauan Ternak Pintar dengan",
+    "highlight": "AI & IoT"
+  },
+  "description": "Revolusi manajemen ternak Anda dengan pemantauan waktu nyata, analitik prediktif, dan praktik pertanian berkelanjutan yang didukung oleh teknologi AI dan IoT mutakhir.",
+  "buttons": {
+    "getStarted": "Mulai Sekarang",
+    "watchDemo": "Tonton Demo"
+  },
+  "features": {
+    "realTimeData": "Data Waktu Nyata",
+    "securePlatform": "Platform Aman",
+    "fastInsights": "Wawasan Cepat"
+  }
+}

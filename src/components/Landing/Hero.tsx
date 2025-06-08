@@ -1,9 +1,15 @@
-import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
-import { ChevronRight, BarChart2, Shield, Zap } from "lucide-react"
-import { AnimatedDiv, AnimatedHeading, AnimatedSection } from "../ui-components"
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { ChevronRight, BarChart2, Shield, Zap } from "lucide-react";
+import {
+  AnimatedDiv,
+  AnimatedHeading,
+  AnimatedSection,
+} from "../ui-components";
+import { useTranslation } from "react-i18next";
 
 export default function Hero() {
+  const { t } = useTranslation();
   return (
     <AnimatedSection
       id="home"
@@ -16,7 +22,7 @@ export default function Hero() {
               className="inline-block px-4 py-2 bg-[#E1EEBC] rounded-full text-[#328E6E] font-medium mb-6"
               direction="down"
             >
-              Powered by Microsoft Azure
+              {t("poweredBy")}
             </AnimatedDiv>
 
             <AnimatedHeading
@@ -24,42 +30,59 @@ export default function Hero() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
               direction="up"
             >
-              Smart Livestock Monitoring with{" "}
+              {t("heading.beforeHighlight")}{" "}
               <span className="bg-gradient-to-r from-[#328E6E] to-[#90C67C] bg-clip-text text-transparent">
-                AI & IoT
+                {t("heading.highlight")}
               </span>
             </AnimatedHeading>
 
-            <AnimatedDiv className="text-lg text-gray-600 mb-8" direction="up" delay={0.1}>
-              Revolutionize your livestock management with real-time monitoring, predictive analytics, and sustainable
-              farming practices powered by cutting-edge AI and IoT technology.
+            <AnimatedDiv
+              className="text-lg text-gray-600 mb-8"
+              direction="up"
+              delay={0.1}
+            >
+              {t("description")}
             </AnimatedDiv>
 
-            <AnimatedDiv className="flex flex-wrap gap-4" direction="up" delay={0.2}>
+            <AnimatedDiv
+              className="flex flex-wrap gap-4"
+              direction="up"
+              delay={0.2}
+            >
               <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white px-6 py-6 rounded-lg text-lg">
-                Get Started
+                {t("buttons.getStarted")}
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
               <Button
                 variant="outline"
                 className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white px-6 py-6 rounded-lg text-lg"
               >
-                Watch Demo
+                {t("buttons.watchDemo")}
               </Button>
             </AnimatedDiv>
 
-            <AnimatedDiv className="mt-12 grid grid-cols-3 gap-4" direction="up" delay={0.3}>
+            <AnimatedDiv
+              className="mt-12 grid grid-cols-3 gap-4"
+              direction="up"
+              delay={0.3}
+            >
               <div className="flex items-center gap-2">
                 <BarChart2 className="text-[#328E6E]" />
-                <span className="text-sm font-medium">Real-time Data</span>
+                <span className="text-sm font-medium">
+                  {t("features.realTimeData")}
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <Shield className="text-[#328E6E]" />
-                <span className="text-sm font-medium">Secure Platform</span>
+                <span className="text-sm font-medium">
+                  {t("features.securePlatform")}
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <Zap className="text-[#328E6E]" />
-                <span className="text-sm font-medium">Fast Insights</span>
+                <span className="text-sm font-medium">
+                  {t("features.fastInsights")}
+                </span>
               </div>
             </AnimatedDiv>
           </div>
@@ -90,5 +113,5 @@ export default function Hero() {
         </div>
       </div>
     </AnimatedSection>
-  )
+  );
 }
