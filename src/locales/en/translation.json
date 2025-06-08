@@ -1,4 +1,7 @@
 {
+
+  
+
   "poweredBy": "Powered by Microsoft Azure",
   "heading": {
     "beforeHighlight": "Smart Livestock Monitoring with",
@@ -14,4 +17,5 @@
     "securePlatform": "Secure Platform",
     "fastInsights": "Fast Insights"
   }
+
 }

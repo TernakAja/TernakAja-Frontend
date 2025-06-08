@@ -16,6 +16,15 @@ const navas = [
   { name: "All Features", href: "/features" },
 ];
 
+const navasID = [
+  { name: "Halaman Utama", href: "/" },
+  { name: "Tentang Kita", href: "/team" },
+  { name: "Artikel", href: "/article" },
+  { name: "Forum", href: "/forum" },
+  { name: "Marketplace", href: "/marketplace" },
+  { name: "Semua Fitur", href: "/features" },
+];
+
 export default function Navbar() {
   const { i18n } = useTranslation();
   const [language, setLanguage] = useState("en"); // Default to English
@@ -72,15 +81,29 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          {navas.map((a) => (
-            <a
-              key={a.name}
-              href={a.href}
-              className="text-gray-700 hover:text-[#328E6E] transition-colors font-medium"
-            >
-              {a.name}
-            </a>
-          ))}
+
+          {language === "id" ? (
+            navasID.map((a) => (
+              <a
+                key={a.name}
+                href={a.href}
+                className="text-gray-700 hover:text-[#328E6E] transition-colors font-medium"
+              >
+                {a.name}
+              </a>
+            ))
+          ) : (
+            navas.map((a) => (
+              <a
+                key={a.name}
+                href={a.href}
+                className="text-gray-700 hover:text-[#328E6E] transition-colors font-medium"
+              >
+                {a.name}
+              </a>
+            )))
+          }
+
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
@@ -116,13 +139,13 @@ export default function Navbar() {
                 className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white"
                 onClick={() => navigate("/login")}
               >
-                Login
+                {language === "id" ? "Masuk" : "Login"}
               </Button>
               <Button
                 className="bg-[#328E6E] hover:bg-[#67AE6E] text-white"
                 onClick={() => navigate("/register")}
               >
-                Sign In
+                {language === "id" ? "Daftar" : "Sign In"}
               </Button>
             </div>
           )}
