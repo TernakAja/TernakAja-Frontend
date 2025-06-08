@@ -1,6 +1,7 @@
-// import { Leaf } from "lucide-react"
-import HealthcareArticles from "@/components/Article/healthcare-articles"
-import FeaturedHealthTip from "@/components/Article/featured-health-tip"
+'use client';
+
+import HealthcareArticles from "@/components/Article/healthcare-articles";
+import FeaturedHealthTip from "@/components/Article/featured-health-tip";
 
 export default function ArticlePage() {
   return (
@@ -37,5 +38,5 @@ export default function ArticlePage() {
         </section>
       </main>
     </div>
-  )
+  );
 }
