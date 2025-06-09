@@ -944,5 +944,21 @@
         }
       }
     }
+  },
+  "footer":{
+    "title": "Revolutionizing livestock monitoring with AI and IoT technology built on Microsoft Azure.",
+    "quick": {
+      "title": "Quick As",
+      "home": "Home",
+      "about": "About",
+      "article": "Article",
+      "forum": "Community Forum",
+      "marketplace": "Marketplace"
+    },
+    "contact": "Contact Us",
+    "subscribe": {
+      "title": "Subscribe",
+      "description": "Stay updated with our latest news and updates."
+    }
   }
 }

@@ -937,5 +937,21 @@
         }
       }
     }
+  },
+  "footer":{
+    "title": "Merevolusi pemantauan ternak dengan teknologi AI dan IoT yang dibangun di Microsoft Azure.",
+    "quick": {
+      "title": "Panduan",
+      "home": "Halaman Utama",
+      "about": "Tentang Kami",
+      "article": "Artikel",
+      "forum": "Forum",
+      "marketplace": "Marketplace"
+    },
+    "contact": "Kontak Kami",
+    "subscribe": {
+      "title": "Langganan",
+      "description": "Tetap ikuti berita dan pembaruan terkini kami."
+    }
   }
 }

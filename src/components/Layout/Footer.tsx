@@ -1,8 +1,12 @@
 import { Facebook, Twitter, Instagram, Mail, Phone, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-[#328E6E] text-white">
       <div className="container mx-auto px-4 py-16">
@@ -10,7 +14,9 @@ export default function Footer() {
           <div>
             <h3 className="text-2xl font-bold mb-4">Moorgan</h3>
             <p className="mb-4 text-[#E1EEBC]">
-              Revolutionizing livestock monitoring with AI and IoT technology built on Microsoft Azure.
+              {t(
+                "footer.title"
+              )}
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-white hover:text-[#E1EEBC] transition-colors">
@@ -26,38 +32,52 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick as</h4>
+            <h4 className="text-lg font-semibold mb-4">{t(
+                "footer.quick.title"
+              )}</h4>
             <ul className="space-y-2">
               <li>
                 <a href="/" className="text-[#E1EEBC] hover:text-white transition-colors">
-                  Home
+                  {t(
+                "footer.quick.home"
+              )}
                 </a>
               </li>
               <li>
                 <a href="/about" className="text-[#E1EEBC] hover:text-white transition-colors">
-                  About Us
+                  {t(
+                "footer.quick.about"
+              )}
                 </a>
               </li>
               <li>
                 <a href="/article" className="text-[#E1EEBC] hover:text-white transition-colors">
-                  Article
+                  {t(
+                "footer.quick.article"
+              )}
                 </a>
               </li>
               <li>
                 <a href="/forum" className="text-[#E1EEBC] hover:text-white transition-colors">
-                  Community Forum
+                  {t(
+                "footer.quick.forum"
+              )}
                 </a>
               </li>
               <li>
                 <a href="/marketplace" className="text-[#E1EEBC] hover:text-white transition-colors">
-                  Marketplace
+                  {t(
+                "footer.quick.marketplace"
+              )}
                 </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
+            <h4 className="text-lg font-semibold mb-4">{t(
+                "footer.contact"
+              )}</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <MapPin size={20} className="mt-1 flex-shrink-0" />
@@ -75,8 +95,12 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Subscribe</h4>
-            <p className="mb-4 text-[#E1EEBC]">Stay updated with our latest news and updates.</p>
+            <h4 className="text-lg font-semibold mb-4">{t(
+                "footer.subscribe.title"
+              )}</h4>
+            <p className="mb-4 text-[#E1EEBC]">{t(
+                "footer.subscribe.description"
+              )}</p>
             <div className="flex flex-col gap-2">
               <Input
                 type="email"

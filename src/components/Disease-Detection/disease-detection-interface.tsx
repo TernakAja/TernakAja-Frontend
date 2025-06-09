@@ -418,7 +418,7 @@ export default function DiseaseDetectionInterface() {
                                   </p>
                                   <p>
                                     {t(
-                                      "resultsArea.diseaseDetected.description"
+                                      "detection.resultsArea.diseaseDetected.description"
                                     )}
                                   </p>
                                 </div>
@@ -434,7 +434,7 @@ export default function DiseaseDetectionInterface() {
                                   </p>
                                   <p>
                                     {t(
-                                      "resultsArea.noDiseaseDetected.description"
+                                      "detection.resultsArea.noDiseaseDetected.description"
                                     )}
                                   </p>
                                 </div>
