@@ -435,7 +435,7 @@ export default function LivestockDetail() {
                       </CardHeader>
                       <CardContent>
                         <div className="text-2xl font-bold">
-                          {toPercentage(
+                          {roundToTwoDecimals(
                             livestock.sensor_data.sp02
                           )}%
                         </div>

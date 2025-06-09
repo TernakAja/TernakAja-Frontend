@@ -39,7 +39,7 @@ export default function LastHourMetrics({
   };
 
   const sp02 = {
-    average: Math.round((sp02Average ?? 0) * 100),
+    average: Math.round((sp02Average ?? 0) * 100) / 100,
     min: 95,
     max: 100,
     unit: "%",
