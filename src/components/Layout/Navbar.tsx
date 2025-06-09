@@ -26,8 +26,11 @@ const navasID = [
 ];
 
 export default function Navbar() {
+
+  const nowLanguage = localStorage.getItem("language")
+
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useState("en"); // Default to English
+  const [language, setLanguage] = useState(nowLanguage === "en" ? "id" : "en") // Default to English
 
   const toggleLanguage = () => {
     const newLanguage = language === "en" ? "id" : "en";

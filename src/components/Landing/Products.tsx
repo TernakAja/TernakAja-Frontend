@@ -7,7 +7,8 @@ import { useTranslation } from "react-i18next";
 export default function Products() {
   const { t } = useTranslation();
 
-  const products = t("landing.products.items", { returnObjects: true }) as {
+  const rawProducts = t("landing.products.items", { returnObjects: true });
+  const products = Object.values(rawProducts) as {
     name: string;
     description: string;
     features: string[];
@@ -15,8 +16,11 @@ export default function Products() {
   }[];
 
   return (
+
     <AnimatedSection id="products" className="py-20 bg-white">
+
       <div className="container mx-auto px-4">
+
         <SectionHeading
           title={t("landing.products.heading")}
           subtitle={t("landing.products.subheading")}
@@ -74,7 +78,7 @@ export default function Products() {
                     Key Features:
                   </h4>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    {product.features.map((feature, idx) => (
+                    {Object.values(product.features).map((feature, idx) => (
                       <li key={idx} className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-[#90C67C]"></div>
                         <span>{feature}</span>

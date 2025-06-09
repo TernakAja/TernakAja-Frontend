@@ -3,18 +3,938 @@
     "hero": {
       "poweredBy": "Didukung oleh Microsoft Azure",
       "heading": {
-        "beforeHighlight": "Pemantauan Ternak Pintar dengan",
+        "beforeHighlight": "Pemantauan Ternak Cerdas dengan",
         "highlight": "AI & IoT"
       },
-      "description": "Revolusi manajemen ternak Anda dengan pemantauan waktu nyata, analitik prediktif, dan praktik pertanian berkelanjutan yang didukung oleh teknologi AI dan IoT mutakhir.",
+      "description": "Merevolusi manajemen ternak Anda dengan pemantauan real-time, analitik prediktif, dan praktik pertanian berkelanjutan yang didukung oleh teknologi AI dan IoT mutakhir.",
       "buttons": {
-        "getStarted": "Mulai Sekarang",
+        "getStarted": "Memulai",
         "watchDemo": "Tonton Demo"
       },
       "features": {
-        "realTimeData": "Data Waktu Nyata",
+        "realTimeData": "Data waktu nyata",
         "securePlatform": "Platform Aman",
         "fastInsights": "Wawasan Cepat"
+      }
+    },
+    "about": {
+      "title": "Tentang Moorgan",
+      "subtitle": "Mengubah pengelolaan ternak melalui teknologi inovatif dan praktik berkelanjutan",
+      "imageAlt": "Tentang Moorgan",
+      "yearsExperience": "Bertahun-tahun penelitian dan pengembangan dalam pemantauan ternak AI",
+      "sectionTitle": "Masa Depan Pengelolaan Peternakan",
+      "paragraph1": "Moorgan menggabungkan algoritme AI mutakhir dengan sensor IoT untuk menciptakan sistem pemantauan ternak komprehensif yang membantu peternak mengoptimalkan operasi mereka, meningkatkan kesejahteraan hewan, dan meningkatkan produktivitas sekaligus mengurangi dampak lingkungan.",
+      "paragraph2": "Dibangun di atas infrastruktur cloud Microsoft Azure yang kuat, platform kami memberikan wawasan real-time, analitik prediktif, dan rekomendasi yang dapat ditindaklanjuti untuk mengubah pertanian tradisional menjadi pertanian yang cerdas dan berkelanjutan.",
+      "benefits": {
+        "healthMonitoring": "Pemantauan kesehatan ternak secara real-time",
+        "diseaseDetection": "Deteksi dan pencegahan penyakit dini",
+        "optimizedFeeding": "Jadwal pemberian makan dan nutrisi yang dioptimalkan",
+        "reducedCosts": "Mengurangi biaya operasional dan penggunaan sumber daya",
+        "animalWelfare": "Peningkatan kesejahteraan dan produktivitas hewan",
+        "dataDriven": "Pengambilan keputusan berbasis data untuk petani"
+      }
+    },
+    "statistics": {
+      "title": "Dampak Kami",
+      "subtitle": "Mengubah pengelolaan peternakan dengan hasil yang terukur",
+      "stats": {
+        "reductionDisease": "Pengurangan Wabah Penyakit",
+        "livestockMonitored": "Ternak Dipantau",
+        "increaseProductivity": "Peningkatan Produktivitas Pertanian",
+        "reductionWater": "Pengurangan Penggunaan Air"
+      }
+    },
+    "vision": {
+      "heading": "Visi & Misi Kami",
+      "subheading": "Sejalan dengan Tujuan Pembangunan Berkelanjutan",
+      "visionTitle": "Penglihatan",
+      "visionText": "Merevolusi pengelolaan ternak secara global melalui teknologi inovatif, menciptakan dunia di mana pertanian efisien, berkelanjutan, dan manusiawi, berkontribusi pada ketahanan pangan sekaligus meminimalkan dampak lingkungan.",
+      "missionTitle": "Tugas",
+      "missionText": "Misi kami adalah memberdayakan peternak dengan solusi AI dan IoT mutakhir yang mengoptimalkan kesehatan, produktivitas, dan kesejahteraan ternak sambil mempromosikan praktik pertanian berkelanjutan yang selaras dengan tujuan pembangunan global.",
+      "imageAlt": "Pertanian Berkelanjutan",
+      "sdgHeading": "Mendukung Tujuan Pembangunan Berkelanjutan",
+      "sdg": {
+        "2": {
+          "title": "Nol Kelaparan",
+          "description": "Meningkatkan produktivitas ternak untuk meningkatkan ketahanan pangan"
+        },
+        "12": {
+          "title": "Konsumsi yang Bertanggung Jawab",
+          "description": "Mengoptimalkan penggunaan sumber daya dalam pengelolaan ternak"
+        },
+        "13": {
+          "title": "Aksi Iklim",
+          "description": "Mengurangi dampak lingkungan dari peternakan"
+        },
+        "15": {
+          "title": "Kehidupan di Darat",
+          "description": "Mempromosikan praktik penggunaan lahan berkelanjutan"
+        }
+      }
+    },
+    "features": {
+      "heading": "Fitur Kuat",
+      "subheading": "Alat komprehensif untuk merevolusi manajemen ternak Anda",
+      "healthMonitoring": {
+        "title": "Pemantauan Kesehatan",
+        "description": "Pelacakan tanda-tanda vital dan indikator kesehatan secara real-time untuk deteksi dini penyakit"
+      },
+      "predictiveAnalytics": {
+        "title": "Analisis Prediktif",
+        "description": "Prediksi bertenaga AI untuk masalah kesehatan, produktivitas, dan pengoptimalan sumber daya"
+      },
+      "mobileAccessibility": {
+        "title": "Aksesibilitas Seluler",
+        "description": "Pantau ternak Anda dari mana saja dengan aplikasi seluler kami yang intuitif"
+      },
+      "dataManagement": {
+        "title": "Manajemen Data",
+        "description": "Pengumpulan dan penyimpanan data yang komprehensif untuk analisis dan wawasan jangka panjang"
+      },
+      "cloudIntegration": {
+        "title": "Integrasi Cloud",
+        "description": "Integrasi tanpa batas dengan Microsoft Azure untuk performa yang andal dan dapat diskalakan"
+      },
+      "securityPrivacy": {
+        "title": "Keamanan & Privasi",
+        "description": "Protokol keamanan tingkat perusahaan untuk melindungi data pertanian Anda yang berharga"
+      },
+      "performanceMetrics": {
+        "title": "Metrik Performa",
+        "description": "Laporan dan dasbor terperinci untuk melacak kinerja ternak dan efisiensi peternakan"
+      },
+      "automatedAlerts": {
+        "title": "Peringatan Otomatis",
+        "description": "Pemberitahuan instan untuk peristiwa penting yang memerlukan perhatian segera"
+      },
+      "azure": {
+        "title": "Didukung oleh Microsoft Azure",
+        "description": "Platform kami memanfaatkan kekuatan infrastruktur cloud Microsoft Azure, IoT Hub, dan layanan AI untuk menghadirkan solusi yang kuat, dapat diskalakan, dan aman untuk pemantauan dan pengelolaan ternak.",
+        "imageAlt": "Integrasi Microsoft Azure"
+      }
+    },
+    "marquee": {
+      "heading": "Didukung oleh Teknologi Mutakhir"
+    },
+    "products": {
+      "heading": "Produk kami",
+      "subheading": "Solusi komprehensif untuk pengelolaan ternak modern",
+      "featuresTitle": "Fitur utama:",
+      "learnMore": "Pelajari lebih lanjut",
+      "items": {
+        "0": {
+          "name": "Rasa Moorgan",
+          "description": "Sensor dan perangkat yang dapat dikenakan IoT untuk pemantauan ternak secara real-time",
+          "features": {
+            "0": "Pelacakan kesehatan",
+            "1": "Pemantauan lokasi",
+            "2": "Analisis perilaku",
+            "3": "Daya tahan baterai yang lama"
+          },
+          "image": "/images/Products/Moorgan-IoT-Schema.png"
+        },
+        "1": {
+          "name": "Wawasan Moorgan",
+          "description": "Platform analitik bertenaga AI untuk pengambilan keputusan berbasis data",
+          "features": {
+            "0": "Pemberitahuan kesehatan prediktif",
+            "1": "Metrik performa",
+            "2": "Laporan khusus",
+            "3": "Dasbor seluler"
+          },
+          "image": "/images/Products/mobile.png"
+        },
+        "2": {
+          "name": "Moorgan Connect",
+          "description": "Sistem manajemen pertanian lengkap dengan IoT dan AI terintegrasi",
+          "features": {
+            "0": "Solusi menyeluruh",
+            "1": "Integrasi cloud",
+            "2": "Analitik lanjutan",
+            "3": "Dukungan teknis"
+          },
+          "image": "/images/Products/dashboard-overview.png"
+        }
+      }
+    },
+    "developers": {
+      "heading": "Temui Tim Kami",
+      "subheading": "Para ahli di balik teknologi inovatif Mororgan",
+      "button": {
+        "viewDetails": "Lihat Detail Tim"
+      },
+      "team": {
+        "bio": "Memantau Ternak Anda"
+      }
+    },
+    "testimonials": {
+      "heading": "Apa Kata Klien Kami",
+      "subheading": "Dengarkan dari petani dan profesional pertanian yang menggunakan Moorgan",
+      "john": {
+        "role": "Pemilik Peternakan Sapi Perah",
+        "content": "Moorgan telah mengubah cara kami mengelola peternakan sapi perah kami. Pemantauan kesehatan real-time telah mengurangi wabah penyakit hingga 70% dan meningkatkan produktivitas kami secara keseluruhan."
+      },
+      "maria": {
+        "role": "Peneliti Peternakan",
+        "content": "Sebagai peneliti, saya terkesan dengan kualitas dan keakuratan data yang disediakan oleh Moorgan. Ini merevolusi cara kita memahami perilaku ternak dan pola kesehatan."
+      },
+      "robert": {
+        "role": "Konsultan Pertanian",
+        "content": "Saya telah merekomendasikan Moorgan kepada lusinan klien saya, dan umpan baliknya sangat positif. ROI jelas hanya dalam beberapa bulan setelah implementasi."
+      }
+    },
+    "faq": {
+      "heading": "Pertanyaan yang Sering Diajukan",
+      "subheading": "Temukan jawaban atas pertanyaan umum tentang Moorgan",
+      "q1": {
+        "question": "Bagaimana cara kerja sistem pemantauan ternak Moorgan?",
+        "answer": "Moorgan menggunakan kombinasi sensor IoT, perangkat yang dapat dikenakan, dan monitor lingkungan untuk mengumpulkan data real-time tentang ternak Anda. Data ini diproses melalui algoritme AI kami di Microsoft Azure untuk memberikan wawasan tentang kesehatan, perilaku, dan produktivitas."
+      },
+      "q2": {
+        "question": "Jenis perangkat keras apa yang diperlukan untuk implementasi?",
+        "answer": "Sistem kami mencakup sensor yang dapat dikenakan untuk hewan, stasiun pemantauan lingkungan, dan hub pusat yang terhubung ke cloud. Tim kami menangani proses pemasangan dan penyiapan untuk memastikan semuanya bekerja dengan lancar dengan infrastruktur pertanian Anda yang ada."
+      },
+      "q3": {
+        "question": "Berapa lama waktu yang dibutuhkan untuk menerapkan Moorgan di pertanian saya?",
+        "answer": "Waktu implementasi bervariasi berdasarkan ukuran dan kompleksitas pertanian, tetapi biasanya membutuhkan waktu 2-4 minggu dari penilaian awal hingga penyebaran penuh. Tim kami bekerja sama dengan Anda selama proses untuk meminimalkan gangguan pada operasi Anda."
+      },
+      "q4": {
+        "question": "Bisakah Moorgan berintegrasi dengan perangkat lunak manajemen pertanian saya yang ada?",
+        "answer": "Ya, Moorgan dirancang dengan API terbuka yang memungkinkan integrasi dengan sistem manajemen pertanian paling populer. Kami juga menawarkan layanan integrasi khusus untuk sistem berpemilik atau lama."
+      },
+      "q5": {
+        "question": "ROI seperti apa yang dapat saya harapkan dari penerapan Moorgan?",
+        "answer": "Sebagian besar peternakan melihat ROI dalam waktu 6-12 bulan melalui pengurangan wabah penyakit, pemberian makan yang dioptimalkan, peningkatan produktivitas, dan pengurangan biaya tenaga kerja. Tim kami dapat memberikan analisis ROI yang disesuaikan berdasarkan operasi spesifik Anda."
+      },
+      "q6": {
+        "question": "Apakah data saya aman dan pribadi?",
+        "answer": "Sama sekali. Moorgan dibangun di atas infrastruktur cloud aman Microsoft Azure dengan enkripsi tingkat perusahaan dan kontrol privasi. Anda mempertahankan kepemilikan data Anda, dan kami mematuhi peraturan perlindungan data yang ketat."
+      },
+      "footer": {
+        "text": "Masih punya pertanyaan? Hubungi tim dukungan kami di"
+      }
+    },
+    "cta": {
+      "title": "Siap Mengubah Manajemen Ternak Anda?",
+      "subtitle": "Bergabunglah dengan ratusan petani yang berpikiran maju yang sudah mendapat manfaat dari solusi AI dan IoT inovatif Moorgan.",
+      "benefit1": "Konsultasi gratis dan penilaian pertanian",
+      "benefit2": "Rencana implementasi yang disesuaikan",
+      "benefit3": "Masa uji coba gratis 30 hari",
+      "benefit4": "Tim dukungan khusus",
+      "farmCount": "Peternakan sudah menggunakan Moorgan",
+      "form": {
+        "title": "Mulai Hari Ini",
+        "description": "Isi formulir di bawah ini dan tim kami akan menghubungi Anda dalam waktu 24 jam untuk mendiskusikan bagaimana Moorgan dapat menguntungkan pertanian Anda.",
+        "firstName": "Nama depan",
+        "lastName": "Nama Belakang",
+        "email": "Email",
+        "phone": "Ponsel",
+        "farmSize": "Ukuran Peternakan (jumlah hewan)",
+        "button": "Minta Demo"
+      }
+    }
+  },
+  "chatbot": {
+    "welcomeMessage": "Halo! Saya Asisten Moorgan. Saya dapat membantu Anda dengan pemantauan ternak, wawasan kesehatan, dan rekomendasi manajemen. Bagaimana saya dapat membantu Anda hari ini?",
+    "botResponse": {
+      "noAnswer": "Saya tidak bisa menjawab pertanyaan ini ..."
+    },
+    "error": {
+      "fetchResponse": "Gagal mengambil respons dari chatbot:",
+      "backendServer": "Ada kesalahan di server backend."
+    },
+    "chatClearedMessage": "Obrolan dihapus. Bagaimana saya bisa membantu Anda hari ini?",
+    "header": {
+      "title": "Asisten AI MooBot",
+      "subtitle": "Pendamping manajemen ternak cerdas Anda",
+      "settingsButton": "Pengaturan",
+      "newChatButton": "Obrolan Baru"
+    },
+    "chat": {
+      "youLabel": "Kamu",
+      "moorganAssistantLabel": "Asisten Moorgan"
+    },
+    "suggestedQuestions": {
+      "title": "Pertanyaan yang disarankan",
+      "healthMonitoring": "Bagaimana cara memantau kesehatan ternak saya?",
+      "idealTemperature": "Berapa suhu ideal untuk ternak?",
+      "setupCollar": "Bagaimana cara memasang kerah ternak baru?",
+      "stressSigns": "Apa tanda-tanda stres pada domba?",
+      "interpretData": "Bagaimana cara menafsirkan data detak jantung?",
+      "winterFeeding": "Praktik terbaik untuk memberi makan selama musim dingin"
+    },
+    "input": {
+      "placeholder": "Ketik pesan Anda di sini..."
+    },
+    "footer": {
+      "disclaimer": "Moorgan AI memberikan informasi umum dan bukan pengganti saran dokter hewan profesional."
+    },
+    "knowledgeBase": {
+      "title": "Basis Pengetahuan",
+      "tabs": {
+        "guides": "Panduan",
+        "faq": "FAQ",
+        "docs": "Docs"
+      },
+      "guides": {
+        "gettingStarted": {
+          "title": "Persiapan",
+          "description": "Panduan lengkap untuk menyiapkan sistem pemantauan ternak pertama Anda"
+        },
+        "healthMonitoring": {
+          "title": "Pemantauan Kesehatan",
+          "description": "Memahami tanda-tanda vital dan indikator kesehatan"
+        },
+        "seasonalCare": {
+          "title": "Perawatan Musiman",
+          "description": "Mengadaptasi pengelolaan ternak dengan perubahan musiman"
+        },
+        "deviceMaintenance": {
+          "title": "Pemeliharaan Perangkat",
+          "description": "Menjaga perangkat Moorgan Anda dalam kondisi optimal"
+        }
+      },
+      "faq": {
+        "chargeCollar": {
+          "question": "Seberapa sering saya harus mengisi kerah?",
+          "answer": "Kerah moorgan biasanya bertahan 2-3 minggu dengan sekali pengisian daya, tergantung pada penggunaan."
+        },
+        "collarRange": {
+          "question": "Berapa jangkauan kerahnya?",
+          "answer": "Jangkauan standar hingga 5 mil di medan terbuka, lebih sedikit di area dengan rintangan."
+        },
+        "collarWaterproof": {
+          "question": "Apakah kerahnya tahan air?",
+          "answer": "Ya, kerah Moorgan memiliki peringkat IP67, membuatnya sepenuhnya tahan air hingga 1 meter air."
+        },
+        "healthAccuracy": {
+          "question": "Seberapa akurat pemantauan kesehatan?",
+          "answer": "Sensor kami 95-98% akurat dibandingkan dengan peralatan hewan dalam pengujian terkontrol."
+        }
+      },
+      "docs": {
+        "technicalSpecs": {
+          "title": "Spesifikasi teknis",
+          "size": "PDF • 2.4 MB"
+        },
+        "apiDoc": {
+          "title": "Dokumentasi API",
+          "size": "PDF • 3.7 MB"
+        },
+        "userManual": {
+          "title": "Panduan pengguna",
+          "size": "PDF • 5.1 MB"
+        }
+      }
+    }
+  },
+  "detection": {
+    "hero": {
+      "title": "Deteksi Penyakit Ternak",
+      "subtitle": "Unggah gambar ternak Anda untuk mendeteksi potensi penyakit menggunakan teknologi AI canggih kami"
+    },
+    "tabs": {
+      "uploadDetect": "Unggah & Deteksi",
+      "detectionHistory": "Riwayat Deteksi"
+    },
+    "uploadArea": {
+      "title": "Unggah Gambar",
+      "dragDropText": "Seret dan lepas gambar Anda di sini",
+      "orText": "atau",
+      "browseFilesButton": "Jelajahi File",
+      "supportedFormats": "Format yang didukung: JPG, PNG, WEBP (Maks 10MB)",
+      "uploadedImageAlt": "Gambar ternak yang diunggah",
+      "analyzeImageButton": "Menganalisis Gambar",
+      "analyzingButton": "Menganalisis..."
+    },
+    "upload": {
+      "errors": {
+        "invalidFileType": "Jenis file tidak valid. Silakan unggah gambar JPEG, PNG, atau WEBP.",
+        "fileSizeExceeded": "Ukuran file melebihi batas 10MB.",
+        "readFile": "Kesalahan membaca file."
+      }
+    },
+    "analysis": {
+      "errors": {
+        "noImageSelected": "Tidak ada file gambar yang dipilih.",
+        "duringAnalysis": "Kesalahan selama analisis:"
+      }
+    },
+    "api": {
+      "errors": {
+        "apiError": "Kesalahan API:",
+        "requestFailed": "Permintaan API gagal"
+      }
+    },
+    "resultsArea": {
+      "title": "Hasil Deteksi",
+      "analyzingMessage": "Menganalisis citra Anda...",
+      "uploadImageMessage": "Mengupload gambar untuk melihat hasil deteksi penyakit",
+      "diseaseDetected": {
+        "title": "Penyakit Terdeteksi",
+        "description": "Sistem kami telah mendeteksi potensi penyakit pada citra ternak Anda."
+      },
+      "noDiseaseDetected": {
+        "title": "Tidak Ada Penyakit yang Terdeteksi",
+        "description": "Injil! Tidak ada tanda-tanda penyakit yang terdeteksi pada gambar ternak Anda."
+      },
+      "detectedDisease": {
+        "title": "Penyakit yang Terdeteksi"
+      },
+      "probabilityText": "% Probabilitas",
+      "commonSymptoms": {
+        "title": "Gejala Umum"
+      },
+      "recommendations": {
+        "title": "Rekomendasi"
+      },
+      "noteBold": "Nota",
+      "diseaseDisclaimer": "Ini adalah diagnosis yang dibantu AI dan harus dikonfirmasi oleh dokter hewan. Silakan berkonsultasi dengan profesional untuk perawatan yang tepat.",
+      "healthyLivestock": {
+        "title": "Ternak Sehat"
+      },
+      "healthyDisclaimer": "Pemeriksaan dokter hewan secara teratur tetap direkomendasikan bahkan ketika tidak ada penyakit yang terdeteksi oleh sistem kita."
+    },
+    "diseaseDetails": {
+      "fmd": {
+        "name": "Penyakit Mulut dan Kuku (PMK)",
+        "description": "Penyakit Mulut dan Kuku adalah penyakit virus yang sangat menular yang menyerang hewan berkuku belah seperti sapi, domba, dan kambing.",
+        "symptoms": {
+          "salivation": "Air liur yang berlebihan",
+          "lameness": "Kepincangan",
+          "fever": "Demam",
+          "blisters": "Lepuh dan luka di mulut dan kaki",
+          "reducedMilk": "Mengurangi produksi susu"
+        },
+        "recommendations": {
+          "quarantine": "Segera karantina hewan yang terkena dampak",
+          "contactVet": "Hubungi dokter hewan untuk diagnosis dan pengobatan",
+          "biosecurity": "Menerapkan langkah-langkah biosekuriti yang ketat",
+          "vaccinate": "Vaksinasi hewan yang rentan",
+          "disinfect": "Disinfeksi peralatan dan tempat"
+        }
+      },
+      "normal": {
+        "name": "Sehat",
+        "description": "Tidak ada tanda-tanda penyakit ternak umum yang terdeteksi dalam gambar.",
+        "recommendations": {
+          "regularMonitoring": "Lanjutkan pemantauan kesehatan rutin",
+          "nutritionHydration": "Menjaga nutrisi dan hidrasi yang tepat",
+          "vaccinationSchedule": "Ikuti jadwal vaksinasi reguler Anda",
+          "physicalExaminations": "Melakukan pemeriksaan fisik rutin",
+          "behavioralChanges": "Pantau terus setiap perubahan perilaku"
+        }
+      }
+    },
+    "howItWorks": {
+      "title": "Cara Kerjanya",
+      "step1": {
+        "title": "1. Unggah Gambar",
+        "description": "Unggah gambar ternak Anda yang jelas dari sudut mana pun yang menunjukkan hewan dengan jelas."
+      },
+      "step2": {
+        "title": "2. Analisis AI",
+        "description": "AI canggih kami menganalisis gambar untuk tanda-tanda visual penyakit ternak umum."
+      },
+      "step3": {
+        "title": "3. Dapatkan Hasil",
+        "description": "Terima analisis terperinci dengan identifikasi penyakit, gejala, dan tindakan yang direkomendasikan."
+      }
+    },
+    "historyTable": {
+      "title": "Riwayat Deteksi",
+      "headers": {
+        "image": "Citra",
+        "filename": "Filename",
+        "date": "Tanggal",
+        "result": "Hasil",
+        "actions": "Tindakan"
+      },
+      "result": {
+        "healthy": "Sehat"
+      },
+      "actions": {
+        "view": "Melihat",
+        "download": "Mengunduh"
+      },
+      "noHistory": "Tidak ada riwayat deteksi yang tersedia"
+    },
+    "tipsEducation": {
+      "title": "Tips Pencegahan Penyakit Ternak",
+      "sanitation": {
+        "title": "Sanitasi yang Tepat",
+        "description": "Bersihkan dan desinfeksi kandang hewan, peralatan makan, dan palung air secara teratur. Sanitasi yang tepat adalah garis pertahanan pertama terhadap penyebaran penyakit."
+      },
+      "vaccination": {
+        "title": "Program Vaksinasi",
+        "description": "Melaksanakan dan memelihara program vaksinasi yang komprehensif berdasarkan risiko penyakit daerah. Konsultasikan dengan dokter hewan Anda untuk jadwal yang disesuaikan."
+      },
+      "biosecurity": {
+        "title": "Langkah-langkah Biosekuriti",
+        "description": "Kontrol akses peternakan, karantina hewan baru, gunakan peralatan bersih, dan terapkan pengelolaan limbah yang tepat untuk mencegah penyebaran dan penyebaran penyakit."
+      },
+      "nutrition": {
+        "title": "Manajemen Gizi",
+        "description": "Berikan nutrisi seimbang yang disesuaikan dengan kebutuhan ternak Anda. Nutrisi yang tepat memperkuat sistem kekebalan tubuh dan meningkatkan daya tahan terhadap penyakit."
+      },
+      "monitoring": {
+        "title": "Pemantauan Rutin",
+        "description": "Amati hewan Anda setiap hari untuk perilaku atau gejala fisik yang tidak biasa. Deteksi dini sangat penting untuk pengobatan yang efektif dan mencegah penyebaran."
+      },
+      "guidance": {
+        "title": "Bimbingan Profesional",
+        "description": "Menjalin hubungan dengan dokter hewan yang berspesialisasi dalam peternakan. Pemeriksaan rutin dan saran profesional sangat penting untuk kesehatan kawanan."
+      }
+    }
+  },
+  "dashboard": {
+    "layout": {
+      "sidebar": {
+        "logoText": "Moorgan",
+        "nav": {
+          "dashboard": "Dashboard",
+          "livestock": "Ternak",
+          "healthMonitoring": "Pemantauan Kesehatan",
+          "analytics": "Analytics",
+          "activityTracking": "Pelacakan Aktivitas",
+          "feedingManagement": "Manajemen Pemberian Makan",
+          "weather": "Cuaca",
+          "reports": "Laporan",
+          "messages": "Pesan",
+          "settings": "Pengaturan"
+        },
+        "homeButton": "Rumah",
+        "logoutButton": "Keluar"
+      },
+      "user": {
+        "avatarAlt": "Avatar pengguna",
+        "role": "Manajer Pertanian"
+      },
+      "header": {
+        "searchPlaceholder": "Mencari..."
+      }
+    },
+    "overview": {
+      "dashboard": {
+        "title": "Ikhtisar Dasbor",
+        "welcomeMessage": "Selamat datang kembali! Inilah yang terjadi dengan ternak Anda hari ini.",
+        "refreshButton": "Refresh"
+      },
+      "healthMetrics": {
+        "title": "Metrik Kesehatan",
+        "description": "Tanda-tanda vital rata-rata di semua ternak",
+        "dropdown": {
+          "optionsLabel": "Pilihan",
+          "viewReport": "Lihat laporan terperinci",
+          "exportData": "Ekspor data",
+          "setAlerts": "Tetapkan pemberitahuan"
+        },
+        "noSensorData": {
+          "title": "Tidak ada data sensor",
+          "description": "Statistik sensor akan muncul di sini setelah tersedia."
+        }
+      },
+      "livestockDistribution": {
+        "title": "Distribusi Ternak",
+        "description": "Perincian berdasarkan spesies",
+        "noSpeciesData": {
+          "title": "Tidak Ada Data Spesies",
+          "description": "Saat ini tidak ada informasi jumlah spesies untuk ditampilkan."
+        }
+      },
+      "recentAlerts": {
+        "title": "Peringatan Terbaru",
+        "description": "Pemberitahuan yang memerlukan perhatian",
+        "noNotifications": {
+          "title": "Tidak Ada Pemberitahuan",
+          "description": "Anda akan melihat pemberitahuan di sini saat Anda menerimanya."
+        }
+      },
+      "quickAccess": {
+        "viewDetails": "Lihat Detail",
+        "livestockManagement": {
+          "title": "Pengelolaan Peternakan",
+          "description": "Melihat dan mengelola semua catatan ternak"
+        },
+        "healthMonitoring": {
+          "title": "Pemantauan Kesehatan",
+          "description": "Lacak tanda-tanda vital dan status kesehatan"
+        },
+        "feedingManagement": {
+          "title": "Manajemen Pemberian Makan",
+          "description": "Jadwalkan dan lacak aktivitas pemberian makan"
+        },
+        "analyticsReports": {
+          "title": "Analisis & Laporan",
+          "description": "Melihat wawasan dan membuat laporan"
+        }
+      }
+    },
+    "livestock": {
+      "list": {
+        "common": {
+          "na": "N/A"
+        },
+        "livestockList": {
+          "header": {
+            "title": "Pengelolaan Peternakan",
+            "subtitle": "Lihat dan kelola semua ternak Anda di satu tempat."
+          },
+          "addLivestockButton": "Tambahkan Ternak",
+          "statusCards": {
+            "healthy": {
+              "label": "Sehat"
+            },
+            "attention": {
+              "label": "Perlu Perhatian"
+            },
+            "unhealthy": {
+              "label": "Tidak sehat"
+            }
+          },
+          "inventory": {
+            "title": "Inventaris Ternak",
+            "description": "Kelola dan pantau catatan ternak Anda",
+            "searchPlaceholder": "Cari berdasarkan nama, tag, atau ras...",
+            "filterButton": "Saringan",
+            "filterByStatusLabel": "Filter berdasarkan Status",
+            "statusOptions": {
+              "all": "Semua",
+              "healthy": "Sehat",
+              "unhealthy": "Tidak sehat",
+              "attention": "Perlu Perhatian"
+            },
+            "exportButton": "Ekspor"
+          },
+          "tableHeaders": {
+            "id": "ID",
+            "animal": "Binatang",
+            "speciesBreed": "Spesies/Berkembang Biak",
+            "genderAge": "Jenis Kelamin/Usia",
+            "status": "Keadaan",
+            "location": "Tempat",
+            "vitalSigns": "Tanda-tanda vital",
+            "lastUpdated": "Terakhir Diperbarui"
+          },
+          "statusEnum": {
+            "healthy": "Sehat",
+            "attention": "Perlu Perhatian",
+            "unhealthy": "Tidak sehat"
+          },
+          "locationText": "Pertanian {{farmId}}",
+          "noSensorData": "Tidak ada data sensor",
+          "tableActions": {
+            "viewDetails": "Lihat Detail",
+            "editRecord": "Edit Catatan",
+            "healthHistory": "Riwayat Kesehatan",
+            "archive": "Mengarsipkan"
+          },
+          "noMatchingLivestock": "Tidak ada ternak yang cocok ditemukan.",
+          "noLivestockAdded": "Belum ada ternak yang ditambahkan. Klik 'Tambahkan Ternak' untuk memulai!"
+        }
+      },
+      "detail": {
+        "header": {
+          "title": "Detail Ternak",
+          "export": "Ekspor",
+          "edit": "Mengedit",
+          "printRecord": "Cetak Catatan",
+          "shareRecord": "Bagikan Catatan",
+          "archiveRecord": "Catatan Arsip"
+        },
+        "profile": {
+          "id": "ID: {{id}}",
+          "status": {
+            "healthy": "Sehat",
+            "attention": "Perlu Perhatian",
+            "unhealthy": "Tidak sehat"
+          },
+          "details": {
+            "species": "Jenis",
+            "breed": "Berkembang biak",
+            "birthDate": "Tanggal Lahir",
+            "age": "Umur",
+            "ageUnit": "Tahun",
+            "weight": "Berat",
+            "location": "Tempat",
+            "farm": "Pertanian {{farmId}}"
+          },
+          "lastUpdated": "Terakhir diperbarui {{time}}"
+        },
+        "tabs": {
+          "overview": "Ikhtisar",
+          "health": "Kesehatan",
+          "production": "Produksi",
+          "genetics": "Genetika"
+        },
+        "overview": {
+          "vitals": {
+            "heartRate": {
+              "title": "Detak jantung",
+              "normal": "Normal: 48-84 denyut per menit"
+            },
+            "temperature": {
+              "title": "Suhu",
+              "normal": "Normal: 38,5-39,5 °C"
+            },
+            "oxygenSaturation": {
+              "title": "Saturasi Oksigen",
+              "normal": "Normal: 95-100%"
+            }
+          },
+          "vitalSigns": {
+            "title": "Tren Tanda-Tanda Vital",
+            "description": "Data pemantauan 7 hari terakhir"
+          },
+          "noSensorData": {
+            "title": "Tidak ada data sensor",
+            "description": "Statistik sensor akan muncul di sini setelah tersedia."
+          },
+          "feedingInfo": {
+            "title": "Informasi Pemberian Makan",
+            "diet": "Diet",
+            "dietValue": "Hijauan",
+            "schedule": "Jadwal Pemberian Makan",
+            "scheduleValue": "Dua kali sehari",
+            "consumption": "Konsumsi Harian",
+            "consumptionValue": "22,6 kg/hari",
+            "waterIntake": "Asupan Air",
+            "waterIntakeValue": "25 galon/hari"
+          },
+          "notes": {
+            "title": "Catatan"
+          }
+        },
+        "health": {
+          "vaccinations": {
+            "title": "Catatan Vaksinasi",
+            "administered": "Dikelola: {{date}}",
+            "nextDue": "Jatuh tempo berikutnya: {{tanggal}}",
+            "status": "Terbaru"
+          },
+          "medicalHistory": {
+            "title": "Riwayat Medis"
+          }
+        },
+        "production": {
+          "milk": {
+            "title": "Produksi Susu",
+            "dailyAverage": "Rata-rata Harian",
+            "trend": "Tren",
+            "quality": "Kualitas"
+          },
+          "reproduction": {
+            "title": "Status Reproduksi",
+            "status": "Keadaan",
+            "breedingDate": "Tanggal Berkembang Biak",
+            "dueDate": "Tanggal jatuh tempo",
+            "previousCalvings": "Sebelumnya Melahirkan",
+            "lastCalvingDate": "Tanggal Melahirkan Terakhir"
+          }
+        },
+        "genetics": {
+          "info": {
+            "title": "Informasi Genetik",
+            "sire": "Sire",
+            "dam": "Dam",
+            "traits": "Ciri-ciri Genetik"
+          },
+          "merit": {
+            "title": "Manfaat Genetik",
+            "milkProduction": "Produksi Susu",
+            "fertility": "Kesuburan",
+            "longevity": "Umur panjang",
+            "healthTraits": "Ciri-ciri Kesehatan"
+          }
+        },
+        "upcomingEvents": {
+          "title": "Acara Mendatang",
+          "viewAll": "Lihat Semua",
+          "vaccinationDue": {
+            "title": "Vaksinasi Jatuh Tempo",
+            "date": "Januari 15, 2024",
+            "description": "Diare Virus Sapi (BVD)"
+          },
+          "expectedCalving": {
+            "title": "Melahirkan yang Diharapkan",
+            "date": "Juli 24, 2023",
+            "description": "Kehamilan ketiga"
+          },
+          "routineCheckup": {
+            "title": "Pemeriksaan Rutin",
+            "date": "Juni 10, 2023",
+            "description": "Penilaian kesehatan triwulanan"
+          }
+        },
+        "growth": {
+          "title": "Pertumbuhan & Perkembangan",
+          "viewAll": "Lihat Semua",
+          "weightProgress": {
+            "title": "Kemajuan Berat Badan",
+            "value": "{{current}} lbs (target: {{target}} lbs)"
+          },
+          "milkProduction": {
+            "title": "Produksi Susu",
+            "value": "{{current}} liter/hari (target: {{target}} liter/hari)"
+          },
+          "bcs": {
+            "title": "Skor Kondisi Tubuh",
+            "value": "{{skor}} dari 5"
+          },
+          "feedEfficiency": {
+            "title": "Efisiensi Pakan",
+            "value": "{{rasio}} (rasio susu: pakan)"
+          }
+        }
+      },
+      "add": {
+        "page": {
+          "title": "Tambahkan Ternak Baru",
+          "description": "Daftarkan hewan baru dan perangkat pemantauannya ke sistem Moorgan Anda"
+        },
+        "tabs": {
+          "device": "Informasi Perangkat",
+          "animal": "Informasi Hewan"
+        },
+        "deviceForm": {
+          "title": "Konfigurasi Perangkat",
+          "description": "Konfigurasikan perangkat Moorgan yang akan dipasang ke hewan",
+          "fields": {
+            "deviceId": {
+              "label": "ID Perangkat",
+              "placeholder": "misalnya, perangkat ternak-1",
+              "generate": "Menghasilkan",
+              "description": "Pengidentifikasi unik untuk perangkat di Azure IoT Hub"
+            },
+            "deviceType": {
+              "label": "Jenis/Model Perangkat",
+              "placeholder": "Pilih jenis perangkat",
+              "description": "Model perangkat pemantauan",
+              "options": {
+                "collarV1": "Kerah Moorgan v1.0",
+                "collarV2": "Kerah Moorgan v2.0",
+                "tagV1": "Tag Moorgan v1.0",
+                "custom": "Perangkat Kustom"
+              }
+            },
+            "firmware": {
+              "label": "Versi Firmware",
+              "placeholder": "Pilih versi firmware",
+              "description": "Versi firmware perangkat",
+              "options": {
+                "latest": "Terbaru (v2.3.1)",
+                "v2_3_0": "v2.3.0",
+                "v2_2_5": "v2.2.5",
+                "v2_1_0": "v2.1.0"
+              }
+            },
+            "wifiConfig": {
+              "label": "Konfigurasi Wi-Fi (Opsional)",
+              "ssidLabel": "Wi-Fi SSID",
+              "ssidPlaceholder": "Nama jaringan",
+              "passwordLabel": "Kata Sandi Wi-Fi",
+              "passwordPlaceholder": "Kata sandi jaringan",
+              "description": "Hanya diperlukan jika mengonfigurasi Wi-Fi dari web"
+            }
+          }
+        },
+        "animalForm": {
+          "title": "Informasi Hewan",
+          "description": "Masukkan detail tentang hewan yang akan memakai perangkat ini",
+          "fields": {
+            "name": {
+              "label": "Nama",
+              "placeholder": "Nama hewan",
+              "description": "ID nama atau tag unik hewan"
+            },
+            "species": {
+              "label": "Jenis",
+              "placeholder": "Pilih spesies",
+              "description": "Spesies hewan",
+              "options": {
+                "cow": "Sapi",
+                "goat": "Kambing",
+                "sheep": "Domba",
+                "pig": "Babi",
+                "horse": "Kuda",
+                "other": "Lain"
+              }
+            },
+            "breed": {
+              "label": "Berkembang biak",
+              "placeholder": "Jenis hewan",
+              "description": "Jenis hewan"
+            },
+            "gender": {
+              "label": "Jenis kelamin",
+              "placeholder": "Pilih jenis kelamin",
+              "description": "Jenis kelamin hewan",
+              "options": {
+                "male": "Laki-laki",
+                "female": "Perempuan"
+              }
+            },
+            "birthDate": {
+              "label": "Tanggal Lahir",
+              "description": "Penting untuk menafsirkan vital"
+            },
+            "photoUrl": {
+              "label": "URL foto",
+              "placeholder": "URL ke foto hewan (opsional)",
+              "description": "URL foto opsional untuk hewan"
+            },
+            "status": {
+              "label": "Keadaan",
+              "placeholder": "Pilih status",
+              "description": "Status kesehatan hewan saat ini",
+              "options": {
+                "healthy": "Sehat",
+                "attention": "Perlu Perhatian",
+                "critical": "Kritis"
+              }
+            },
+            "weight": {
+              "label": "Berat (kg)",
+              "placeholder": "Berat dalam kg",
+              "description": "Berat hewan dalam kilogram"
+            },
+            "height": {
+              "label": "Tinggi (cm)",
+              "placeholder": "Tinggi dalam cm",
+              "description": "Tinggi hewan dalam sentimeter"
+            },
+            "bcs": {
+              "label": "Skor Kondisi Tubuh",
+              "placeholder": "Skor (1-9)",
+              "description": "Skor kondisi tubuh (1-9)"
+            },
+            "notes": {
+              "label": "Catatan",
+              "placeholder": "Catatan tambahan (opsional)",
+              "description": "Informasi tambahan tentang hewan tersebut"
+            }
+          }
+        },
+        "buttons": {
+          "submit": "Tambahkan Ternak",
+          "submitting": "Menambahkan..."
+        },
+        "notifications": {
+          "success": "Ternak dan perangkat berhasil ditambahkan!",
+          "error": {
+            "validation": "Harap isi semua bidang yang wajib diisi dengan benar.",
+            "submission": "Gagal menambahkan ternak. Silakan coba lagi."
+          }
+        },
+        "validation": {
+          "required": "{{field}} diperlukan",
+          "numeric": {
+            "weight": "Berat harus berupa angka yang valid",
+            "height": "Tinggi harus berupa nomor yang valid",
+            "bcs": "Skor Kondisi Tubuh harus berupa angka yang valid"
+          },
+          "deviceIdFormat": "ID perangkat harus alfanumerik dengan tanda hubung"
+        }
       }
     }
   }

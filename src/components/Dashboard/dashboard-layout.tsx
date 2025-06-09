@@ -9,6 +9,7 @@ import {
   ChevronLeft,
   MilkIcon as Cow,
   FileText,
+  Globe,
   Heart,
   Home,
   LogOut,
@@ -32,6 +33,21 @@ interface DashboardLayoutProps {
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
+
+
+  const nowLanguage = localStorage.getItem("language")
+
+  const { i18n } = useTranslation();
+  const [language, setLanguage] = useState(nowLanguage === "en" ? "id" : "en") // Default to English
+
+  const toggleLanguage = () => {
+    const newLanguage = language === "en" ? "id" : "en";
+    setLanguage(newLanguage);
+    // You can also store this in localStorage to persist the language choice
+    localStorage.setItem("language", newLanguage);
+    i18n.changeLanguage(newLanguage);
+  };
+
   const { t } = useTranslation();
 
   const { logout } = useAuth();
@@ -180,6 +196,16 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               </div>
             </div>
           </div>
+
+          <Button
+            variant="ghost"
+            className="w-full justify-start mt-4 text-gray-600"
+            onClick={toggleLanguage}
+          >
+            <Globe className="h-4 w-4 mr-2" />
+            {language === "en" ? "Bahasa Indonesia" : "English"}
+          </Button>
+
           <Button
             variant="ghost"
             className="w-full justify-start mt-4 text-gray-600"
