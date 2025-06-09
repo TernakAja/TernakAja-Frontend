@@ -1,54 +1,57 @@
-import { AnimatedDiv, AnimatedSection, SectionHeading } from "../ui-components"
-import { motion } from "framer-motion"
+import { useTranslation } from "react-i18next";
+import { AnimatedDiv, AnimatedSection, SectionHeading } from "../ui-components";
+import { motion } from "framer-motion";
 
 export default function Vision() {
+  const { t } = useTranslation();
+
   const sdgGoals = [
     {
       number: 2,
-      title: "Zero Hunger",
-      description: "Improving livestock productivity to enhance food security",
+      title: t("landing.vision.sdg.2.title"),
+      description: t("landing.vision.sdg.2.description"),
       color: "#DDA63A",
     },
     {
       number: 12,
-      title: "Responsible Consumption",
-      description: "Optimizing resource usage in livestock management",
+      title: t("landing.vision.sdg.12.title"),
+      description: t("landing.vision.sdg.12.description"),
       color: "#BF8B2E",
     },
     {
       number: 13,
-      title: "Climate Action",
-      description: "Reducing environmental impact of livestock farming",
+      title: t("landing.vision.sdg.13.title"),
+      description: t("landing.vision.sdg.13.description"),
       color: "#3F7E44",
     },
     {
       number: 15,
-      title: "Life on Land",
-      description: "Promoting sustainable land use practices",
+      title: t("landing.vision.sdg.15.title"),
+      description: t("landing.vision.sdg.15.description"),
       color: "#56C02B",
     },
-  ]
+  ];
 
   return (
     <AnimatedSection id="vision" className="py-20 bg-[#E1EEBC]/30">
       <div className="container mx-auto px-4">
-        <SectionHeading title="Our Vision & Mission" subtitle="Aligned with Sustainable Development Goals" />
-
+        <SectionHeading
+          title={t("landing.vision.heading")}
+          subtitle={t("landing.vision.subheading")}
+        />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           <AnimatedDiv direction="right">
-            <h3 className="text-2xl font-bold mb-4 text-[#328E6E]">Vision</h3>
+            <h3 className="text-2xl font-bold mb-4 text-[#328E6E]">
+              {t("landing.vision.visionTitle")}
+            </h3>
             <p className="text-gray-700 mb-8">
-              To revolutionize livestock management globally through innovative technology, creating a world where
-              farming is efficient, sustainable, and humane, contributing to food security while minimizing
-              environmental impact.
+              {t("landing.vision.visionText")}
             </p>
 
-            <h3 className="text-2xl font-bold mb-4 text-[#328E6E]">Mission</h3>
-            <p className="text-gray-700">
-              Our mission is to empower farmers with cutting-edge AI and IoT solutions that optimize livestock health,
-              productivity, and welfare while promoting sustainable agricultural practices aligned with global
-              development goals.
-            </p>
+            <h3 className="text-2xl font-bold mb-4 text-[#328E6E]">
+              {t("landing.vision.missionTitle")}
+            </h3>
+            <p className="text-gray-700">{t("landing.vision.missionText")}</p>
           </AnimatedDiv>
 
           <AnimatedDiv direction="left" className="relative">
@@ -67,7 +70,9 @@ export default function Vision() {
           </AnimatedDiv>
         </div>
 
-        <h3 className="text-2xl font-bold mb-8 text-center text-[#328E6E]">Supporting Sustainable Development Goals</h3>
+        <h3 className="text-2xl font-bold mb-8 text-center text-[#328E6E]">
+          {t("landing.vision.sdgHeading")}
+        </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {sdgGoals.map((goal, index) => (
@@ -93,5 +98,5 @@ export default function Vision() {
         </div>
       </div>
     </AnimatedSection>
-  )
+  );
 }

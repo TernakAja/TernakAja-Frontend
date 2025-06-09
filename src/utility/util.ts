@@ -32,3 +32,7 @@ export function getTimeSince(dateInput: string | number | Date): string {
 export function roundToTwoDecimals(value: number): number {
   return Math.round(value * 100) / 100;
 }
+
+export function toPercentage(value: number): number {
+  return Math.round(value * 100);
+}

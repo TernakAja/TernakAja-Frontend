@@ -50,6 +50,7 @@ import LoadingScreenPage from "../../utility/LoadingScreen";
 import { getRecentAverageSensorData } from "@/services/livestockService";
 import LastHourMetrics from "./average-metrics";
 import { getTimeSince } from "@/utility/util";
+import { useTranslation } from "react-i18next";
 
 // const dailySensorStats: DailySensorStats[] = [
 //   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: "65" },
@@ -63,6 +64,7 @@ import { getTimeSince } from "@/utility/util";
 
 export default function DashboardOverview() {
   // const [, setTimeRange] = useState("7d");
+  const { t } = useTranslation();
   const [, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState<LivestockStatusCounts | undefined>({
@@ -150,10 +152,10 @@ export default function DashboardOverview() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">
-            Dashboard Overview
+            {t("dashboard.overview.dashboard.title")}
           </h1>
           <p className="text-muted-foreground">
-            Welcome back! Here's what's happening with your livestock today.
+            {t("dashboard.overview.dashboard.welcomeMessage")}
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -164,7 +166,7 @@ export default function DashboardOverview() {
             onClick={() => window.location.reload()}
           >
             <RefreshCw className="h-3.5 w-3.5" />
-            <span>Refresh</span>
+            <span>{t("dashboard.overview.dashboard.refreshButton")}</span>
           </Button>
           {/* <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -204,9 +206,11 @@ export default function DashboardOverview() {
           <Card className="h-full">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <div>
-                <CardTitle>Health Metrics</CardTitle>
+                <CardTitle>
+                  {t("dashboard.overview.healthMetrics.title")}
+                </CardTitle>
                 <CardDescription>
-                  Average vital signs across all livestock
+                  {t("dashboard.overview.healthMetrics.description")}
                 </CardDescription>
               </div>
               <DropdownMenu>
@@ -216,11 +220,21 @@ export default function DashboardOverview() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Options</DropdownMenuLabel>
+                  <DropdownMenuLabel>
+                    {t(
+                      "dashboard.overview.healthMetrics.dropdown.optionsLabel"
+                    )}
+                  </DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>View detailed report</DropdownMenuItem>
-                  <DropdownMenuItem>Export data</DropdownMenuItem>
-                  <DropdownMenuItem>Set alerts</DropdownMenuItem>
+                  <DropdownMenuItem>
+                    {t("dashboard.overview.healthMetrics.dropdown.viewReport")}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    {t("dashboard.overview.healthMetrics.dropdown.exportData")}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    {t("dashboard.overview.healthMetrics.dropdown.setAlerts")}
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </CardHeader>
@@ -231,9 +245,13 @@ export default function DashboardOverview() {
                 ) : (
                   <div className="h-[300px] flex flex-col items-center justify-center text-center text-gray-500 p-8">
                     <Activity className="h-12 w-12 mb-3 text-[#328E6E]" />
-                    <p className="text-xl font-semibold mb-1">No Sensor Data</p>
+                    <p className="text-xl font-semibold mb-1">
+                      {t("dashboard.overview.healthMetrics.noSensorData.title")}
+                    </p>
                     <p className="text-sm">
-                      Sensor statistics will appear here once available.
+                      {t(
+                        "dashboard.overview.healthMetrics.noSensorData.description"
+                      )}
                     </p>
                   </div>
                 )}
@@ -250,8 +268,12 @@ export default function DashboardOverview() {
           <Card className="h-full">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <div>
-                <CardTitle>Livestock Distribution</CardTitle>
-                <CardDescription>Breakdown by species</CardDescription>
+                <CardTitle>
+                  {t("dashboard.overview.livestockDistribution.title")}
+                </CardTitle>
+                <CardDescription>
+                  {t("dashboard.overview.livestockDistribution.description")}
+                </CardDescription>
               </div>
               {/* <Tabs defaultValue="species">
                 <TabsList className="grid w-[200px] grid-cols-2">
@@ -266,22 +288,22 @@ export default function DashboardOverview() {
                   <div className="h-[300px] flex flex-col items-center justify-center text-center text-gray-500 p-8">
                     <PieChart className="h-12 w-12 mb-3 text-[#328E6E]" />
                     <p className="text-xl font-semibold mb-1">
-                      No Species Data
+                      {t(
+                        "dashboard.overview.livestockDistribution.noSpeciesData.title"
+                      )}
                     </p>
                     <p className="text-sm">
-                      There is currently no species count information to
-                      display.
+                      {t(
+                        "overview.livestockDistribution.noSpeciesData.description"
+                      )}
                     </p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-2 gap-7">
                     <div className="h-[300px] flex items-center justify-center">
-                      {/* Ensure DonutChart can handle potentially empty but non-null speciesData if it passes the length check 
-            but is somehow malformed, or ensure speciesCount is guaranteed to be well-formed if not empty. */}
                       <DonutChart speciesData={speciesCount} />
                     </div>
                     <div className="space-y-2 px-10 flex flex-col justify-center">
-                      {/* Removed w-2/3 to allow natural width or adjust as needed; added flex for centering legend items */}
                       {speciesCount.map(({ species, total }, index) => {
                         const color = colors[index % colors.length];
 
@@ -319,7 +341,7 @@ export default function DashboardOverview() {
         <LastHourMetrics
           heartRateAverage={avgSensor?.avgHeartRate}
           temperatureAverage={avgSensor?.avgTemperature}
-          respiratoryRateAverage={avgSensor?.avgRespiratoryRate}
+          sp02Average={avgSensor?.avgSp02}
         />
 
         <motion.div
@@ -330,9 +352,11 @@ export default function DashboardOverview() {
           <Card className="h-full">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <div>
-                <CardTitle>Recent Alerts</CardTitle>
+                <CardTitle>
+                  {t("dashboard.overview.recentAlerts.title")}
+                </CardTitle>
                 <CardDescription>
-                  Notifications requiring attention
+                  {t("dashboard.overview.recentAlerts.description")}
                 </CardDescription>
               </div>
             </CardHeader>
@@ -342,11 +366,14 @@ export default function DashboardOverview() {
                   <div className="flex flex-col items-center justify-center py-8 text-center text-gray-500 h-full">
                     <BellOff className="h-12 w-12 mb-3 text-[#328E6E]" />
                     <p className="text-xl font-semibold mb-1">
-                      No Notifications
+                      {t(
+                        "dashboard.overview.recentAlerts.noNotifications.title"
+                      )}
                     </p>
                     <p className="text-sm">
-                      You will get to see notifications here when you receive
-                      one.
+                      {t(
+                        "dashboard.overview.recentAlerts.noNotifications.description"
+                      )}
                     </p>
                   </div>
                 ) : (
@@ -423,12 +450,20 @@ export default function DashboardOverview() {
                   <div className="bg-[#328E6E]/10 p-3 rounded-full mb-3">
                     <Cow className="h-6 w-6 text-[#328E6E]" />
                   </div>
-                  <h3 className="font-medium mb-1">Livestock Management</h3>
+                  <h3 className="font-medium mb-1">
+                    {t(
+                      "dashboard.overview.quickAccess.livestockManagement.title"
+                    )}
+                  </h3>
                   <p className="text-sm text-gray-500">
-                    View and manage all livestock records
+                    {t(
+                      "dashboard.overview.quickAccess.livestockManagement.description"
+                    )}
                   </p>
                   <div className="mt-4 flex items-center text-[#328E6E] text-sm font-medium">
-                    <span>View Details</span>
+                    <span>
+                      {t("dashboard.overview.quickAccess.viewDetails")}
+                    </span>
                     <ArrowUpRight className="ml-1 h-4 w-4" />
                   </div>
                 </div>
@@ -449,12 +484,18 @@ export default function DashboardOverview() {
                   <div className="bg-red-100 p-3 rounded-full mb-3">
                     <Heart className="h-6 w-6 text-red-500" />
                   </div>
-                  <h3 className="font-medium mb-1">Health Monitoring</h3>
+                  <h3 className="font-medium mb-1">
+                    {t("dashboard.overview.quickAccess.healthMonitoring.title")}
+                  </h3>
                   <p className="text-sm text-gray-500">
-                    Track vital signs and health status
+                    {t(
+                      "dashboard.overview.quickAccess.healthMonitoring.description"
+                    )}
                   </p>
                   <div className="mt-4 flex items-center text-[#328E6E] text-sm font-medium">
-                    <span>View Details</span>
+                    <span>
+                      {t("dashboard.overview.quickAccess.viewDetails")}
+                    </span>
                     <ArrowUpRight className="ml-1 h-4 w-4" />
                   </div>
                 </div>
@@ -475,12 +516,20 @@ export default function DashboardOverview() {
                   <div className="bg-amber-100 p-3 rounded-full mb-3">
                     <Utensils className="h-6 w-6 text-amber-500" />
                   </div>
-                  <h3 className="font-medium mb-1">Feeding Management</h3>
+                  <h3 className="font-medium mb-1">
+                    {t(
+                      "dashboard.overview.quickAccess.feedingManagement.title"
+                    )}
+                  </h3>
                   <p className="text-sm text-gray-500">
-                    Schedule and track feeding activities
+                    {t(
+                      "dashboard.overview.quickAccess.feedingManagement.description"
+                    )}
                   </p>
                   <div className="mt-4 flex items-center text-[#328E6E] text-sm font-medium">
-                    <span>View Details</span>
+                    <span>
+                      {t("dashboard.overview.quickAccess.viewDetails")}
+                    </span>
                     <ArrowUpRight className="ml-1 h-4 w-4" />
                   </div>
                 </div>
@@ -501,12 +550,18 @@ export default function DashboardOverview() {
                   <div className="bg-blue-100 p-3 rounded-full mb-3">
                     <BarChart3 className="h-6 w-6 text-blue-500" />
                   </div>
-                  <h3 className="font-medium mb-1">Analytics & Reports</h3>
+                  <h3 className="font-medium mb-1">
+                    {t("dashboard.overview.quickAccess.analyticsReports.title")}
+                  </h3>
                   <p className="text-sm text-gray-500">
-                    View insights and generate reports
+                    {t(
+                      "dashboard.overview.quickAccess.analyticsReports.description"
+                    )}
                   </p>
                   <div className="mt-4 flex items-center text-[#328E6E] text-sm font-medium">
-                    <span>View Details</span>
+                    <span>
+                      {t("dashboard.overview.quickAccess.viewDetails")}
+                    </span>
                     <ArrowUpRight className="ml-1 h-4 w-4" />
                   </div>
                 </div>

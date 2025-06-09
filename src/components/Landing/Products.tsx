@@ -1,34 +1,26 @@
-import { Button } from "@/components/ui/button"
-import { AnimatedDiv, AnimatedSection, SectionHeading } from "../ui-components"
-import { motion } from "framer-motion"
-import { ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { AnimatedDiv, AnimatedSection, SectionHeading } from "../ui-components";
+import { motion } from "framer-motion";
+import { ChevronRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function Products() {
-  const products = [
-    {
-      name: "Moorgan Sense",
-      description: "IoT sensors and wearables for real-time livestock monitoring",
-      features: ["Health tracking", "Location monitoring", "Behavior analysis", "Long battery life"],
-      image: "/images/Products/Moorgan-IoT-Schema.png",
-    },
-    {
-      name: "Moorgan Insight",
-      description: "AI-powered analytics platform for data-driven decision making",
-      features: ["Predictive health alerts", "Performance metrics", "Custom reports", "Mobile dashboard"],
-      image: "/images/Products/mobile.png",
-    },
-    {
-      name: "Moorgan Connect",
-      description: "Complete farm management system with integrated IoT and AI",
-      features: ["End-to-end solution", "Cloud integration", "Advanced analytics", "Technical support"],
-      image: "/images/Products/dashboard-overview.png",
-    },
-  ]
+  const { t } = useTranslation();
+
+  const products = t("landing.products.items", { returnObjects: true }) as {
+    name: string;
+    description: string;
+    features: string[];
+    image: string;
+  }[];
 
   return (
     <AnimatedSection id="products" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <SectionHeading title="Our Products" subtitle="Comprehensive solutions for modern livestock management" />
+        <SectionHeading
+          title={t("landing.products.heading")}
+          subtitle={t("landing.products.subheading")}
+        />
 
         <div className="space-y-20">
           {products.map((product, index) => (
@@ -50,7 +42,11 @@ export default function Products() {
                     transition={{ duration: 0.5 }}
                     viewport={{ once: true }}
                   >
-                    <img src={product.image || "/placeholder.svg"} alt={product.name} className="max-w-full h-auto" />
+                    <img
+                      src={product.image || "/placeholder.svg"}
+                      alt={product.name}
+                      className="max-w-full h-auto"
+                    />
                   </motion.div>
                   <motion.div
                     className="absolute -z-10 w-full h-full bg-[#328E6E]/10 rounded-2xl -right-6 -bottom-6"
@@ -66,11 +62,17 @@ export default function Products() {
                 direction={index % 2 === 0 ? "left" : "right"}
                 className={index % 2 === 1 ? "lg:order-1" : ""}
               >
-                <h3 className="text-3xl font-bold mb-4 text-[#328E6E]">{product.name}</h3>
-                <p className="text-lg text-gray-600 mb-6">{product.description}</p>
+                <h3 className="text-3xl font-bold mb-4 text-[#328E6E]">
+                  {product.name}
+                </h3>
+                <p className="text-lg text-gray-600 mb-6">
+                  {product.description}
+                </p>
 
                 <div className="mb-8">
-                  <h4 className="font-medium text-gray-700 mb-3">Key Features:</h4>
+                  <h4 className="font-medium text-gray-700 mb-3">
+                    Key Features:
+                  </h4>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     {product.features.map((feature, idx) => (
                       <li key={idx} className="flex items-center gap-2">
@@ -91,5 +93,5 @@ export default function Products() {
         </div>
       </div>
     </AnimatedSection>
-  )
+  );
 }

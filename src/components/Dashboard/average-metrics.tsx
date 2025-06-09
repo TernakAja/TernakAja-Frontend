@@ -13,13 +13,13 @@ import { roundToTwoDecimals } from "@/utility/util";
 interface LastHourMetricsProps {
   heartRateAverage: string | undefined;
   temperatureAverage: number | undefined;
-  respiratoryRateAverage: number | undefined;
+  sp02Average: number | undefined;
 }
 
 export default function LastHourMetrics({
   heartRateAverage,
   temperatureAverage,
-  respiratoryRateAverage,
+  sp02Average,
 }: LastHourMetricsProps) {
   // Static data except average
   const heartRate = {
@@ -38,15 +38,15 @@ export default function LastHourMetrics({
     status: "normal",
   };
 
-  const repiratoryRate = {
-    average: Math.round((respiratoryRateAverage ?? 0) * 100) / 100,
-    min: 20,
-    max: 60,
-    unit: "bpm",
+  const sp02 = {
+    average: Math.round((sp02Average ?? 0) * 100),
+    min: 95,
+    max: 100,
+    unit: "%",
     status: "active",
   };
 
-  if (!heartRate.average || !temperature.average || !repiratoryRate.average) {
+  if (!heartRate.average || !temperature.average || !sp02.average) {
     return (
       <motion.div
         className="lg:col-span-2"
@@ -227,7 +227,7 @@ export default function LastHourMetrics({
                   <div className="bg-[#328E6E]/10 p-2 rounded-full">
                     <Activity className="h-5 w-5 text-[#328E6E]" />
                   </div>
-                  <h3 className="font-medium text-gray-700">Respiratory Rate</h3>
+                  <h3 className="font-medium text-gray-700">Oxygen Saturation</h3>
                 </div>
               </div>
 
@@ -235,37 +235,37 @@ export default function LastHourMetrics({
                 <div className="flex items-end">
                   <span
                     className={`text-4xl font-bold ${getStatusColor(
-                      determineResp(repiratoryRate.average)
+                      determineResp(sp02.average)
                     )}`}
                   >
-                    {repiratoryRate.average}
+                    {sp02.average}
                   </span>
                   <span className="text-lg text-gray-500 ml-1 mb-1">
-                    {repiratoryRate.unit}
+                    {sp02.unit}
                   </span>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">
-                  Range: {repiratoryRate.min} - {repiratoryRate.max}{" "}
-                  {repiratoryRate.unit}
+                  Range: {sp02.min} - {sp02.max}{" "}
+                  {sp02.unit}
                 </p>
               </div>
 
               <div>
                 <Progress
                   value={getProgressPercentage(
-                    repiratoryRate.average,
-                    repiratoryRate.min,
-                    repiratoryRate.max
+                    sp02.average,
+                    sp02.min,
+                    sp02.max
                   )}
                   className="h-2 bg-[#E1EEBC]"
                   indicatorClassName="bg-[#328E6E]"
                 />
                 <div className="flex justify-between mt-1">
                   <span className="text-xs text-gray-500">
-                    {repiratoryRate.min}
+                    {sp02.min}
                   </span>
                   <span className="text-xs text-gray-500">
-                    {repiratoryRate.max}
+                    {sp02.max}
                   </span>
                 </div>
               </div>

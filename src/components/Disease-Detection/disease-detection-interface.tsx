@@ -14,6 +14,7 @@ import {
   AlertTriangle,
   CheckCircle,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 // Define the API response structure
 interface Prediction {
@@ -48,51 +49,54 @@ interface HistoryItem {
   result: string;
 }
 
-// Disease details for display
-const DISEASE_DETAILS: Record<
-  string,
-  {
-    name: string;
-    description: string;
-    symptoms: string[];
-    recommendations: string[];
-  }
-> = {
-  fmd: {
-    name: "Foot-and-Mouth Disease (FMD)",
-    description:
-      "Foot-and-Mouth Disease is a highly contagious viral disease affecting cloven-hoofed animals like cattle, sheep, and goats.",
-    symptoms: [
-      "Excessive salivation",
-      "Lameness",
-      "Fever",
-      "Blisters and sores in the mouth and feet",
-      "Reduced milk production",
-    ],
-    recommendations: [
-      "Quarantine affected animals immediately",
-      "Contact a veterinarian for diagnosis and treatment",
-      "Implement strict biosecurity measures",
-      "Vaccinate susceptible animals",
-      "Disinfect equipment and premises",
-    ],
-  },
-  normal: {
-    name: "Healthy",
-    description:
-      "No signs of common livestock diseases were detected in the image.",
-    symptoms: [],
-    recommendations: [
-      "Continue regular health monitoring",
-      "Maintain proper nutrition and hydration",
-      "Follow your regular vaccination schedule",
-      "Conduct routine physical examinations",
-      "Keep monitoring for any behavioral changes",
-    ],
-  },
-};
-
 export default function DiseaseDetectionInterface() {
+  const { t } = useTranslation();
+
+  const DISEASE_DETAILS: Record<
+    string,
+    {
+      name: string;
+      description: string;
+      symptoms: string[];
+      recommendations: string[];
+    }
+  > = {
+    fmd: {
+      name: t("detection.diseaseDetails.fmd.name"),
+      description: t("detection.diseaseDetails.fmd.description"),
+      symptoms: [
+        t("detection.diseaseDetails.fmd.symptoms.salivation"),
+        t("detection.diseaseDetails.fmd.symptoms.lameness"),
+        t("detection.diseaseDetails.fmd.symptoms.fever"),
+        t("detection.diseaseDetails.fmd.symptoms.blisters"),
+        t("detection.diseaseDetails.fmd.symptoms.reducedMilk"),
+      ],
+      recommendations: [
+        t("detection.diseaseDetails.fmd.recommendations.quarantine"),
+        t("detection.diseaseDetails.fmd.recommendations.contactVet"),
+        t("detection.diseaseDetails.fmd.recommendations.biosecurity"),
+        t("detection.diseaseDetails.fmd.recommendations.vaccinate"),
+        t("detection.diseaseDetails.fmd.recommendations.disinfect"),
+      ],
+    },
+    normal: {
+      name: t("detection.diseaseDetails.normal.name"),
+      description: t("detection.diseaseDetails.normal.description"),
+      symptoms: [],
+      recommendations: [
+        t("detection.diseaseDetails.normal.recommendations.regularMonitoring"),
+        t("detection.diseaseDetails.normal.recommendations.nutritionHydration"),
+        t(
+          "detection.diseaseDetails.normal.recommendations.vaccinationSchedule"
+        ),
+        t(
+          "detection.diseaseDetails.normal.recommendations.physicalExaminations"
+        ),
+        t("detection.diseaseDetails.normal.recommendations.behavioralChanges"),
+      ],
+    },
+  };
+
   const [activeTab, setActiveTab] = useState("upload");
   const [isDragging, setIsDragging] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -217,7 +221,7 @@ export default function DiseaseDetectionInterface() {
           status: hasDisease ? "detected" : "healthy",
           result: hasDisease
             ? DISEASE_DETAILS[topPrediction.tagName].name
-            : "Healthy",
+            : t("detection.history.result.healthy"),
         },
         ...prev,
       ]);
@@ -250,11 +254,10 @@ export default function DiseaseDetectionInterface() {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Livestock Disease Detection
+              {t("detection.hero.title")}
             </h1>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto">
-              Upload an image of your livestock to detect potential diseases
-              using our advanced AI technology
+              {t("detection.hero.subtitle")}
             </p>
           </motion.div>
         </div>
@@ -271,11 +274,11 @@ export default function DiseaseDetectionInterface() {
             <TabsList className="grid grid-cols-2 w-full max-w-md mx-auto mb-8">
               <TabsTrigger value="upload" className="text-lg py-3">
                 <UploadCloud className="mr-2 h-5 w-5" />
-                Upload & Detect
+                {t("detection.tabs.uploadDetect")}
               </TabsTrigger>
               <TabsTrigger value="history" className="text-lg py-3">
                 <Layers className="mr-2 h-5 w-5" />
-                Detection History
+                {t("detection.tabs.detectionHistory")}
               </TabsTrigger>
             </TabsList>
 
@@ -290,7 +293,7 @@ export default function DiseaseDetectionInterface() {
                   <Card className="p-6 h-full">
                     <div className="flex flex-col h-full">
                       <h2 className="text-2xl font-semibold mb-4 text-[#328E6E]">
-                        Upload Image
+                        {t("detection.uploadArea.title")}
                       </h2>
 
                       {!uploadedImage ? (
@@ -306,14 +309,16 @@ export default function DiseaseDetectionInterface() {
                         >
                           <Upload className="h-16 w-16 text-[#67AE6E] mb-4" />
                           <p className="text-lg text-center mb-2">
-                            Drag and drop your image here
+                            {t("detection.uploadArea.dragDropText")}
                           </p>
-                          <p className="text-gray-500 text-center mb-6">or</p>
+                          <p className="text-gray-500 text-center mb-6">
+                            {t("detection.uploadArea.orText")}
+                          </p>
                           <Button
                             onClick={triggerFileInput}
                             className="bg-[#328E6E] hover:bg-[#277559] text-white"
                           >
-                            Browse Files
+                            {t("detection.uploadArea.browseFilesButton")}
                           </Button>
                           <input
                             type="file"
@@ -323,7 +328,7 @@ export default function DiseaseDetectionInterface() {
                             className="hidden"
                           />
                           <p className="text-sm text-gray-500 mt-4">
-                            Supported formats: JPG, PNG, WEBP (Max 10MB)
+                            {t("detection.uploadArea.supportedFormats")}
                           </p>
                         </div>
                       ) : (
@@ -347,13 +352,13 @@ export default function DiseaseDetectionInterface() {
                               className="bg-[#328E6E] hover:bg-[#277559] text-white w-full"
                             >
                               <Search className="mr-2 h-5 w-5" />
-                              Analyze Image
+                              {t("detection.uploadArea.analyzeImageButton")}
                             </Button>
                           )}
                           {isAnalyzing && (
                             <Button disabled className="w-full">
                               <RefreshCw className="mr-2 h-5 w-5 animate-spin" />
-                              Analyzing...
+                              {t("detection.uploadArea.analyzingButton")}
                             </Button>
                           )}
                         </div>
@@ -370,7 +375,7 @@ export default function DiseaseDetectionInterface() {
                 >
                   <Card className="p-6 h-full">
                     <h2 className="text-2xl font-semibold mb-4 text-[#328E6E]">
-                      Detection Results
+                      {t("detection.resultsArea.title")}
                     </h2>
 
                     {!analysisComplete ? (
@@ -378,8 +383,8 @@ export default function DiseaseDetectionInterface() {
                         <ImageIcon className="h-16 w-16 mb-4 text-gray-300" />
                         <p className="text-lg">
                           {isAnalyzing
-                            ? "Analyzing your image..."
-                            : "Upload an image to see disease detection results"}
+                            ? t("detection.resultsArea.analyzingMessage")
+                            : t("detection.resultsArea.uploadImageMessage")}
                         </p>
                         {isAnalyzing && (
                           <div className="mt-4 w-full max-w-xs bg-gray-200 rounded-full h-2.5 overflow-hidden">
@@ -407,11 +412,14 @@ export default function DiseaseDetectionInterface() {
                                 <AlertTriangle className="h-6 w-6 mr-3 flex-shrink-0" />
                                 <div>
                                   <p className="font-medium">
-                                    Disease Detected
+                                    {t(
+                                      "detection.resultsArea.diseaseDetected.title"
+                                    )}
                                   </p>
                                   <p>
-                                    Our system has detected a potential disease
-                                    in your livestock image.
+                                    {t(
+                                      "resultsArea.diseaseDetected.description"
+                                    )}
                                   </p>
                                 </div>
                               </>
@@ -420,11 +428,14 @@ export default function DiseaseDetectionInterface() {
                                 <CheckCircle className="h-6 w-6 mr-3 flex-shrink-0" />
                                 <div>
                                   <p className="font-medium">
-                                    No Disease Detected
+                                    {t(
+                                      "detection.resultsArea.noDiseaseDetected.title"
+                                    )}
                                   </p>
                                   <p>
-                                    Good news! No signs of disease were detected
-                                    in your livestock image.
+                                    {t(
+                                      "resultsArea.noDiseaseDetected.description"
+                                    )}
                                   </p>
                                 </div>
                               </>
@@ -436,7 +447,9 @@ export default function DiseaseDetectionInterface() {
                               <div className="space-y-6">
                                 <div>
                                   <h3 className="text-xl font-medium text-[#328E6E] mb-2">
-                                    Detected Disease
+                                    {t(
+                                      "detection.resultsArea.detectedDisease.title"
+                                    )}
                                   </h3>
                                   <div className="bg-[#E1EEBC]/30 p-4 rounded-lg">
                                     <div className="flex justify-between items-center mb-2">
@@ -448,7 +461,9 @@ export default function DiseaseDetectionInterface() {
                                           detectionResults.disease.probability *
                                             100
                                         )}
-                                        % Probability
+                                        {t(
+                                          "detection.resultsArea.probabilityText"
+                                        )}
                                       </span>
                                     </div>
                                     <p className="text-gray-700 mb-4">
@@ -457,7 +472,9 @@ export default function DiseaseDetectionInterface() {
 
                                     <div className="mb-4">
                                       <h4 className="font-medium text-[#328E6E] mb-2">
-                                        Common Symptoms
+                                        {t(
+                                          "detection.resultsArea.commonSymptoms.title"
+                                        )}
                                       </h4>
                                       <ul className="list-disc pl-5 text-gray-700 grid grid-cols-2 gap-x-4 gap-y-1">
                                         {detectionResults.disease.symptoms.map(
@@ -470,7 +487,9 @@ export default function DiseaseDetectionInterface() {
 
                                     <div>
                                       <h4 className="font-medium text-[#328E6E] mb-2">
-                                        Recommendations
+                                        {t(
+                                          "detection.resultsArea.recommendations.title"
+                                        )}
                                       </h4>
                                       <ul className="list-disc pl-5 text-gray-700">
                                         {detectionResults.disease.recommendations.map(
@@ -485,10 +504,12 @@ export default function DiseaseDetectionInterface() {
 
                                 <div className="pt-4 border-t border-gray-200">
                                   <p className="text-gray-500 text-sm">
-                                    <strong>Note:</strong> This is an
-                                    AI-assisted diagnosis and should be
-                                    confirmed by a veterinarian. Please consult
-                                    with a professional for proper treatment.
+                                    <strong>
+                                      {t("detection.resultsArea.noteBold")}:
+                                    </strong>{" "}
+                                    {t(
+                                      "detection.resultsArea.diseaseDisclaimer"
+                                    )}
                                   </p>
                                 </div>
                               </div>
@@ -499,14 +520,18 @@ export default function DiseaseDetectionInterface() {
                               <div className="space-y-6">
                                 <div className="bg-[#E1EEBC]/30 p-4 rounded-lg">
                                   <h3 className="text-xl font-medium text-[#328E6E] mb-2">
-                                    Healthy Livestock
+                                    {t(
+                                      "detection.resultsArea.healthyLivestock.title"
+                                    )}
                                   </h3>
                                   <p className="text-gray-700 mb-4">
                                     {detectionResults.disease.description}
                                   </p>
 
                                   <h4 className="font-medium text-[#328E6E] mb-2">
-                                    Recommendations
+                                    {t(
+                                      "detection.resultsArea.recommendations.title"
+                                    )}
                                   </h4>
                                   <ul className="list-disc pl-5 text-gray-700">
                                     {detectionResults.disease.recommendations.map(
@@ -519,9 +544,12 @@ export default function DiseaseDetectionInterface() {
 
                                 <div className="pt-4 border-t border-gray-200">
                                   <p className="text-gray-500 text-sm">
-                                    <strong>Note:</strong> Regular veterinary
-                                    check-ups are still recommended even when no
-                                    disease is detected by our system.
+                                    <strong>
+                                      {t("detection.resultsArea.noteBold")}:
+                                    </strong>{" "}
+                                    {t(
+                                      "detection.resultsArea.healthyDisclaimer"
+                                    )}
                                   </p>
                                 </div>
                               </div>
@@ -541,7 +569,7 @@ export default function DiseaseDetectionInterface() {
               >
                 <Card className="p-6">
                   <h2 className="text-2xl font-semibold mb-6 text-[#328E6E]">
-                    How It Works
+                    {t("detection.howItWorks.title")}
                   </h2>
                   <div className="grid md:grid-cols-3 gap-6">
                     <div className="flex flex-col items-center text-center">
@@ -549,11 +577,10 @@ export default function DiseaseDetectionInterface() {
                         <Upload className="h-8 w-8 text-[#328E6E]" />
                       </div>
                       <h3 className="font-medium text-lg mb-2">
-                        1. Upload Image
+                        {t("detection.howItWorks.step1.title")}
                       </h3>
                       <p className="text-gray-600">
-                        Upload a clear image of your livestock from any angle
-                        that shows the animal clearly.
+                        {t("detection.howItWorks.step1.description")}
                       </p>
                     </div>
 
@@ -562,11 +589,10 @@ export default function DiseaseDetectionInterface() {
                         <Search className="h-8 w-8 text-[#328E6E]" />
                       </div>
                       <h3 className="font-medium text-lg mb-2">
-                        2. AI Analysis
+                        {t("detection.howItWorks.step2.title")}
                       </h3>
                       <p className="text-gray-600">
-                        Our advanced AI analyzes the image for visual signs of
-                        common livestock diseases.
+                        {t("detection.howItWorks.step2.description")}
                       </p>
                     </div>
 
@@ -575,11 +601,10 @@ export default function DiseaseDetectionInterface() {
                         <CheckCircle className="h-8 w-8 text-[#328E6E]" />
                       </div>
                       <h3 className="font-medium text-lg mb-2">
-                        3. Get Results
+                        {t("detection.howItWorks.step3.title")}
                       </h3>
                       <p className="text-gray-600">
-                        Receive detailed analysis with disease identification,
-                        symptoms, and recommended actions.
+                        {t("detection.howItWorks.step3.description")}
                       </p>
                     </div>
                   </div>
@@ -595,7 +620,7 @@ export default function DiseaseDetectionInterface() {
               >
                 <Card className="p-6">
                   <h2 className="text-2xl font-semibold mb-6 text-[#328E6E]">
-                    Detection History
+                    {t("detection.historyTable.title")}
                   </h2>
 
                   <div className="overflow-x-auto">
@@ -603,19 +628,19 @@ export default function DiseaseDetectionInterface() {
                       <thead>
                         <tr className="border-b border-gray-200">
                           <th className="py-3 px-4 text-left font-medium text-gray-600">
-                            Image
+                            {t("detection.historyTable.headers.image")}
                           </th>
                           <th className="py-3 px-4 text-left font-medium text-gray-600">
-                            Filename
+                            {t("detection.historyTable.headers.filename")}
                           </th>
                           <th className="py-3 px-4 text-left font-medium text-gray-600">
-                            Date
+                            {t("detection.historyTable.headers.date")}
                           </th>
                           <th className="py-3 px-4 text-left font-medium text-gray-600">
-                            Result
+                            {t("detection.historyTable.headers.result")}
                           </th>
                           <th className="py-3 px-4 text-left font-medium text-gray-600">
-                            Actions
+                            {t("detection.historyTable.headers.actions")}
                           </th>
                         </tr>
                       </thead>
@@ -654,10 +679,10 @@ export default function DiseaseDetectionInterface() {
                             <td className="py-3 px-4">
                               <div className="flex space-x-2">
                                 <Button variant="outline" size="sm">
-                                  View
+                                  {t("detection.historyTable.actions.view")}
                                 </Button>
                                 <Button variant="outline" size="sm">
-                                  Download
+                                  {t("detection.historyTable.actions.download")}
                                 </Button>
                               </div>
                             </td>
@@ -669,7 +694,7 @@ export default function DiseaseDetectionInterface() {
 
                   {historyItems.length === 0 && (
                     <div className="text-center py-8 text-gray-500">
-                      <p>No detection history available</p>
+                      <p>{t("detection.historyTable.noHistory")}</p>
                     </div>
                   )}
                 </Card>
@@ -688,73 +713,61 @@ export default function DiseaseDetectionInterface() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h2 className="text-3xl font-bold mb-8 text-center text-[#328E6E]">
-              Livestock Disease Prevention Tips
+              {t("detection.tipsEducation.title")}
             </h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card className="p-6">
                 <h3 className="text-xl font-semibold mb-3 text-[#67AE6E]">
-                  Proper Sanitation
+                  {t("detection.tipsEducation.sanitation.title")}
                 </h3>
                 <p className="text-gray-700">
-                  Regularly clean and disinfect animal housing, feeding
-                  equipment, and water troughs. Proper sanitation is the first
-                  line of defense against disease spread.
+                  {t("detection.tipsEducation.sanitation.description")}
                 </p>
               </Card>
 
               <Card className="p-6">
                 <h3 className="text-xl font-semibold mb-3 text-[#67AE6E]">
-                  Vaccination Programs
+                  {t("detection.tipsEducation.vaccination.title")}
                 </h3>
                 <p className="text-gray-700">
-                  Implement and maintain a comprehensive vaccination program
-                  based on regional disease risks. Consult with your
-                  veterinarian for a customized schedule.
+                  {t("detection.tipsEducation.vaccination.description")}
                 </p>
               </Card>
 
               <Card className="p-6">
                 <h3 className="text-xl font-semibold mb-3 text-[#67AE6E]">
-                  Biosecurity Measures
+                  {t("detection.tipsEducation.biosecurity.title")}
                 </h3>
                 <p className="text-gray-700">
-                  Control farm access, quarantine new animals, use clean
-                  equipment, and implement proper waste management to prevent
-                  disease introduction and spread.
+                  {t("detection.tipsEducation.biosecurity.description")}
                 </p>
               </Card>
 
               <Card className="p-6">
                 <h3 className="text-xl font-semibold mb-3 text-[#67AE6E]">
-                  Nutrition Management
+                  {t("detection.tipsEducation.nutrition.title")}
                 </h3>
                 <p className="text-gray-700">
-                  Provide balanced nutrition tailored to your livestock's needs.
-                  Proper nutrition strengthens immune systems and increases
-                  resistance to disease.
+                  {t("detection.tipsEducation.nutrition.description")}
                 </p>
               </Card>
 
               <Card className="p-6">
                 <h3 className="text-xl font-semibold mb-3 text-[#67AE6E]">
-                  Regular Monitoring
+                  {t("detection.tipsEducation.monitoring.title")}
                 </h3>
                 <p className="text-gray-700">
-                  Observe your animals daily for unusual behavior or physical
-                  symptoms. Early detection is crucial for effective treatment
-                  and preventing spread.
+                  {t("detection.tipsEducation.monitoring.description")}
                 </p>
               </Card>
 
               <Card className="p-6">
                 <h3 className="text-xl font-semibold mb-3 text-[#67AE6E]">
-                  Professional Guidance
+                  {t("detection.tipsEducation.guidance.title")}
                 </h3>
                 <p className="text-gray-700">
-                  Establish a relationship with a veterinarian specialized in
-                  livestock. Regular check-ups and professional advice are
-                  essential for herd health.
+                  {t("detection.tipsEducation.guidance.description")}
                 </p>
               </Card>
             </div>

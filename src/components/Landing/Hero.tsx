@@ -22,7 +22,7 @@ export default function Hero() {
               className="inline-block px-4 py-2 bg-[#E1EEBC] rounded-full text-[#328E6E] font-medium mb-6"
               direction="down"
             >
-              {t("poweredBy")}
+              {t("landing.hero.poweredBy")}
             </AnimatedDiv>
 
             <AnimatedHeading
@@ -30,9 +30,9 @@ export default function Hero() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
               direction="up"
             >
-              {t("heading.beforeHighlight")}{" "}
+              {t("landing.hero.heading.beforeHighlight")}{" "}
               <span className="bg-gradient-to-r from-[#328E6E] to-[#90C67C] bg-clip-text text-transparent">
-                {t("heading.highlight")}
+                {t("landing.hero.heading.highlight")}
               </span>
             </AnimatedHeading>
 
@@ -41,7 +41,7 @@ export default function Hero() {
               direction="up"
               delay={0.1}
             >
-              {t("description")}
+              {t("landing.hero.description")}
             </AnimatedDiv>
 
             <AnimatedDiv
@@ -50,14 +50,14 @@ export default function Hero() {
               delay={0.2}
             >
               <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white px-6 py-6 rounded-lg text-lg">
-                {t("buttons.getStarted")}
+                {t("landing.hero.buttons.getStarted")}
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
               <Button
                 variant="outline"
                 className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white px-6 py-6 rounded-lg text-lg"
               >
-                {t("buttons.watchDemo")}
+                {t("landing.hero.buttons.watchDemo")}
               </Button>
             </AnimatedDiv>
 
@@ -69,19 +69,19 @@ export default function Hero() {
               <div className="flex items-center gap-2">
                 <BarChart2 className="text-[#328E6E]" />
                 <span className="text-sm font-medium">
-                  {t("features.realTimeData")}
+                  {t("landing.hero.features.realTimeData")}
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Shield className="text-[#328E6E]" />
                 <span className="text-sm font-medium">
-                  {t("features.securePlatform")}
+                  {t("landing.hero.features.securePlatform")}
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Zap className="text-[#328E6E]" />
                 <span className="text-sm font-medium">
-                  {t("features.fastInsights")}
+                  {t("landing.hero.features.fastInsights")}
                 </span>
               </div>
             </AnimatedDiv>

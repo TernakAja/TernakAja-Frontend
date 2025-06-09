@@ -55,9 +55,11 @@ import {
   getLivestockAge,
   getTimeSince,
   roundToTwoDecimals,
+  toPercentage,
 } from "@/utility/util";
 import { ComingSoon } from "@/components/coming-soon";
 import { livestockData } from "@/lib/data";
+import { useTranslation } from "react-i18next";
 
 // const dailySensorStats: DailySensorStats[] = [
 //   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },
@@ -75,7 +77,7 @@ const defaultSensorDataWithLivestockAndAnomaly: SensorDataWithLivestock = {
     livestockId: 0,
     temperature: 0,
     heartRate: 0,
-    respiratoryRate: 0,
+    sp02: 0,
     timestamp: new Date().toISOString(),
   },
   livestock: {
@@ -100,6 +102,7 @@ const defaultSensorDataWithLivestockAndAnomaly: SensorDataWithLivestock = {
 };
 
 export default function LivestockDetail() {
+  const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const [livestock, setLivestock] = useState<SensorDataWithLivestock>(
     defaultSensorDataWithLivestockAndAnomaly
@@ -149,17 +152,17 @@ export default function LivestockDetail() {
             </Button>
           </a>
           <h1 className="text-2xl font-bold tracking-tight">
-            Livestock Details
+            {t("dashboard.livestock.detail.header.title")}
           </h1>
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" className="gap-1">
             <Download className="h-4 w-4" />
-            <span>Export</span>
+            <span>{t("dashboard.livestock.detail.header.export")}</span>
           </Button>
           <Button variant="outline" className="gap-1">
             <Edit className="h-4 w-4" />
-            <span>Edit</span>
+            <span>{t("dashboard.livestock.detail.header.edit")}</span>
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -168,11 +171,15 @@ export default function LivestockDetail() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem>Print Record</DropdownMenuItem>
-              <DropdownMenuItem>Share Record</DropdownMenuItem>
+              <DropdownMenuItem>
+                {t("dashboard.livestock.detail.header.printRecord")}
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                {t("dashboard.livestock.detail.header.shareRecord")}
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="text-red-600">
-                Archive Record
+                {t("dashboard.livestock.detail.header.archiveRecord")}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -243,7 +250,11 @@ export default function LivestockDetail() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-gray-500">
                       <Cow className="h-4 w-4" />
-                      <span>Species</span>
+                      <span>
+                        {t(
+                          "dashboard.livestock.detail.profile.details.species"
+                        )}
+                      </span>
                     </div>
                     <span className="font-medium">
                       {livestock.livestock.species}
@@ -252,7 +263,9 @@ export default function LivestockDetail() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-gray-500">
                       <Info className="h-4 w-4" />
-                      <span>Breed</span>
+                      <span>
+                        {t("dashboard.livestock.detail.profile.details.breed")}
+                      </span>
                     </div>
                     <span className="font-medium">
                       {livestock.livestock.breed}
@@ -261,7 +274,11 @@ export default function LivestockDetail() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-gray-500">
                       <Calendar className="h-4 w-4" />
-                      <span>Birth Date</span>
+                      <span>
+                        {t(
+                          "dashboard.livestock.detail.profile.details.birthDate"
+                        )}
+                      </span>
                     </div>
                     <span className="font-medium">
                       {livestock.livestock.birthDate}
@@ -270,19 +287,23 @@ export default function LivestockDetail() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-gray-500">
                       <Clock className="h-4 w-4" />
-                      <span>Age</span>
+                      <span>
+                        {t("dashboard.livestock.detail.profile.details.age")}
+                      </span>
                     </div>
                     <span className="font-medium">
                       {livestock.livestock.birthDate
                         ? getLivestockAge(livestock.livestock.birthDate)
                         : 0}{" "}
-                      years old
+                      {t("dashboard.livestock.detail.profile.details.ageUnit")}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-gray-500">
                       <Weight className="h-4 w-4" />
-                      <span>Weight</span>
+                      <span>
+                        {t("dashboard.livestock.detail.profile.details.weight")}
+                      </span>
                     </div>
                     <span className="font-medium">
                       {livestock.livestock.weight}
@@ -291,17 +312,25 @@ export default function LivestockDetail() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-gray-500">
                       <MapPin className="h-4 w-4" />
-                      <span>Location</span>
+                      <span>
+                        {t(
+                          "dashboard.livestock.detail.profile.details.location"
+                        )}
+                      </span>
                     </div>
                     <span className="font-medium">
-                      Farm {livestock.livestock.farmId}
+                      {t("dashboard.livestock.detail.profile.details.farm", {
+                        farmId: livestock.livestock.farmId,
+                      })}
                     </span>
                   </div>
                 </div>
 
                 <div className="w-full border-t border-gray-200 mt-6 pt-6">
                   <div className="text-sm text-gray-500 mb-2">
-                    Last updated {getTimeSince(livestock.sensor_data.timestamp)}
+                    {t("dashboard.livestock.detail.profile.lastUpdated", {
+                      time: getTimeSince(livestock.sensor_data.timestamp),
+                    })}
                   </div>
                 </div>
               </div>
@@ -319,10 +348,18 @@ export default function LivestockDetail() {
             <CardHeader className="pb-3">
               <Tabs defaultValue="overview" onValueChange={setActiveTab}>
                 <TabsList className="grid grid-cols-4">
-                  <TabsTrigger value="overview">Overview</TabsTrigger>
-                  <TabsTrigger value="health">Health</TabsTrigger>
-                  <TabsTrigger value="production">Production</TabsTrigger>
-                  <TabsTrigger value="genetics">Genetics</TabsTrigger>
+                  <TabsTrigger value="overview">
+                    {t("dashboard.livestock.detail.tabs.overview")}
+                  </TabsTrigger>
+                  <TabsTrigger value="health">
+                    {t("dashboard.livestock.detail.tabs.health")}
+                  </TabsTrigger>
+                  <TabsTrigger value="production">
+                    {t("dashboard.livestock.detail.tabs.production")}
+                  </TabsTrigger>
+                  <TabsTrigger value="genetics">
+                    {t("dashboard.livestock.detail.tabs.genetics")}
+                  </TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="overview" className="space-y-6">
@@ -331,7 +368,9 @@ export default function LivestockDetail() {
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium flex items-center gap-2">
                           <Heart className="h-4 w-4 text-red-500" />
-                          Heart Rate
+                          {t(
+                            "dashboard.livestock.detail.overview.vitals.heartRate.title"
+                          )}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
@@ -340,7 +379,9 @@ export default function LivestockDetail() {
                         </div>
                         <div className="flex items-center justify-between mt-1">
                           <span className="text-xs text-gray-500">
-                            Normal: 48-84 beats per minute
+                            {t(
+                              "dashboard.livestock.detail.overview.vitals.heartRate.normal"
+                            )}
                           </span>
                           {/* <Badge
                             variant="outline"
@@ -356,7 +397,9 @@ export default function LivestockDetail() {
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium flex items-center gap-2">
                           <Thermometer className="h-4 w-4 text-amber-500" />
-                          Temperature
+                          {t(
+                            "dashboard.livestock.detail.overview.vitals.temperature.title"
+                          )}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
@@ -367,7 +410,9 @@ export default function LivestockDetail() {
                         </div>
                         <div className="flex items-center justify-between mt-1">
                           <span className="text-xs text-gray-500">
-                            Normal: 38.5-39.5°C
+                            {t(
+                              "dashboard.livestock.detail.overview.vitals.temperature.normal"
+                            )}
                           </span>
                           {/* <Badge
                             variant="outline"
@@ -383,18 +428,22 @@ export default function LivestockDetail() {
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium flex items-center gap-2">
                           <Activity className="h-4 w-4 text-blue-500" />
-                          Respiratory Rate
+                          {t(
+                            "dashboard.livestock.detail.overview.vitals.oxygenSaturation.title"
+                          )}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
                         <div className="text-2xl font-bold">
-                          {roundToTwoDecimals(
-                            livestock.sensor_data.respiratoryRate
-                          )}
+                          {toPercentage(
+                            livestock.sensor_data.sp02
+                          )}%
                         </div>
                         <div className="flex items-center justify-between mt-1">
                           <span className="text-xs text-gray-500">
-                            Normal: 26-50 breaths per minute
+                            {t(
+                              "dashboard.livestock.detail.overview.vitals.oxygenSaturation.normal"
+                            )}
                           </span>
                           {/* <Badge variant="outline" className="text-green-500 border-green-200">
                             Normal
@@ -406,9 +455,15 @@ export default function LivestockDetail() {
 
                   <Card>
                     <CardHeader className="pb-2">
-                      <CardTitle>Vital Signs Trend</CardTitle>
+                      <CardTitle>
+                        {t(
+                          "dashboard.livestock.detail.overview.vitalSigns.title"
+                        )}
+                      </CardTitle>
                       <CardDescription>
-                        Last 7 days monitoring data
+                        {t(
+                          "dashboard.livestock.detail.overview.vitalSigns.description"
+                        )}
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -419,10 +474,14 @@ export default function LivestockDetail() {
                           <div className="h-[300px] flex flex-col items-center justify-center text-center text-gray-500 p-8">
                             <Activity className="h-12 w-12 mb-3 text-[#328E6E]" />
                             <p className="text-xl font-semibold mb-1">
-                              No Sensor Data
+                              {t(
+                                "dashboard.livestock.detail.overview.noSensorData.title"
+                              )}
                             </p>
                             <p className="text-sm">
-                              Sensor statistics will appear here once available.
+                              {t(
+                                "dashboard.livestock.detail.overview.noSensorData.description"
+                              )}
                             </p>
                           </div>
                         )}
@@ -435,35 +494,61 @@ export default function LivestockDetail() {
                       <CardHeader className="pb-2">
                         <CardTitle className="flex items-center gap-2">
                           <Utensils className="h-5 w-5 text-[#328E6E]" />
-                          Feeding Information
+                          {t(
+                            "dashboard.livestock.detail.overview.feedingInfo.title"
+                          )}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
                         <div className="space-y-4">
                           <div>
                             <div className="text-sm text-gray-500 mb-1">
-                              Diet
+                              {t(
+                                "dashboard.livestock.detail.overview.feedingInfo.diet"
+                              )}
                             </div>
-                            <div className="font-medium">Forage</div>
+                            <div className="font-medium">
+                              {t(
+                                "dashboard.livestock.detail.overview.feedingInfo.dietValue"
+                              )}
+                            </div>
                           </div>
                           <div>
                             <div className="text-sm text-gray-500 mb-1">
-                              Feeding Schedule
+                              {t(
+                                "dashboard.livestock.detail.overview.feedingInfo.schedule"
+                              )}
                             </div>
-                            <div className="font-medium">Twice Daily</div>
+                            <div className="font-medium">
+                              {t(
+                                "dashboard.livestock.detail.overview.feedingInfo.scheduleValue"
+                              )}
+                            </div>
                           </div>
                           <div className="grid grid-cols-2 gap-4">
                             <div>
                               <div className="text-sm text-gray-500 mb-1">
-                                Daily Consumption
+                                {t(
+                                  "dashboard.livestock.detail.overview.feedingInfo.consumption"
+                                )}
                               </div>
-                              <div className="font-medium">22.6 kg/day</div>
+                              <div className="font-medium">
+                                {t(
+                                  "dashboard.livestock.detail.overview.feedingInfo.consumptionValue"
+                                )}
+                              </div>
                             </div>
                             <div>
                               <div className="text-sm text-gray-500 mb-1">
-                                Water Intake
+                                {t(
+                                  "dashboard.livestock.detail.overview.feedingInfo.waterIntake"
+                                )}
                               </div>
-                              <div className="font-medium">25 gallons/day</div>
+                              <div className="font-medium">
+                                {t(
+                                  "dashboard.livestock.detail.overview.feedingInfo.waterIntakeValue"
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -474,7 +559,7 @@ export default function LivestockDetail() {
                       <CardHeader className="pb-2">
                         <CardTitle className="flex items-center gap-2">
                           <FileText className="h-5 w-5 text-[#328E6E]" />
-                          Notes
+                          {t("dashboard.livestock.detail.overview.notes.title")}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
@@ -492,7 +577,9 @@ export default function LivestockDetail() {
                       <CardHeader className="pb-2">
                         <CardTitle className="flex items-center gap-2">
                           <CheckCircle2 className="h-5 w-5 text-green-500" />
-                          Vaccination Records
+                          {t(
+                            "dashboard.livestock.detail.health.vaccinations.title"
+                          )}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
@@ -511,17 +598,29 @@ export default function LivestockDetail() {
                                     {vaccination.name}
                                   </div>
                                   <div className="text-sm text-gray-500">
-                                    Administered: {vaccination.date}
+                                    {t(
+                                      "dashboard.livestock.detail.health.vaccinations.administered",
+                                      {
+                                        date: vaccination.date,
+                                      }
+                                    )}
                                   </div>
                                   <div className="text-sm text-gray-500">
-                                    Next Due: {vaccination.nextDue}
+                                    {t(
+                                      "dashboard.livestock.detail.health.vaccinations.nextDue",
+                                      {
+                                        date: vaccination.nextDue,
+                                      }
+                                    )}
                                   </div>
                                 </div>
                                 <Badge
                                   variant="outline"
                                   className="text-green-500 border-green-200"
                                 >
-                                  Up to date
+                                  {t(
+                                    "dashboard.livestock.detail.health.vaccinations.status"
+                                  )}
                                 </Badge>
                               </div>
                             )
@@ -536,7 +635,9 @@ export default function LivestockDetail() {
                       <CardHeader className="pb-2">
                         <CardTitle className="flex items-center gap-2">
                           <History className="h-5 w-5 text-[#328E6E]" />
-                          Medical History
+                          {t(
+                            "dashboard.livestock.detail.health.medicalHistory.title"
+                          )}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
@@ -585,14 +686,18 @@ export default function LivestockDetail() {
                       <CardHeader className="pb-2">
                         <CardTitle className="flex items-center gap-2">
                           <Leaf className="h-5 w-5 text-[#328E6E]" />
-                          Milk Production
+                          {t(
+                            "dashboard.livestock.detail.production.milk.title"
+                          )}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
                         <div className="space-y-4">
                           <div>
                             <div className="text-sm text-gray-500 mb-1">
-                              Daily Average
+                              {t(
+                                "dashboard.livestock.detail.production.milk.dailyAverage"
+                              )}
                             </div>
                             <div className="font-medium">
                               {livestockData.production.milkProduction.average}
@@ -600,7 +705,9 @@ export default function LivestockDetail() {
                           </div>
                           <div>
                             <div className="text-sm text-gray-500 mb-1">
-                              Trend
+                              {t(
+                                "dashboard.livestock.detail.production.milk.trend"
+                              )}
                             </div>
                             <div className="font-medium">
                               {livestockData.production.milkProduction.trend}
@@ -608,7 +715,9 @@ export default function LivestockDetail() {
                           </div>
                           <div>
                             <div className="text-sm text-gray-500 mb-1">
-                              Quality
+                              {t(
+                                "dashboard.livestock.detail.production.milk.quality"
+                              )}
                             </div>
                             <div className="font-medium">
                               {livestockData.production.milkProduction.quality}
@@ -624,7 +733,9 @@ export default function LivestockDetail() {
                       <CardHeader className="pb-2">
                         <CardTitle className="flex items-center gap-2">
                           <Calendar className="h-5 w-5 text-[#328E6E]" />
-                          Reproduction Status
+                          {t(
+                            "dashboard.livestock.detail.production.reproduction.title"
+                          )}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
@@ -632,7 +743,9 @@ export default function LivestockDetail() {
                           <div className="space-y-4">
                             <div>
                               <div className="text-sm text-gray-500 mb-1">
-                                Status
+                                {t(
+                                  "dashboard.livestock.detail.production.reproduction.status"
+                                )}
                               </div>
                               <div className="font-medium">
                                 {livestockData.reproduction.status}
@@ -640,7 +753,9 @@ export default function LivestockDetail() {
                             </div>
                             <div>
                               <div className="text-sm text-gray-500 mb-1">
-                                Breeding Date
+                                {t(
+                                  "dashboard.livestock.detail.production.reproduction.breedingDate"
+                                )}
                               </div>
                               <div className="font-medium">
                                 {livestockData.reproduction.breedingDate}
@@ -648,7 +763,9 @@ export default function LivestockDetail() {
                             </div>
                             <div>
                               <div className="text-sm text-gray-500 mb-1">
-                                Due Date
+                                {t(
+                                  "dashboard.livestock.detail.production.reproduction.dueDate"
+                                )}
                               </div>
                               <div className="font-medium">
                                 {livestockData.reproduction.dueDate}
@@ -658,7 +775,9 @@ export default function LivestockDetail() {
                           <div className="space-y-4">
                             <div>
                               <div className="text-sm text-gray-500 mb-1">
-                                Previous Calvings
+                                {t(
+                                  "dashboard.livestock.detail.production.reproduction.previousCalvings"
+                                )}
                               </div>
                               <div className="font-medium">
                                 {livestockData.reproduction.previousCalvings}
@@ -666,7 +785,9 @@ export default function LivestockDetail() {
                             </div>
                             <div>
                               <div className="text-sm text-gray-500 mb-1">
-                                Last Calving Date
+                                {t(
+                                  "dashboard.livestock.detail.production.reproduction.lastCalvingDate"
+                                )}
                               </div>
                               <div className="font-medium">
                                 {livestockData.reproduction.lastCalvingDate}
@@ -685,14 +806,16 @@ export default function LivestockDetail() {
                       <CardHeader className="pb-2">
                         <CardTitle className="flex items-center gap-2">
                           <Cow className="h-5 w-5 text-[#328E6E]" />
-                          Genetic Information
+                          {t("dashboard.livestock.detail.genetics.info.title")}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div>
                             <div className="text-sm text-gray-500 mb-1">
-                              Sire
+                              {t(
+                                "dashboard.livestock.detail.genetics.info.sire"
+                              )}
                             </div>
                             <div className="font-medium">
                               {livestockData.genetics.sire}
@@ -700,7 +823,9 @@ export default function LivestockDetail() {
                           </div>
                           <div>
                             <div className="text-sm text-gray-500 mb-1">
-                              Dam
+                              {t(
+                                "dashboard.livestock.detail.genetics.info.dam"
+                              )}
                             </div>
                             <div className="font-medium">
                               {livestockData.genetics.dam}
@@ -709,7 +834,9 @@ export default function LivestockDetail() {
                         </div>
                         <div className="mt-6">
                           <div className="text-sm text-gray-500 mb-3">
-                            Genetic Traits
+                            {t(
+                              "dashboard.livestock.detail.genetics.info.traits"
+                            )}
                           </div>
                           <div className="flex flex-wrap gap-2">
                             {livestockData.genetics.geneticTraits.map(
@@ -734,7 +861,7 @@ export default function LivestockDetail() {
                       <CardHeader className="pb-2">
                         <CardTitle className="flex items-center gap-2">
                           <Scale className="h-5 w-5 text-[#328E6E]" />
-                          Genetic Merit
+                          {t("dashboard.livestock.detail.genetics.merit.title")}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
@@ -742,7 +869,9 @@ export default function LivestockDetail() {
                           <div>
                             <div className="flex items-center justify-between mb-1">
                               <div className="text-sm font-medium">
-                                Milk Production
+                                {t(
+                                  "dashboard.livestock.detail.genetics.merit.milkProduction"
+                                )}
                               </div>
                               <div className="text-sm text-gray-500">85%</div>
                             </div>
@@ -751,7 +880,9 @@ export default function LivestockDetail() {
                           <div>
                             <div className="flex items-center justify-between mb-1">
                               <div className="text-sm font-medium">
-                                Fertility
+                                {t(
+                                  "dashboard.livestock.detail.genetics.merit.fertility"
+                                )}
                               </div>
                               <div className="text-sm text-gray-500">75%</div>
                             </div>
@@ -760,7 +891,9 @@ export default function LivestockDetail() {
                           <div>
                             <div className="flex items-center justify-between mb-1">
                               <div className="text-sm font-medium">
-                                Longevity
+                                {t(
+                                  "dashboard.livestock.detail.genetics.merit.longevity"
+                                )}
                               </div>
                               <div className="text-sm text-gray-500">80%</div>
                             </div>
@@ -769,7 +902,9 @@ export default function LivestockDetail() {
                           <div>
                             <div className="flex items-center justify-between mb-1">
                               <div className="text-sm font-medium">
-                                Health Traits
+                                {t(
+                                  "dashboard.livestock.detail.genetics.merit.healthTraits"
+                                )}
                               </div>
                               <div className="text-sm text-gray-500">90%</div>
                             </div>
@@ -798,10 +933,14 @@ export default function LivestockDetail() {
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Calendar className="h-5 w-5 text-[#328E6E]" />
-                    <span>Upcoming Events</span>
+                    <span>
+                      {t("dashboard.livestock.detail.upcomingEvents.title")}
+                    </span>
                   </div>
                   <Button variant="ghost" size="sm" className="gap-1 text-xs">
-                    <span>View All</span>
+                    <span>
+                      {t("dashboard.livestock.detail.upcomingEvents.viewAll")}
+                    </span>
                     <ChevronRight className="h-4 w-4" />
                   </Button>
                 </CardTitle>
@@ -813,12 +952,20 @@ export default function LivestockDetail() {
                       <Calendar className="h-4 w-4" />
                     </div>
                     <div>
-                      <div className="font-medium">Vaccination Due</div>
-                      <div className="text-sm text-gray-500">
-                        January 15, 2024
+                      <div className="font-medium">
+                        {t(
+                          "dashboard.livestock.detail.upcomingEvents.vaccinationDue.title"
+                        )}
                       </div>
                       <div className="text-sm text-gray-500">
-                        Bovine Viral Diarrhea (BVD)
+                        {t(
+                          "dashboard.livestock.detail.upcomingEvents.vaccinationDue.date"
+                        )}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        {t(
+                          "dashboard.livestock.detail.upcomingEvents.vaccinationDue.description"
+                        )}
                       </div>
                     </div>
                   </div>
@@ -827,10 +974,20 @@ export default function LivestockDetail() {
                       <Calendar className="h-4 w-4" />
                     </div>
                     <div>
-                      <div className="font-medium">Expected Calving</div>
-                      <div className="text-sm text-gray-500">July 24, 2023</div>
+                      <div className="font-medium">
+                        {t(
+                          "dashboard.livestock.detail.upcomingEvents.expectedCalving.title"
+                        )}
+                      </div>
                       <div className="text-sm text-gray-500">
-                        Third pregnancy
+                        {t(
+                          "dashboard.livestock.detail.upcomingEvents.expectedCalving.date"
+                        )}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        {t(
+                          "dashboard.livestock.detail.upcomingEvents.expectedCalving.description"
+                        )}
                       </div>
                     </div>
                   </div>
@@ -839,10 +996,20 @@ export default function LivestockDetail() {
                       <Calendar className="h-4 w-4" />
                     </div>
                     <div>
-                      <div className="font-medium">Routine Check-up</div>
-                      <div className="text-sm text-gray-500">June 10, 2023</div>
+                      <div className="font-medium">
+                        {t(
+                          "dashboard.livestock.detail.upcomingEvents.routineCheckup.title"
+                        )}
+                      </div>
                       <div className="text-sm text-gray-500">
-                        Quarterly health assessment
+                        {t(
+                          "dashboard.livestock.detail.upcomingEvents.routineCheckup.date"
+                        )}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        {t(
+                          "dashboard.livestock.detail.upcomingEvents.routineCheckup.description"
+                        )}
                       </div>
                     </div>
                   </div>
@@ -863,10 +1030,12 @@ export default function LivestockDetail() {
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Ruler className="h-5 w-5 text-[#328E6E]" />
-                    <span>Growth & Development</span>
+                    <span>{t("dashboard.livestock.detail.growth.title")}</span>
                   </div>
                   <Button variant="ghost" size="sm" className="gap-1 text-xs">
-                    <span>View All</span>
+                    <span>
+                      {t("dashboard.livestock.detail.growth.viewAll")}
+                    </span>
                     <ChevronRight className="h-4 w-4" />
                   </Button>
                 </CardTitle>
@@ -875,18 +1044,38 @@ export default function LivestockDetail() {
                 <div className="space-y-4">
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <div className="text-sm font-medium">Weight Progress</div>
+                      <div className="text-sm font-medium">
+                        {t(
+                          "dashboard.livestock.detail.growth.weightProgress.title"
+                        )}
+                      </div>
                       <div className="text-sm text-gray-500">
-                        1,200 lbs (target: 1,300 lbs)
+                        {t(
+                          "dashboard.livestock.detail.growth.weightProgress.value",
+                          {
+                            current: "1,200",
+                            target: "1,300",
+                          }
+                        )}
                       </div>
                     </div>
                     <Progress value={92} className="h-2" />
                   </div>
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <div className="text-sm font-medium">Milk Production</div>
+                      <div className="text-sm font-medium">
+                        {t(
+                          "dashboard.livestock.detail.growth.milkProduction.title"
+                        )}
+                      </div>
                       <div className="text-sm text-gray-500">
-                        22 liters/day (target: 25 liters/day)
+                        {t(
+                          "dashboard.livestock.detail.growth.milkProduction.value",
+                          {
+                            current: 22,
+                            target: 25,
+                          }
+                        )}
                       </div>
                     </div>
                     <Progress value={88} className="h-2" />
@@ -894,17 +1083,28 @@ export default function LivestockDetail() {
                   <div>
                     <div className="flex items-center justify-between mb-1">
                       <div className="text-sm font-medium">
-                        Body Condition Score
+                        {t("dashboard.livestock.detail.growth.bcs.title")}
                       </div>
-                      <div className="text-sm text-gray-500">3.5 out of 5</div>
+                      <div className="text-sm text-gray-500">
+                        {t("dashboard.livestock.detail.growth.bcs.value", {
+                          score: 3.5,
+                        })}
+                      </div>
                     </div>
                     <Progress value={70} className="h-2" />
                   </div>
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <div className="text-sm font-medium">Feed Efficiency</div>
+                      <div className="text-sm font-medium">
+                        {t(
+                          "dashboard.livestock.detail.growth.feedEfficiency.title"
+                        )}
+                      </div>
                       <div className="text-sm text-gray-500">
-                        1.5 (milk:feed ratio)
+                        {t(
+                          "dashboard.livestock.detail.growth.feedEfficiency.value",
+                          { ratio: 1.5 }
+                        )}
                       </div>
                     </div>
                     <Progress value={75} className="h-2" />

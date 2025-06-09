@@ -1,20 +1,44 @@
-import { useState, useEffect } from "react"
-import { AnimatedDiv, AnimatedSection, SectionHeadingWhite } from "../ui-components"
-import { motion } from "framer-motion"
+import { useState, useEffect } from "react";
+import {
+  AnimatedDiv,
+  AnimatedSection,
+  SectionHeadingWhite,
+} from "../ui-components";
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export default function Statistics() {
+  const { t } = useTranslation();
   const stats = [
-    { value: 85, label: "Reduction in Disease Outbreaks", suffix: "%" },
-    { value: 10000, label: "Livestock Monitored", suffix: "+" },
-    { value: 30, label: "Increase in Farm Productivity", suffix: "%" },
-    { value: 40, label: "Reduction in Water Usage", suffix: "%" },
-  ]
+    {
+      value: 85,
+      label: t("landing.statistics.stats.reductionDisease"),
+      suffix: "%",
+    },
+    {
+      value: 10000,
+      label: t("landing.statistics.stats.livestockMonitored"),
+      suffix: "+",
+    },
+    {
+      value: 30,
+      label: t("landing.statistics.stats.increaseProductivity"),
+      suffix: "%",
+    },
+    {
+      value: 40,
+      label: t("landing.statistics.stats.reductionWater"),
+      suffix: "%",
+    },
+  ];
 
   return (
     <AnimatedSection id="statistics" className="py-20 bg-[#328E6E]">
       <div className="container mx-auto px-4">
-        <SectionHeadingWhite title="Our Impact" subtitle="Transforming livestock management with measurable results" />
-
+        <SectionHeadingWhite
+          title={t("landing.statistics.title")}
+          subtitle={t("landing.statistics.subtitle")}
+        />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <AnimatedDiv
@@ -34,32 +58,32 @@ export default function Statistics() {
         </div>
       </div>
     </AnimatedSection>
-  )
+  );
 }
 
 function CountUp({ target = 0, suffix = "", className = "" }) {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    let startTime: number
-    const duration = 2000 // 2 seconds
+    let startTime: number;
+    const duration = 2000; // 2 seconds
 
     const animateCount = (timestamp: number) => {
-      if (!startTime) startTime = timestamp
-      const progress = Math.min((timestamp - startTime) / duration, 1)
-      const currentCount = Math.floor(progress * target)
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const currentCount = Math.floor(progress * target);
 
-      setCount(currentCount)
+      setCount(currentCount);
 
       if (progress < 1) {
-        requestAnimationFrame(animateCount)
+        requestAnimationFrame(animateCount);
       }
-    }
+    };
 
-    requestAnimationFrame(animateCount)
+    requestAnimationFrame(animateCount);
 
-    return () => setCount(0)
-  }, [target])
+    return () => setCount(0);
+  }, [target]);
 
   return (
     <motion.div
@@ -72,5 +96,5 @@ function CountUp({ target = 0, suffix = "", className = "" }) {
       {count}
       {suffix}
     </motion.div>
-  )
+  );
 }

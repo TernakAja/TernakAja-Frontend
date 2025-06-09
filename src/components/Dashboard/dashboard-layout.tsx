@@ -25,12 +25,15 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/auth-context";
+import { useTranslation } from "react-i18next";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
+  const { t } = useTranslation();
+
   const { logout } = useAuth();
   const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -60,52 +63,52 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
   const navItems = [
     {
-      name: "Dashboard",
+      name: t("dashboard.layout.sidebar.nav.dashboard"),
       href: "/dashboard",
       icon: <Home className="h-5 w-5" />,
     },
     {
-      name: "Livestock",
+      name: t("dashboard.layout.sidebar.nav.livestock"),
       href: "/dashboard/livestock",
       icon: <Cow className="h-5 w-5" />,
     },
     {
-      name: "Health Monitoring",
+      name: t("dashboard.layout.sidebar.nav.healthMonitoring"),
       href: "/dashboard/health",
       icon: <Heart className="h-5 w-5" />,
     },
     {
-      name: "Analytics",
+      name: t("dashboard.layout.sidebar.nav.analytics"),
       href: "/dashboard/analytics",
       icon: <BarChart3 className="h-5 w-5" />,
     },
     {
-      name: "Activity Tracking",
+      name: t("dashboard.layout.sidebar.nav.activityTracking"),
       href: "/dashboard/activity",
       icon: <Activity className="h-5 w-5" />,
     },
     {
-      name: "Feeding Management",
+      name: t("dashboard.layout.sidebar.nav.feedingManagement"),
       href: "/dashboard/feeding",
       icon: <Utensils className="h-5 w-5" />,
     },
     {
-      name: "Weather",
+      name: t("dashboard.layout.sidebar.nav.weather"),
       href: "/dashboard/weather",
       icon: <Sun className="h-5 w-5" />,
     },
     {
-      name: "Reports",
+      name: t("dashboard.layout.sidebar.nav.reports"),
       href: "/dashboard/reports",
       icon: <FileText className="h-5 w-5" />,
     },
     {
-      name: "Messages",
+      name: t("dashboard.layout.sidebar.nav.messages"),
       href: "/dashboard/messages",
       icon: <MessageSquare className="h-5 w-5" />,
     },
     {
-      name: "Settings",
+      name: t("dashboard.layout.sidebar.nav.settings"),
       href: "/dashboard/settings",
       icon: <Settings className="h-5 w-5" />,
     },
@@ -172,7 +175,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             </Avatar>
             <div>
               <div className="font-medium">{user?.name}</div>
-              <div className="text-xs text-gray-500">Farm Manager</div>
+              <div className="text-xs text-gray-500">
+                {t("dashboard.layout.user.role")}
+              </div>
             </div>
           </div>
           <Button
@@ -181,7 +186,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             onClick={() => navigate("/")}
           >
             <Home className="h-4 w-4 mr-2" />
-            Home
+            {t("dashboard.layout.sidebar.homeButton")}
           </Button>
           {/* For logout */}
           <Button
@@ -190,7 +195,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             onClick={() => logout()}
           >
             <LogOut className="h-4 w-4 mr-2" />
-            Log out
+            {t("dashboard.layout.sidebar.logoutButton")}
           </Button>
         </div>
       </motion.div>
@@ -222,7 +227,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="relative w-full max-w-xs">
                 <Input
                   type="search"
-                  placeholder="Search..."
+                  placeholder={t("dashboard.layout.header.searchPlaceholder")}
                   className="pl-10 bg-gray-50 border-gray-200 focus:bg-white"
                 />
                 <svg

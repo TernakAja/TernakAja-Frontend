@@ -102,5 +102,5 @@ export interface SensorDataWithLivestockAndAnomaly {
 export interface RecentAvgSensorData {
   avgHeartRate: string;
   avgTemperature: number;
-  avgRespiratoryRate: number;
+  avgSp02: number;
 };

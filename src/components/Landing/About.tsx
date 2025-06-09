@@ -1,22 +1,28 @@
-import { Check } from "lucide-react"
-import { AnimatedDiv, AnimatedSection, SectionHeading } from "@/components/ui-components"
+import { Check } from "lucide-react";
+import {
+  AnimatedDiv,
+  AnimatedSection,
+  SectionHeading,
+} from "@/components/ui-components";
+import { useTranslation } from "react-i18next";
 
 export default function About() {
+  const { t } = useTranslation();
   const benefits = [
-    "Real-time health monitoring of livestock",
-    "Early disease detection and prevention",
-    "Optimized feeding schedules and nutrition",
-    "Reduced operational costs and resource usage",
-    "Improved animal welfare and productivity",
-    "Data-driven decision making for farmers",
-  ]
+    t("landing.about.benefits.healthMonitoring"),
+    t("landing.about.benefits.diseaseDetection"),
+    t("landing.about.benefits.optimizedFeeding"),
+    t("landing.about.benefits.reducedCosts"),
+    t("landing.about.benefits.animalWelfare"),
+    t("landing.about.benefits.dataDriven"),
+  ];
 
   return (
     <AnimatedSection id="about" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <SectionHeading
-          title="About Moorgan"
-          subtitle="Transforming livestock management through innovative technology and sustainable practices"
+          title={t("landing.about.title")}
+          subtitle={t("landing.about.subtitle")}
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -29,22 +35,22 @@ export default function About() {
               />
               <div className="absolute -bottom-6 -right-6 bg-[#E1EEBC] p-6 rounded-2xl shadow-lg max-w-xs">
                 <div className="text-4xl font-bold text-[#328E6E] mb-2">5+</div>
-                <div className="text-gray-700">Years of research and development in AI livestock monitoring</div>
+                <div className="text-gray-700">
+                  {t("landing.about.yearsExperience")}
+                </div>
               </div>
             </div>
           </AnimatedDiv>
 
           <AnimatedDiv className="order-1 lg:order-2" direction="left">
-            <h3 className="text-2xl font-bold mb-4 text-[#328E6E]">The Future of Livestock Management</h3>
+            <h3 className="text-2xl font-bold mb-4 text-[#328E6E]">
+              {t("landing.about.sectionTitle")}
+            </h3>
             <p className="text-gray-600 mb-6">
-              Moorgan combines cutting-edge AI algorithms with IoT sensors to create a comprehensive livestock
-              monitoring system that helps farmers optimize their operations, improve animal welfare, and increase
-              productivity while reducing environmental impact.
+              {t("landing.about.paragraph1")}
             </p>
             <p className="text-gray-600 mb-8">
-              Built on Microsoft Azure's robust cloud infrastructure, our platform provides real-time insights,
-              predictive analytics, and actionable recommendations to transform traditional farming into smart,
-              sustainable agriculture.
+              {t("landing.about.paragraph2")}
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -61,5 +67,5 @@ export default function About() {
         </div>
       </div>
     </AnimatedSection>
-  )
+  );
 }

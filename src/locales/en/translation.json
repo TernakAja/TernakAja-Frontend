@@ -1,21 +1,948 @@
 {
+  "landing": {
+    "hero": {
+      "poweredBy": "Powered by Microsoft Azure",
+      "heading": {
+        "beforeHighlight": "Smart Livestock Monitoring with",
+        "highlight": "AI & IoT"
+      },
+      "description": "Revolutionize your livestock management with real-time monitoring, predictive analytics, and sustainable farming practices powered by cutting-edge AI and IoT technology.",
+      "buttons": {
+        "getStarted": "Get Started",
+        "watchDemo": "Watch Demo"
+      },
+      "features": {
+        "realTimeData": "Real-time Data",
+        "securePlatform": "Secure Platform",
+        "fastInsights": "Fast Insights"
+      }
+    },
+    "about": {
+      "title": "About Moorgan",
+      "subtitle": "Transforming livestock management through innovative technology and sustainable practices",
+      "imageAlt": "About Moorgan",
+      "yearsExperience": "Years of research and development in AI livestock monitoring",
+      "sectionTitle": "The Future of Livestock Management",
+      "paragraph1": "Moorgan combines cutting-edge AI algorithms with IoT sensors to create a comprehensive livestock monitoring system that helps farmers optimize their operations, improve animal welfare, and increase productivity while reducing environmental impact.",
+      "paragraph2": "Built on Microsoft Azure's robust cloud infrastructure, our platform provides real-time insights, predictive analytics, and actionable recommendations to transform traditional farming into smart, sustainable agriculture.",
+      "benefits": {
+        "healthMonitoring": "Real-time health monitoring of livestock",
+        "diseaseDetection": "Early disease detection and prevention",
+        "optimizedFeeding": "Optimized feeding schedules and nutrition",
+        "reducedCosts": "Reduced operational costs and resource usage",
+        "animalWelfare": "Improved animal welfare and productivity",
+        "dataDriven": "Data-driven decision making for farmers"
+      }
+    },
+    "statistics": {
+      "title": "Our Impact",
+      "subtitle": "Transforming livestock management with measurable results",
+      "stats": {
+        "reductionDisease": "Reduction in Disease Outbreaks",
+        "livestockMonitored": "Livestock Monitored",
+        "increaseProductivity": "Increase in Farm Productivity",
+        "reductionWater": "Reduction in Water Usage"
+      }
+    },
+    "vision": {
+      "heading": "Our Vision & Mission",
+      "subheading": "Aligned with Sustainable Development Goals",
+      "visionTitle": "Vision",
+      "visionText": "To revolutionize livestock management globally through innovative technology, creating a world where farming is efficient, sustainable, and humane, contributing to food security while minimizing environmental impact.",
+      "missionTitle": "Mission",
+      "missionText": "Our mission is to empower farmers with cutting-edge AI and IoT solutions that optimize livestock health, productivity, and welfare while promoting sustainable agricultural practices aligned with global development goals.",
+      "imageAlt": "Sustainable Farming",
+      "sdgHeading": "Supporting Sustainable Development Goals",
+      "sdg": {
+        "2": {
+          "title": "Zero Hunger",
+          "description": "Improving livestock productivity to enhance food security"
+        },
+        "12": {
+          "title": "Responsible Consumption",
+          "description": "Optimizing resource usage in livestock management"
+        },
+        "13": {
+          "title": "Climate Action",
+          "description": "Reducing environmental impact of livestock farming"
+        },
+        "15": {
+          "title": "Life on Land",
+          "description": "Promoting sustainable land use practices"
+        }
+      }
+    },
+    "features": {
+      "heading": "Powerful Features",
+      "subheading": "Comprehensive tools to revolutionize your livestock management",
+      "healthMonitoring": {
+        "title": "Health Monitoring",
+        "description": "Real-time tracking of vital signs and health indicators for early disease detection"
+      },
+      "predictiveAnalytics": {
+        "title": "Predictive Analytics",
+        "description": "AI-powered predictions for health issues, productivity, and resource optimization"
+      },
+      "mobileAccessibility": {
+        "title": "Mobile Accessibility",
+        "description": "Monitor your livestock from anywhere with our intuitive mobile application"
+      },
+      "dataManagement": {
+        "title": "Data Management",
+        "description": "Comprehensive data collection and storage for long-term analysis and insights"
+      },
+      "cloudIntegration": {
+        "title": "Cloud Integration",
+        "description": "Seamless integration with Microsoft Azure for reliable and scalable performance"
+      },
+      "securityPrivacy": {
+        "title": "Security & Privacy",
+        "description": "Enterprise-grade security protocols to protect your valuable farm data"
+      },
+      "performanceMetrics": {
+        "title": "Performance Metrics",
+        "description": "Detailed reports and dashboards to track livestock performance and farm efficiency"
+      },
+      "automatedAlerts": {
+        "title": "Automated Alerts",
+        "description": "Instant notifications for critical events requiring immediate attention"
+      },
+      "azure": {
+        "title": "Powered by Microsoft Azure",
+        "description": "Our platform leverages the power of Microsoft Azure's cloud infrastructure, IoT Hub, and AI services to deliver a robust, scalable, and secure solution for livestock monitoring and management.",
+        "imageAlt": "Microsoft Azure Integration"
+      }
+    },
+    "marquee": {
+      "heading": "Powered by Cutting-Edge Technology"
+    },
+    "products": {
+      "heading": "Our Products",
+      "subheading": "Comprehensive solutions for modern livestock management",
+      "featuresTitle": "Key Features:",
+      "learnMore": "Learn More",
+      "items": [
+        {
+          "name": "Moorgan Sense",
+          "description": "IoT sensors and wearables for real-time livestock monitoring",
+          "features": [
+            "Health tracking",
+            "Location monitoring",
+            "Behavior analysis",
+            "Long battery life"
+          ],
+          "image": "/images/Products/Moorgan-IoT-Schema.png"
+        },
+        {
+          "name": "Moorgan Insight",
+          "description": "AI-powered analytics platform for data-driven decision making",
+          "features": [
+            "Predictive health alerts",
+            "Performance metrics",
+            "Custom reports",
+            "Mobile dashboard"
+          ],
+          "image": "/images/Products/mobile.png"
+        },
+        {
+          "name": "Moorgan Connect",
+          "description": "Complete farm management system with integrated IoT and AI",
+          "features": [
+            "End-to-end solution",
+            "Cloud integration",
+            "Advanced analytics",
+            "Technical support"
+          ],
+          "image": "/images/Products/dashboard-overview.png"
+        }
+      ]
+    },
+    "developers": {
+      "heading": "Meet Our Team",
+      "subheading": "The experts behind Moorgan's innovative technology",
+      "button": {
+        "viewDetails": "View Team Details"
+      },
+      "team": {
+        "bio": "Monitoring Your Livestock"
+      }
+    },
+    "testimonials": {
+      "heading": "What Our Clients Say",
+      "subheading": "Hear from farmers and agricultural professionals using Moorgan",
 
-  
+      "john": {
+        "role": "Dairy Farm Owner",
+        "content": "Moorgan has transformed how we manage our dairy farm. The real-time health monitoring has reduced disease outbreaks by 70% and improved our overall productivity."
+      },
+      "maria": {
+        "role": "Livestock Researcher",
+        "content": "As a researcher, I'm impressed by the quality and accuracy of data provided by Moorgan. It's revolutionizing how we understand livestock behavior and health patterns."
+      },
+      "robert": {
+        "role": "Agricultural Consultant",
+        "content": "I've recommended Moorgan to dozens of my clients, and the feedback has been overwhelmingly positive. The ROI is clear within just a few months of implementation."
+      }
+    },
+    "faq": {
+      "heading": "Frequently Asked Questions",
+      "subheading": "Find answers to common questions about Moorgan",
 
-  "poweredBy": "Powered by Microsoft Azure",
-  "heading": {
-    "beforeHighlight": "Smart Livestock Monitoring with",
-    "highlight": "AI & IoT"
+      "q1": {
+        "question": "How does Moorgan's livestock monitoring system work?",
+        "answer": "Moorgan uses a combination of IoT sensors, wearable devices, and environmental monitors to collect real-time data about your livestock. This data is processed through our AI algorithms on Microsoft Azure to provide insights about health, behavior, and productivity."
+      },
+      "q2": {
+        "question": "What kind of hardware is required for implementation?",
+        "answer": "Our system includes wearable sensors for animals, environmental monitoring stations, and a central hub that connects to the cloud. Our team handles the installation and setup process to ensure everything works seamlessly with your existing farm infrastructure."
+      },
+      "q3": {
+        "question": "How long does it take to implement Moorgan on my farm?",
+        "answer": "Implementation time varies based on farm size and complexity, but typically takes 2-4 weeks from initial assessment to full deployment. Our team works closely with you throughout the process to minimize disruption to your operations."
+      },
+      "q4": {
+        "question": "Can Moorgan integrate with my existing farm management software?",
+        "answer": "Yes, Moorgan is designed with open APIs that allow integration with most popular farm management systems. We also offer custom integration services for proprietary or legacy systems."
+      },
+      "q5": {
+        "question": "What kind of ROI can I expect from implementing Moorgan?",
+        "answer": "Most farms see ROI within 6-12 months through reduced disease outbreaks, optimized feeding, improved productivity, and reduced labor costs. Our team can provide a customized ROI analysis based on your specific operation."
+      },
+      "q6": {
+        "question": "Is my data secure and private?",
+        "answer": "Absolutely. Moorgan is built on Microsoft Azure's secure cloud infrastructure with enterprise-grade encryption and privacy controls. You maintain ownership of your data, and we adhere to strict data protection regulations."
+      },
+
+      "footer": {
+        "text": "Still have questions? Contact our support team at"
+      }
+    },
+    "cta": {
+      "title": "Ready to Transform Your Livestock Management?",
+      "subtitle": "Join hundreds of forward-thinking farmers who are already benefiting from Moorgan's innovative AI and IoT solutions.",
+
+      "benefit1": "Free consultation and farm assessment",
+      "benefit2": "Customized implementation plan",
+      "benefit3": "30-day free trial period",
+      "benefit4": "Dedicated support team",
+
+      "farmCount": "Farms already using Moorgan",
+
+      "form": {
+        "title": "Get Started Today",
+        "description": "Fill out the form below and our team will contact you within 24 hours to discuss how Moorgan can benefit your farm.",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "phone": "Phone",
+        "farmSize": "Farm Size (number of animals)",
+        "button": "Request Demo"
+      }
+    }
   },
-  "description": "Revolutionize your livestock management with real-time monitoring, predictive analytics, and sustainable farming practices powered by cutting-edge AI and IoT technology.",
-  "buttons": {
-    "getStarted": "Get Started",
-    "watchDemo": "Watch Demo"
+  "chatbot": {
+    "welcomeMessage": "Hello! I'm Moorgan Assistant. I can help you with livestock monitoring, health insights, and management recommendations. How can I assist you today?",
+    "botResponse": {
+      "noAnswer": "I cannot answer this question..."
+    },
+    "error": {
+      "fetchResponse": "Failed to fetch response from chatbot:",
+      "backendServer": "There is error in the backend server."
+    },
+    "chatClearedMessage": "Chat cleared. How can I help you today?",
+    "header": {
+      "title": "MooBot AI Assistant",
+      "subtitle": "Your intelligent livestock management companion",
+      "settingsButton": "Settings",
+      "newChatButton": "New Chat"
+    },
+    "chat": {
+      "youLabel": "You",
+      "moorganAssistantLabel": "Moorgan Assistant"
+    },
+    "suggestedQuestions": {
+      "title": "Suggested questions",
+      "healthMonitoring": "How do I monitor my livestock's health?",
+      "idealTemperature": "What's the ideal temperature for cattle?",
+      "setupCollar": "How to set up a new livestock collar?",
+      "stressSigns": "What are signs of stress in sheep?",
+      "interpretData": "How to interpret heart rate data?",
+      "winterFeeding": "Best practices for feeding during winter"
+    },
+    "input": {
+      "placeholder": "Type your message here..."
+    },
+    "footer": {
+      "disclaimer": "Moorgan AI provides general information and is not a substitute for professional veterinary advice."
+    },
+    "knowledgeBase": {
+      "title": "Knowledge Base",
+      "tabs": {
+        "guides": "Guides",
+        "faq": "FAQ",
+        "docs": "Docs"
+      },
+      "guides": {
+        "gettingStarted": {
+          "title": "Getting Started",
+          "description": "Complete guide to setting up your first livestock monitoring system"
+        },
+        "healthMonitoring": {
+          "title": "Health Monitoring",
+          "description": "Understanding vital signs and health indicators"
+        },
+        "seasonalCare": {
+          "title": "Seasonal Care",
+          "description": "Adapting livestock management to seasonal changes"
+        },
+        "deviceMaintenance": {
+          "title": "Device Maintenance",
+          "description": "Keeping your Moorgan devices in optimal condition"
+        }
+      },
+      "faq": {
+        "chargeCollar": {
+          "question": "How often should I charge the collar?",
+          "answer": "Moorgan collars typically last 2-3 weeks on a single charge, depending on usage."
+        },
+        "collarRange": {
+          "question": "What's the range of the collar?",
+          "answer": "The standard range is up to 5 miles in open terrain, less in areas with obstacles."
+        },
+        "collarWaterproof": {
+          "question": "Is the collar waterproof?",
+          "answer": "Yes, Moorgan collars are IP67 rated, making them fully waterproof in up to 1 meter of water."
+        },
+        "healthAccuracy": {
+          "question": "How accurate is the health monitoring?",
+          "answer": "Our sensors are 95-98% accurate compared to veterinary equipment in controlled tests."
+        }
+      },
+      "docs": {
+        "technicalSpecs": {
+          "title": "Technical Specifications",
+          "size": "PDF • 2.4 MB"
+        },
+        "apiDoc": {
+          "title": "API Documentation",
+          "size": "PDF • 3.7 MB"
+        },
+        "userManual": {
+          "title": "User Manual",
+          "size": "PDF • 5.1 MB"
+        }
+      }
+    }
   },
-  "features": {
-    "realTimeData": "Real-time Data",
-    "securePlatform": "Secure Platform",
-    "fastInsights": "Fast Insights"
+  "detection": {
+    "hero": {
+      "title": "Livestock Disease Detection",
+      "subtitle": "Upload an image of your livestock to detect potential diseases using our advanced AI technology"
+    },
+    "tabs": {
+      "uploadDetect": "Upload & Detect",
+      "detectionHistory": "Detection History"
+    },
+    "uploadArea": {
+      "title": "Upload Image",
+      "dragDropText": "Drag and drop your image here",
+      "orText": "or",
+      "browseFilesButton": "Browse Files",
+      "supportedFormats": "Supported formats: JPG, PNG, WEBP (Max 10MB)",
+      "uploadedImageAlt": "Uploaded livestock image",
+      "analyzeImageButton": "Analyze Image",
+      "analyzingButton": "Analyzing..."
+    },
+    "upload": {
+      "errors": {
+        "invalidFileType": "Invalid file type. Please upload a JPEG, PNG, or WEBP image.",
+        "fileSizeExceeded": "File size exceeds 10MB limit.",
+        "readFile": "Error reading file."
+      }
+    },
+    "analysis": {
+      "errors": {
+        "noImageSelected": "No image file selected.",
+        "duringAnalysis": "Error during analysis:"
+      }
+    },
+    "api": {
+      "errors": {
+        "apiError": "API error:",
+        "requestFailed": "API request failed"
+      }
+    },
+    "resultsArea": {
+      "title": "Detection Results",
+      "analyzingMessage": "Analyzing your image...",
+      "uploadImageMessage": "Upload an image to see disease detection results",
+      "diseaseDetected": {
+        "title": "Disease Detected",
+        "description": "Our system has detected a potential disease in your livestock image."
+      },
+      "noDiseaseDetected": {
+        "title": "No Disease Detected",
+        "description": "Good news! No signs of disease were detected in your livestock image."
+      },
+      "detectedDisease": {
+        "title": "Detected Disease"
+      },
+      "probabilityText": "% Probability",
+      "commonSymptoms": {
+        "title": "Common Symptoms"
+      },
+      "recommendations": {
+        "title": "Recommendations"
+      },
+      "noteBold": "Note",
+      "diseaseDisclaimer": "This is an AI-assisted diagnosis and should be confirmed by a veterinarian. Please consult with a professional for proper treatment.",
+      "healthyLivestock": {
+        "title": "Healthy Livestock"
+      },
+      "healthyDisclaimer": "Regular veterinary check-ups are still recommended even when no disease is detected by our system."
+    },
+    "diseaseDetails": {
+      "fmd": {
+        "name": "Foot-and-Mouth Disease (FMD)",
+        "description": "Foot-and-Mouth Disease is a highly contagious viral disease affecting cloven-hoofed animals like cattle, sheep, and goats.",
+        "symptoms": {
+          "salivation": "Excessive salivation",
+          "lameness": "Lameness",
+          "fever": "Fever",
+          "blisters": "Blisters and sores in the mouth and feet",
+          "reducedMilk": "Reduced milk production"
+        },
+        "recommendations": {
+          "quarantine": "Quarantine affected animals immediately",
+          "contactVet": "Contact a veterinarian for diagnosis and treatment",
+          "biosecurity": "Implement strict biosecurity measures",
+          "vaccinate": "Vaccinate susceptible animals",
+          "disinfect": "Disinfect equipment and premises"
+        }
+      },
+      "normal": {
+        "name": "Healthy",
+        "description": "No signs of common livestock diseases were detected in the image.",
+        "symptoms": {},
+        "recommendations": {
+          "regularMonitoring": "Continue regular health monitoring",
+          "nutritionHydration": "Maintain proper nutrition and hydration",
+          "vaccinationSchedule": "Follow your regular vaccination schedule",
+          "physicalExaminations": "Conduct routine physical examinations",
+          "behavioralChanges": "Keep monitoring for any behavioral changes"
+        }
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "1. Upload Image",
+        "description": "Upload a clear image of your livestock from any angle that shows the animal clearly."
+      },
+      "step2": {
+        "title": "2. AI Analysis",
+        "description": "Our advanced AI analyzes the image for visual signs of common livestock diseases."
+      },
+      "step3": {
+        "title": "3. Get Results",
+        "description": "Receive detailed analysis with disease identification, symptoms, and recommended actions."
+      }
+    },
+    "historyTable": {
+      "title": "Detection History",
+      "headers": {
+        "image": "Image",
+        "filename": "Filename",
+        "date": "Date",
+        "result": "Result",
+        "actions": "Actions"
+      },
+      "result": {
+        "healthy": "Healthy"
+      },
+      "actions": {
+        "view": "View",
+        "download": "Download"
+      },
+      "noHistory": "No detection history available"
+    },
+    "tipsEducation": {
+      "title": "Livestock Disease Prevention Tips",
+      "sanitation": {
+        "title": "Proper Sanitation",
+        "description": "Regularly clean and disinfect animal housing, feeding equipment, and water troughs. Proper sanitation is the first line of defense against disease spread."
+      },
+      "vaccination": {
+        "title": "Vaccination Programs",
+        "description": "Implement and maintain a comprehensive vaccination program based on regional disease risks. Consult with your veterinarian for a customized schedule."
+      },
+      "biosecurity": {
+        "title": "Biosecurity Measures",
+        "description": "Control farm access, quarantine new animals, use clean equipment, and implement proper waste management to prevent disease introduction and spread."
+      },
+      "nutrition": {
+        "title": "Nutrition Management",
+        "description": "Provide balanced nutrition tailored to your livestock's needs. Proper nutrition strengthens immune systems and increases resistance to disease."
+      },
+      "monitoring": {
+        "title": "Regular Monitoring",
+        "description": "Observe your animals daily for unusual behavior or physical symptoms. Early detection is crucial for effective treatment and preventing spread."
+      },
+      "guidance": {
+        "title": "Professional Guidance",
+        "description": "Establish a relationship with a veterinarian specialized in livestock. Regular check-ups and professional advice are essential for herd health."
+      }
+    }
+  },
+  "dashboard": {
+    "layout": {
+      "sidebar": {
+        "logoText": "Moorgan",
+        "nav": {
+          "dashboard": "Dashboard",
+          "livestock": "Livestock",
+          "healthMonitoring": "Health Monitoring",
+          "analytics": "Analytics",
+          "activityTracking": "Activity Tracking",
+          "feedingManagement": "Feeding Management",
+          "weather": "Weather",
+          "reports": "Reports",
+          "messages": "Messages",
+          "settings": "Settings"
+        },
+        "homeButton": "Home",
+        "logoutButton": "Log out"
+      },
+      "user": {
+        "avatarAlt": "User avatar",
+        "role": "Farm Manager"
+      },
+      "header": {
+        "searchPlaceholder": "Search..."
+      }
+    },
+    "overview": {
+      "dashboard": {
+        "title": "Dashboard Overview",
+        "welcomeMessage": "Welcome back! Here's what's happening with your livestock today.",
+        "refreshButton": "Refresh"
+      },
+      "healthMetrics": {
+        "title": "Health Metrics",
+        "description": "Average vital signs across all livestock",
+        "dropdown": {
+          "optionsLabel": "Options",
+          "viewReport": "View detailed report",
+          "exportData": "Export data",
+          "setAlerts": "Set alerts"
+        },
+        "noSensorData": {
+          "title": "No Sensor Data",
+          "description": "Sensor statistics will appear here once available."
+        }
+      },
+      "livestockDistribution": {
+        "title": "Livestock Distribution",
+        "description": "Breakdown by species",
+        "noSpeciesData": {
+          "title": "No Species Data",
+          "description": "There is currently no species count information to display."
+        }
+      },
+      "recentAlerts": {
+        "title": "Recent Alerts",
+        "description": "Notifications requiring attention",
+        "noNotifications": {
+          "title": "No Notifications",
+          "description": "You will get to see notifications here when you receive one."
+        }
+      },
+      "quickAccess": {
+        "viewDetails": "View Details",
+        "livestockManagement": {
+          "title": "Livestock Management",
+          "description": "View and manage all livestock records"
+        },
+        "healthMonitoring": {
+          "title": "Health Monitoring",
+          "description": "Track vital signs and health status"
+        },
+        "feedingManagement": {
+          "title": "Feeding Management",
+          "description": "Schedule and track feeding activities"
+        },
+        "analyticsReports": {
+          "title": "Analytics & Reports",
+          "description": "View insights and generate reports"
+        }
+      }
+    },
+    "livestock": {
+      "list": {
+        "common": {
+          "na": "N/A"
+        },
+        "livestockList": {
+          "header": {
+            "title": "Livestock Management",
+            "subtitle": "View and manage all your livestock in one place."
+          },
+          "addLivestockButton": "Add Livestock",
+          "statusCards": {
+            "healthy": {
+              "label": "Healthy"
+            },
+            "attention": {
+              "label": "Needs Attention"
+            },
+            "unhealthy": {
+              "label": "Unhealthy"
+            }
+          },
+          "inventory": {
+            "title": "Livestock Inventory",
+            "description": "Manage and monitor your livestock records",
+            "searchPlaceholder": "Search by name, tag, or breed...",
+            "filterButton": "Filter",
+            "filterByStatusLabel": "Filter by Status",
+            "statusOptions": {
+              "all": "All",
+              "healthy": "Healthy",
+              "unhealthy": "Unhealthy",
+              "attention": "Needs Attention"
+            },
+            "exportButton": "Export"
+          },
+          "tableHeaders": {
+            "id": "ID",
+            "animal": "Animal",
+            "speciesBreed": "Species/Breed",
+            "genderAge": "Gender/Age",
+            "status": "Status",
+            "location": "Location",
+            "vitalSigns": "Vital Signs",
+            "lastUpdated": "Last Updated"
+          },
+          "statusEnum": {
+            "healthy": "Healthy",
+            "attention": "Needs Attention",
+            "unhealthy": "Unhealthy"
+          },
+          "locationText": "Farm {{farmId}}",
+          "noSensorData": "No sensor data",
+          "tableActions": {
+            "viewDetails": "View Details",
+            "editRecord": "Edit Record",
+            "healthHistory": "Health History",
+            "archive": "Archive"
+          },
+          "noMatchingLivestock": "No matching livestock found.",
+          "noLivestockAdded": "No livestock has been added yet. Click 'Add Livestock' to get started!"
+        }
+      },
+      "detail": {
+        "header": {
+          "title": "Livestock Details",
+          "export": "Export",
+          "edit": "Edit",
+          "printRecord": "Print Record",
+          "shareRecord": "Share Record",
+          "archiveRecord": "Archive Record"
+        },
+        "profile": {
+          "id": "ID: {{id}}",
+          "status": {
+            "healthy": "Healthy",
+            "attention": "Needs Attention",
+            "unhealthy": "Unhealthy"
+          },
+          "details": {
+            "species": "Species",
+            "breed": "Breed",
+            "birthDate": "Birth Date",
+            "age": "Age",
+            "ageUnit": "years old",
+            "weight": "Weight",
+            "location": "Location",
+            "farm": "Farm {{farmId}}"
+          },
+          "lastUpdated": "Last updated {{time}}"
+        },
+        "tabs": {
+          "overview": "Overview",
+          "health": "Health",
+          "production": "Production",
+          "genetics": "Genetics"
+        },
+        "overview": {
+          "vitals": {
+            "heartRate": {
+              "title": "Heart Rate",
+              "normal": "Normal: 48-84 beats per minute"
+            },
+            "temperature": {
+              "title": "Temperature",
+              "normal": "Normal: 38.5-39.5°C"
+            },
+            "oxygenSaturation": {
+              "title": "Oxygen Saturation",
+              "normal": "Normal: 95-100%"
+            }
+          },
+          "vitalSigns": {
+            "title": "Vital Signs Trend",
+            "description": "Last 7 days monitoring data"
+          },
+          "noSensorData": {
+            "title": "No Sensor Data",
+            "description": "Sensor statistics will appear here once available."
+          },
+          "feedingInfo": {
+            "title": "Feeding Information",
+            "diet": "Diet",
+            "dietValue": "Forage",
+            "schedule": "Feeding Schedule",
+            "scheduleValue": "Twice Daily",
+            "consumption": "Daily Consumption",
+            "consumptionValue": "22.6 kg/day",
+            "waterIntake": "Water Intake",
+            "waterIntakeValue": "25 gallons/day"
+          },
+          "notes": {
+            "title": "Notes"
+          }
+        },
+        "health": {
+          "vaccinations": {
+            "title": "Vaccination Records",
+            "administered": "Administered: {{date}}",
+            "nextDue": "Next Due: {{date}}",
+            "status": "Up to date"
+          },
+          "medicalHistory": {
+            "title": "Medical History"
+          }
+        },
+        "production": {
+          "milk": {
+            "title": "Milk Production",
+            "dailyAverage": "Daily Average",
+            "trend": "Trend",
+            "quality": "Quality"
+          },
+          "reproduction": {
+            "title": "Reproduction Status",
+            "status": "Status",
+            "breedingDate": "Breeding Date",
+            "dueDate": "Due Date",
+            "previousCalvings": "Previous Calvings",
+            "lastCalvingDate": "Last Calving Date"
+          }
+        },
+        "genetics": {
+          "info": {
+            "title": "Genetic Information",
+            "sire": "Sire",
+            "dam": "Dam",
+            "traits": "Genetic Traits"
+          },
+          "merit": {
+            "title": "Genetic Merit",
+            "milkProduction": "Milk Production",
+            "fertility": "Fertility",
+            "longevity": "Longevity",
+            "healthTraits": "Health Traits"
+          }
+        },
+        "upcomingEvents": {
+          "title": "Upcoming Events",
+          "viewAll": "View All",
+          "vaccinationDue": {
+            "title": "Vaccination Due",
+            "date": "January 15, 2024",
+            "description": "Bovine Viral Diarrhea (BVD)"
+          },
+          "expectedCalving": {
+            "title": "Expected Calving",
+            "date": "July 24, 2023",
+            "description": "Third pregnancy"
+          },
+          "routineCheckup": {
+            "title": "Routine Check-up",
+            "date": "June 10, 2023",
+            "description": "Quarterly health assessment"
+          }
+        },
+        "growth": {
+          "title": "Growth & Development",
+          "viewAll": "View All",
+          "weightProgress": {
+            "title": "Weight Progress",
+            "value": "{{current}} lbs (target: {{target}} lbs)"
+          },
+          "milkProduction": {
+            "title": "Milk Production",
+            "value": "{{current}} liters/day (target: {{target}} liters/day)"
+          },
+          "bcs": {
+            "title": "Body Condition Score",
+            "value": "{{score}} out of 5"
+          },
+          "feedEfficiency": {
+            "title": "Feed Efficiency",
+            "value": "{{ratio}} (milk:feed ratio)"
+          }
+        }
+      },
+      "add": {
+        "page": {
+          "title": "Add New Livestock",
+          "description": "Register a new animal and its monitoring device to your Moorgan system"
+        },
+        "tabs": {
+          "device": "Device Information",
+          "animal": "Animal Information"
+        },
+        "deviceForm": {
+          "title": "Device Configuration",
+          "description": "Configure the Moorgan device that will be attached to the animal",
+          "fields": {
+            "deviceId": {
+              "label": "Device ID",
+              "placeholder": "e.g., livestock-1-device",
+              "generate": "Generate",
+              "description": "Unique identifier for the device in Azure IoT Hub"
+            },
+            "deviceType": {
+              "label": "Device Type/Model",
+              "placeholder": "Select device type",
+              "description": "The model of the monitoring device",
+              "options": {
+                "collarV1": "Moorgan Collar v1.0",
+                "collarV2": "Moorgan Collar v2.0",
+                "tagV1": "Moorgan Tag v1.0",
+                "custom": "Custom Device"
+              }
+            },
+            "firmware": {
+              "label": "Firmware Version",
+              "placeholder": "Select firmware version",
+              "description": "Device firmware version",
+              "options": {
+                "latest": "Latest (v2.3.1)",
+                "v2_3_0": "v2.3.0",
+                "v2_2_5": "v2.2.5",
+                "v2_1_0": "v2.1.0"
+              }
+            },
+            "wifiConfig": {
+              "label": "Wi-Fi Configuration (Optional)",
+              "ssidLabel": "Wi-Fi SSID",
+              "ssidPlaceholder": "Network name",
+              "passwordLabel": "Wi-Fi Password",
+              "passwordPlaceholder": "Network password",
+              "description": "Only needed if configuring Wi-Fi from the web"
+            }
+          }
+        },
+        "animalForm": {
+          "title": "Animal Information",
+          "description": "Enter details about the animal that will wear this device",
+          "fields": {
+            "name": {
+              "label": "Name",
+              "placeholder": "Animal name",
+              "description": "Unique name or tag ID of the animal"
+            },
+            "species": {
+              "label": "Species",
+              "placeholder": "Select species",
+              "description": "Species of the animal",
+              "options": {
+                "cow": "Cow",
+                "goat": "Goat",
+                "sheep": "Sheep",
+                "pig": "Pig",
+                "horse": "Horse",
+                "other": "Other"
+              }
+            },
+            "breed": {
+              "label": "Breed",
+              "placeholder": "Animal breed",
+              "description": "Breed of the animal"
+            },
+            "gender": {
+              "label": "Gender",
+              "placeholder": "Select gender",
+              "description": "Gender of the animal",
+              "options": {
+                "male": "Male",
+                "female": "Female"
+              }
+            },
+            "birthDate": {
+              "label": "Birth Date",
+              "description": "Important for interpreting vitals"
+            },
+            "photoUrl": {
+              "label": "Photo URL",
+              "placeholder": "URL to animal photo (optional)",
+              "description": "Optional photo URL for the animal"
+            },
+            "status": {
+              "label": "Status",
+              "placeholder": "Select status",
+              "description": "Current health status of the animal",
+              "options": {
+                "healthy": "Healthy",
+                "attention": "Needs Attention",
+                "critical": "Critical"
+              }
+            },
+            "weight": {
+              "label": "Weight (kg)",
+              "placeholder": "Weight in kg",
+              "description": "Weight of the animal in kilograms"
+            },
+            "height": {
+              "label": "Height (cm)",
+              "placeholder": "Height in cm",
+              "description": "Height of the animal in centimeters"
+            },
+            "bcs": {
+              "label": "Body Condition Score",
+              "placeholder": "Score (1-9)",
+              "description": "Body condition score (1-9)"
+            },
+            "notes": {
+              "label": "Notes",
+              "placeholder": "Additional notes (optional)",
+              "description": "Any additional information about the animal"
+            }
+          }
+        },
+        "buttons": {
+          "submit": "Add Livestock",
+          "submitting": "Adding..."
+        },
+        "notifications": {
+          "success": "Livestock and device added successfully!",
+          "error": {
+            "validation": "Please fill in all required fields correctly.",
+            "submission": "Failed to add livestock. Please try again."
+          }
+        },
+        "validation": {
+          "required": "{{field}} is required",
+          "numeric": {
+            "weight": "Weight must be a valid number",
+            "height": "Height must be a valid number",
+            "bcs": "Body Condition Score must be a valid number"
+          },
+          "deviceIdFormat": "Device ID must be alphanumeric with hyphens"
+        }
+      }
+    }
   }
-
 }

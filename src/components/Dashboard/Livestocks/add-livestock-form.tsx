@@ -36,8 +36,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "react-hot-toast";
 import { createLivestock } from "@/services/livestockService";
 import { useAuth } from "@/context/auth-context";
+import { useTranslation } from "react-i18next";
 
 export default function AddLivestockForm() {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -207,7 +209,7 @@ export default function AddLivestockForm() {
     } catch (error) {
       console.error(error);
       setIsSubmitting(false);
-      toast.error("Failed to add livestock. Please try again.", {
+      toast.error(t("dashboard.livestock.add.notifications.error.submission"), {
         duration: 4000,
         position: "top-center",
       });
@@ -222,26 +224,33 @@ export default function AddLivestockForm() {
       className="w-full max-w-4xl mx-auto"
     >
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Add New Livestock</h1>
+        <h1 className="text-3xl font-bold text-gray-900">
+          {t("dashboard.livestock.add.page.title")}
+        </h1>
         <p className="text-gray-600 mt-2">
-          Register a new animal and its monitoring device to your Moorgan system
+          {t("dashboard.livestock.add.page.description")}
         </p>
       </div>
 
       <form onSubmit={handleSubmit}>
         <Tabs defaultValue="device" className="w-full">
           <TabsList className="grid grid-cols-2 mb-8">
-            <TabsTrigger value="device">Device Information</TabsTrigger>
-            <TabsTrigger value="animal">Animal Information</TabsTrigger>
+            <TabsTrigger value="device">
+              {t("dashboard.livestock.add.tabs.device")}
+            </TabsTrigger>
+            <TabsTrigger value="animal">
+              {t("dashboard.livestock.add.tabs.animal")}
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="device">
             <Card>
               <CardHeader>
-                <CardTitle>Device Configuration</CardTitle>
+                <CardTitle>
+                  {t("dashboard.livestock.add.deviceForm.title")}
+                </CardTitle>
                 <CardDescription>
-                  Configure the Moorgan device that will be attached to the
-                  animal
+                  {t("dashboard.livestock.add.deviceForm.description")}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -252,7 +261,10 @@ export default function AddLivestockForm() {
                       className="flex items-center gap-2"
                     >
                       <HardDrive className="h-4 w-4" />
-                      Device ID <span className="text-red-500">*</span>
+                      {t(
+                        "dashboard.livestock.add.deviceForm.fields.deviceId.label"
+                      )}{" "}
+                      <span className="text-red-500">*</span>
                     </Label>
                     <div className="flex gap-2">
                       <Input
@@ -260,7 +272,9 @@ export default function AddLivestockForm() {
                         name="deviceId"
                         value={formData.deviceId}
                         onChange={handleInputChange}
-                        placeholder="e.g., livestock-1-device"
+                        placeholder={t(
+                          "dashboard.livestock.add.deviceForm.fields.deviceId.placeholder"
+                        )}
                         required
                       />
                       <Button
@@ -269,14 +283,18 @@ export default function AddLivestockForm() {
                         onClick={generateDeviceId}
                         disabled={!formData.name}
                       >
-                        Generate
+                        {t(
+                          "dashboard.livestock.add.deviceForm.fields.deviceId.generate"
+                        )}
                       </Button>
                     </div>
                     {errors.deviceId && (
                       <p className="text-xs text-red-500">{errors.deviceId}</p>
                     )}
                     <p className="text-xs text-gray-500">
-                      Unique identifier for the device in Azure IoT Hub
+                      {t(
+                        "dashboard.livestock.add.deviceForm.fields.deviceId.description"
+                      )}
                     </p>
                   </div>
 
@@ -286,7 +304,10 @@ export default function AddLivestockForm() {
                       className="flex items-center gap-2"
                     >
                       <Cpu className="h-4 w-4" />
-                      Device Type/Model <span className="text-red-500">*</span>
+                      {t(
+                        "dashboard.livestock.add.deviceForm.fields.deviceType.label"
+                      )}{" "}
+                      <span className="text-red-500">*</span>
                     </Label>
                     <Select
                       value={formData.deviceType}
@@ -295,17 +316,33 @@ export default function AddLivestockForm() {
                       }
                     >
                       <SelectTrigger id="deviceType">
-                        <SelectValue placeholder="Select device type" />
+                        <SelectValue
+                          placeholder={t(
+                            "deviceForm.fields.deviceType.placeholder"
+                          )}
+                        />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="collar-v1">
-                          Moorgan Collar v1.0
+                          {t(
+                            "dashboard.livestock.add.deviceForm.fields.deviceType.options.collarV1"
+                          )}
                         </SelectItem>
                         <SelectItem value="collar-v2">
-                          Moorgan Collar v2.0
+                          {t(
+                            "dashboard.livestock.add.deviceForm.fields.deviceType.options.collarV2"
+                          )}
                         </SelectItem>
-                        <SelectItem value="tag-v1">Moorgan Tag v1.0</SelectItem>
-                        <SelectItem value="custom">Custom Device</SelectItem>
+                        <SelectItem value="tag-v1">
+                          {t(
+                            "dashboard.livestock.add.deviceForm.fields.deviceType.options.tagV1"
+                          )}
+                        </SelectItem>
+                        <SelectItem value="custom">
+                          {t(
+                            "dashboard.livestock.add.deviceForm.fields.deviceType.options.custom"
+                          )}
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                     {errors.deviceType && (
@@ -314,7 +351,9 @@ export default function AddLivestockForm() {
                       </p>
                     )}
                     <p className="text-xs text-gray-500">
-                      The model of the monitoring device
+                      {t(
+                        "dashboard.livestock.add.deviceForm.fields.deviceType.description"
+                      )}
                     </p>
                   </div>
                 </div>
@@ -325,7 +364,10 @@ export default function AddLivestockForm() {
                       htmlFor="firmware"
                       className="flex items-center gap-2"
                     >
-                      Firmware Version <span className="text-red-500">*</span>
+                      {t(
+                        "dashboard.livestock.add.deviceForm.fields.firmware.label"
+                      )}{" "}
+                      <span className="text-red-500">*</span>
                     </Label>
                     <Select
                       value={formData.firmware}
@@ -334,53 +376,91 @@ export default function AddLivestockForm() {
                       }
                     >
                       <SelectTrigger id="firmware">
-                        <SelectValue placeholder="Select firmware version" />
+                        <SelectValue
+                          placeholder={t(
+                            "deviceForm.fields.firmware.placeholder"
+                          )}
+                        />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="latest">Latest (v2.3.1)</SelectItem>
-                        <SelectItem value="v2.3.0">v2.3.0</SelectItem>
-                        <SelectItem value="v2.2.5">v2.2.5</SelectItem>
-                        <SelectItem value="v2.1.0">v2.1.0</SelectItem>
+                        <SelectItem value="latest">
+                          {t(
+                            "dashboard.livestock.add.deviceForm.fields.firmware.options.latest"
+                          )}
+                        </SelectItem>
+                        <SelectItem value="v2.3.0">
+                          {t(
+                            "dashboard.livestock.add.deviceForm.fields.firmware.options.v2_3_0"
+                          )}
+                        </SelectItem>
+                        <SelectItem value="v2.2.5">
+                          {t(
+                            "dashboard.livestock.add.deviceForm.fields.firmware.options.v2_2_5"
+                          )}
+                        </SelectItem>
+                        <SelectItem value="v2.1.0">
+                          {t(
+                            "dashboard.livestock.add.deviceForm.fields.firmware.options.v2_1_0"
+                          )}
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                     {errors.firmware && (
                       <p className="text-xs text-red-500">{errors.firmware}</p>
                     )}
                     <p className="text-xs text-gray-500">
-                      Device firmware version
+                      {t(
+                        "dashboard.livestock.add.deviceForm.fields.firmware.description"
+                      )}
                     </p>
                   </div>
 
                   <div className="space-y-2">
                     <Label className="flex items-center gap-2">
                       <Wifi className="h-4 w-4" />
-                      Wi-Fi Configuration (Optional)
+                      {t(
+                        "dashboard.livestock.add.deviceForm.fields.wifiConfig.label"
+                      )}
                     </Label>
                     <div className="grid grid-cols-1 gap-4">
                       <div>
-                        <Label htmlFor="wifiSsid">Wi-Fi SSID</Label>
+                        <Label htmlFor="wifiSsid">
+                          {t(
+                            "dashboard.livestock.add.deviceForm.fields.wifiConfig.ssidLabel"
+                          )}
+                        </Label>
                         <Input
                           id="wifiSsid"
                           name="wifiSsid"
                           value={formData.wifiSsid}
                           onChange={handleInputChange}
-                          placeholder="Network name"
+                          placeholder={t(
+                            "dashboard.livestock.add.deviceForm.fields.wifiConfig.ssidPlaceholder"
+                          )}
                         />
                       </div>
                       <div>
-                        <Label htmlFor="wifiPassword">Wi-Fi Password</Label>
+                        <Label htmlFor="wifiPassword">
+                          {t(
+                            "dashboard.livestock.add.deviceForm.fields.wifiConfig.passwordLabel"
+                          )}
+                        </Label>
                         <Input
                           id="wifiPassword"
                           name="wifiPassword"
                           type="password"
                           value={formData.wifiPassword}
                           onChange={handleInputChange}
-                          placeholder="Network password"
+                          placeholder={t(
+                            "dashboard.livestock.add.deviceForm.fields.wifiConfig.passwordPlaceholder"
+                          )}
                         />
                       </div>
                     </div>
                     <p className="text-xs text-gray-500">
-                      Only needed if configuring Wi-Fi from the web
+                      {t(
+                        "dashboard.livestock.add.deviceForm.fields.wifiConfig.description"
+                      )}
                     </p>
                   </div>
                 </div>
@@ -391,9 +471,11 @@ export default function AddLivestockForm() {
           <TabsContent value="animal">
             <Card>
               <CardHeader>
-                <CardTitle>Animal Information</CardTitle>
+                <CardTitle>
+                  {t("dashboard.livestock.add.animalForm.title")}
+                </CardTitle>
                 <CardDescription>
-                  Enter details about the animal that will wear this device
+                  {t("dashboard.livestock.add.animalForm.description")}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -401,21 +483,28 @@ export default function AddLivestockForm() {
                   <div className="space-y-2">
                     <Label htmlFor="name" className="flex items-center gap-2">
                       <User className="h-4 w-4" />
-                      Name <span className="text-red-500">*</span>
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.name.label"
+                      )}{" "}
+                      <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      placeholder="Animal name"
+                      placeholder={t(
+                        "dashboard.livestock.add.animalForm.fields.name.placeholder"
+                      )}
                       required
                     />
                     {errors.name && (
                       <p className="text-xs text-red-500">{errors.name}</p>
                     )}
                     <p className="text-xs text-gray-500">
-                      Unique name or tag ID of the animal
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.name.description"
+                      )}
                     </p>
                   </div>
 
@@ -425,7 +514,10 @@ export default function AddLivestockForm() {
                       className="flex items-center gap-2"
                     >
                       <Dna className="h-4 w-4" />
-                      Species <span className="text-red-500">*</span>
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.species.label"
+                      )}{" "}
+                      <span className="text-red-500">*</span>
                     </Label>
                     <Select
                       value={formData.species}
@@ -434,22 +526,52 @@ export default function AddLivestockForm() {
                       }
                     >
                       <SelectTrigger id="species">
-                        <SelectValue placeholder="Select species" />
+                        <SelectValue
+                          placeholder={t(
+                            "dashboard.livestock.add.animalForm.fields.species.placeholder"
+                          )}
+                        />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="cow">Cow</SelectItem>
-                        <SelectItem value="goat">Goat</SelectItem>
-                        <SelectItem value="sheep">Sheep</SelectItem>
-                        <SelectItem value="pig">Pig</SelectItem>
-                        <SelectItem value="horse">Horse</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
+                        <SelectItem value="cow">
+                          {t(
+                            "dashboard.livestock.add.animalForm.fields.species.options.cow"
+                          )}
+                        </SelectItem>
+                        <SelectItem value="goat">
+                          {t(
+                            "dashboard.livestock.add.animalForm.fields.species.options.goat"
+                          )}
+                        </SelectItem>
+                        <SelectItem value="sheep">
+                          {t(
+                            "dashboard.livestock.add.animalForm.fields.species.options.sheep"
+                          )}
+                        </SelectItem>
+                        <SelectItem value="pig">
+                          {t(
+                            "dashboard.livestock.add.animalForm.fields.species.options.pig"
+                          )}
+                        </SelectItem>
+                        <SelectItem value="horse">
+                          {t(
+                            "dashboard.livestock.add.animalForm.fields.species.options.horse"
+                          )}
+                        </SelectItem>
+                        <SelectItem value="other">
+                          {t(
+                            "dashboard.livestock.add.animalForm.fields.species.options.other"
+                          )}
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                     {errors.species && (
                       <p className="text-xs text-red-500">{errors.species}</p>
                     )}
                     <p className="text-xs text-gray-500">
-                      Species of the animal
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.species.description"
+                      )}
                     </p>
                   </div>
                 </div>
@@ -458,26 +580,38 @@ export default function AddLivestockForm() {
                   <div className="space-y-2">
                     <Label htmlFor="breed" className="flex items-center gap-2">
                       <Dna className="h-4 w-4" />
-                      Breed <span className="text-red-500">*</span>
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.breed.label"
+                      )}{" "}
+                      <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="breed"
                       name="breed"
                       value={formData.breed}
                       onChange={handleInputChange}
-                      placeholder="Animal breed"
+                      placeholder={t(
+                        "dashboard.livestock.add.animalForm.fields.breed.placeholder"
+                      )}
                       required
                     />
                     {errors.breed && (
                       <p className="text-xs text-red-500">{errors.breed}</p>
                     )}
-                    <p className="text-xs text-gray-500">Breed of the animal</p>
+                    <p className="text-xs text-gray-500">
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.breed.description"
+                      )}
+                    </p>
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="gender" className="flex items-center gap-2">
                       <User className="h-4 w-4" />
-                      Gender <span className="text-red-500">*</span>
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.gender.label"
+                      )}{" "}
+                      <span className="text-red-500">*</span>
                     </Label>
                     <Select
                       value={formData.gender}
@@ -486,18 +620,32 @@ export default function AddLivestockForm() {
                       }
                     >
                       <SelectTrigger id="gender">
-                        <SelectValue placeholder="Select gender" />
+                        <SelectValue
+                          placeholder={t(
+                            "dashboard.livestock.add.animalForm.fields.gender.placeholder"
+                          )}
+                        />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="male">Male</SelectItem>
-                        <SelectItem value="female">Female</SelectItem>
+                        <SelectItem value="male">
+                          {t(
+                            "dashboard.livestock.add.animalForm.fields.gender.options.male"
+                          )}
+                        </SelectItem>
+                        <SelectItem value="female">
+                          {t(
+                            "dashboard.livestock.add.animalForm.fields.gender.options.female"
+                          )}
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                     {errors.gender && (
                       <p className="text-xs text-red-500">{errors.gender}</p>
                     )}
                     <p className="text-xs text-gray-500">
-                      Gender of the animal
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.gender.description"
+                      )}
                     </p>
                   </div>
                 </div>
@@ -509,7 +657,10 @@ export default function AddLivestockForm() {
                       className="flex items-center gap-2"
                     >
                       <Calendar className="h-4 w-4" />
-                      Birth Date <span className="text-red-500">*</span>
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.birthDate.label"
+                      )}{" "}
+                      <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="birthDate"
@@ -523,7 +674,9 @@ export default function AddLivestockForm() {
                       <p className="text-xs text-red-500">{errors.birthDate}</p>
                     )}
                     <p className="text-xs text-gray-500">
-                      Important for interpreting vitals
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.birthDate.description"
+                      )}
                     </p>
                   </div>
 
@@ -533,17 +686,23 @@ export default function AddLivestockForm() {
                       className="flex items-center gap-2"
                     >
                       <Camera className="h-4 w-4" />
-                      Photo URL
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.photoUrl.label"
+                      )}
                     </Label>
                     <Input
                       id="photoUrl"
                       name="photoUrl"
                       value={formData.photoUrl}
                       onChange={handleInputChange}
-                      placeholder="URL to animal photo (optional)"
+                      placeholder={t(
+                        "dashboard.livestock.add.animalForm.fields.photoUrl.placeholder"
+                      )}
                     />
                     <p className="text-xs text-gray-500">
-                      Optional photo URL for the animal
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.photoUrl.description"
+                      )}
                     </p>
                   </div>
                 </div>
@@ -552,7 +711,10 @@ export default function AddLivestockForm() {
                   <div className="space-y-2">
                     <Label htmlFor="status" className="flex items-center gap-2">
                       <Check className="h-4 w-4" />
-                      Status <span className="text-red-500">*</span>
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.status.label"
+                      )}{" "}
+                      <span className="text-red-500">*</span>
                     </Label>
                     <Select
                       value={formData.status}
@@ -561,28 +723,47 @@ export default function AddLivestockForm() {
                       }
                     >
                       <SelectTrigger id="status">
-                        <SelectValue placeholder="Select status" />
+                        <SelectValue
+                          placeholder={t(
+                            "dashboard.livestock.add.animalForm.fields.status.placeholder"
+                          )}
+                        />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="Healthy">Healthy</SelectItem>
-                        <SelectItem value="Needs Attention">
-                          Needs Attention
+                        <SelectItem value="Healthy">
+                          {t(
+                            "dashboard.livestock.add.animalForm.fields.status.options.healthy"
+                          )}
                         </SelectItem>
-                        <SelectItem value="Critical">Critical</SelectItem>
+                        <SelectItem value="Needs Attention">
+                          {t(
+                            "dashboard.livestock.add.animalForm.fields.status.options.attention"
+                          )}
+                        </SelectItem>
+                        <SelectItem value="Critical">
+                          {t(
+                            "dashboard.livestock.add.animalForm.fields.status.options.critical"
+                          )}
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                     {errors.status && (
                       <p className="text-xs text-red-500">{errors.status}</p>
                     )}
                     <p className="text-xs text-gray-500">
-                      Current health status of the animal
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.status.description"
+                      )}
                     </p>
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="weight" className="flex items-center gap-2">
                       <Scale className="h-4 w-4" />
-                      Weight (kg) <span className="text-red-500">*</span>
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.weight.label"
+                      )}{" "}
+                      <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="weight"
@@ -590,7 +771,9 @@ export default function AddLivestockForm() {
                       type="number"
                       value={formData.weight}
                       onChange={handleInputChange}
-                      placeholder="Weight in kg"
+                      placeholder={t(
+                        "dashboard.livestock.add.animalForm.fields.weight.placeholder"
+                      )}
                       required
                       min="0"
                       step="0.1"
@@ -599,7 +782,9 @@ export default function AddLivestockForm() {
                       <p className="text-xs text-red-500">{errors.weight}</p>
                     )}
                     <p className="text-xs text-gray-500">
-                      Weight of the animal in kilograms
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.weight.description"
+                      )}
                     </p>
                   </div>
                 </div>
@@ -608,7 +793,10 @@ export default function AddLivestockForm() {
                   <div className="space-y-2">
                     <Label htmlFor="height" className="flex items-center gap-2">
                       <Ruler className="h-4 w-4" />
-                      Height (cm) <span className="text-red-500">*</span>
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.height.label"
+                      )}{" "}
+                      <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="height"
@@ -616,7 +804,9 @@ export default function AddLivestockForm() {
                       type="number"
                       value={formData.height}
                       onChange={handleInputChange}
-                      placeholder="Height in cm"
+                      placeholder={t(
+                        "dashboard.livestock.add.animalForm.fields.height.placeholder"
+                      )}
                       required
                       min="0"
                       step="0.1"
@@ -625,7 +815,9 @@ export default function AddLivestockForm() {
                       <p className="text-xs text-red-500">{errors.height}</p>
                     )}
                     <p className="text-xs text-gray-500">
-                      Height of the animal in centimeters
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.height.description"
+                      )}
                     </p>
                   </div>
 
@@ -635,7 +827,9 @@ export default function AddLivestockForm() {
                       className="flex items-center gap-2"
                     >
                       <Scale className="h-4 w-4" />
-                      Body Condition Score{" "}
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.bcs.label"
+                      )}{" "}
                       <span className="text-red-500">*</span>
                     </Label>
                     <Input
@@ -644,7 +838,9 @@ export default function AddLivestockForm() {
                       type="number"
                       value={formData.bodyConditionScore}
                       onChange={handleInputChange}
-                      placeholder="Score (1-9)"
+                      placeholder={t(
+                        "dashboard.livestock.add.animalForm.fields.bcs.placeholder"
+                      )}
                       required
                       min="1"
                       max="9"
@@ -656,7 +852,9 @@ export default function AddLivestockForm() {
                       </p>
                     )}
                     <p className="text-xs text-gray-500">
-                      Body condition score (1-9)
+                      {t(
+                        "dashboard.livestock.add.animalForm.fields.bcs.description"
+                      )}
                     </p>
                   </div>
                 </div>
@@ -664,17 +862,21 @@ export default function AddLivestockForm() {
                 <div className="space-y-2">
                   <Label htmlFor="notes" className="flex items-center gap-2">
                     <User className="h-4 w-4" />
-                    Notes
+                    {t("dashboard.livestock.add.animalForm.fields.notes.label")}
                   </Label>
                   <Input
                     id="notes"
                     name="notes"
                     value={formData.notes}
                     onChange={handleInputChange}
-                    placeholder="Additional notes (optional)"
+                    placeholder={t(
+                      "dashboard.livestock.add.animalForm.fields.notes.placeholder"
+                    )}
                   />
                   <p className="text-xs text-gray-500">
-                    Any additional information about the animal
+                    {t(
+                      "dashboard.livestock.add.animalForm.fields.notes.description"
+                    )}
                   </p>
                 </div>
               </CardContent>
@@ -689,7 +891,7 @@ export default function AddLivestockForm() {
                 className="bg-green-100 text-green-800 px-4 py-2 rounded-md flex items-center gap-2"
               >
                 <Check className="h-5 w-5" />
-                Livestock and device added successfully!
+                {t("dashboard.livestock.add.notifications.success")}
               </motion.div>
             ) : (
               <Button
@@ -700,12 +902,12 @@ export default function AddLivestockForm() {
                 {isSubmitting ? (
                   <>
                     <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
-                    Adding...
+                    {t("dashboard.livestock.add.buttons.submitting")}
                   </>
                 ) : (
                   <>
                     <Save className="mr-2 h-4 w-4" />
-                    Add Livestock
+                    {t("dashboard.livestock.add.buttons.submit")}
                   </>
                 )}
               </Button>

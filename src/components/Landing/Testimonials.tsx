@@ -1,49 +1,49 @@
-import { useState } from "react"
-import { AnimatedSection, SectionHeading } from "../ui-components"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
+import { useState } from "react";
+import { AnimatedSection, SectionHeading } from "../ui-components";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function Testimonials() {
+  const { t } = useTranslation();
+
   const testimonials = [
     {
       name: "John Farmer",
-      role: "Dairy Farm Owner",
-      content:
-        "Moorgan has transformed how we manage our dairy farm. The real-time health monitoring has reduced disease outbreaks by 70% and improved our overall productivity.",
+      role: t("landing.testimonials.john.role"),
+      content: t("landing.testimonials.john.content"),
       image: "/images/Testimonial/farmer-1.png",
     },
     {
       name: "Maria Garcia",
-      role: "Livestock Researcher",
-      content:
-        "As a researcher, I'm impressed by the quality and accuracy of data provided by Moorgan. It's revolutionizing how we understand livestock behavior and health patterns.",
+      role: t("landing.testimonials.maria.role"),
+      content: t("landing.testimonials.maria.content"),
       image: "/images/Testimonial/girl-1.png",
     },
     {
       name: "Robert Chen",
-      role: "Agricultural Consultant",
-      content:
-        "I've recommended Moorgan to dozens of my clients, and the feedback has been overwhelmingly positive. The ROI is clear within just a few months of implementation.",
+      role: t("landing.testimonials.robert.role"),
+      content: t("landing.testimonials.robert.content"),
       image: "/images/Testimonial/boy-1.png",
     },
-  ]
+  ];
 
-  const [current, setCurrent] = useState(0)
+  const [current, setCurrent] = useState(0);
 
   const next = () => {
-    setCurrent((current + 1) % testimonials.length)
-  }
+    setCurrent((current + 1) % testimonials.length);
+  };
 
   const prev = () => {
-    setCurrent((current - 1 + testimonials.length) % testimonials.length)
-  }
+    setCurrent((current - 1 + testimonials.length) % testimonials.length);
+  };
 
   return (
     <AnimatedSection id="testimonials" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <SectionHeading
-          title="What Our Clients Say"
-          subtitle="Hear from farmers and agricultural professionals using Moorgan"
+          title={t("landing.testimonials.heading")}
+          subtitle={t("landing.testimonials.subheading")}
         />
 
         <div className="max-w-4xl mx-auto relative">
@@ -67,10 +67,16 @@ export default function Testimonials() {
                   />
                 </div>
                 <div className="md:w-3/4">
-                  <p className="text-gray-700 text-lg mb-6 relative z-10">"{testimonials[current].content}"</p>
+                  <p className="text-gray-700 text-lg mb-6 relative z-10">
+                    "{testimonials[current].content}"
+                  </p>
                   <div>
-                    <h4 className="font-bold text-gray-800">{testimonials[current].name}</h4>
-                    <p className="text-[#328E6E]">{testimonials[current].role}</p>
+                    <h4 className="font-bold text-gray-800">
+                      {testimonials[current].name}
+                    </h4>
+                    <p className="text-[#328E6E]">
+                      {testimonials[current].role}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -105,5 +111,5 @@ export default function Testimonials() {
         </div>
       </div>
     </AnimatedSection>
-  )
+  );
 }

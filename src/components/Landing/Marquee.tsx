@@ -1,8 +1,10 @@
-import { useRef, useEffect } from "react"
-import { motion, useAnimation, useInView } from "framer-motion"
-import { AnimatedSection } from "../ui-components"
+import { useRef, useEffect } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { AnimatedSection } from "../ui-components";
+import { useTranslation } from "react-i18next";
 
 export default function MarqueeSection() {
+  const { t } = useTranslation();
   const technologies = [
     "Microsoft Azure",
     "IoT Sensors",
@@ -14,14 +16,14 @@ export default function MarqueeSection() {
     "Data Visualization",
     "Sustainable Farming",
     "Smart Agriculture",
-  ]
+  ];
 
   // Duplicate the array for continuous scrolling effect
-  const allTechnologies = [...technologies, ...technologies]
+  const allTechnologies = [...technologies, ...technologies];
 
-  const controls = useAnimation()
-  const containerRef = useRef(null)
-  const isInView = useInView(containerRef, { once: false })
+  const controls = useAnimation();
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: false });
 
   useEffect(() => {
     if (isInView) {
@@ -35,17 +37,17 @@ export default function MarqueeSection() {
             ease: "linear",
           },
         },
-      })
+      });
     } else {
-      controls.stop()
+      controls.stop();
     }
-  }, [controls, isInView, technologies.length])
+  }, [controls, isInView, technologies.length]);
 
   return (
     <AnimatedSection className="py-16 bg-[#328E6E]">
       <div className="container mx-auto px-4 mb-8">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-8">
-          Powered by Cutting-Edge Technology
+          {t("landing.marquee.heading")}
         </h2>
       </div>
 
@@ -62,5 +64,5 @@ export default function MarqueeSection() {
         </motion.div>
       </div>
     </AnimatedSection>
-  )
+  );
 }
