@@ -119,11 +119,11 @@ export default function Features() {
             </div>
             <div className="flex justify-center">
               <motion.img
-                src="./images/Media/microsoft-azure.png"
+                src="./images/Media/azure-overview.png"
                 alt="Microsoft Azure Integration"
-                className="max-w-full h-auto"
+                className="max-w-full h-auto filter grayscale"
                 initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                whileInView={{ opacity: 1, scale: 1, width: 800 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
                 viewport={{ once: true }}
               />
