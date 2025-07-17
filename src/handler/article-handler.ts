@@ -11,7 +11,7 @@ const staticArticles: Article[] = [
     author: "Dr. Sarah Johnson",
     readTime: 8,
     image:
-      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/Moorgan/Articles/z1dmnlmdq9ueqlkurjls",
+      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/TernakAja/Articles/z1dmnlmdq9ueqlkurjls",
     imageCaption:
       "Proper vaccination is essential for maintaining herd health and preventing disease outbreaks.",
     tags: [
@@ -23,7 +23,7 @@ const staticArticles: Article[] = [
     content:[
     {
       type: "paragraph",
-      text: "The integration of Artificial Intelligence (AI) and Internet of Things (IoT) technologies has transformed modern farming practices, particularly in livestock management. At Moorgan, we're at the forefront of this revolution, providing farmers with intelligent tools to monitor animal health, optimize feed efficiency, and improve overall farm productivity."
+      text: "The integration of Artificial Intelligence (AI) and Internet of Things (IoT) technologies has transformed modern farming practices, particularly in livestock management. At TernakAja, we're at the forefront of this revolution, providing farmers with intelligent tools to monitor animal health, optimize feed efficiency, and improve overall farm productivity."
     },
     {
       type: "heading",
@@ -43,7 +43,7 @@ const staticArticles: Article[] = [
     },
     {
       type: "paragraph",
-      text: "The power of machine learning enables our system to continuously improve, becoming more accurate and tailored to your specific livestock needs over time. This adaptive intelligence is what sets Moorgan apart from traditional monitoring solutions."
+      text: "The power of machine learning enables our system to continuously improve, becoming more accurate and tailored to your specific livestock needs over time. This adaptive intelligence is what sets TernakAja apart from traditional monitoring solutions."
     },
     {
       type: "heading",
@@ -55,7 +55,7 @@ const staticArticles: Article[] = [
     },
     {
       type: "quote",
-      text: "Since implementing Moorgan's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
+      text: "Since implementing TernakAja's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
       author: "James Wilson, Wilson Family Farms"
     },
     {
@@ -74,7 +74,7 @@ const staticArticles: Article[] = [
     author: "Dr. Michael Rodriguez",
     readTime: 6,
     image:
-      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/Moorgan/Articles/sbql5jjncdatfixfbvk0",
+      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/TernakAja/Articles/sbql5jjncdatfixfbvk0",
     imageCaption:
       "Proper nutrition management is key to dairy cow productivity and health.",
     tags: [
@@ -86,7 +86,7 @@ const staticArticles: Article[] = [
     content: [
       {
         type: "paragraph",
-        text: "The integration of Artificial Intelligence (AI) and Internet of Things (IoT) technologies has transformed modern farming practices, particularly in livestock management. At Moorgan, we're at the forefront of this revolution, providing farmers with intelligent tools to monitor animal health, optimize feed efficiency, and improve overall farm productivity."
+        text: "The integration of Artificial Intelligence (AI) and Internet of Things (IoT) technologies has transformed modern farming practices, particularly in livestock management. At TernakAja, we're at the forefront of this revolution, providing farmers with intelligent tools to monitor animal health, optimize feed efficiency, and improve overall farm productivity."
       },
       {
         type: "heading",
@@ -106,7 +106,7 @@ const staticArticles: Article[] = [
       },
       {
         type: "paragraph",
-        text: "The power of machine learning enables our system to continuously improve, becoming more accurate and tailored to your specific livestock needs over time. This adaptive intelligence is what sets Moorgan apart from traditional monitoring solutions."
+        text: "The power of machine learning enables our system to continuously improve, becoming more accurate and tailored to your specific livestock needs over time. This adaptive intelligence is what sets TernakAja apart from traditional monitoring solutions."
       },
       {
         type: "heading",
@@ -118,7 +118,7 @@ const staticArticles: Article[] = [
       },
       {
         type: "quote",
-        text: "Since implementing Moorgan's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
+        text: "Since implementing TernakAja's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
         author: "James Wilson, Wilson Family Farms"
       },
       {
@@ -138,7 +138,7 @@ const staticArticles: Article[] = [
     author: "Dr. Emily Chen",
     readTime: 7,
     image:
-      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/Moorgan/Articles/hzgdfa9fxlkkcptimxap",
+      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/TernakAja/Articles/hzgdfa9fxlkkcptimxap",
     imageCaption:
       "Early detection of respiratory issues can prevent serious outbreaks in your herd.",
     tags: [
@@ -150,7 +150,7 @@ const staticArticles: Article[] = [
     content: [
       {
         type: "paragraph",
-        text: "The integration of Artificial Intelligence (AI) and Internet of Things (IoT) technologies has transformed modern farming practices, particularly in livestock management. At Moorgan, we're at the forefront of this revolution, providing farmers with intelligent tools to monitor animal health, optimize feed efficiency, and improve overall farm productivity."
+        text: "The integration of Artificial Intelligence (AI) and Internet of Things (IoT) technologies has transformed modern farming practices, particularly in livestock management. At TernakAja, we're at the forefront of this revolution, providing farmers with intelligent tools to monitor animal health, optimize feed efficiency, and improve overall farm productivity."
       },
       {
         type: "heading",
@@ -170,7 +170,7 @@ const staticArticles: Article[] = [
       },
       {
         type: "paragraph",
-        text: "The power of machine learning enables our system to continuously improve, becoming more accurate and tailored to your specific livestock needs over time. This adaptive intelligence is what sets Moorgan apart from traditional monitoring solutions."
+        text: "The power of machine learning enables our system to continuously improve, becoming more accurate and tailored to your specific livestock needs over time. This adaptive intelligence is what sets TernakAja apart from traditional monitoring solutions."
       },
       {
         type: "heading",
@@ -182,7 +182,7 @@ const staticArticles: Article[] = [
       },
       {
         type: "quote",
-        text: "Since implementing Moorgan's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
+        text: "Since implementing TernakAja's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
         author: "James Wilson, Wilson Family Farms"
       },
       {
@@ -201,7 +201,7 @@ const staticArticles: Article[] = [
     author: "Dr. James Wilson",
     readTime: 5,
     image:
-      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/Moorgan/Articles/dek4d5mh3wntjkk4uz1y",
+      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/TernakAja/Articles/dek4d5mh3wntjkk4uz1y",
     imageCaption:
       "Clean water is essential for maintaining livestock health and productivity.",
     tags: [
@@ -221,7 +221,7 @@ const staticArticles: Article[] = [
       },
       {
         type: "quote",
-        text: "Since implementing Moorgan's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
+        text: "Since implementing TernakAja's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
         author: "James Wilson, Wilson Family Farms"
       },
       {
@@ -240,7 +240,7 @@ const staticArticles: Article[] = [
     author: "Dr. Lisa Thompson",
     readTime: 9,
     image:
-      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/Moorgan/Articles/s2infagubauncyye8ijd",
+      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/TernakAja/Articles/s2infagubauncyye8ijd",
     imageCaption:
       "Strong biosecurity measures are your first line of defense against disease outbreaks.",
     tags: [
@@ -260,7 +260,7 @@ const staticArticles: Article[] = [
       },
       {
         type: "quote",
-        text: "Since implementing Moorgan's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
+        text: "Since implementing TernakAja's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
         author: "James Wilson, Wilson Family Farms"
       },
       {
@@ -279,7 +279,7 @@ const staticArticles: Article[] = [
     author: "Dr. Robert Anderson",
     readTime: 6,
     image:
-      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/Moorgan/Articles/dwraioes97indjeurt3h",
+      "https://res.cloudinary.com/dqvlnzw9f/image/upload/f_auto,q_auto/v1/TernakAja/Articles/dwraioes97indjeurt3h",
     imageCaption:
       "Proper preparation can help livestock thrive even during the hottest summer months.",
     tags: [
@@ -299,7 +299,7 @@ const staticArticles: Article[] = [
       },
       {
         type: "quote",
-        text: "Since implementing Moorgan's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
+        text: "Since implementing TernakAja's monitoring system, we've reduced our feed costs by 22% while improving our livestock's overall health metrics. The return on investment was evident within just four months.",
         author: "James Wilson, Wilson Family Farms"
       },
       {

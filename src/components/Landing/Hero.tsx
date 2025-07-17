@@ -91,7 +91,7 @@ export default function Hero() {
             <div className="relative z-10">
               <img
                 src="./images/Landing/moo-farm.png"
-                alt="Moorgan Livestock Monitoring"
+                alt="TernakAja Livestock Monitoring"
                 className="w-full h-auto rounded-2xl shadow-2xl"
               />
             </div>

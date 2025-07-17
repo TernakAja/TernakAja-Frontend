@@ -21,12 +21,12 @@ export default function ContactFaq() {
     {
       question: "Can I schedule a demo of your livestock monitoring system?",
       answer:
-        "You can request a demo through our contact form or by emailing sales@moorgan.com. We'll arrange a personalized demonstration of our platform tailored to your specific needs.",
+        "You can request a demo through our contact form or by emailing sales@ternakaja.com. We'll arrange a personalized demonstration of our platform tailored to your specific needs.",
     },
     {
       question: "How do I report a bug or technical issue?",
       answer:
-        "Technical issues can be reported through our support portal, by emailing support@moorgan.com, or by calling our technical support line. Please include as much detail as possible about the issue you're experiencing.",
+        "Technical issues can be reported through our support portal, by emailing support@ternakaja.com, or by calling our technical support line. Please include as much detail as possible about the issue you're experiencing.",
     },
     {
       question: "Do you offer on-site installation and training?",
@@ -71,10 +71,10 @@ export default function ContactFaq() {
           <p className="text-gray-700">
             Still have questions? Contact our support team directly at{" "}
             <a
-              href="mailto:support@moorgan.com"
+              href="mailto:support@ternakaja.com"
               className="text-[#328E6E] font-medium"
             >
-              support@moorgan.com
+              support@ternakaja.com
             </a>
           </p>
         </AnimatedDiv>

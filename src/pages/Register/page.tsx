@@ -1,5 +1,5 @@
-import RegisterForm from "@/components/Register/register-form"
-import { Leaf } from "lucide-react"
+import RegisterForm from "@/components/Register/register-form";
+import { Leaf } from "lucide-react";
 
 export default function RegisterPage() {
   return (
@@ -11,12 +11,12 @@ export default function RegisterPage() {
               <Leaf className="h-8 w-8 text-white" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-[#328E6E]">Moorgan</h1>
+          <h1 className="text-3xl font-bold text-[#328E6E]">TernakAja</h1>
           <p className="text-[#67AE6E] mt-1">Smart Livestock Monitoring</p>
         </div>
 
         <RegisterForm />
       </div>
     </main>
-  )
+  );
 }

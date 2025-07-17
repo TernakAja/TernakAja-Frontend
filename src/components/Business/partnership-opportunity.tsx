@@ -1,13 +1,23 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Handshake, Building, Stethoscope, Cpu, GraduationCap, Globe, ArrowRight, CheckCircle } from "lucide-react"
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import {
+  Handshake,
+  Building,
+  Stethoscope,
+  Cpu,
+  GraduationCap,
+  Globe,
+  ArrowRight,
+  CheckCircle,
+} from "lucide-react";
 
 const partnershipTypes = [
   {
     title: "Technology Partners",
-    description: "Collaborate on IoT hardware, software integration, and platform development",
+    description:
+      "Collaborate on IoT hardware, software integration, and platform development",
     icon: Cpu,
     benefits: [
       "Joint product development",
@@ -15,22 +25,42 @@ const partnershipTypes = [
       "Co-marketing opportunities",
       "Revenue sharing models",
     ],
-    examples: ["Hardware manufacturers", "Software companies", "Cloud providers"],
+    examples: [
+      "Hardware manufacturers",
+      "Software companies",
+      "Cloud providers",
+    ],
     color: "bg-blue-50 border-blue-200",
   },
   {
     title: "Distribution Partners",
-    description: "Expand market reach through established agricultural and veterinary networks",
+    description:
+      "Expand market reach through established agricultural and veterinary networks",
     icon: Building,
-    benefits: ["Market expansion", "Local expertise", "Established customer base", "Reduced market entry costs"],
-    examples: ["Agricultural cooperatives", "Farm equipment dealers", "Veterinary distributors"],
+    benefits: [
+      "Market expansion",
+      "Local expertise",
+      "Established customer base",
+      "Reduced market entry costs",
+    ],
+    examples: [
+      "Agricultural cooperatives",
+      "Farm equipment dealers",
+      "Veterinary distributors",
+    ],
     color: "bg-green-50 border-green-200",
   },
   {
     title: "Veterinary Partners",
-    description: "Integrate with veterinary practices for comprehensive livestock health management",
+    description:
+      "Integrate with veterinary practices for comprehensive livestock health management",
     icon: Stethoscope,
-    benefits: ["Clinical validation", "Professional endorsement", "Service integration", "Data insights"],
+    benefits: [
+      "Clinical validation",
+      "Professional endorsement",
+      "Service integration",
+      "Data insights",
+    ],
     examples: ["Veterinary clinics", "Animal hospitals", "Mobile vet services"],
     color: "bg-purple-50 border-purple-200",
   },
@@ -38,7 +68,12 @@ const partnershipTypes = [
     title: "Research Partners",
     description: "Collaborate on research initiatives and product innovation",
     icon: GraduationCap,
-    benefits: ["Research funding", "Academic credibility", "Innovation pipeline", "Talent pipeline"],
+    benefits: [
+      "Research funding",
+      "Academic credibility",
+      "Innovation pipeline",
+      "Talent pipeline",
+    ],
     examples: ["Universities", "Research institutions", "Government labs"],
     color: "bg-orange-50 border-orange-200",
   },
@@ -46,19 +81,34 @@ const partnershipTypes = [
     title: "Strategic Partners",
     description: "Form strategic alliances with industry leaders and investors",
     icon: Handshake,
-    benefits: ["Capital investment", "Strategic guidance", "Market credibility", "Growth acceleration"],
+    benefits: [
+      "Capital investment",
+      "Strategic guidance",
+      "Market credibility",
+      "Growth acceleration",
+    ],
     examples: ["Investment firms", "Industry leaders", "Government agencies"],
     color: "bg-indigo-50 border-indigo-200",
   },
   {
     title: "Global Partners",
-    description: "Establish international partnerships for worldwide market expansion",
+    description:
+      "Establish international partnerships for worldwide market expansion",
     icon: Globe,
-    benefits: ["International expansion", "Local compliance", "Cultural adaptation", "Regional expertise"],
-    examples: ["International distributors", "Regional integrators", "Local partners"],
+    benefits: [
+      "International expansion",
+      "Local compliance",
+      "Cultural adaptation",
+      "Regional expertise",
+    ],
+    examples: [
+      "International distributors",
+      "Regional integrators",
+      "Local partners",
+    ],
     color: "bg-pink-50 border-pink-200",
   },
-]
+];
 
 export function PartnershipOpportunities() {
   return (
@@ -71,10 +121,13 @@ export function PartnershipOpportunities() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Partnership Opportunities</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Partnership Opportunities
+          </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Join our ecosystem of partners and unlock new opportunities for growth, innovation, and market expansion in
-            the livestock monitoring industry.
+            Join our ecosystem of partners and unlock new opportunities for
+            growth, innovation, and market expansion in the livestock monitoring
+            industry.
           </p>
         </motion.div>
 
@@ -90,16 +143,23 @@ export function PartnershipOpportunities() {
             >
               <div className="flex items-center gap-3 mb-4">
                 <partnership.icon className="w-8 h-8 text-gray-700" />
-                <h3 className="text-xl font-bold text-gray-900">{partnership.title}</h3>
+                <h3 className="text-xl font-bold text-gray-900">
+                  {partnership.title}
+                </h3>
               </div>
 
               <p className="text-gray-600 mb-6">{partnership.description}</p>
 
               <div className="mb-6">
-                <h4 className="font-semibold text-gray-900 mb-3">Key Benefits:</h4>
+                <h4 className="font-semibold text-gray-900 mb-3">
+                  Key Benefits:
+                </h4>
                 <ul className="space-y-2">
                   {partnership.benefits.map((benefit, benefitIndex) => (
-                    <li key={benefitIndex} className="flex items-center gap-2 text-sm text-gray-700">
+                    <li
+                      key={benefitIndex}
+                      className="flex items-center gap-2 text-sm text-gray-700"
+                    >
                       <CheckCircle className="w-4 h-4 text-[#328E6E] flex-shrink-0" />
                       {benefit}
                     </li>
@@ -111,7 +171,10 @@ export function PartnershipOpportunities() {
                 <h4 className="font-semibold text-gray-900 mb-2">Examples:</h4>
                 <div className="flex flex-wrap gap-2">
                   {partnership.examples.map((example, exampleIndex) => (
-                    <span key={exampleIndex} className="text-xs bg-white px-2 py-1 rounded border border-gray-200">
+                    <span
+                      key={exampleIndex}
+                      className="text-xs bg-white px-2 py-1 rounded border border-gray-200"
+                    >
                       {example}
                     </span>
                   ))}
@@ -138,20 +201,30 @@ export function PartnershipOpportunities() {
           viewport={{ once: true }}
           className="bg-gradient-to-r from-[#328E6E] to-[#67AE6E] rounded-2xl p-8 text-white text-center"
         >
-          <h3 className="text-2xl font-bold mb-4">Ready to Partner with Moorgan?</h3>
+          <h3 className="text-2xl font-bold mb-4">
+            Ready to Partner with TernakAja?
+          </h3>
           <p className="text-lg mb-6 text-white/90">
-            Let's discuss how we can create mutual value and drive innovation together
+            Let's discuss how we can create mutual value and drive innovation
+            together
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button size="lg" className="bg-white text-[#328E6E] hover:bg-gray-100">
+            <Button
+              size="lg"
+              className="bg-white text-[#328E6E] hover:bg-gray-100"
+            >
               Schedule Partnership Call
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[#328E6E]">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-[#328E6E]"
+            >
               Download Partnership Guide
             </Button>
           </div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

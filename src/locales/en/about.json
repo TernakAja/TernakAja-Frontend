@@ -1,10 +1,10 @@
 {
-  "title": "About Moorgan",
+  "title": "About TernakAja",
   "subtitle": "Transforming livestock management through innovative technology and sustainable practices",
-  "imageAlt": "About Moorgan",
+  "imageAlt": "About TernakAja",
   "yearsExperience": "Years of research and development in AI livestock monitoring",
   "sectionTitle": "The Future of Livestock Management",
-  "paragraph1": "Moorgan combines cutting-edge AI algorithms with IoT sensors to create a comprehensive livestock monitoring system that helps farmers optimize their operations, improve animal welfare, and increase productivity while reducing environmental impact.",
+  "paragraph1": "TernakAja combines cutting-edge AI algorithms with IoT sensors to create a comprehensive livestock monitoring system that helps farmers optimize their operations, improve animal welfare, and increase productivity while reducing environmental impact.",
   "paragraph2": "Built on Microsoft Azure's robust cloud infrastructure, our platform provides real-time insights, predictive analytics, and actionable recommendations to transform traditional farming into smart, sustainable agriculture.",
   "benefits": {
     "healthMonitoring": "Real-time health monitoring of livestock",

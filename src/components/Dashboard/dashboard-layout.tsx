@@ -33,12 +33,10 @@ interface DashboardLayoutProps {
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-
-
-  const nowLanguage = localStorage.getItem("language")
+  const nowLanguage = localStorage.getItem("language");
 
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useState(nowLanguage === "en" ? "id" : "en") // Default to English
+  const [language, setLanguage] = useState(nowLanguage === "en" ? "id" : "en"); // Default to English
 
   const toggleLanguage = () => {
     const newLanguage = language === "en" ? "id" : "en";
@@ -150,7 +148,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <Cow className="h-5 w-5" />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-[#328E6E] to-[#90C67C] bg-clip-text text-transparent">
-              Moorgan
+              TernakAja
             </span>
           </a>
           {isMobile && (

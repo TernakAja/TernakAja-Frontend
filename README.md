@@ -14,6 +14,7 @@
 ---
 
 ## 📃 Table of Contents
+
 - [Complete Documentation](#📚-complete-documentation)
 - [All GitHub Repository](#🌐-all-github-repository)
 - [Introduction](#🌟-introduction)
@@ -24,14 +25,13 @@
 - [Team](#👥-team)
 - [Contact](#📬-contact)
 
-
 ---
 
 ## 📚 Complete Documentation
 
 <ul>
     <li><b>Notion Documentation (Detail Documentation)</b></li>
-    <a href="https://stanley-n-wijaya.notion.site/Moorgan-Documentation-1df73555b71f80fd9fd9dbfc655ce5a7?pvs=4">Notion Documentation</a>
+    <a href="https://stanley-n-wijaya.notion.site/TernakAja-Documentation-1df73555b71f80fd9fd9dbfc655ce5a7?pvs=4">Notion Documentation</a>
     <li><b>Demo Video</b></li>
     <a href="https://binusianorg-my.sharepoint.com/personal/stanley_wijaya004_binus_ac_id/_layouts/15/guestaccess.aspx?share=EYMWsQ71C9NHv2bWAHrP4L8BMcDJ3e6a9U_hsyYi_i-wlw&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=eWRR7c">Link Demo Video</a>
     <li><b>TernakAja Google Drive</b></li>
@@ -44,31 +44,34 @@
 
 <ul>
     <li><b>Main Repository</b></li>
-    <a href="https://github.com/StyNW7/Moorgan">https://github.com/StyNW7/Moorgan</a>
+    <a href="https://github.com/StyNW7/TernakAja">https://github.com/StyNW7/TernakAja</a>
     <li><b>Frontend Repository</b></li>
-    <a href="https://github.com/StyNW7/Moorgan-Frontend">https://github.com/StyNW7/Moorgan-Frontend</a>
+    <a href="https://github.com/StyNW7/TernakAja-Frontend">https://github.com/StyNW7/TernakAja-Frontend</a>
     <li><b>Backend Repository</b></li>
-    <a href="https://github.com/StyNW7/Moorgan-Backend">https://github.com/StyNW7/Moorgan-Backend</a>
+    <a href="https://github.com/StyNW7/TernakAja-Backend">https://github.com/StyNW7/TernakAja-Backend</a>
     <li><b>AI Repository</b></li>
-    <a href="https://github.com/StyNW7/Moorgan-AI">https://github.com/StyNW7/Moorgan-AI</a>
+    <a href="https://github.com/StyNW7/TernakAja-AI">https://github.com/StyNW7/TernakAja-AI</a>
     <li><b>IoT Repository</b></li>
-    <a href="https://github.com/StyNW7/Moorgan-IoT">https://github.com/StyNW7/Moorgan-IoT</a>
+    <a href="https://github.com/StyNW7/TernakAja-IoT">https://github.com/StyNW7/TernakAja-IoT</a>
 </ul>
 
 ---
 
 ## 🌟 Introduction
+
 **TernakAja** revolutionizes livestock farming through intelligent, real-time health and behavior monitoring. Combining IoT sensors and AI anomaly detection, TernakAja empowers farmers to detect health issues early, prevent loss, and optimize livestock productivity.
-> "Every heartbeat, every step, every breath of your livestock matters. TernakAja listens and protects."   
-> — *TernakAja Manifesto*
+
+> "Every heartbeat, every step, every breath of your livestock matters. TernakAja listens and protects."  
+> — _TernakAja Manifesto_
 
 ---
 
 ## 🛠️ Technology Stack
+
 - **Frontend**: Vite, TypeScript, TailwindCSS, and ShadcnUI
 - **Backend**: Express.js & Node.js
 - **Database**: Azure PostgreSQL Flexible Server
-- **AI Integration**: Python  & Hugging Face API
+- **AI Integration**: Python & Hugging Face API
 - **IoT Device**: Arduino C++ (ESP32 + Sensors)
 - **Version Control**: Git & GitHub (Submodule Monorepo)
 - **Deployment**:
@@ -106,21 +109,25 @@
 ---
 
 ## 🚀 Live Demo
+
 Visit the deployed application here (frontend only):
 <br>
-👉 [https://moorgan.vercel.app/](https://moorgan.vercel.app/)
+👉 [https://ternakaja.vercel.app/](https://ternakaja.vercel.app/)
 
 ---
 
 ## 🧰 Getting Started Locally (Frontend Version)
 
 ### Prerequisites
+
 - **Node.js** (v18 or above)
 - **Git**
 
 ### Run Local for TernakAja Frontend
+
 ```bash
-git clone https://github.com/StyNW7/Moorgan-Frontend.git
-cd moorgan-frontend
+git clone https://github.com/StyNW7/TernakAja-Frontend.git
+cd ternakaja-frontend
 npm install
 npm run dev
+```

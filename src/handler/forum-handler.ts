@@ -5,7 +5,7 @@ const staticPosts: ForumPost[] = [
     id: 1,
     title: "How to optimize sensor placement for cattle health monitoring?",
     excerpt:
-      "I've been using Moorgan sensors for a month now and I'm wondering about the optimal placement for health monitoring. Has anyone experimented with different positions?",
+      "I've been using TernakAja sensors for a month now and I'm wondering about the optimal placement for health monitoring. Has anyone experimented with different positions?",
     author: {
       name: "John Farmer",
       avatar: "/placeholder.svg?height=40&width=40",
@@ -44,9 +44,9 @@ const staticPosts: ForumPost[] = [
   },
   {
     id: 3,
-    title: "Success story: Reduced disease outbreaks by 70% using Moorgan",
+    title: "Success story: Reduced disease outbreaks by 70% using TernakAja",
     excerpt:
-      "I wanted to share my experience using Moorgan's system for the past year. We've seen a dramatic reduction in disease outbreaks and improved overall herd health.",
+      "I wanted to share my experience using TernakAja's system for the past year. We've seen a dramatic reduction in disease outbreaks and improved overall herd health.",
     author: {
       name: "Robert Chen",
       avatar: "/placeholder.svg?height=40&width=40",
@@ -84,9 +84,9 @@ const staticPosts: ForumPost[] = [
   },
   {
     id: 5,
-    title: "Integrating Moorgan with other farm management software",
+    title: "Integrating TernakAja with other farm management software",
     excerpt:
-      "I'm currently using FarmERP for overall management and would like to integrate Moorgan's livestock monitoring. Has anyone successfully integrated these systems?",
+      "I'm currently using FarmERP for overall management and would like to integrate TernakAja's livestock monitoring. Has anyone successfully integrated these systems?",
     author: {
       name: "David Wilson",
       avatar: "/placeholder.svg?height=40&width=40",

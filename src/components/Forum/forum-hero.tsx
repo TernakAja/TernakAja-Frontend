@@ -1,8 +1,12 @@
-import { Button } from "@/components/ui/button"
-import { AnimatedDiv, AnimatedHeading, AnimatedSection } from "../ui-components"
-import { motion } from "framer-motion"
-import { MessageSquarePlus, Search } from "lucide-react"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button";
+import {
+  AnimatedDiv,
+  AnimatedHeading,
+  AnimatedSection,
+} from "../ui-components";
+import { motion } from "framer-motion";
+import { MessageSquarePlus, Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 export default function ForumHero() {
   return (
@@ -23,16 +27,25 @@ export default function ForumHero() {
           >
             Connect with the{" "}
             <span className="bg-gradient-to-r from-[#328E6E] to-[#90C67C] bg-clip-text text-transparent">
-              Moorgan Community
+              TernakAja Community
             </span>
           </AnimatedHeading>
 
-          <AnimatedDiv className="text-lg text-gray-600 max-w-3xl mx-auto mb-8" direction="up" delay={0.1}>
-            Share your experiences, ask questions, and learn from other livestock farmers. Our community forum is the
-            perfect place to connect and grow together.
+          <AnimatedDiv
+            className="text-lg text-gray-600 max-w-3xl mx-auto mb-8"
+            direction="up"
+            delay={0.1}
+          >
+            Share your experiences, ask questions, and learn from other
+            livestock farmers. Our community forum is the perfect place to
+            connect and grow together.
           </AnimatedDiv>
 
-          <AnimatedDiv className="flex flex-col sm:flex-row gap-4 justify-center" direction="up" delay={0.2}>
+          <AnimatedDiv
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            direction="up"
+            delay={0.2}
+          >
             <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white px-6 py-6 rounded-lg text-lg">
               <MessageSquarePlus className="mr-2 h-5 w-5" />
               Create New Post
@@ -87,5 +100,5 @@ export default function ForumHero() {
         </motion.div>
       </div>
     </AnimatedSection>
-  )
+  );
 }

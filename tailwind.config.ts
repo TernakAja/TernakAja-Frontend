@@ -52,7 +52,7 @@
 //           DEFAULT: "hsl(var(--card))",
 //           foreground: "hsl(var(--card-foreground))",
 //         },
-//         moorgan: {
+//         ternakaja: {
 //           "dark-green-1": "#328E6E",
 //           "dark-green-2": "#67AE6E",
 //           green: "#90C67C",

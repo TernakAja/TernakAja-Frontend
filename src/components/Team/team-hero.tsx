@@ -1,5 +1,9 @@
-import { motion } from "framer-motion"
-import { AnimatedDiv, AnimatedHeading, AnimatedSection } from "../ui-components"
+import { motion } from "framer-motion";
+import {
+  AnimatedDiv,
+  AnimatedHeading,
+  AnimatedSection,
+} from "../ui-components";
 
 export default function TeamHero() {
   return (
@@ -18,13 +22,20 @@ export default function TeamHero() {
           direction="up"
         >
           Meet the{" "}
-          <span className="bg-gradient-to-r from-[#328E6E] to-[#90C67C] bg-clip-text text-transparent">Minds</span>{" "}
-          Behind Moorgan
+          <span className="bg-gradient-to-r from-[#328E6E] to-[#90C67C] bg-clip-text text-transparent">
+            Minds
+          </span>{" "}
+          Behind TernakAja
         </AnimatedHeading>
 
-        <AnimatedDiv className="text-lg text-gray-600 max-w-3xl mx-auto mb-12" direction="up" delay={0.1}>
-          Our diverse team of experts combines knowledge in artificial intelligence, IoT engineering, veterinary
-          science, and sustainable agriculture to revolutionize livestock management.
+        <AnimatedDiv
+          className="text-lg text-gray-600 max-w-3xl mx-auto mb-12"
+          direction="up"
+          delay={0.1}
+        >
+          Our diverse team of experts combines knowledge in artificial
+          intelligence, IoT engineering, veterinary science, and sustainable
+          agriculture to revolutionize livestock management.
         </AnimatedDiv>
 
         <motion.div
@@ -52,5 +63,5 @@ export default function TeamHero() {
         </motion.div>
       </div>
     </AnimatedSection>
-  )
+  );
 }

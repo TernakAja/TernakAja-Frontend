@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: moorgan-frontend
+    container_name: ternakaja-frontend
     ports:
       - "80:80"
     restart: unless-stopped

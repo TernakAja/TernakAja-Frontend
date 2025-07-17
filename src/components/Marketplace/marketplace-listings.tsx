@@ -1,7 +1,7 @@
-import { AnimatedDiv, AnimatedSection } from "../ui-components"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Heart, MapPin, Star } from "lucide-react"
+import { AnimatedDiv, AnimatedSection } from "../ui-components";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Heart, MapPin, Star } from "lucide-react";
 
 export default function MarketplaceListings() {
   const listings = [
@@ -25,7 +25,7 @@ export default function MarketplaceListings() {
         health: "Excellent",
       },
       description:
-        "Healthy Holstein dairy cow with excellent milk production history. Complete health records available. Monitored with Moorgan system for the past 2 years.",
+        "Healthy Holstein dairy cow with excellent milk production history. Complete health records available. Monitored with TernakAja system for the past 2 years.",
       featured: true,
     },
     {
@@ -48,7 +48,7 @@ export default function MarketplaceListings() {
         health: "Excellent",
       },
       description:
-        "Premium Angus breeding pair with excellent genetics. Both animals have been monitored with Moorgan health tracking system since birth.",
+        "Premium Angus breeding pair with excellent genetics. Both animals have been monitored with TernakAja health tracking system since birth.",
       featured: false,
     },
     {
@@ -71,7 +71,7 @@ export default function MarketplaceListings() {
         health: "Excellent",
       },
       description:
-        "Healthy Merino sheep with high-quality wool. All sheep have been monitored with Moorgan health tracking and have complete vaccination records.",
+        "Healthy Merino sheep with high-quality wool. All sheep have been monitored with TernakAja health tracking and have complete vaccination records.",
       featured: true,
     },
     {
@@ -94,7 +94,7 @@ export default function MarketplaceListings() {
         health: "Excellent",
       },
       description:
-        "Healthy Nubian goat with two kids. Mother has excellent milk production history. All animals have been monitored with Moorgan health tracking.",
+        "Healthy Nubian goat with two kids. Mother has excellent milk production history. All animals have been monitored with TernakAja health tracking.",
       featured: false,
     },
     {
@@ -117,7 +117,7 @@ export default function MarketplaceListings() {
         health: "Excellent",
       },
       description:
-        "Healthy Berkshire breeding pair with excellent genetics. Both pigs have been monitored with Moorgan health tracking system.",
+        "Healthy Berkshire breeding pair with excellent genetics. Both pigs have been monitored with TernakAja health tracking system.",
       featured: false,
     },
     {
@@ -140,16 +140,18 @@ export default function MarketplaceListings() {
         health: "Excellent",
       },
       description:
-        "Healthy Jersey dairy cow with excellent milk production history. Complete health records available. Monitored with Moorgan system for the past 2 years.",
+        "Healthy Jersey dairy cow with excellent milk production history. Complete health records available. Monitored with TernakAja system for the past 2 years.",
       featured: true,
     },
-  ]
+  ];
 
   return (
     <AnimatedSection className="py-20 bg-[#E1EEBC]/10">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl font-bold text-gray-800">Featured Livestock</h2>
+          <h2 className="text-2xl font-bold text-gray-800">
+            Featured Livestock
+          </h2>
           <div className="text-gray-600">Showing {listings.length} results</div>
         </div>
 
@@ -168,21 +170,33 @@ export default function MarketplaceListings() {
                     alt={listing.title}
                     className="w-full h-64 object-cover object-center"
                   />
-                  {listing.featured && <Badge className="absolute top-4 left-4 bg-[#328E6E]">Featured</Badge>}
+                  {listing.featured && (
+                    <Badge className="absolute top-4 left-4 bg-[#328E6E]">
+                      Featured
+                    </Badge>
+                  )}
                   <button className="absolute top-4 right-4 bg-white/80 hover:bg-white p-2 rounded-full transition-colors">
                     <Heart className="h-5 w-5 text-gray-600 hover:text-red-500 transition-colors" />
                   </button>
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent text-white p-4">
-                    <div className="text-2xl font-bold">${listing.price.toLocaleString()}</div>
+                    <div className="text-2xl font-bold">
+                      ${listing.price.toLocaleString()}
+                    </div>
                   </div>
                 </div>
 
                 <div className="p-6">
                   <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-                    <Badge variant="outline" className="text-[#328E6E] border-[#328E6E]/30">
+                    <Badge
+                      variant="outline"
+                      className="text-[#328E6E] border-[#328E6E]/30"
+                    >
                       {listing.details.type}
                     </Badge>
-                    <Badge variant="outline" className="text-[#328E6E] border-[#328E6E]/30">
+                    <Badge
+                      variant="outline"
+                      className="text-[#328E6E] border-[#328E6E]/30"
+                    >
                       {listing.details.breed}
                     </Badge>
                   </div>
@@ -196,11 +210,15 @@ export default function MarketplaceListings() {
                     <span>{listing.location}</span>
                   </div>
 
-                  <p className="text-gray-600 mb-4 line-clamp-2">{listing.description}</p>
+                  <p className="text-gray-600 mb-4 line-clamp-2">
+                    {listing.description}
+                  </p>
 
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-1">
-                      <div className="text-sm font-medium">{listing.seller.name}</div>
+                      <div className="text-sm font-medium">
+                        {listing.seller.name}
+                      </div>
                       {listing.seller.verified && (
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -231,9 +249,11 @@ export default function MarketplaceListings() {
         </div>
 
         <div className="mt-12 text-center">
-          <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white px-6">Load More Listings</Button>
+          <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white px-6">
+            Load More Listings
+          </Button>
         </div>
       </div>
     </AnimatedSection>
-  )
+  );
 }

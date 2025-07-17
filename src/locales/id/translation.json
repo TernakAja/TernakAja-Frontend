@@ -18,12 +18,12 @@
       }
     },
     "about": {
-      "title": "Tentang Moorgan",
+      "title": "Tentang TernakAja",
       "subtitle": "Mengubah pengelolaan ternak melalui teknologi inovatif dan praktik berkelanjutan",
-      "imageAlt": "Tentang Moorgan",
+      "imageAlt": "Tentang TernakAja",
       "yearsExperience": "Bertahun-tahun penelitian dan pengembangan dalam pemantauan ternak AI",
       "sectionTitle": "Masa Depan Pengelolaan Peternakan",
-      "paragraph1": "Moorgan menggabungkan algoritme AI mutakhir dengan sensor IoT untuk menciptakan sistem pemantauan ternak komprehensif yang membantu peternak mengoptimalkan operasi mereka, meningkatkan kesejahteraan hewan, dan meningkatkan produktivitas sekaligus mengurangi dampak lingkungan.",
+      "paragraph1": "TernakAja menggabungkan algoritme AI mutakhir dengan sensor IoT untuk menciptakan sistem pemantauan ternak komprehensif yang membantu peternak mengoptimalkan operasi mereka, meningkatkan kesejahteraan hewan, dan meningkatkan produktivitas sekaligus mengurangi dampak lingkungan.",
       "paragraph2": "Dibangun di atas infrastruktur cloud Microsoft Azure yang kuat, platform kami memberikan wawasan real-time, analitik prediktif, dan rekomendasi yang dapat ditindaklanjuti untuk mengubah pertanian tradisional menjadi pertanian yang cerdas dan berkelanjutan.",
       "benefits": {
         "healthMonitoring": "Pemantauan kesehatan ternak secara real-time",
@@ -123,7 +123,7 @@
       "learnMore": "Pelajari lebih lanjut",
       "items": {
         "0": {
-          "name": "Rasa Moorgan",
+          "name": "Rasa TernakAja",
           "description": "Sensor dan perangkat yang dapat dikenakan IoT untuk pemantauan ternak secara real-time",
           "features": {
             "0": "Pelacakan kesehatan",
@@ -131,10 +131,10 @@
             "2": "Analisis perilaku",
             "3": "Daya tahan baterai yang lama"
           },
-          "image": "/images/Products/Moorgan-IoT-Schema.png"
+          "image": "/images/Products/TernakAja-IoT-Schema.png"
         },
         "1": {
-          "name": "Wawasan Moorgan",
+          "name": "Wawasan TernakAja",
           "description": "Platform analitik bertenaga AI untuk pengambilan keputusan berbasis data",
           "features": {
             "0": "Pemberitahuan kesehatan prediktif",
@@ -145,7 +145,7 @@
           "image": "/images/Products/mobile.png"
         },
         "2": {
-          "name": "Moorgan Connect",
+          "name": "TernakAja Connect",
           "description": "Sistem manajemen pertanian lengkap dengan IoT dan AI terintegrasi",
           "features": {
             "0": "Solusi menyeluruh",
@@ -169,46 +169,46 @@
     },
     "testimonials": {
       "heading": "Apa Kata Klien Kami",
-      "subheading": "Dengarkan dari petani dan profesional pertanian yang menggunakan Moorgan",
+      "subheading": "Dengarkan dari petani dan profesional pertanian yang menggunakan TernakAja",
       "john": {
         "role": "Pemilik Peternakan Sapi Perah",
-        "content": "Moorgan telah mengubah cara kami mengelola peternakan sapi perah kami. Pemantauan kesehatan real-time telah mengurangi wabah penyakit hingga 70% dan meningkatkan produktivitas kami secara keseluruhan."
+        "content": "TernakAja telah mengubah cara kami mengelola peternakan sapi perah kami. Pemantauan kesehatan real-time telah mengurangi wabah penyakit hingga 70% dan meningkatkan produktivitas kami secara keseluruhan."
       },
       "maria": {
         "role": "Peneliti Peternakan",
-        "content": "Sebagai peneliti, saya terkesan dengan kualitas dan keakuratan data yang disediakan oleh Moorgan. Ini merevolusi cara kita memahami perilaku ternak dan pola kesehatan."
+        "content": "Sebagai peneliti, saya terkesan dengan kualitas dan keakuratan data yang disediakan oleh TernakAja. Ini merevolusi cara kita memahami perilaku ternak dan pola kesehatan."
       },
       "robert": {
         "role": "Konsultan Pertanian",
-        "content": "Saya telah merekomendasikan Moorgan kepada lusinan klien saya, dan umpan baliknya sangat positif. ROI jelas hanya dalam beberapa bulan setelah implementasi."
+        "content": "Saya telah merekomendasikan TernakAja kepada lusinan klien saya, dan umpan baliknya sangat positif. ROI jelas hanya dalam beberapa bulan setelah implementasi."
       }
     },
     "faq": {
       "heading": "Pertanyaan yang Sering Diajukan",
-      "subheading": "Temukan jawaban atas pertanyaan umum tentang Moorgan",
+      "subheading": "Temukan jawaban atas pertanyaan umum tentang TernakAja",
       "q1": {
-        "question": "Bagaimana cara kerja sistem pemantauan ternak Moorgan?",
-        "answer": "Moorgan menggunakan kombinasi sensor IoT, perangkat yang dapat dikenakan, dan monitor lingkungan untuk mengumpulkan data real-time tentang ternak Anda. Data ini diproses melalui algoritme AI kami di Microsoft Azure untuk memberikan wawasan tentang kesehatan, perilaku, dan produktivitas."
+        "question": "Bagaimana cara kerja sistem pemantauan ternak TernakAja?",
+        "answer": "TernakAja menggunakan kombinasi sensor IoT, perangkat yang dapat dikenakan, dan monitor lingkungan untuk mengumpulkan data real-time tentang ternak Anda. Data ini diproses melalui algoritme AI kami di Microsoft Azure untuk memberikan wawasan tentang kesehatan, perilaku, dan produktivitas."
       },
       "q2": {
         "question": "Jenis perangkat keras apa yang diperlukan untuk implementasi?",
         "answer": "Sistem kami mencakup sensor yang dapat dikenakan untuk hewan, stasiun pemantauan lingkungan, dan hub pusat yang terhubung ke cloud. Tim kami menangani proses pemasangan dan penyiapan untuk memastikan semuanya bekerja dengan lancar dengan infrastruktur pertanian Anda yang ada."
       },
       "q3": {
-        "question": "Berapa lama waktu yang dibutuhkan untuk menerapkan Moorgan di pertanian saya?",
+        "question": "Berapa lama waktu yang dibutuhkan untuk menerapkan TernakAja di pertanian saya?",
         "answer": "Waktu implementasi bervariasi berdasarkan ukuran dan kompleksitas pertanian, tetapi biasanya membutuhkan waktu 2-4 minggu dari penilaian awal hingga penyebaran penuh. Tim kami bekerja sama dengan Anda selama proses untuk meminimalkan gangguan pada operasi Anda."
       },
       "q4": {
-        "question": "Bisakah Moorgan berintegrasi dengan perangkat lunak manajemen pertanian saya yang ada?",
-        "answer": "Ya, Moorgan dirancang dengan API terbuka yang memungkinkan integrasi dengan sistem manajemen pertanian paling populer. Kami juga menawarkan layanan integrasi khusus untuk sistem berpemilik atau lama."
+        "question": "Bisakah TernakAja berintegrasi dengan perangkat lunak manajemen pertanian saya yang ada?",
+        "answer": "Ya, TernakAja dirancang dengan API terbuka yang memungkinkan integrasi dengan sistem manajemen pertanian paling populer. Kami juga menawarkan layanan integrasi khusus untuk sistem berpemilik atau lama."
       },
       "q5": {
-        "question": "ROI seperti apa yang dapat saya harapkan dari penerapan Moorgan?",
+        "question": "ROI seperti apa yang dapat saya harapkan dari penerapan TernakAja?",
         "answer": "Sebagian besar peternakan melihat ROI dalam waktu 6-12 bulan melalui pengurangan wabah penyakit, pemberian makan yang dioptimalkan, peningkatan produktivitas, dan pengurangan biaya tenaga kerja. Tim kami dapat memberikan analisis ROI yang disesuaikan berdasarkan operasi spesifik Anda."
       },
       "q6": {
         "question": "Apakah data saya aman dan pribadi?",
-        "answer": "Sama sekali. Moorgan dibangun di atas infrastruktur cloud aman Microsoft Azure dengan enkripsi tingkat perusahaan dan kontrol privasi. Anda mempertahankan kepemilikan data Anda, dan kami mematuhi peraturan perlindungan data yang ketat."
+        "answer": "Sama sekali. TernakAja dibangun di atas infrastruktur cloud aman Microsoft Azure dengan enkripsi tingkat perusahaan dan kontrol privasi. Anda mempertahankan kepemilikan data Anda, dan kami mematuhi peraturan perlindungan data yang ketat."
       },
       "footer": {
         "text": "Masih punya pertanyaan? Hubungi tim dukungan kami di"
@@ -216,15 +216,15 @@
     },
     "cta": {
       "title": "Siap Mengubah Manajemen Ternak Anda?",
-      "subtitle": "Bergabunglah dengan ratusan petani yang berpikiran maju yang sudah mendapat manfaat dari solusi AI dan IoT inovatif Moorgan.",
+      "subtitle": "Bergabunglah dengan ratusan petani yang berpikiran maju yang sudah mendapat manfaat dari solusi AI dan IoT inovatif TernakAja.",
       "benefit1": "Konsultasi gratis dan penilaian pertanian",
       "benefit2": "Rencana implementasi yang disesuaikan",
       "benefit3": "Masa uji coba gratis 30 hari",
       "benefit4": "Tim dukungan khusus",
-      "farmCount": "Peternakan sudah menggunakan Moorgan",
+      "farmCount": "Peternakan sudah menggunakan TernakAja",
       "form": {
         "title": "Mulai Hari Ini",
-        "description": "Isi formulir di bawah ini dan tim kami akan menghubungi Anda dalam waktu 24 jam untuk mendiskusikan bagaimana Moorgan dapat menguntungkan pertanian Anda.",
+        "description": "Isi formulir di bawah ini dan tim kami akan menghubungi Anda dalam waktu 24 jam untuk mendiskusikan bagaimana TernakAja dapat menguntungkan pertanian Anda.",
         "firstName": "Nama depan",
         "lastName": "Nama Belakang",
         "email": "Email",
@@ -235,7 +235,7 @@
     }
   },
   "chatbot": {
-    "welcomeMessage": "Halo! Saya Asisten Moorgan. Saya dapat membantu Anda dengan pemantauan ternak, wawasan kesehatan, dan rekomendasi manajemen. Bagaimana saya dapat membantu Anda hari ini?",
+    "welcomeMessage": "Halo! Saya Asisten TernakAja. Saya dapat membantu Anda dengan pemantauan ternak, wawasan kesehatan, dan rekomendasi manajemen. Bagaimana saya dapat membantu Anda hari ini?",
     "botResponse": {
       "noAnswer": "Saya tidak bisa menjawab pertanyaan ini ..."
     },
@@ -252,7 +252,7 @@
     },
     "chat": {
       "youLabel": "Kamu",
-      "moorganAssistantLabel": "Asisten Moorgan"
+      "ternakajaAssistantLabel": "Asisten TernakAja"
     },
     "suggestedQuestions": {
       "title": "Pertanyaan yang disarankan",
@@ -267,7 +267,7 @@
       "placeholder": "Ketik pesan Anda di sini..."
     },
     "footer": {
-      "disclaimer": "Moorgan AI memberikan informasi umum dan bukan pengganti saran dokter hewan profesional."
+      "disclaimer": "TernakAja AI memberikan informasi umum dan bukan pengganti saran dokter hewan profesional."
     },
     "knowledgeBase": {
       "title": "Basis Pengetahuan",
@@ -291,13 +291,13 @@
         },
         "deviceMaintenance": {
           "title": "Pemeliharaan Perangkat",
-          "description": "Menjaga perangkat Moorgan Anda dalam kondisi optimal"
+          "description": "Menjaga perangkat TernakAja Anda dalam kondisi optimal"
         }
       },
       "faq": {
         "chargeCollar": {
           "question": "Seberapa sering saya harus mengisi kerah?",
-          "answer": "Kerah moorgan biasanya bertahan 2-3 minggu dengan sekali pengisian daya, tergantung pada penggunaan."
+          "answer": "Kerah ternakaja biasanya bertahan 2-3 minggu dengan sekali pengisian daya, tergantung pada penggunaan."
         },
         "collarRange": {
           "question": "Berapa jangkauan kerahnya?",
@@ -305,7 +305,7 @@
         },
         "collarWaterproof": {
           "question": "Apakah kerahnya tahan air?",
-          "answer": "Ya, kerah Moorgan memiliki peringkat IP67, membuatnya sepenuhnya tahan air hingga 1 meter air."
+          "answer": "Ya, kerah TernakAja memiliki peringkat IP67, membuatnya sepenuhnya tahan air hingga 1 meter air."
         },
         "healthAccuracy": {
           "question": "Seberapa akurat pemantauan kesehatan?",
@@ -490,7 +490,7 @@
   "dashboard": {
     "layout": {
       "sidebar": {
-        "logoText": "Moorgan",
+        "logoText": "TernakAja",
         "nav": {
           "dashboard": "Dashboard",
           "livestock": "Ternak",
@@ -790,7 +790,7 @@
       "add": {
         "page": {
           "title": "Tambahkan Ternak Baru",
-          "description": "Daftarkan hewan baru dan perangkat pemantauannya ke sistem Moorgan Anda"
+          "description": "Daftarkan hewan baru dan perangkat pemantauannya ke sistem TernakAja Anda"
         },
         "tabs": {
           "device": "Informasi Perangkat",
@@ -798,7 +798,7 @@
         },
         "deviceForm": {
           "title": "Konfigurasi Perangkat",
-          "description": "Konfigurasikan perangkat Moorgan yang akan dipasang ke hewan",
+          "description": "Konfigurasikan perangkat TernakAja yang akan dipasang ke hewan",
           "fields": {
             "deviceId": {
               "label": "ID Perangkat",
@@ -811,9 +811,9 @@
               "placeholder": "Pilih jenis perangkat",
               "description": "Model perangkat pemantauan",
               "options": {
-                "collarV1": "Kerah Moorgan v1.0",
-                "collarV2": "Kerah Moorgan v2.0",
-                "tagV1": "Tag Moorgan v1.0",
+                "collarV1": "Kerah TernakAja v1.0",
+                "collarV2": "Kerah TernakAja v2.0",
+                "tagV1": "Tag TernakAja v1.0",
                 "custom": "Perangkat Kustom"
               }
             },

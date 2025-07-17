@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   LayoutDashboard,
   MilkIcon as Cow,
@@ -11,9 +11,9 @@ import {
   Menu,
   X,
   PlusCircle,
-} from "lucide-react"
-import { cn } from "@/lib/utils"
-import { useLocation } from "react-router-dom"
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useLocation } from "react-router-dom";
 
 const navItems = [
   {
@@ -58,29 +58,35 @@ const navItems = [
     href: "/dashboard/settings",
     icon: Settings,
   },
-]
+];
 
 export default function Sidebar() {
-  
   const location = useLocation();
   const pathname = location.pathname;
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [expandedItem, setExpandedItem] = useState<string | null>(null)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [expandedItem, setExpandedItem] = useState<string | null>(null);
 
   const toggleSubMenu = (name: string) => {
-    setExpandedItem(expandedItem === name ? null : name)
-  }
+    setExpandedItem(expandedItem === name ? null : name);
+  };
 
   const isActive = (href: string) => {
-    return pathname === href || pathname?.startsWith(`${href}/`)
-  }
+    return pathname === href || pathname?.startsWith(`${href}/`);
+  };
 
   return (
     <>
       {/* Mobile menu button */}
       <div className="lg:hidden fixed top-4 left-4 z-50">
-        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 rounded-md bg-white shadow-md">
-          {isMobileMenuOpen ? <X className="h-6 w-6 text-gray-600" /> : <Menu className="h-6 w-6 text-gray-600" />}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="p-2 rounded-md bg-white shadow-md"
+        >
+          {isMobileMenuOpen ? (
+            <X className="h-6 w-6 text-gray-600" />
+          ) : (
+            <Menu className="h-6 w-6 text-gray-600" />
+          )}
         </button>
       </div>
 
@@ -100,7 +106,9 @@ export default function Sidebar() {
         >
           <div className="p-6">
             <a href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-[#328E6E]">Moorgan</span>
+              <span className="text-2xl font-bold text-[#328E6E]">
+                TernakAja
+              </span>
             </a>
           </div>
 
@@ -110,13 +118,15 @@ export default function Sidebar() {
                 <div
                   className={cn(
                     "flex items-center justify-between px-3 py-2 rounded-md cursor-pointer",
-                    isActive(item.href) ? "bg-[#E1EEBC] text-[#328E6E]" : "text-gray-700 hover:bg-gray-100",
+                    isActive(item.href)
+                      ? "bg-[#E1EEBC] text-[#328E6E]"
+                      : "text-gray-700 hover:bg-gray-100"
                   )}
                   onClick={() => {
                     if (item.subItems) {
-                      toggleSubMenu(item.name)
+                      toggleSubMenu(item.name);
                     } else {
-                      setIsMobileMenuOpen(false)
+                      setIsMobileMenuOpen(false);
                     }
                   }}
                 >
@@ -125,9 +135,9 @@ export default function Sidebar() {
                     className="flex items-center flex-1"
                     onClick={(e) => {
                       if (item.subItems) {
-                        e.preventDefault()
+                        e.preventDefault();
                       } else {
-                        setIsMobileMenuOpen(false)
+                        setIsMobileMenuOpen(false);
                       }
                     }}
                   >
@@ -137,7 +147,9 @@ export default function Sidebar() {
 
                   {item.subItems && (
                     <span
-                      className={`transform transition-transform ${expandedItem === item.name ? "rotate-180" : ""}`}
+                      className={`transform transition-transform ${
+                        expandedItem === item.name ? "rotate-180" : ""
+                      }`}
                     >
                       ▼
                     </span>
@@ -152,7 +164,9 @@ export default function Sidebar() {
                         href={subItem.href}
                         className={cn(
                           "flex items-center px-3 py-2 rounded-md text-sm",
-                          isActive(subItem.href) ? "bg-[#E1EEBC]/50 text-[#328E6E]" : "text-gray-700 hover:bg-gray-100",
+                          isActive(subItem.href)
+                            ? "bg-[#E1EEBC]/50 text-[#328E6E]"
+                            : "text-gray-700 hover:bg-gray-100"
                         )}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
@@ -173,7 +187,9 @@ export default function Sidebar() {
         <div className="flex flex-col flex-grow bg-white border-r border-gray-200">
           <div className="p-6">
             <a href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-[#328E6E]">Moorgan</span>
+              <span className="text-2xl font-bold text-[#328E6E]">
+                TernakAja
+              </span>
             </a>
           </div>
 
@@ -183,11 +199,13 @@ export default function Sidebar() {
                 <div
                   className={cn(
                     "flex items-center justify-between px-3 py-2 rounded-md cursor-pointer",
-                    isActive(item.href) ? "bg-[#E1EEBC] text-[#328E6E]" : "text-gray-700 hover:bg-gray-100",
+                    isActive(item.href)
+                      ? "bg-[#E1EEBC] text-[#328E6E]"
+                      : "text-gray-700 hover:bg-gray-100"
                   )}
                   onClick={() => {
                     if (item.subItems) {
-                      toggleSubMenu(item.name)
+                      toggleSubMenu(item.name);
                     }
                   }}
                 >
@@ -196,7 +214,7 @@ export default function Sidebar() {
                     className="flex items-center flex-1"
                     onClick={(e) => {
                       if (item.subItems) {
-                        e.preventDefault()
+                        e.preventDefault();
                       }
                     }}
                   >
@@ -206,7 +224,9 @@ export default function Sidebar() {
 
                   {item.subItems && (
                     <span
-                      className={`transform transition-transform ${expandedItem === item.name ? "rotate-180" : ""}`}
+                      className={`transform transition-transform ${
+                        expandedItem === item.name ? "rotate-180" : ""
+                      }`}
                     >
                       ▼
                     </span>
@@ -221,7 +241,9 @@ export default function Sidebar() {
                         href={subItem.href}
                         className={cn(
                           "flex items-center px-3 py-2 rounded-md text-sm",
-                          isActive(subItem.href) ? "bg-[#E1EEBC]/50 text-[#328E6E]" : "text-gray-700 hover:bg-gray-100",
+                          isActive(subItem.href)
+                            ? "bg-[#E1EEBC]/50 text-[#328E6E]"
+                            : "text-gray-700 hover:bg-gray-100"
                         )}
                       >
                         <subItem.icon className="h-4 w-4 mr-3" />
@@ -236,8 +258,13 @@ export default function Sidebar() {
 
           <div className="p-4 border-t">
             <div className="bg-[#E1EEBC]/30 p-3 rounded-lg">
-              <p className="text-sm text-gray-600">Need help with your dashboard?</p>
-              <a href="/contact" className="text-sm font-medium text-[#328E6E] hover:underline">
+              <p className="text-sm text-gray-600">
+                Need help with your dashboard?
+              </p>
+              <a
+                href="/contact"
+                className="text-sm font-medium text-[#328E6E] hover:underline"
+              >
                 Contact Support
               </a>
             </div>
@@ -245,5 +272,5 @@ export default function Sidebar() {
         </div>
       </div>
     </>
-  )
+  );
 }

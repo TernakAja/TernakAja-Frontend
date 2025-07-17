@@ -41,11 +41,11 @@ type SuggestedQuestion = {
 //   const lowerMessage = message.toLowerCase()
 
 //   if (lowerMessage.includes("hello") || lowerMessage.includes("hi")) {
-//     return "Hello! I'm Moorgan Assistant. How can I help you with your livestock management today?"
+//     return "Hello! I'm TernakAja Assistant. How can I help you with your livestock management today?"
 //   }
 
 //   if (lowerMessage.includes("health") || lowerMessage.includes("sick")) {
-//     return "Monitoring livestock health is crucial. Look for changes in vital signs like temperature (101-103°F for cattle), heart rate (40-80 BPM), and respiratory rate (10-30 breaths per minute). Our Moorgan collars track these metrics automatically and alert you to anomalies."
+//     return "Monitoring livestock health is crucial. Look for changes in vital signs like temperature (101-103°F for cattle), heart rate (40-80 BPM), and respiratory rate (10-30 breaths per minute). Our TernakAja collars track these metrics automatically and alert you to anomalies."
 //   }
 
 //   if (lowerMessage.includes("temperature") || lowerMessage.includes("weather")) {
@@ -53,7 +53,7 @@ type SuggestedQuestion = {
 //   }
 
 //   if (lowerMessage.includes("collar") || lowerMessage.includes("setup")) {
-//     return "To set up a new Moorgan collar: 1) Charge the device fully, 2) Register it in your dashboard with the device ID, 3) Attach it to your animal ensuring a snug but comfortable fit, 4) Verify data transmission in your dashboard. Need more detailed instructions?"
+//     return "To set up a new TernakAja collar: 1) Charge the device fully, 2) Register it in your dashboard with the device ID, 3) Attach it to your animal ensuring a snug but comfortable fit, 4) Verify data transmission in your dashboard. Need more detailed instructions?"
 //   }
 
 //   if (lowerMessage.includes("stress") || lowerMessage.includes("behavior")) {
@@ -186,7 +186,7 @@ export default function ChatbotInterface() {
 
     try {
       const response = await fetch(
-        "https://moorgan-ai-ewcub4cafphtgfar.eastus-01.azurewebsites.net/ask",
+        "https://ternakaja-ai-ewcub4cafphtgfar.eastus-01.azurewebsites.net/ask",
         {
           method: "POST",
           headers: {
@@ -335,7 +335,7 @@ export default function ChatbotInterface() {
                           <span className="text-xs opacity-70">
                             {message.sender === "user"
                               ? t("chatbot.chat.youLabel")
-                              : t("chatbot.chat.moorganAssistantLabel")}
+                              : t("chatbot.chat.ternakajaAssistantLabel")}
                           </span>
                           <span className="text-xs opacity-70">
                             {message.timestamp.toLocaleTimeString([], {

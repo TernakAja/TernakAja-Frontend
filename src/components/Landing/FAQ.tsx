@@ -73,10 +73,10 @@ export default function Faq() {
           <p className="text-gray-700">
             {t("landing.faq.footer.text")}&nbsp;
             <a
-              href="mailto:support@moorgan.com"
+              href="mailto:support@ternakaja.com"
               className="text-[#328E6E] font-medium"
             >
-              support@moorgan.com
+              support@ternakaja.com
             </a>
           </p>
         </AnimatedDiv>

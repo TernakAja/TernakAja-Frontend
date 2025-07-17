@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button"
-import { AnimatedDiv } from "../ui-components"
-import { Badge } from "@/components/ui/badge"
-import { Heart, MapPin, MessageSquare, Share2, Star, User } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { AnimatedDiv } from "../ui-components";
+import { Badge } from "@/components/ui/badge";
+import { Heart, MapPin, MessageSquare, Share2, Star, User } from "lucide-react";
 
 // If there is already an API Backend
 // export default function LivestockDetails({ id }: { id: string }) {
@@ -31,7 +31,7 @@ export default function LivestockDetails() {
       id: "MOO-12345",
     },
     description:
-      "Healthy Holstein dairy cow with excellent milk production history. Complete health records available. Monitored with Moorgan system for the past 2 years. This cow has consistently produced high-quality milk and has an excellent temperament. All vaccinations are up to date.",
+      "Healthy Holstein dairy cow with excellent milk production history. Complete health records available. Monitored with TernakAja system for the past 2 years. This cow has consistently produced high-quality milk and has an excellent temperament. All vaccinations are up to date.",
     healthData: {
       vaccinations: "Up to date",
       lastVetCheck: "January 10, 2023",
@@ -40,22 +40,30 @@ export default function LivestockDetails() {
     },
     featured: true,
     listedDate: "2 days ago",
-  }
+  };
 
   return (
     <AnimatedDiv direction="left" className="space-y-6">
       <div>
         <div className="flex items-center gap-2 mb-2">
           <Badge className="bg-[#328E6E]">Verified</Badge>
-          <Badge variant="outline" className="text-[#328E6E] border-[#328E6E]/30">
+          <Badge
+            variant="outline"
+            className="text-[#328E6E] border-[#328E6E]/30"
+          >
             {livestock.details.type}
           </Badge>
-          <Badge variant="outline" className="text-[#328E6E] border-[#328E6E]/30">
+          <Badge
+            variant="outline"
+            className="text-[#328E6E] border-[#328E6E]/30"
+          >
             {livestock.details.breed}
           </Badge>
         </div>
 
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">{livestock.title}</h1>
+        <h1 className="text-3xl font-bold text-gray-800 mb-2">
+          {livestock.title}
+        </h1>
 
         <div className="flex items-center gap-2 text-gray-500 mb-4">
           <MapPin className="h-4 w-4" />
@@ -64,15 +72,25 @@ export default function LivestockDetails() {
           <span>Listed {livestock.listedDate}</span>
         </div>
 
-        <div className="text-3xl font-bold text-[#328E6E] mb-6">${livestock.price.toLocaleString()}</div>
+        <div className="text-3xl font-bold text-[#328E6E] mb-6">
+          ${livestock.price.toLocaleString()}
+        </div>
 
         <div className="flex flex-wrap gap-4 mb-6">
-          <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white px-8 py-6 text-lg">Contact Seller</Button>
-          <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white">
+          <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white px-8 py-6 text-lg">
+            Contact Seller
+          </Button>
+          <Button
+            variant="outline"
+            className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white"
+          >
             <Heart className="mr-2 h-5 w-5" />
             Save
           </Button>
-          <Button variant="outline" className="border-gray-200 text-gray-600 hover:bg-gray-100 hover:text-gray-800">
+          <Button
+            variant="outline"
+            className="border-gray-200 text-gray-600 hover:bg-gray-100 hover:text-gray-800"
+          >
             <Share2 className="mr-2 h-5 w-5" />
             Share
           </Button>
@@ -123,7 +141,9 @@ export default function LivestockDetails() {
         <div className="flex items-center gap-4">
           <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-100">
             <img
-              src={livestock.seller.image || "./images/Livestocks/dairy-cow-1.png"}
+              src={
+                livestock.seller.image || "./images/Livestocks/dairy-cow-1.png"
+              }
               alt={livestock.seller.name}
               className="w-full h-full object-cover"
             />
@@ -166,11 +186,14 @@ export default function LivestockDetails() {
             <MessageSquare className="mr-2 h-4 w-4" />
             Message
           </Button>
-          <Button variant="outline" className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white">
+          <Button
+            variant="outline"
+            className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white"
+          >
             View Profile
           </Button>
         </div>
       </div>
     </AnimatedDiv>
-  )
+  );
 }

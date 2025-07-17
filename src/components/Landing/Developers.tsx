@@ -11,8 +11,8 @@ export default function Developers() {
 
   const team = [
     {
-      name: "Team: Moorganino",
-      role: "Application: Moorgan",
+      name: "Team: TernakAjaino",
+      role: "Application: TernakAja",
       bio: t("landing.developers.team.bio"),
       image: "./images/Landing/team.png",
       social: {

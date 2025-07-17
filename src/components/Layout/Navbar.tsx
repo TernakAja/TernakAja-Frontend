@@ -26,11 +26,10 @@ const navasID = [
 ];
 
 export default function Navbar() {
-
-  const nowLanguage = localStorage.getItem("language")
+  const nowLanguage = localStorage.getItem("language");
 
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useState(nowLanguage === "en" ? "id" : "en") // Default to English
+  const [language, setLanguage] = useState(nowLanguage === "en" ? "id" : "en"); // Default to English
 
   const toggleLanguage = () => {
     const newLanguage = language === "en" ? "id" : "en";
@@ -78,35 +77,31 @@ export default function Navbar() {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <a href="/" className="flex items-center gap-2">
           <span className="text-2xl font-bold bg-gradient-to-r from-[#328E6E] to-[#90C67C] bg-clip-text text-transparent">
-            Moorgan
+            TernakAja
           </span>
         </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-
-          {language === "id" ? (
-            navasID.map((a) => (
-              <a
-                key={a.name}
-                href={a.href}
-                className="text-gray-700 hover:text-[#328E6E] transition-colors font-medium"
-              >
-                {a.name}
-              </a>
-            ))
-          ) : (
-            navas.map((a) => (
-              <a
-                key={a.name}
-                href={a.href}
-                className="text-gray-700 hover:text-[#328E6E] transition-colors font-medium"
-              >
-                {a.name}
-              </a>
-            )))
-          }
-
+          {language === "id"
+            ? navasID.map((a) => (
+                <a
+                  key={a.name}
+                  href={a.href}
+                  className="text-gray-700 hover:text-[#328E6E] transition-colors font-medium"
+                >
+                  {a.name}
+                </a>
+              ))
+            : navas.map((a) => (
+                <a
+                  key={a.name}
+                  href={a.href}
+                  className="text-gray-700 hover:text-[#328E6E] transition-colors font-medium"
+                >
+                  {a.name}
+                </a>
+              ))}
         </nav>
 
         <div className="hidden md:flex items-center gap-4">

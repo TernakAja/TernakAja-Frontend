@@ -37,7 +37,7 @@ export default function ForumCategories() {
     {
       icon: <Users className="h-6 w-6" />,
       name: "Community Stories",
-      description: "Share your success stories and experiences with Moorgan",
+      description: "Share your success stories and experiences with TernakAja",
       posts: 112,
       color: "#328E6E",
     },
@@ -65,7 +65,7 @@ export default function ForumCategories() {
     {
       icon: <HelpCircle className="h-6 w-6" />,
       name: "Help & Support",
-      description: "Get help with Moorgan products and services",
+      description: "Get help with TernakAja products and services",
       posts: 98,
       color: "#67AE6E",
     },

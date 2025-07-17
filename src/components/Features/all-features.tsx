@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   Search,
   Filter,
@@ -19,12 +19,12 @@ import {
   MessageSquare,
   Shield,
   Bot,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 
 // Feature data with icons
 const features = [
@@ -64,7 +64,8 @@ const features = [
   {
     id: 4,
     name: "Weather-based Recommendations",
-    description: "Receive custom care recommendations based on current and forecasted weather conditions in your area.",
+    description:
+      "Receive custom care recommendations based on current and forecasted weather conditions in your area.",
     category: "Weather",
     tags: ["Premium"],
     icon: CloudRain,
@@ -106,7 +107,7 @@ const features = [
   {
     id: 8,
     name: "MooBot [Chatbot]",
-    description: "Moorgan Personal Chatbot Assistant",
+    description: "TernakAja Personal Chatbot Assistant",
     category: "Communication",
     tags: ["Advanced"],
     icon: Bot,
@@ -116,7 +117,8 @@ const features = [
   {
     id: 9,
     name: "Smart Collar Management",
-    description: "Manage device firmware, battery status, and connectivity of your livestock monitoring collars.",
+    description:
+      "Manage device firmware, battery status, and connectivity of your livestock monitoring collars.",
     category: "Management",
     tags: ["Essential"],
     icon: WifiIcon,
@@ -125,8 +127,9 @@ const features = [
   },
   {
     id: 10,
-    name: "Moorgan Marketplace",
-    description: "Searching or wants to sell livestock? Sell it at Moorgan  Marketplace",
+    name: "TernakAja Marketplace",
+    description:
+      "Searching or wants to sell livestock? Sell it at TernakAja  Marketplace",
     category: "Communication",
     tags: ["Essential"],
     icon: Upload,
@@ -146,7 +149,7 @@ const features = [
   {
     id: 12,
     name: "Support Contact",
-    description: "Need helps? Just contact Moorgan Support Service!",
+    description: "Need helps? Just contact TernakAja Support Service!",
     category: "Communication",
     tags: ["Essential"],
     icon: Activity,
@@ -156,14 +159,15 @@ const features = [
   {
     id: 13,
     name: "Community Forum",
-    description: "Connect with other livestock farmers to share experiences, ask questions, and exchange knowledge.",
+    description:
+      "Connect with other livestock farmers to share experiences, ask questions, and exchange knowledge.",
     category: "Communication",
     tags: ["Essential"],
     icon: MessageSquare,
     color: "#67AE6E",
     link: "/community",
   },
-]
+];
 
 // Feature categories
 const categories = [
@@ -176,65 +180,75 @@ const categories = [
   "Security",
   "Communication",
   "Mobile App",
-]
+];
 
 // Feature tags
-const featureTags = ["Essential", "Premium", "Advanced", "New", "Coming Soon"]
+const featureTags = ["Essential", "Premium", "Advanced", "New", "Coming Soon"];
 
 export default function AllFeatures() {
-
   // State variables
-  const [searchQuery, setSearchQuery] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("All Categories")
-  const [selectedTags, setSelectedTags] = useState<string[]>([])
-  const [filteredFeatures, setFilteredFeatures] = useState(features)
-  const [currentPage, setCurrentPage] = useState(1)
-  const [isFilterOpen, setIsFilterOpen] = useState(false)
-  const featuresPerPage = 9
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [filteredFeatures, setFilteredFeatures] = useState(features);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const featuresPerPage = 9;
 
   // Apply filters when search, category, or tags change
   useEffect(() => {
-    let result = features
+    let result = features;
 
     // Apply search filter
     if (searchQuery) {
-      const query = searchQuery.toLowerCase()
+      const query = searchQuery.toLowerCase();
       result = result.filter(
-        (feature) => feature.name.toLowerCase().includes(query) || feature.description.toLowerCase().includes(query),
-      )
+        (feature) =>
+          feature.name.toLowerCase().includes(query) ||
+          feature.description.toLowerCase().includes(query)
+      );
     }
 
     // Apply category filter
     if (selectedCategory !== "All Categories") {
-      result = result.filter((feature) => feature.category === selectedCategory)
+      result = result.filter(
+        (feature) => feature.category === selectedCategory
+      );
     }
 
     // Apply tag filters
     if (selectedTags.length > 0) {
-      result = result.filter((feature) => feature.tags.some((tag) => selectedTags.includes(tag)))
+      result = result.filter((feature) =>
+        feature.tags.some((tag) => selectedTags.includes(tag))
+      );
     }
 
-    setFilteredFeatures(result)
-    setCurrentPage(1) // Reset to first page when filters change
-  }, [searchQuery, selectedCategory, selectedTags])
+    setFilteredFeatures(result);
+    setCurrentPage(1); // Reset to first page when filters change
+  }, [searchQuery, selectedCategory, selectedTags]);
 
   // Calculate pagination
-  const indexOfLastFeature = currentPage * featuresPerPage
-  const indexOfFirstFeature = indexOfLastFeature - featuresPerPage
-  const currentFeatures = filteredFeatures.slice(indexOfFirstFeature, indexOfLastFeature)
-  const totalPages = Math.ceil(filteredFeatures.length / featuresPerPage)
+  const indexOfLastFeature = currentPage * featuresPerPage;
+  const indexOfFirstFeature = indexOfLastFeature - featuresPerPage;
+  const currentFeatures = filteredFeatures.slice(
+    indexOfFirstFeature,
+    indexOfLastFeature
+  );
+  const totalPages = Math.ceil(filteredFeatures.length / featuresPerPage);
 
   // Tag toggle handler
   const toggleTag = (tag: string) => {
-    setSelectedTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]))
-  }
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
+  };
 
   // Reset all filters
   const resetFilters = () => {
-    setSearchQuery("")
-    setSelectedCategory("All Categories")
-    setSelectedTags([])
-  }
+    setSearchQuery("");
+    setSelectedCategory("All Categories");
+    setSelectedTags([]);
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -247,10 +261,12 @@ export default function AllFeatures() {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Moorgan Features</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              TernakAja Features
+            </h1>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto">
-              Discover all the powerful tools and capabilities that make Moorgan the ultimate livestock management
-              platform
+              Discover all the powerful tools and capabilities that make
+              TernakAja the ultimate livestock management platform
             </p>
           </motion.div>
         </div>
@@ -280,11 +296,21 @@ export default function AllFeatures() {
               >
                 <Filter className="h-5 w-5" />
                 Filters
-                <ChevronDown className={`h-4 w-4 transition-transform ${isFilterOpen ? "rotate-180" : ""}`} />
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${
+                    isFilterOpen ? "rotate-180" : ""
+                  }`}
+                />
               </Button>
 
-              {(searchQuery || selectedCategory !== "All Categories" || selectedTags.length > 0) && (
-                <Button onClick={resetFilters} variant="ghost" className="md:w-auto py-6">
+              {(searchQuery ||
+                selectedCategory !== "All Categories" ||
+                selectedTags.length > 0) && (
+                <Button
+                  onClick={resetFilters}
+                  variant="ghost"
+                  className="md:w-auto py-6"
+                >
                   Clear Filters
                 </Button>
               )}
@@ -301,7 +327,9 @@ export default function AllFeatures() {
               >
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h3 className="font-medium text-gray-700 mb-3">Categories</h3>
+                    <h3 className="font-medium text-gray-700 mb-3">
+                      Categories
+                    </h3>
                     <div className="space-y-2">
                       {categories.map((category) => (
                         <div key={category} className="flex items-center">
@@ -315,7 +343,9 @@ export default function AllFeatures() {
                           >
                             <ChevronRight
                               className={`h-4 w-4 mr-2 ${
-                                selectedCategory === category ? "text-white" : "text-[#328E6E]"
+                                selectedCategory === category
+                                  ? "text-white"
+                                  : "text-[#328E6E]"
                               }`}
                             />
                             {category}
@@ -326,7 +356,9 @@ export default function AllFeatures() {
                   </div>
 
                   <div>
-                    <h3 className="font-medium text-gray-700 mb-3">Feature Type</h3>
+                    <h3 className="font-medium text-gray-700 mb-3">
+                      Feature Type
+                    </h3>
                     <div className="flex flex-wrap gap-2">
                       {featureTags.map((tag) => (
                         <button
@@ -351,19 +383,22 @@ export default function AllFeatures() {
           {/* Feature Results Summary */}
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-semibold text-[#328E6E]">
-              {filteredFeatures.length} {filteredFeatures.length === 1 ? "Feature" : "Features"}
+              {filteredFeatures.length}{" "}
+              {filteredFeatures.length === 1 ? "Feature" : "Features"}
             </h2>
 
             <div className="text-sm text-gray-500">
-              Showing {Math.min(filteredFeatures.length, indexOfFirstFeature + 1)}-
-              {Math.min(indexOfLastFeature, filteredFeatures.length)} of {filteredFeatures.length}
+              Showing{" "}
+              {Math.min(filteredFeatures.length, indexOfFirstFeature + 1)}-
+              {Math.min(indexOfLastFeature, filteredFeatures.length)} of{" "}
+              {filteredFeatures.length}
             </div>
           </div>
 
           {/* Features Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
             {currentFeatures.map((feature, index) => {
-              const IconComponent = feature.icon
+              const IconComponent = feature.icon;
 
               return (
                 <motion.div
@@ -375,8 +410,14 @@ export default function AllFeatures() {
                   <Card className="h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow">
                     <div className="p-6 flex-1 flex flex-col">
                       <div className="flex items-start justify-between mb-4">
-                        <div className="p-2 rounded-lg" style={{ backgroundColor: `${feature.color}20` }}>
-                          <IconComponent className="h-6 w-6" style={{ color: feature.color }} />
+                        <div
+                          className="p-2 rounded-lg"
+                          style={{ backgroundColor: `${feature.color}20` }}
+                        >
+                          <IconComponent
+                            className="h-6 w-6"
+                            style={{ color: feature.color }}
+                          />
                         </div>
 
                         <div className="flex gap-2">
@@ -388,12 +429,12 @@ export default function AllFeatures() {
                                 tag === "Coming Soon"
                                   ? "border-orange-500 text-orange-600"
                                   : tag === "New"
-                                    ? "border-blue-500 text-blue-600"
-                                    : tag === "Premium"
-                                      ? "border-purple-500 text-purple-600"
-                                      : tag === "Advanced"
-                                        ? "border-yellow-500 text-yellow-600"
-                                        : "border-green-500 text-green-600"
+                                  ? "border-blue-500 text-blue-600"
+                                  : tag === "Premium"
+                                  ? "border-purple-500 text-purple-600"
+                                  : tag === "Advanced"
+                                  ? "border-yellow-500 text-yellow-600"
+                                  : "border-green-500 text-green-600"
                               }`}
                             >
                               {tag}
@@ -402,25 +443,30 @@ export default function AllFeatures() {
                         </div>
                       </div>
 
-                      <h3 className="text-xl font-semibold mb-2 text-gray-800">{feature.name}</h3>
-                      <p className="text-gray-600 mb-4 flex-1">{feature.description}</p>
+                      <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                        {feature.name}
+                      </h3>
+                      <p className="text-gray-600 mb-4 flex-1">
+                        {feature.description}
+                      </p>
 
                       <div className="mt-auto">
                         <div className="flex justify-between items-center">
-                          <Badge className="bg-[#E1EEBC] text-[#328E6E] hover:bg-[#E1EEBC]">{feature.category}</Badge>
+                          <Badge className="bg-[#E1EEBC] text-[#328E6E] hover:bg-[#E1EEBC]">
+                            {feature.category}
+                          </Badge>
 
                           <a href={feature.link}>
                             <Button variant="link" className="text-[#328E6E]">
-                                Learn more
+                              Learn more
                             </Button>
                           </a>
-
                         </div>
                       </div>
                     </div>
                   </Card>
                 </motion.div>
-              )
+              );
             })}
           </div>
 
@@ -430,9 +476,12 @@ export default function AllFeatures() {
               <div className="mb-4 text-gray-400">
                 <Search className="h-12 w-12 mx-auto" />
               </div>
-              <h3 className="text-xl font-medium text-gray-800 mb-2">No matching features found</h3>
+              <h3 className="text-xl font-medium text-gray-800 mb-2">
+                No matching features found
+              </h3>
               <p className="text-gray-600 mb-6">
-                Try adjusting your search or filter criteria to find what you're looking for.
+                Try adjusting your search or filter criteria to find what you're
+                looking for.
               </p>
               <Button onClick={resetFilters}>Reset Filters</Button>
             </div>
@@ -444,7 +493,9 @@ export default function AllFeatures() {
               <div className="flex items-center space-x-2">
                 <Button
                   variant="outline"
-                  onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.max(prev - 1, 1))
+                  }
                   disabled={currentPage === 1}
                   className="h-10 w-10 p-0"
                 >
@@ -452,20 +503,28 @@ export default function AllFeatures() {
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
 
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <Button
-                    key={page}
-                    variant={currentPage === page ? "default" : "outline"}
-                    onClick={() => setCurrentPage(page)}
-                    className={`h-10 w-10 p-0 ${currentPage === page ? "bg-[#328E6E] hover:bg-[#277559]" : ""}`}
-                  >
-                    {page}
-                  </Button>
-                ))}
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (page) => (
+                    <Button
+                      key={page}
+                      variant={currentPage === page ? "default" : "outline"}
+                      onClick={() => setCurrentPage(page)}
+                      className={`h-10 w-10 p-0 ${
+                        currentPage === page
+                          ? "bg-[#328E6E] hover:bg-[#277559]"
+                          : ""
+                      }`}
+                    >
+                      {page}
+                    </Button>
+                  )
+                )}
 
                 <Button
                   variant="outline"
-                  onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                  }
                   disabled={currentPage === totalPages}
                   className="h-10 w-10 p-0"
                 >
@@ -481,7 +540,9 @@ export default function AllFeatures() {
       {/* Feature Categories Section */}
       <section className="py-12 px-4 sm:px-6 lg:px-8 bg-[#E1EEBC]/20">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10 text-center text-[#328E6E]">Explore By Category</h2>
+          <h2 className="text-3xl font-bold mb-10 text-center text-[#328E6E]">
+            Explore By Category
+          </h2>
 
           <Tabs defaultValue="monitoring" className="w-full">
             <TabsList className="flex w-full max-w-4xl mx-auto mb-8 overflow-x-auto p-1 bg-white border rounded-lg">
@@ -502,75 +563,95 @@ export default function AllFeatures() {
               </TabsTrigger>
             </TabsList>
 
-            {["monitoring", "health", "analytics", "management", "weather"].map((category) => (
-              <TabsContent key={category} value={category}>
-                <div className="grid md:grid-cols-3 gap-6">
-                  {features
-                    .filter((feature) => feature.category.toLowerCase() === category)
-                    .slice(0, 3)
-                    .map((feature, index) => {
-                      const IconComponent = feature.icon
+            {["monitoring", "health", "analytics", "management", "weather"].map(
+              (category) => (
+                <TabsContent key={category} value={category}>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    {features
+                      .filter(
+                        (feature) => feature.category.toLowerCase() === category
+                      )
+                      .slice(0, 3)
+                      .map((feature, index) => {
+                        const IconComponent = feature.icon;
 
-                      return (
-                        <motion.div
-                          key={feature.id}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.4, delay: index * 0.1 }}
-                        >
-                          <Card className="h-full flex flex-col hover:shadow-lg transition-shadow">
-                            <div className="p-6 flex-1 flex flex-col">
-                              <div className="flex items-start justify-between mb-4">
-                                <div className="p-2 rounded-lg" style={{ backgroundColor: `${feature.color}20` }}>
-                                  <IconComponent className="h-6 w-6" style={{ color: feature.color }} />
-                                </div>
+                        return (
+                          <motion.div
+                            key={feature.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: index * 0.1 }}
+                          >
+                            <Card className="h-full flex flex-col hover:shadow-lg transition-shadow">
+                              <div className="p-6 flex-1 flex flex-col">
+                                <div className="flex items-start justify-between mb-4">
+                                  <div
+                                    className="p-2 rounded-lg"
+                                    style={{
+                                      backgroundColor: `${feature.color}20`,
+                                    }}
+                                  >
+                                    <IconComponent
+                                      className="h-6 w-6"
+                                      style={{ color: feature.color }}
+                                    />
+                                  </div>
 
-                                <div className="flex gap-2">
-                                  {feature.tags.map((tag) => (
-                                    <Badge
-                                      key={tag}
-                                      variant="outline"
-                                      className={`${
-                                        tag === "Coming Soon"
-                                          ? "border-orange-500 text-orange-600"
-                                          : tag === "New"
+                                  <div className="flex gap-2">
+                                    {feature.tags.map((tag) => (
+                                      <Badge
+                                        key={tag}
+                                        variant="outline"
+                                        className={`${
+                                          tag === "Coming Soon"
+                                            ? "border-orange-500 text-orange-600"
+                                            : tag === "New"
                                             ? "border-blue-500 text-blue-600"
                                             : tag === "Premium"
-                                              ? "border-purple-500 text-purple-600"
-                                              : tag === "Advanced"
-                                                ? "border-yellow-500 text-yellow-600"
-                                                : "border-green-500 text-green-600"
-                                      }`}
-                                    >
-                                      {tag}
-                                    </Badge>
-                                  ))}
+                                            ? "border-purple-500 text-purple-600"
+                                            : tag === "Advanced"
+                                            ? "border-yellow-500 text-yellow-600"
+                                            : "border-green-500 text-green-600"
+                                        }`}
+                                      >
+                                        {tag}
+                                      </Badge>
+                                    ))}
+                                  </div>
                                 </div>
+
+                                <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                                  {feature.name}
+                                </h3>
+                                <p className="text-gray-600 flex-1">
+                                  {feature.description}
+                                </p>
                               </div>
+                            </Card>
+                          </motion.div>
+                        );
+                      })}
+                  </div>
 
-                              <h3 className="text-xl font-semibold mb-2 text-gray-800">{feature.name}</h3>
-                              <p className="text-gray-600 flex-1">{feature.description}</p>
-                            </div>
-                          </Card>
-                        </motion.div>
-                      )
-                    })}
-                </div>
-
-                <div className="text-center mt-8">
-                  <Button
-                    onClick={() => {
-                      setSelectedCategory(category.charAt(0).toUpperCase() + category.slice(1))
-                      setIsFilterOpen(true)
-                      window.scrollTo({ top: 0, behavior: "smooth" })
-                    }}
-                    className="bg-[#328E6E] hover:bg-[#277559] text-white"
-                  >
-                    View All {category.charAt(0).toUpperCase() + category.slice(1)} Features
-                  </Button>
-                </div>
-              </TabsContent>
-            ))}
+                  <div className="text-center mt-8">
+                    <Button
+                      onClick={() => {
+                        setSelectedCategory(
+                          category.charAt(0).toUpperCase() + category.slice(1)
+                        );
+                        setIsFilterOpen(true);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                      className="bg-[#328E6E] hover:bg-[#277559] text-white"
+                    >
+                      View All{" "}
+                      {category.charAt(0).toUpperCase() + category.slice(1)}{" "}
+                      Features
+                    </Button>
+                  </div>
+                </TabsContent>
+              )
+            )}
           </Tabs>
         </div>
       </section>
@@ -586,7 +667,7 @@ export default function AllFeatures() {
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Transform Your Livestock Management?</h2>
             <p className="text-xl mb-8">
-              Join thousands of farmers using Moorgan's comprehensive suite of features to improve livestock health and
+              Join thousands of farmers using TernakAja's comprehensive suite of features to improve livestock health and
               productivity
             </p>
             <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
@@ -598,7 +679,6 @@ export default function AllFeatures() {
           </motion.div>
         </div>
       </section> */}
-
     </div>
-  )
+  );
 }

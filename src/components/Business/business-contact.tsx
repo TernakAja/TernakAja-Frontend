@@ -1,17 +1,26 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Calendar, FileText, Users, Building, Globe } from "lucide-react"
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Calendar,
+  FileText,
+  Users,
+  Building,
+  Globe,
+} from "lucide-react";
 
 const contactMethods = [
   {
     icon: Mail,
     title: "Email Us",
     description: "Get in touch for partnership discussions",
-    contact: "partnerships@moorgan.com",
+    contact: "partnerships@ternakaja.com",
     action: "Send Email",
   },
   {
@@ -35,14 +44,14 @@ const contactMethods = [
     contact: "123 Innovation Drive, Tech Valley, CA 94025",
     action: "Get Directions",
   },
-]
+];
 
 const businessTypes = [
   { icon: Building, label: "Technology Partner" },
   { icon: Users, label: "Distribution Partner" },
   { icon: Globe, label: "International Partner" },
   { icon: FileText, label: "Investment Opportunity" },
-]
+];
 
 export function BusinessContact() {
   return (
@@ -55,10 +64,13 @@ export function BusinessContact() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Let's Build Something Great Together</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Let's Build Something Great Together
+          </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to explore partnership opportunities? Get in touch with our business development team to discuss how
-            we can create mutual value and drive innovation.
+            Ready to explore partnership opportunities? Get in touch with our
+            business development team to discuss how we can create mutual value
+            and drive innovation.
           </p>
         </motion.div>
 
@@ -71,52 +83,82 @@ export function BusinessContact() {
             viewport={{ once: true }}
             className="bg-gray-50 rounded-2xl p-8"
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              Send Us a Message
+            </h3>
 
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    First Name *
+                  </label>
                   <Input placeholder="John" className="w-full" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Last Name *
+                  </label>
                   <Input placeholder="Doe" className="w-full" />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                <Input type="email" placeholder="john@company.com" className="w-full" />
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Email Address *
+                </label>
+                <Input
+                  type="email"
+                  placeholder="john@company.com"
+                  className="w-full"
+                />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Company Name *
+                </label>
                 <Input placeholder="Your Company" className="w-full" />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Partnership Interest</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Partnership Interest
+                </label>
                 <div className="grid grid-cols-2 gap-3">
                   {businessTypes.map((type, index) => (
-                    <label key={index} className="flex items-center gap-2 cursor-pointer">
-                      <input type="checkbox" className="rounded border-gray-300" />
+                    <label
+                      key={index}
+                      className="flex items-center gap-2 cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        className="rounded border-gray-300"
+                      />
                       <type.icon className="w-4 h-4 text-gray-600" />
-                      <span className="text-sm text-gray-700">{type.label}</span>
+                      <span className="text-sm text-gray-700">
+                        {type.label}
+                      </span>
                     </label>
                   ))}
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Message *
+                </label>
                 <Textarea
                   placeholder="Tell us about your partnership interest and how we can work together..."
                   className="w-full h-32"
                 />
               </div>
 
-              <Button type="submit" size="lg" className="w-full bg-[#328E6E] hover:bg-[#2a7a5e] text-white">
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full bg-[#328E6E] hover:bg-[#2a7a5e] text-white"
+              >
                 Send Message
               </Button>
             </form>
@@ -131,10 +173,13 @@ export function BusinessContact() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                Get in Touch
+              </h3>
               <p className="text-gray-600 mb-8">
-                Choose the best way to reach our business development team. We're here to help you explore partnership
-                opportunities and answer any questions.
+                Choose the best way to reach our business development team.
+                We're here to help you explore partnership opportunities and
+                answer any questions.
               </p>
             </div>
 
@@ -150,9 +195,15 @@ export function BusinessContact() {
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-semibold text-gray-900 mb-1">{method.title}</h4>
-                    <p className="text-gray-600 text-sm mb-2">{method.description}</p>
-                    <p className="text-[#328E6E] font-medium text-sm mb-3">{method.contact}</p>
+                    <h4 className="font-semibold text-gray-900 mb-1">
+                      {method.title}
+                    </h4>
+                    <p className="text-gray-600 text-sm mb-2">
+                      {method.description}
+                    </p>
+                    <p className="text-[#328E6E] font-medium text-sm mb-3">
+                      {method.contact}
+                    </p>
                     <Button
                       variant="outline"
                       size="sm"
@@ -186,5 +237,5 @@ export function BusinessContact() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -21,7 +21,7 @@ export default function ContactInfo() {
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email Addresses",
-      details: ["info@moorgan.com", "support@moorgan.com"],
+      details: ["info@ternakaja.com", "support@ternakaja.com"],
     },
     {
       icon: <Clock className="h-6 w-6" />,

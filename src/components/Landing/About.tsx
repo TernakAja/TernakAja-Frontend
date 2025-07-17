@@ -30,7 +30,7 @@ export default function About() {
             <div className="relative">
               <img
                 src="./images/Landing/green-farm.png"
-                alt="About Moorgan"
+                alt="About TernakAja"
                 className="w-full h-auto rounded-2xl shadow-lg"
               />
               <div className="absolute -bottom-6 -right-6 bg-[#E1EEBC] p-6 rounded-2xl shadow-lg max-w-xs">

@@ -1,7 +1,12 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { motion } from "framer-motion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const faqs = [
   {
@@ -26,7 +31,8 @@ const faqs = [
   },
   {
     question: "Is there a limit to the number of users on Premium?",
-    answer: "The Premium plan includes up to 5 user accounts. Additional users can be added for $5 per user per month.",
+    answer:
+      "The Premium plan includes up to 5 user accounts. Additional users can be added for $5 per user per month.",
   },
   {
     question: "What kind of support do you provide?",
@@ -36,14 +42,14 @@ const faqs = [
   {
     question: "Can I use my own IoT devices?",
     answer:
-      "Our system is designed to work with Moorgan collars for optimal performance. However, we do offer API access for Premium users to integrate compatible third-party devices.",
+      "Our system is designed to work with TernakAja collars for optimal performance. However, we do offer API access for Premium users to integrate compatible third-party devices.",
   },
   {
     question: "Is my livestock data secure?",
     answer:
       "Absolutely. We use enterprise-grade encryption, secure cloud storage, and comply with industry security standards. Your data is never shared with third parties without your explicit consent.",
   },
-]
+];
 
 export function PricingFAQ() {
   return (
@@ -56,10 +62,12 @@ export function PricingFAQ() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Frequently Asked Questions
+          </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Got questions? We've got answers. If you can't find what you're looking for, feel free to contact our
-            support team.
+            Got questions? We've got answers. If you can't find what you're
+            looking for, feel free to contact our support team.
           </p>
         </motion.div>
 
@@ -80,12 +88,14 @@ export function PricingFAQ() {
                 <AccordionTrigger className="text-left font-semibold text-gray-900 hover:text-[#328E6E] transition-colors">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 leading-relaxed">{faq.answer}</AccordionContent>
+                <AccordionContent className="text-gray-600 leading-relaxed">
+                  {faq.answer}
+                </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

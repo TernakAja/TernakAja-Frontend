@@ -1,4 +1,4 @@
-import { AnimatedDiv, AnimatedSection, SectionHeading } from "../ui-components"
+import { AnimatedDiv, AnimatedSection, SectionHeading } from "../ui-components";
 
 export default function PrivacyPolicy() {
   const sections = [
@@ -45,41 +45,58 @@ export default function PrivacyPolicy() {
     {
       title: "9. Contact Us",
       content:
-        "If you have any questions about this Privacy Policy or our data practices, please contact us at privacy@moorgan.com.",
+        "If you have any questions about this Privacy Policy or our data practices, please contact us at privacy@ternakaja.com.",
     },
-  ]
+  ];
 
   return (
     <AnimatedSection className="py-20 bg-[#E1EEBC]/20">
       <div className="container mx-auto px-4">
-        <SectionHeading title="Privacy Policy" subtitle="Last updated: April 24, 2023" />
+        <SectionHeading
+          title="Privacy Policy"
+          subtitle="Last updated: April 24, 2023"
+        />
 
         <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-8">
             <p className="text-gray-600 mb-8">
-              This Privacy Policy describes how Moorgan ("we", "us", or "our") collects, uses, and shares information
-              about you when you use our website, products, and services. We respect your privacy and are committed to
-              protecting your personal information.
+              This Privacy Policy describes how TernakAja ("we", "us", or "our")
+              collects, uses, and shares information about you when you use our
+              website, products, and services. We respect your privacy and are
+              committed to protecting your personal information.
             </p>
 
             <div className="space-y-6">
               {sections.map((section, index) => (
-                <AnimatedDiv key={index} className="border-b border-gray-100 pb-6" direction="up" delay={index * 0.05}>
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">{section.title}</h3>
+                <AnimatedDiv
+                  key={index}
+                  className="border-b border-gray-100 pb-6"
+                  direction="up"
+                  delay={index * 0.05}
+                >
+                  <h3 className="text-lg font-bold text-gray-800 mb-2">
+                    {section.title}
+                  </h3>
                   <p className="text-gray-600">{section.content}</p>
                 </AnimatedDiv>
               ))}
             </div>
 
-            <AnimatedDiv className="mt-8 text-gray-600" direction="up" delay={0.5}>
+            <AnimatedDiv
+              className="mt-8 text-gray-600"
+              direction="up"
+              delay={0.5}
+            >
               <p>
-                By using our services, you consent to the collection, use, and sharing of your information as described
-                in this Privacy Policy. If you do not agree with our policies and practices, do not use our services.
+                By using our services, you consent to the collection, use, and
+                sharing of your information as described in this Privacy Policy.
+                If you do not agree with our policies and practices, do not use
+                our services.
               </p>
             </AnimatedDiv>
           </div>
         </div>
       </div>
     </AnimatedSection>
-  )
+  );
 }
