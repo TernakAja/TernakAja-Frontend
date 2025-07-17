@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 * {
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Inter", sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -17,16 +19,16 @@
 
 /* Scrollbar */
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 10px;
   height: 5px;
 }
 
-::-webkit-scrollbar-track{
-  box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background: #36906E;
   border-radius: 10px;
 }

@@ -123,15 +123,15 @@
       "learnMore": "Pelajari lebih lanjut",
       "items": {
         "0": {
-          "name": "Rasa TernakAja",
-          "description": "Sensor dan perangkat yang dapat dikenakan IoT untuk pemantauan ternak secara real-time",
-          "features": {
-            "0": "Pelacakan kesehatan",
-            "1": "Pemantauan lokasi",
-            "2": "Analisis perilaku",
-            "3": "Daya tahan baterai yang lama"
-          },
-          "image": "/images/Products/TernakAja-IoT-Schema.png"
+          "name": "PETSA",
+          "description": "Sensor IoT eartag dan wearable untuk pemantauan ternak secara real-time",
+          "features": [
+            "Pelacakan kesehatan",
+            "Pemantauan lokasi",
+            "Analisis perilaku",
+            "Pengisian daya dengan panel surya"
+          ],
+          "image": "/images/Products/PETSA-02-Enclosure.png"
         },
         "1": {
           "name": "Wawasan TernakAja",
@@ -938,7 +938,7 @@
       }
     }
   },
-  "footer":{
+  "footer": {
     "title": "Merevolusi pemantauan ternak dengan teknologi AI dan IoT yang dibangun di Microsoft Azure.",
     "quick": {
       "title": "Panduan",
