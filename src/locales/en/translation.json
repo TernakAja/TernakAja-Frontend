@@ -123,15 +123,15 @@
       "learnMore": "Learn More",
       "items": [
         {
-          "name": "TernakAja Sense",
-          "description": "IoT sensors and wearables for real-time livestock monitoring",
+          "name": "PETSA",
+          "description": "Eartag IoT sensors and wearables for real-time livestock monitoring",
           "features": [
             "Health tracking",
             "Location monitoring",
             "Behavior analysis",
-            "Long battery life"
+            "Solar Panel Charging"
           ],
-          "image": "/images/Products/TernakAja-IoT-Schema.png"
+          "image": "/images/Products/PETSA-02-Enclosure.png"
         },
         {
           "name": "TernakAja Insight",
@@ -170,7 +170,6 @@
     "testimonials": {
       "heading": "What Our Clients Say",
       "subheading": "Hear from farmers and agricultural professionals using TernakAja",
-
       "john": {
         "role": "Dairy Farm Owner",
         "content": "TernakAja has transformed how we manage our dairy farm. The real-time health monitoring has reduced disease outbreaks by 70% and improved our overall productivity."
@@ -187,7 +186,6 @@
     "faq": {
       "heading": "Frequently Asked Questions",
       "subheading": "Find answers to common questions about TernakAja",
-
       "q1": {
         "question": "How does TernakAja's livestock monitoring system work?",
         "answer": "TernakAja uses a combination of IoT sensors, wearable devices, and environmental monitors to collect real-time data about your livestock. This data is processed through our AI algorithms on Microsoft Azure to provide insights about health, behavior, and productivity."
@@ -212,7 +210,6 @@
         "question": "Is my data secure and private?",
         "answer": "Absolutely. TernakAja is built on Microsoft Azure's secure cloud infrastructure with enterprise-grade encryption and privacy controls. You maintain ownership of your data, and we adhere to strict data protection regulations."
       },
-
       "footer": {
         "text": "Still have questions? Contact our support team at"
       }
@@ -220,14 +217,11 @@
     "cta": {
       "title": "Ready to Transform Your Livestock Management?",
       "subtitle": "Join hundreds of forward-thinking farmers who are already benefiting from TernakAja's innovative AI and IoT solutions.",
-
       "benefit1": "Free consultation and farm assessment",
       "benefit2": "Customized implementation plan",
       "benefit3": "30-day free trial period",
       "benefit4": "Dedicated support team",
-
       "farmCount": "Farms already using TernakAja",
-
       "form": {
         "title": "Get Started Today",
         "description": "Fill out the form below and our team will contact you within 24 hours to discuss how TernakAja can benefit your farm.",
@@ -945,7 +939,7 @@
       }
     }
   },
-  "footer":{
+  "footer": {
     "title": "Revolutionizing livestock monitoring with AI and IoT technology built on Microsoft Azure.",
     "quick": {
       "title": "Quick As",
