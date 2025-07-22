@@ -61,6 +61,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       setIsAuthenticated(true);
       localStorage.setItem("token", token);
     } catch (error) {
+      console.error(error);
       if (error instanceof AxiosError) {
         const errorResponse = error.response?.data as ErrorResponse;
         throw new Error(errorResponse?.error || "Registration failed");

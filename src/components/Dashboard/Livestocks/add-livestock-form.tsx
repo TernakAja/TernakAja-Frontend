@@ -2,8 +2,6 @@ import type React from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
-  Wifi,
-  Cpu,
   Calendar,
   User,
   Dna,
@@ -45,10 +43,6 @@ export default function AddLivestockForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [formData, setFormData] = useState({
     deviceId: "", // New field for Device ID
-    deviceType: "collar-v1",
-    firmware: "latest",
-    wifiSsid: "",
-    wifiPassword: "",
     name: "",
     species: "",
     breed: "",
@@ -67,8 +61,6 @@ export default function AddLivestockForm() {
     const newErrors: Record<string, string> = {};
     const requiredFields = [
       "deviceId",
-      "deviceType",
-      "firmware",
       "name",
       "species",
       "breed",
@@ -157,12 +149,7 @@ export default function AddLivestockForm() {
     try {
       const response = await createLivestock(
         Number(user?.id),
-        Number(user?.id), // userId === farmId
         Number(formData.deviceId),
-        formData.deviceType,
-        formData.firmware,
-        formData.wifiSsid || null,
-        formData.wifiPassword || null,
         formData.name,
         formData.species,
         formData.breed,
@@ -186,10 +173,6 @@ export default function AddLivestockForm() {
       // Reset form
       setFormData({
         deviceId: "",
-        deviceType: "collar-v1",
-        firmware: "latest",
-        wifiSsid: "",
-        wifiPassword: "",
         name: "",
         species: "",
         breed: "",
@@ -294,172 +277,6 @@ export default function AddLivestockForm() {
                     <p className="text-xs text-gray-500">
                       {t(
                         "dashboard.livestock.add.deviceForm.fields.deviceId.description"
-                      )}
-                    </p>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="deviceType"
-                      className="flex items-center gap-2"
-                    >
-                      <Cpu className="h-4 w-4" />
-                      {t(
-                        "dashboard.livestock.add.deviceForm.fields.deviceType.label"
-                      )}{" "}
-                      <span className="text-red-500">*</span>
-                    </Label>
-                    <Select
-                      value={formData.deviceType}
-                      onValueChange={(value) =>
-                        handleSelectChange("deviceType", value)
-                      }
-                    >
-                      <SelectTrigger id="deviceType">
-                        <SelectValue
-                          placeholder={t(
-                            "deviceForm.fields.deviceType.placeholder"
-                          )}
-                        />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="collar-v1">
-                          {t(
-                            "dashboard.livestock.add.deviceForm.fields.deviceType.options.collarV1"
-                          )}
-                        </SelectItem>
-                        <SelectItem value="collar-v2">
-                          {t(
-                            "dashboard.livestock.add.deviceForm.fields.deviceType.options.collarV2"
-                          )}
-                        </SelectItem>
-                        <SelectItem value="tag-v1">
-                          {t(
-                            "dashboard.livestock.add.deviceForm.fields.deviceType.options.tagV1"
-                          )}
-                        </SelectItem>
-                        <SelectItem value="custom">
-                          {t(
-                            "dashboard.livestock.add.deviceForm.fields.deviceType.options.custom"
-                          )}
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                    {errors.deviceType && (
-                      <p className="text-xs text-red-500">
-                        {errors.deviceType}
-                      </p>
-                    )}
-                    <p className="text-xs text-gray-500">
-                      {t(
-                        "dashboard.livestock.add.deviceForm.fields.deviceType.description"
-                      )}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="firmware"
-                      className="flex items-center gap-2"
-                    >
-                      {t(
-                        "dashboard.livestock.add.deviceForm.fields.firmware.label"
-                      )}{" "}
-                      <span className="text-red-500">*</span>
-                    </Label>
-                    <Select
-                      value={formData.firmware}
-                      onValueChange={(value) =>
-                        handleSelectChange("firmware", value)
-                      }
-                    >
-                      <SelectTrigger id="firmware">
-                        <SelectValue
-                          placeholder={t(
-                            "deviceForm.fields.firmware.placeholder"
-                          )}
-                        />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="latest">
-                          {t(
-                            "dashboard.livestock.add.deviceForm.fields.firmware.options.latest"
-                          )}
-                        </SelectItem>
-                        <SelectItem value="v2.3.0">
-                          {t(
-                            "dashboard.livestock.add.deviceForm.fields.firmware.options.v2_3_0"
-                          )}
-                        </SelectItem>
-                        <SelectItem value="v2.2.5">
-                          {t(
-                            "dashboard.livestock.add.deviceForm.fields.firmware.options.v2_2_5"
-                          )}
-                        </SelectItem>
-                        <SelectItem value="v2.1.0">
-                          {t(
-                            "dashboard.livestock.add.deviceForm.fields.firmware.options.v2_1_0"
-                          )}
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                    {errors.firmware && (
-                      <p className="text-xs text-red-500">{errors.firmware}</p>
-                    )}
-                    <p className="text-xs text-gray-500">
-                      {t(
-                        "dashboard.livestock.add.deviceForm.fields.firmware.description"
-                      )}
-                    </p>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label className="flex items-center gap-2">
-                      <Wifi className="h-4 w-4" />
-                      {t(
-                        "dashboard.livestock.add.deviceForm.fields.wifiConfig.label"
-                      )}
-                    </Label>
-                    <div className="grid grid-cols-1 gap-4">
-                      <div>
-                        <Label htmlFor="wifiSsid">
-                          {t(
-                            "dashboard.livestock.add.deviceForm.fields.wifiConfig.ssidLabel"
-                          )}
-                        </Label>
-                        <Input
-                          id="wifiSsid"
-                          name="wifiSsid"
-                          value={formData.wifiSsid}
-                          onChange={handleInputChange}
-                          placeholder={t(
-                            "dashboard.livestock.add.deviceForm.fields.wifiConfig.ssidPlaceholder"
-                          )}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="wifiPassword">
-                          {t(
-                            "dashboard.livestock.add.deviceForm.fields.wifiConfig.passwordLabel"
-                          )}
-                        </Label>
-                        <Input
-                          id="wifiPassword"
-                          name="wifiPassword"
-                          type="password"
-                          value={formData.wifiPassword}
-                          onChange={handleInputChange}
-                          placeholder={t(
-                            "dashboard.livestock.add.deviceForm.fields.wifiConfig.passwordPlaceholder"
-                          )}
-                        />
-                      </div>
-                    </div>
-                    <p className="text-xs text-gray-500">
-                      {t(
-                        "dashboard.livestock.add.deviceForm.fields.wifiConfig.description"
                       )}
                     </p>
                   </div>
@@ -730,19 +547,14 @@ export default function AddLivestockForm() {
                         />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="Healthy">
+                        <SelectItem value="healthy">
                           {t(
                             "dashboard.livestock.add.animalForm.fields.status.options.healthy"
                           )}
                         </SelectItem>
-                        <SelectItem value="Needs Attention">
+                        <SelectItem value="unhealthy">
                           {t(
-                            "dashboard.livestock.add.animalForm.fields.status.options.attention"
-                          )}
-                        </SelectItem>
-                        <SelectItem value="Critical">
-                          {t(
-                            "dashboard.livestock.add.animalForm.fields.status.options.critical"
+                            "dashboard.livestock.add.animalForm.fields.status.options.unhealthy"
                           )}
                         </SelectItem>
                       </SelectContent>

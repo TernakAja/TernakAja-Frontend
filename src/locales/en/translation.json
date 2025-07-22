@@ -890,8 +890,7 @@
               "description": "Current health status of the animal",
               "options": {
                 "healthy": "Healthy",
-                "attention": "Needs Attention",
-                "critical": "Critical"
+                "unhealthy": "Unhealthy"
               }
             },
             "weight": {

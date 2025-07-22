@@ -33,12 +33,7 @@ export interface ApiResponse<T> {
 
 export async function createLivestock(
   userId: number,
-  farmId: number,
   deviceId: number,
-  deviceType: string,
-  firmware: string,
-  wifiSsid: string | null,
-  wifiPassword: string | null,
   name: string,
   species: string,
   breed: string,
@@ -53,12 +48,7 @@ export async function createLivestock(
 ): Promise<ApiResponse<Livestock>> {
   const data = {
     userId,
-    farmId,
     deviceId,
-    deviceType,
-    firmware,
-    wifiSsid,
-    wifiPassword,
     name,
     species,
     breed,

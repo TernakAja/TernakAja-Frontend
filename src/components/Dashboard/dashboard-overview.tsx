@@ -69,9 +69,8 @@ export default function DashboardOverview() {
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState<LivestockStatusCounts | undefined>({
     total: "0",
-    healthy: "0",
-    needs_attention: "0",
-    critical: "0",
+    healthy: 0,
+    unhealthy: 0,
   });
   const [speciesCount, setSpeciesCount] = useState<SpeciesCount[]>([]);
   const [notifications, setNotifications] = useState<
@@ -89,7 +88,9 @@ export default function DashboardOverview() {
       setLoading(true);
       try {
         try {
+          // console.log(user.id);
           const statusResponse = await getStatusCount(user.id);
+          console.log(statusResponse.data);
           if (statusResponse.data) {
             setStatus(statusResponse.data);
           }

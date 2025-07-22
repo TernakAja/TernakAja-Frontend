@@ -69,7 +69,7 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onComplete();
-    }, 2000);
+    }, 100);
     return () => clearTimeout(timer);
   }, [onComplete]);
 
@@ -128,11 +128,9 @@ function App() {
 
                 <Route path="/pricing" element={<PricingPage />} />
                 <Route path="/business" element={<BusinessPage />} />
-
               </Route>
 
               <Route element={<ProtectedRoute />}>
-
                 <Route path="/dashboard" element={<DashboardPage />} />
 
                 <Route
@@ -160,14 +158,13 @@ function App() {
                   element={<DashboardAnalyticsPage />}
                 />
                 <Route path="/dashboard/weather" element={<WeatherPage />} />
-
               </Route>
-              
+
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           )}
         </AnimatePresence>
-        <Toaster position="top-center" /> 
+        <Toaster position="top-center" />
       </BrowserRouter>
     </AuthProvider>
   );

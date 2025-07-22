@@ -7,9 +7,8 @@ import { Livestock, SensorData } from "./schema";
 
 export interface LivestockStatusCounts {
   total: string;
-  healthy: string;
-  needs_attention: string;
-  critical: string;
+  healthy: number;
+  unhealthy: number;
 }
 
 export interface SpeciesCount {
@@ -103,4 +102,4 @@ export interface RecentAvgSensorData {
   avgHeartRate: string;
   avgTemperature: number;
   avgSp02: number;
-};
+}

@@ -1,12 +1,23 @@
-import { Github, Linkedin, Instagram } from "lucide-react"
-import { AnimatedDiv, AnimatedSection, SectionHeading } from "../ui-components"
-import { motion } from "framer-motion"
+import { Github, Linkedin, Instagram } from "lucide-react";
+import { AnimatedDiv, AnimatedSection, SectionHeading } from "../ui-components";
+import { motion } from "framer-motion";
 
 export default function TeamMembers() {
   const team = [
     {
+      name: "David Christian",
+      role: "Project Lead",
+      bio: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      image: "./images/Team/David.png",
+      social: {
+        instagram: "https://www.instagram.com/davidchristian._/",
+        linkedin: "https://www.linkedin.com/in/david-christian-933545293/",
+        github: "https://github.com/Myaneeeee",
+      },
+    },
+    {
       name: "Stanley Nathanael Wijaya",
-      role: "Fullstack Developer",
+      role: "Software Engineer",
       bio: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       image: "./images/Team/stanley.jpg",
       social: {
@@ -17,7 +28,7 @@ export default function TeamMembers() {
     },
     {
       name: "Matthew Jeremiah Lim",
-      role: "Fullstack Developer",
+      role: "Business Analyst",
       bio: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       image: "./images/Team/Matthew.JPG",
       social: {
@@ -38,24 +49,14 @@ export default function TeamMembers() {
       },
     },
     {
-      name: "David Christian",
-      role: "Fullstack Developer",
-      bio: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      image: "./images/Team/David.png",
-      social: {
-        instagram: "https://www.instagram.com/davidchristian._/",
-        linkedin: "https://www.linkedin.com/in/david-christian-933545293/",
-        github: "https://github.com/Myaneeeee",
-      },
-    },
-    {
       name: "Farrel Tobias Saputro",
-      role: "Fullstack Developer",
+      role: "AI Engineer",
       bio: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       image: "./images/Team/Farrel.jpg",
       social: {
         instagram: "https://www.instagram.com/farrel2407/",
-        linkedin: "https://www.linkedin.com/in/farrel-tobias-saputro-41034b21a/",
+        linkedin:
+          "https://www.linkedin.com/in/farrel-tobias-saputro-41034b21a/",
         github: "https://github.com/F4E12",
       },
     },
@@ -70,7 +71,7 @@ export default function TeamMembers() {
         github: "https://github.com/glantrox",
       },
     },
-  ]
+  ];
 
   return (
     <AnimatedSection className="py-20 bg-white">
@@ -85,7 +86,9 @@ export default function TeamMembers() {
             <AnimatedDiv
               key={index}
               className={`bg-white rounded-xl overflow-hidden shadow-md group ${
-                index === team.length - 1 && team.length % 2 !== 0 ? "md:col-span-2 lg:col-span-1" : ""
+                index === team.length - 1 && team.length % 2 !== 0
+                  ? "md:col-span-2 lg:col-span-1"
+                  : ""
               }`}
               direction="up"
               delay={index * 0.1}
@@ -123,8 +126,12 @@ export default function TeamMembers() {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-1">{member.name}</h3>
-                <div className="text-[#328E6E] font-medium mb-3">{member.role}</div>
+                <h3 className="text-xl font-bold text-gray-800 mb-1">
+                  {member.name}
+                </h3>
+                <div className="text-[#328E6E] font-medium mb-3">
+                  {member.role}
+                </div>
                 {/* <p className="text-gray-600">{member.bio}</p> */}
               </div>
             </AnimatedDiv>
@@ -139,11 +146,12 @@ export default function TeamMembers() {
           viewport={{ once: true }}
         >
           <p className="text-gray-600 max-w-3xl mx-auto">
-            Our team is constantly growing! We're always looking for talented individuals who are passionate about
-            sustainable agriculture, technology innovation, and making a positive impact on the world.
+            Our team is constantly growing! We're always looking for talented
+            individuals who are passionate about sustainable agriculture,
+            technology innovation, and making a positive impact on the world.
           </p>
         </motion.div>
       </div>
     </AnimatedSection>
-  )
+  );
 }

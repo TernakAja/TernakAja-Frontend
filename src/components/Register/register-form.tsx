@@ -57,7 +57,7 @@ export default function RegisterForm() {
       // console.log("Registration response:", response);
 
       //short delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // await new Promise((resolve) => setTimeout(resolve, 1000));
 
       navigate("/login");
     } catch (error) {

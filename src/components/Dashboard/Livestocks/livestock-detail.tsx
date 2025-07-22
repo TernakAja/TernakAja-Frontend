@@ -55,7 +55,6 @@ import {
   getLivestockAge,
   getTimeSince,
   roundToTwoDecimals,
-  toPercentage,
 } from "@/utility/util";
 import { ComingSoon } from "@/components/coming-soon";
 import { livestockData } from "@/lib/data";
@@ -435,9 +434,7 @@ export default function LivestockDetail() {
                       </CardHeader>
                       <CardContent>
                         <div className="text-2xl font-bold">
-                          {roundToTwoDecimals(
-                            livestock.sensor_data.sp02
-                          )}%
+                          {roundToTwoDecimals(livestock.sensor_data.sp02)}%
                         </div>
                         <div className="flex items-center justify-between mt-1">
                           <span className="text-xs text-gray-500">

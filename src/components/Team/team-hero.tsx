@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import {
   AnimatedDiv,
   AnimatedHeading,
@@ -38,7 +38,7 @@ export default function TeamHero() {
           agriculture to revolutionize livestock management.
         </AnimatedDiv>
 
-        <motion.div
+        {/* <motion.div
           className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -60,7 +60,7 @@ export default function TeamHero() {
             <div className="text-3xl font-bold text-[#328E6E]">3+</div>
             <div className="text-gray-600">Research Papers</div>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </AnimatedSection>
   );
