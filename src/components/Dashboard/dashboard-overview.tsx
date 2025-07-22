@@ -90,7 +90,7 @@ export default function DashboardOverview() {
         try {
           // console.log(user.id);
           const statusResponse = await getStatusCount(user.id);
-          console.log(statusResponse.data);
+          // console.log(statusResponse.data);
           if (statusResponse.data) {
             setStatus(statusResponse.data);
           }
