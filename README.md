@@ -1,133 +1,128 @@
-<h1 align="center"> TernakAja - Frontend </h1> <br>
-<p align="center">
-  <a href="">
-    <img width="1613" height="528" alt="TernakAja" src="https://github.com/user-attachments/assets/6cc18477-97c0-4b9a-8b1a-96a8e2c4f98f" />
-  </a>
-</p>
+[![My Skills](https://skillicons.dev/icons?i=vite,react,ts,tailwind,vercel)](https://skillicons.dev)
 
-<p align="center">
-  <b>TernakAja</b> is an <b>intelligent livestock monitoring system</b> to solve SDG Number 2 Zero Hunger (Especially in Agriculture).
-  <b>TernakAja</b> helps farmers monitor the health and behavior of their livestock in real-time using <b>IoT</b> and <b>AI anomaly detection</b>.
- <a href="https://education.elevaite.id/" target="_blank"><b>Microsoft ElevAIte - 2025</b></a><br>
-</p>
+# TernakAja Frontend
 
----
+**TernakAja Frontend** adalah aplikasi web berbasis React TypeScript yang berfungsi sebagai dashboard untuk sistem monitoring kesehatan hewan ternak secara real-time. Platform ini memungkinkan peternak untuk memantau kondisi ternak, mendeteksi anomali, dan mengelola data kesehatan hewan.
 
-## 📃 Table of Contents
+## Fitur Utama
 
-- [Complete Documentation](#📚-complete-documentation)
-- [All GitHub Repository](#🌐-all-github-repository)
-- [Introduction](#🌟-introduction)
-- [Technology Stack](#🛠️-technology-stack)
-- [Core Features](#🧩-core-features)
-- [Live Demo](#🚀-live-demo)
-- [Getting Started Locally](#🧰-getting-started-locally-frontend-version)
-- [Team](#👥-team)
-- [Contact](#📬-contact)
+- Dashboard real-time untuk monitoring kesehatan ternak
+- Sistem manajemen profil hewan ternak
+- Deteksi anomali berbasis AI dengan visualisasi data
+- Sistem notifikasi untuk alert kesehatan
+- Role-based access control (Peternak, Dokter Hewan, Admin)
+- Marketplace dan forum komunitas peternak
+- Knowledge center dengan artikel edukasi
+- Responsive design untuk desktop dan mobile
 
----
+## Struktur Proyek
 
-## 📚 Complete Documentation
+```
+src/
+├── components/           // Komponen UI yang dapat digunakan ulang
+│   ├── ui/              // Base UI components (ShadcnUI)
+│   ├── dashboard/       // Komponen khusus dashboard
+│   └── common/          // Komponen umum
+├── pages/               // Halaman-halaman aplikasi
+│   ├── Dashboard.tsx    // Dashboard utama
+│   ├── Livestock.tsx    // Manajemen ternak
+│   └── Analytics.tsx    // Analitik dan laporan
+├── hooks/               // Custom React hooks
+├── services/            // API services dan integrasi
+├── types/               // TypeScript type definitions
+├── utils/               // Fungsi utilitas
+└── styles/              // Global styles dan konfigurasi
+```
 
-<ul>
-    <li><b>Notion Documentation (Detail Documentation)</b></li>
-    <a href="https://stanley-n-wijaya.notion.site/TernakAja-Documentation-1df73555b71f80fd9fd9dbfc655ce5a7?pvs=4">Notion Documentation</a>
-    <li><b>Demo Video</b></li>
-    <a href="https://binusianorg-my.sharepoint.com/personal/stanley_wijaya004_binus_ac_id/_layouts/15/guestaccess.aspx?share=EYMWsQ71C9NHv2bWAHrP4L8BMcDJ3e6a9U_hsyYi_i-wlw&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=eWRR7c">Link Demo Video</a>
-    <li><b>TernakAja Google Drive</b></li>
-    <a href="https://drive.google.com/drive/folders/1Slexo254LAhwieCQazA-peBe4Vl8fZJ5?usp=sharing">TernakAja Documents + Preliminary Research (Google Drive)</a>
-</ul>
+## Setup & Konfigurasi
 
----
+### 1. Clone Repositori
+```bash
+git clone https://github.com/TernakAja/TernakAja-Frontend.git
+cd TernakAja-Frontend
+```
 
-## 🌐 All GitHub Repository
+### 2. Install Dependencies
+```bash
+npm install
+# atau
+yarn install
+```
 
-<ul>
-    <li><b>Main Repository</b></li>
-    <a href="https://github.com/StyNW7/TernakAja">https://github.com/StyNW7/TernakAja</a>
-    <li><b>Frontend Repository</b></li>
-    <a href="https://github.com/StyNW7/TernakAja-Frontend">https://github.com/StyNW7/TernakAja-Frontend</a>
-    <li><b>Backend Repository</b></li>
-    <a href="https://github.com/StyNW7/TernakAja-Backend">https://github.com/StyNW7/TernakAja-Backend</a>
-    <li><b>AI Repository</b></li>
-    <a href="https://github.com/StyNW7/TernakAja-AI">https://github.com/StyNW7/TernakAja-AI</a>
-    <li><b>IoT Repository</b></li>
-    <a href="https://github.com/StyNW7/TernakAja-IoT">https://github.com/StyNW7/TernakAja-IoT</a>
-</ul>
+### 3. Konfigurasi Environment
+Buat file `.env.local` dan isi dengan konfigurasi yang diperlukan:
+```env
+VITE_API_BASE_URL=http://localhost:3000/api
+VITE_WEBSOCKET_URL=ws://localhost:3000
+VITE_AZURE_IOT_CONNECTION=your-azure-connection-string
+```
 
----
+### 4. Jalankan Development Server
+```bash
+npm run dev
+# atau
+yarn dev
+```
 
-## 🌟 Introduction
-
-**TernakAja** revolutionizes livestock farming through intelligent, real-time health and behavior monitoring. Combining IoT sensors and AI anomaly detection, TernakAja empowers farmers to detect health issues early, prevent loss, and optimize livestock productivity.
-
-> "Every heartbeat, every step, every breath of your livestock matters. TernakAja listens and protects."  
-> — _TernakAja Manifesto_
-
----
-
-## 🛠️ Technology Stack
-
-- **Frontend**: Vite, TypeScript, TailwindCSS, and ShadcnUI
-- **Backend**: Express.js & Node.js
-- **Database**: Azure PostgreSQL Flexible Server
-- **AI Integration**: Python & Hugging Face API
-- **IoT Device**: Arduino C++ (ESP32 + Sensors)
-- **Version Control**: Git & GitHub (Submodule Monorepo)
-- **Deployment**:
-  - Frontend: [Vercel](https://vercel.com)
-  - Backend, AI, Database: Coming Soon!
-
----
-
-## 🧩 Core Features
-
-- 🔥 **Real-Time Livestock Monitoring**  
-  Monitor temperature, heart rate, and motion of each livestock in real-time via IoT integration.
-
-- 🧠 **AI Anomaly Detection**  
-  Smart detection of anomalies such as fever, stress, reduced activity, and fertility prediction.
-
-- 🐄 **Livestock Management System**  
-  Manage livestock profiles, health history, vaccination records, and behavior patterns.
-
-- 📈 **Data Analytics and Trends**  
-  Visualize livestock health trends and detect early warning signs before problems escalate.
-
-- 🚨 **Instant Alert System**  
-  Receive instant notifications for any detected anomalies on your mobile or desktop.
-
-- 🛒 **Marketplace & Community Forum**  
-  Sell livestock and discuss farming tips with the community.
-
-- 📚 **Knowledge Center**  
-  Educational articles about livestock health, farming techniques, and veterinary advice.
-
-- 🔒 **Role-Based Access Control**  
-  Different dashboards and access for peternak, dokter hewan, and admin.
-
----
-
-## 🚀 Live Demo
-
-Visit the deployed application here (frontend only):
-<br>
-👉 [https://ternakaja.vercel.app/](https://ternakaja.vercel.app/)
-
----
-
-## 🧰 Getting Started Locally (Frontend Version)
-
-### Prerequisites
-
-- **Node.js** (v18 or above)
-- **Git**
-
-### Run Local for TernakAja Frontend
+## Scripts yang Tersedia
 
 ```bash
-git clone https://github.com/StyNW7/TernakAja-Frontend.git
-cd ternakaja-frontend
-npm install
-npm run dev
+npm run dev          # Jalankan development server
+npm run build        # Build untuk production
+npm run preview      # Preview build production
+npm run lint         # Jalankan ESLint
+npm run type-check   # TypeScript type checking
 ```
+
+## Teknologi yang Digunakan
+
+### Core Technologies
+- **Vite** - Build tool dan development server
+- **React 18** - Library UI dengan hooks modern
+- **TypeScript** - Type safety dan better DX
+- **TailwindCSS** - Utility-first CSS framework
+
+### UI Components & Styling
+- **ShadcnUI** - Pre-built accessible components
+- **Lucide React** - Icon library
+- **Recharts** - Data visualization library
+
+### State Management & Data
+- **React Query/TanStack Query** - Server state management
+- **Zustand** - Client state management
+- **Axios** - HTTP client untuk API calls
+
+## Integrasi dengan Backend
+
+Frontend ini terintegrasi dengan:
+- **[TernakAja Backend](https://github.com/StyNW7/TernakAja-Backend)** - REST API dengan Express.js
+- **[TernakAja AI](https://github.com/StyNW7/TernakAja-AI)** - ML models untuk anomaly detection  
+- **[TernakAja IoT](https://github.com/StyNW7/TernakAja-IoT)** - Data sensor dari perangkat ESP32
+
+## Komponen Utama
+
+### Dashboard Components
+- **LivestockCard** - Kartu informasi ternak individual
+- **HealthChart** - Grafik data kesehatan real-time
+- **AlertPanel** - Panel notifikasi dan alert
+- **MetricsOverview** - Overview statistik keseluruhan
+
+### Data Visualization
+- **TemperatureChart** - Grafik suhu tubuh ternak
+- **HeartRateMonitor** - Monitor detak jantung
+- **ActivityTracker** - Tracking aktivitas hewan
+- **HealthTrends** - Trend kesehatan jangka panjang
+
+## Rencana Pengembangan
+
+- Implementasi Progressive Web App (PWA)
+- Integrasi push notifications
+- Offline mode dengan service workers
+- Implementasi WebRTC untuk video monitoring
+- Mobile app dengan React Native
+- Advanced data analytics dashboard
+- Real-time collaboration features
+
+## Live Demo
+
+[https://ternakaja.vercel.app/](https://ternakaja.vercel.app/)
