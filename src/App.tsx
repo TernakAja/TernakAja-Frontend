@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 // Utility
 
 import ScrollToTop from "./utility/ScrollToTop";
-import CustomCursor from "./utility/CustomCursor";
+// import CustomCursor from "./utility/CustomCursor";
 import ScrollToTopFunction from "./utility/ScrollToTopFunction";
 
 // Default Pages
@@ -69,7 +69,7 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onComplete();
-    }, 100);
+    }, 1);
     return () => clearTimeout(timer);
   }, [onComplete]);
 
@@ -85,7 +85,7 @@ function App() {
       <BrowserRouter>
         <ScrollToTopFunction />
         <ScrollToTop />
-        <CustomCursor />
+        {/* <CustomCursor /> */}
 
         {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
 
