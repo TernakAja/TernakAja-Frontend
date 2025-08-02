@@ -119,6 +119,7 @@ export default function LivestockDetail() {
         const livestockResponse = await getLivestockDetailById(parseInt(id));
         const metricsResponse = await getSevenDayAverageById(parseInt(id));
         if (livestockResponse.data) {
+          console.log("Livestock Detail Response:", livestockResponse.data);
           setLivestock(livestockResponse.data);
         }
         if (metricsResponse.data) {
