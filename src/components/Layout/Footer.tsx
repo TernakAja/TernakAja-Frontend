@@ -98,16 +98,17 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin size={20} className="mt-1 flex-shrink-0" />
                 <span className="text-[#E1EEBC]">
-                  123 Innovation Drive, Tech Valley, CA 94043
+                  Jl. Jalur Sutera Bar. No.Kav. 21, RT.001/RW.004, Panunggangan,
+                  Kec. Pinang, Kota Tangerang, Banten 15143
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={20} className="flex-shrink-0" />
-                <span className="text-[#E1EEBC]">+1 (555) 123-4567</span>
+                <span className="text-[#E1EEBC]">+62 812-9635-9305</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={20} className="flex-shrink-0" />
-                <span className="text-[#E1EEBC]">info@ternakaja.com</span>
+                <span className="text-[#E1EEBC]">davidchr71@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -125,7 +126,10 @@ export default function Footer() {
                 placeholder="Your email"
                 className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
               />
-              <Button className="bg-[#E1EEBC] text-[#328E6E] hover:bg-white">
+              <Button
+                className="bg-[#E1EEBC] text-[#328E6E] hover:bg-white"
+                disabled={true}
+              >
                 Subscribe
               </Button>
             </div>

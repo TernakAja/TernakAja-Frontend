@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 
 const navas = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/team" },
+  { name: "Our Team", href: "/team" },
   { name: "Article", href: "/article" },
   { name: "Community Forum", href: "/forum" },
   { name: "Marketplace", href: "/marketplace" },
@@ -18,7 +18,7 @@ const navas = [
 
 const navasID = [
   { name: "Halaman Utama", href: "/" },
-  { name: "Tentang Kita", href: "/team" },
+  { name: "Tim Kami", href: "/team" },
   { name: "Artikel", href: "/article" },
   { name: "Forum", href: "/forum" },
   { name: "Marketplace", href: "/marketplace" },
@@ -134,7 +134,7 @@ export default function Navbar() {
             <div className="hidden md:flex items-center gap-4">
               <Button
                 variant="outline"
-                className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white"
+                className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white bg-transparent"
                 onClick={() => navigate("/login")}
               >
                 {language === "id" ? "Masuk" : "Login"}

@@ -58,54 +58,34 @@
           "title": "Zero Hunger",
           "description": "Improving livestock productivity to enhance food security"
         },
-        "12": {
-          "title": "Responsible Consumption",
-          "description": "Optimizing resource usage in livestock management"
+        "3": {
+          "title": "Good Health and Well-being",
+          "description": "Enabling early disease detection in livestock to prevent outbreaks like FMD, protecting animal and human health in the food chain."
         },
-        "13": {
-          "title": "Climate Action",
-          "description": "Reducing environmental impact of livestock farming"
-        },
-        "15": {
-          "title": "Life on Land",
-          "description": "Promoting sustainable land use practices"
+        "9": {
+          "title": "Industry, Innovation and Infrastructure",
+          "description": "Promoting innovation in agriculture through AI- and IoT-powered health monitoring, driving digital transformation in the livestock sector."
         }
       }
     },
     "features": {
       "heading": "Powerful Features",
       "subheading": "Comprehensive tools to revolutionize your livestock management",
-      "healthMonitoring": {
-        "title": "Health Monitoring",
-        "description": "Real-time tracking of vital signs and health indicators for early disease detection"
+      "healthClassification": {
+        "title": "Machine Learning Health Classification",
+        "description": "Classifies cattle as healthy or unhealthy in real time using pulse rate, body temperature, and SpO2 data from sensors collected every minute. Helps track livestock health continuously and proactively."
       },
-      "predictiveAnalytics": {
-        "title": "Predictive Analytics",
-        "description": "AI-powered predictions for health issues, productivity, and resource optimization"
+      "farchestra": {
+        "title": "Farchestra - AI Agent",
+        "description": "An intelligent assistant that actively engages with farmers. It automatically alerts users if a cow is unhealthy, asks follow-up questions about symptoms, offers first-aid suggestions, recommends available medications, and provides vet contact information."
       },
-      "mobileAccessibility": {
-        "title": "Mobile Accessibility",
-        "description": "Monitor your livestock from anywhere with our intuitive mobile application"
+      "diseaseClassification": {
+        "title": "Disease Classification",
+        "description": "Analyzes multiple sensor data to classify specific cattle diseases, enabling faster and more accurate identification of health issues such as FMD, mastitis, and other common conditions."
       },
-      "dataManagement": {
-        "title": "Data Management",
-        "description": "Comprehensive data collection and storage for long-term analysis and insights"
-      },
-      "cloudIntegration": {
-        "title": "Cloud Integration",
-        "description": "Seamless integration with Microsoft Azure for reliable and scalable performance"
-      },
-      "securityPrivacy": {
-        "title": "Security & Privacy",
-        "description": "Enterprise-grade security protocols to protect your valuable farm data"
-      },
-      "performanceMetrics": {
-        "title": "Performance Metrics",
-        "description": "Detailed reports and dashboards to track livestock performance and farm efficiency"
-      },
-      "automatedAlerts": {
-        "title": "Automated Alerts",
-        "description": "Instant notifications for critical events requiring immediate attention"
+      "pmkImageClassification": {
+        "title": "PMK Image Classification",
+        "description": "Upload a photo of your cow and get an instant AI-based prediction on whether it shows signs of Foot and Mouth Disease (FMD)."
       },
       "azure": {
         "title": "Powered by Microsoft Azure",
@@ -127,22 +107,9 @@
           "description": "Eartag IoT sensors and wearables for real-time livestock monitoring",
           "features": [
             "Health tracking",
-            "Location monitoring",
             "Behavior analysis",
             "Solar Panel Charging"
-          ],
-          "image": "/images/Products/PETSA-02-Enclosure.png"
-        },
-        {
-          "name": "TernakAja Insight",
-          "description": "AI-powered analytics platform for data-driven decision making",
-          "features": [
-            "Predictive health alerts",
-            "Performance metrics",
-            "Custom reports",
-            "Mobile dashboard"
-          ],
-          "image": "/images/Products/mobile.png"
+          ]
         },
         {
           "name": "TernakAja Connect",
@@ -150,10 +117,8 @@
           "features": [
             "End-to-end solution",
             "Cloud integration",
-            "Advanced analytics",
-            "Technical support"
-          ],
-          "image": "/images/Products/dashboard-overview.png"
+            "Advanced analytics"
+          ]
         }
       ]
     },
@@ -171,8 +136,8 @@
       "heading": "What Our Clients Say",
       "subheading": "Hear from farmers and agricultural professionals using TernakAja",
       "john": {
-        "role": "Dairy Farm Owner",
-        "content": "TernakAja has transformed how we manage our dairy farm. The real-time health monitoring has reduced disease outbreaks by 70% and improved our overall productivity."
+        "role": "Farm Manager",
+        "content": "This innovation will definitely be very useful. This tool will be able to monitor all the cows and show us the results. So, even when we're outside the barn, we can still monitor our cows. If a cow has a fever and isn't monitored for even a day, its condition will surely worsen the next day. This tool will definitely be very helpful in monitoring our cows."
       },
       "maria": {
         "role": "Livestock Researcher",
@@ -943,7 +908,7 @@
     "quick": {
       "title": "Quick As",
       "home": "Home",
-      "about": "About",
+      "about": "Our Team",
       "article": "Article",
       "forum": "Community Forum",
       "marketplace": "Marketplace"

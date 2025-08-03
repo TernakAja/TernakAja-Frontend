@@ -2,9 +2,8 @@ import { useTranslation } from "react-i18next";
 import { AnimatedDiv, AnimatedSection, SectionHeading } from "../ui-components";
 import { motion } from "framer-motion";
 
-export default function Vision() {
+const Vision = () => {
   const { t } = useTranslation();
-
   const sdgGoals = [
     {
       number: 2,
@@ -13,25 +12,18 @@ export default function Vision() {
       color: "#DDA63A",
     },
     {
-      number: 12,
-      title: t("landing.vision.sdg.12.title"),
-      description: t("landing.vision.sdg.12.description"),
-      color: "#BF8B2E",
+      number: 3,
+      title: t("landing.vision.sdg.3.title"),
+      description: t("landing.vision.sdg.3.description"),
+      color: "#4CA146",
     },
     {
-      number: 13,
-      title: t("landing.vision.sdg.13.title"),
-      description: t("landing.vision.sdg.13.description"),
-      color: "#3F7E44",
-    },
-    {
-      number: 15,
-      title: t("landing.vision.sdg.15.title"),
-      description: t("landing.vision.sdg.15.description"),
-      color: "#56C02B",
+      number: 9,
+      title: t("landing.vision.sdg.9.title"),
+      description: t("landing.vision.sdg.9.description"),
+      color: "#F26A2D",
     },
   ];
-
   return (
     <AnimatedSection id="vision" className="py-20 bg-[#E1EEBC]/30">
       <div className="container mx-auto px-4">
@@ -47,18 +39,21 @@ export default function Vision() {
             <p className="text-gray-700 mb-8">
               {t("landing.vision.visionText")}
             </p>
-
             <h3 className="text-2xl font-bold mb-4 text-[#328E6E]">
               {t("landing.vision.missionTitle")}
             </h3>
             <p className="text-gray-700">{t("landing.vision.missionText")}</p>
           </AnimatedDiv>
-
-          <AnimatedDiv direction="left" className="relative">
+          <AnimatedDiv
+            direction="left"
+            className="relative flex justify-center items-center"
+          >
+            {" "}
+            {/* Added flex and justify-center for better centering */}
             <img
-              src="./images/Landing/healthy-cow.png"
+              src="https://res.cloudinary.com/dqvlnzw9f/image/upload/v1754203859/happy_bro_owuztj.png"
               alt="Sustainable Farming"
-              className="w-full h-auto rounded-2xl shadow-lg"
+              className="w-full max-w-lg object-cover rounded-2xl shadow-lg aspect-video" // Changed to aspect-video (16:9)
             />
             <motion.div
               className="absolute -z-10 w-full h-full border-4 border-[#90C67C] rounded-2xl -left-6 -bottom-6"
@@ -69,17 +64,14 @@ export default function Vision() {
             />
           </AnimatedDiv>
         </div>
-
         <h3 className="text-2xl font-bold mb-8 text-center text-[#328E6E]">
           {t("landing.vision.sdgHeading")}
         </h3>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sdgGoals.map((goal, index) => (
             <AnimatedDiv
               key={index}
               className="bg-white rounded-xl p-6 shadow-md border-t-4"
-              // style={{ borderColor: goal.color }}
               direction="up"
               delay={index * 0.1}
             >
@@ -99,4 +91,6 @@ export default function Vision() {
       </div>
     </AnimatedSection>
   );
-}
+};
+
+export default Vision;

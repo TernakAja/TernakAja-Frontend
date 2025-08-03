@@ -1,15 +1,23 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
 import { ChevronRight, BarChart2, Shield, Zap } from "lucide-react";
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import {
   AnimatedDiv,
   AnimatedHeading,
   AnimatedSection,
 } from "../ui-components";
-import { useTranslation } from "react-i18next";
+
+const useNavigate = () => {
+  return (path: string) => console.log(`Navigating to: ${path}`);
+};
 
 export default function Hero() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
   return (
     <AnimatedSection
       id="home"
@@ -24,7 +32,6 @@ export default function Hero() {
             >
               {t("landing.hero.poweredBy")}
             </AnimatedDiv>
-
             <AnimatedHeading
               as="h1"
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
@@ -35,7 +42,6 @@ export default function Hero() {
                 {t("landing.hero.heading.highlight")}
               </span>
             </AnimatedHeading>
-
             <AnimatedDiv
               className="text-lg text-gray-600 mb-8"
               direction="up"
@@ -43,24 +49,25 @@ export default function Hero() {
             >
               {t("landing.hero.description")}
             </AnimatedDiv>
-
             <AnimatedDiv
               className="flex flex-wrap gap-4"
               direction="up"
               delay={0.2}
             >
-              <Button className="bg-[#328E6E] hover:bg-[#67AE6E] text-white px-6 py-6 rounded-lg text-lg">
+              <Button
+                className="bg-[#328E6E] hover:bg-[#67AE6E] text-white px-6 py-6 rounded-lg text-lg"
+                onClick={() => navigate("/register")}
+              >
                 {t("landing.hero.buttons.getStarted")}
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
               <Button
                 variant="outline"
-                className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white px-6 py-6 rounded-lg text-lg"
+                className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white px-6 py-6 rounded-lg text-lg bg-transparent"
               >
                 {t("landing.hero.buttons.watchDemo")}
               </Button>
             </AnimatedDiv>
-
             <AnimatedDiv
               className="mt-12 grid grid-cols-3 gap-4"
               direction="up"
@@ -86,28 +93,37 @@ export default function Hero() {
               </div>
             </AnimatedDiv>
           </div>
-
-          <AnimatedDiv className="relative" direction="left">
-            <div className="relative z-10">
-              <img
-                src="./images/Landing/moo-farm.png"
-                alt="TernakAja Livestock Monitoring"
-                className="w-full h-auto rounded-2xl shadow-2xl"
-              />
-            </div>
-
-            <motion.div
-              className="absolute -z-10 w-full h-full bg-[#90C67C]/20 rounded-2xl -right-6 -bottom-6"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+          {/* Modified image section for bento layout with animations */}
+          <AnimatedDiv
+            className="relative grid grid-cols-2 gap-4 p-4"
+            direction="left"
+          >
+            <motion.img
+              src="https://res.cloudinary.com/dqvlnzw9f/image/upload/v1754200639/sapi_gk4xl4.png"
+              alt="Main device dashboard showing livestock data"
+              className="col-span-2 rounded-2xl shadow-2xl object-cover aspect-video w-full h-auto"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
             />
-
-            <motion.div
-              className="absolute -z-20 w-full h-full bg-[#328E6E]/10 rounded-2xl -right-12 -bottom-12"
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
+            <motion.img
+              src="https://res.cloudinary.com/dqvlnzw9f/image/upload/v1754199720/device2_lbzcqw.jpg"
+              alt="Cow with monitoring device on ear"
+              className="rounded-xl shadow-lg object-cover aspect-square w-full h-auto"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+            />
+            <motion.img
+              src="https://res.cloudinary.com/dqvlnzw9f/image/upload/v1754199720/device_ke_sapi_wa9ti7.jpg"
+              alt="Chart showing livestock health and productivity data"
+              className="rounded-xl shadow-lg object-cover aspect-square w-full h-auto"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
             />
           </AnimatedDiv>
         </div>

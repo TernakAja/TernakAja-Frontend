@@ -1,13 +1,4 @@
-import {
-  Activity,
-  BarChart2,
-  Cloud,
-  Database,
-  LineChart,
-  Shield,
-  Smartphone,
-  Zap,
-} from "lucide-react";
+import { Activity, Image, LineChart, Zap } from "lucide-react";
 import { AnimatedDiv, AnimatedSection, SectionHeading } from "../ui-components";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -18,43 +9,23 @@ export default function Features() {
   const features = [
     {
       icon: <Activity className="h-6 w-6" />,
-      title: t("landing.features.healthMonitoring.title"),
-      description: t("landing.features.healthMonitoring.description"),
-    },
-    {
-      icon: <LineChart className="h-6 w-6" />,
-      title: t("landing.features.predictiveAnalytics.title"),
-      description: t("landing.features.predictiveAnalytics.description"),
-    },
-    {
-      icon: <Smartphone className="h-6 w-6" />,
-      title: t("landing.features.mobileAccessibility.title"),
-      description: t("landing.features.mobileAccessibility.description"),
-    },
-    {
-      icon: <Database className="h-6 w-6" />,
-      title: t("landing.features.dataManagement.title"),
-      description: t("landing.features.dataManagement.description"),
-    },
-    {
-      icon: <Cloud className="h-6 w-6" />,
-      title: t("landing.features.cloudIntegration.title"),
-      description: t("landing.features.cloudIntegration.description"),
-    },
-    {
-      icon: <Shield className="h-6 w-6" />,
-      title: t("landing.features.securityPrivacy.title"),
-      description: t("landing.features.securityPrivacy.description"),
-    },
-    {
-      icon: <BarChart2 className="h-6 w-6" />,
-      title: t("landing.features.performanceMetrics.title"),
-      description: t("landing.features.performanceMetrics.description"),
+      title: t("landing.features.healthClassification.title"),
+      description: t("landing.features.healthClassification.description"),
     },
     {
       icon: <Zap className="h-6 w-6" />,
-      title: t("landing.features.automatedAlerts.title"),
-      description: t("landing.features.automatedAlerts.description"),
+      title: t("landing.features.farchestra.title"),
+      description: t("landing.features.farchestra.description"),
+    },
+    {
+      icon: <LineChart className="h-6 w-6" />,
+      title: t("landing.features.diseaseClassification.title"),
+      description: t("landing.features.diseaseClassification.description"),
+    },
+    {
+      icon: <Image className="h-6 w-6" />,
+      title: t("landing.features.pmkImageClassification.title"),
+      description: t("landing.features.pmkImageClassification.description"),
     },
   ];
 

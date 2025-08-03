@@ -11,23 +11,18 @@ export default function Statistics() {
   const { t } = useTranslation();
   const stats = [
     {
-      value: 85,
+      value: 0,
       label: t("landing.statistics.stats.reductionDisease"),
       suffix: "%",
     },
     {
-      value: 10000,
+      value: 0,
       label: t("landing.statistics.stats.livestockMonitored"),
       suffix: "+",
     },
     {
-      value: 30,
+      value: 0,
       label: t("landing.statistics.stats.increaseProductivity"),
-      suffix: "%",
-    },
-    {
-      value: 40,
-      label: t("landing.statistics.stats.reductionWater"),
       suffix: "%",
     },
   ];
@@ -39,7 +34,7 @@ export default function Statistics() {
           title={t("landing.statistics.title")}
           subtitle={t("landing.statistics.subtitle")}
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {stats.map((stat, index) => (
             <AnimatedDiv
               key={index}

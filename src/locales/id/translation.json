@@ -56,56 +56,36 @@
       "sdg": {
         "2": {
           "title": "Nol Kelaparan",
-          "description": "Meningkatkan produktivitas ternak untuk meningkatkan ketahanan pangan"
+          "description": "Meningkatkan produktivitas ternak untuk memperkuat ketahanan pangan."
         },
-        "12": {
-          "title": "Konsumsi yang Bertanggung Jawab",
-          "description": "Mengoptimalkan penggunaan sumber daya dalam pengelolaan ternak"
+        "3": {
+          "title": "Kehidupan Sehat dan Sejahtera",
+          "description": "Memungkinkan deteksi dini penyakit pada ternak untuk mencegah wabah seperti PMK, serta melindungi kesehatan hewan dan manusia dalam rantai pangan."
         },
-        "13": {
-          "title": "Aksi Iklim",
-          "description": "Mengurangi dampak lingkungan dari peternakan"
-        },
-        "15": {
-          "title": "Kehidupan di Darat",
-          "description": "Mempromosikan praktik penggunaan lahan berkelanjutan"
+        "9": {
+          "title": "Industri, Inovasi, dan Infrastruktur",
+          "description": "Mendorong inovasi di sektor pertanian melalui pemantauan kesehatan ternak berbasis AI dan IoT, serta mempercepat transformasi digital di bidang peternakan."
         }
       }
     },
     "features": {
       "heading": "Fitur Kuat",
       "subheading": "Alat komprehensif untuk merevolusi manajemen ternak Anda",
-      "healthMonitoring": {
-        "title": "Pemantauan Kesehatan",
-        "description": "Pelacakan tanda-tanda vital dan indikator kesehatan secara real-time untuk deteksi dini penyakit"
+      "healthClassification": {
+        "title": "Klasifikasi Kesehatan Berbasis Machine Learning",
+        "description": "Mengklasifikasikan sapi sebagai sehat atau tidak sehat secara real-time menggunakan data detak jantung, suhu tubuh, dan SpO2 yang dikumpulkan setiap menit dari sensor. Membantu memantau kesehatan ternak secara berkelanjutan dan proaktif."
       },
-      "predictiveAnalytics": {
-        "title": "Analisis Prediktif",
-        "description": "Prediksi bertenaga AI untuk masalah kesehatan, produktivitas, dan pengoptimalan sumber daya"
+      "farchestra": {
+        "title": "Farchestra - Agen AI",
+        "description": "Asisten cerdas yang secara aktif berinteraksi dengan peternak. Secara otomatis memberi tahu pengguna jika ada sapi yang terdeteksi tidak sehat, menanyakan gejala yang terlihat, memberi saran pertolongan pertama, merekomendasikan obat yang tersedia, dan menghubungkan dengan dokter hewan."
       },
-      "mobileAccessibility": {
-        "title": "Aksesibilitas Seluler",
-        "description": "Pantau ternak Anda dari mana saja dengan aplikasi seluler kami yang intuitif"
+      "diseaseClassification": {
+        "title": "Klasifikasi Penyakit",
+        "description": "Menganalisis data dari berbagai sensor untuk mengklasifikasikan jenis penyakit pada sapi, memungkinkan identifikasi masalah kesehatan seperti PMK, mastitis, dan kondisi umum lainnya dengan lebih cepat dan akurat."
       },
-      "dataManagement": {
-        "title": "Manajemen Data",
-        "description": "Pengumpulan dan penyimpanan data yang komprehensif untuk analisis dan wawasan jangka panjang"
-      },
-      "cloudIntegration": {
-        "title": "Integrasi Cloud",
-        "description": "Integrasi tanpa batas dengan Microsoft Azure untuk performa yang andal dan dapat diskalakan"
-      },
-      "securityPrivacy": {
-        "title": "Keamanan & Privasi",
-        "description": "Protokol keamanan tingkat perusahaan untuk melindungi data pertanian Anda yang berharga"
-      },
-      "performanceMetrics": {
-        "title": "Metrik Performa",
-        "description": "Laporan dan dasbor terperinci untuk melacak kinerja ternak dan efisiensi peternakan"
-      },
-      "automatedAlerts": {
-        "title": "Peringatan Otomatis",
-        "description": "Pemberitahuan instan untuk peristiwa penting yang memerlukan perhatian segera"
+      "pmkImageClassification": {
+        "title": "Klasifikasi Gambar PMK",
+        "description": "Unggah foto sapi Anda dan dapatkan prediksi instan berbasis AI apakah menunjukkan gejala Penyakit Mulut dan Kuku (PMK) atau tidak."
       },
       "azure": {
         "title": "Didukung oleh Microsoft Azure",
@@ -121,41 +101,26 @@
       "subheading": "Solusi komprehensif untuk pengelolaan ternak modern",
       "featuresTitle": "Fitur utama:",
       "learnMore": "Pelajari lebih lanjut",
-      "items": {
-        "0": {
+      "items": [
+        {
           "name": "PETSA",
           "description": "Sensor IoT eartag dan wearable untuk pemantauan ternak secara real-time",
           "features": [
             "Pelacakan kesehatan",
-            "Pemantauan lokasi",
             "Analisis perilaku",
             "Pengisian daya dengan panel surya"
-          ],
-          "image": "/images/Products/PETSA-02-Enclosure.png"
+          ]
         },
-        "1": {
-          "name": "Wawasan TernakAja",
-          "description": "Platform analitik bertenaga AI untuk pengambilan keputusan berbasis data",
-          "features": {
-            "0": "Pemberitahuan kesehatan prediktif",
-            "1": "Metrik performa",
-            "2": "Laporan khusus",
-            "3": "Dasbor seluler"
-          },
-          "image": "/images/Products/mobile.png"
-        },
-        "2": {
+        {
           "name": "TernakAja Connect",
           "description": "Sistem manajemen pertanian lengkap dengan IoT dan AI terintegrasi",
-          "features": {
-            "0": "Solusi menyeluruh",
-            "1": "Integrasi cloud",
-            "2": "Analitik lanjutan",
-            "3": "Dukungan teknis"
-          },
-          "image": "/images/Products/dashboard-overview.png"
+          "features": [
+            "Solusi menyeluruh",
+            "Integrasi cloud",
+            "Analitik lanjutan"
+          ]
         }
-      }
+      ]
     },
     "developers": {
       "heading": "Temui Tim Kami",
@@ -171,8 +136,8 @@
       "heading": "Apa Kata Klien Kami",
       "subheading": "Dengarkan dari petani dan profesional pertanian yang menggunakan TernakAja",
       "john": {
-        "role": "Pemilik Peternakan Sapi Perah",
-        "content": "TernakAja telah mengubah cara kami mengelola peternakan sapi perah kami. Pemantauan kesehatan real-time telah mengurangi wabah penyakit hingga 70% dan meningkatkan produktivitas kami secara keseluruhan."
+        "role": "Pengurus Peternakan",
+        "content": "Inovasi ini pasti akan sangat berguna. Alat ini akan dapat memantau semua sapi dan menunjukkan hasilnya kepada kita. Jadi, bahkan saat kita berada di luar kandang, kita tetap dapat memantau sapi-sapi kita. Jika seekor sapi demam dan tidak dipantau bahkan sehari, kondisinya pasti akan memburuk keesokan harinya. Alat ini pastinya akan sangat membantu kita dalam memantau sapi-sapi kita."
       },
       "maria": {
         "role": "Peneliti Peternakan",
@@ -943,7 +908,7 @@
     "quick": {
       "title": "Panduan",
       "home": "Halaman Utama",
-      "about": "Tentang Kami",
+      "about": "Tim Kami",
       "article": "Artikel",
       "forum": "Forum",
       "marketplace": "Marketplace"
