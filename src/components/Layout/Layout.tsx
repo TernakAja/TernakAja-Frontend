@@ -8,10 +8,10 @@ const Layout = () => {
     <>
       {/* Wrapper Layout */}
 
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen mt-19">
         <Navbar />
 
-        <main className="flex-1 container min-w-screen mt-15">
+        <main className="flex-1 container min-w-screen">
           <Outlet />
         </main>
 
