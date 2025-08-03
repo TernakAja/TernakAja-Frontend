@@ -51,6 +51,7 @@ import { getRecentAverageSensorData } from "@/services/livestockService";
 import LastHourMetrics from "./average-metrics";
 import { getTimeSince } from "@/utility/util";
 import { useTranslation } from "react-i18next";
+import FloatingChatbot from "../Chatbot/floating-chatbot";
 
 // const dailySensorStats: DailySensorStats[] = [
 //   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: "65" },
@@ -150,6 +151,7 @@ export default function DashboardOverview() {
 
   return (
     <div className="space-y-6">
+      <FloatingChatbot />
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">

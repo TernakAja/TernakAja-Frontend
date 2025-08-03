@@ -186,7 +186,7 @@ export default function ChatbotInterface() {
 
     try {
       const response = await fetch(
-        "https://ternakaja-ai-ewcub4cafphtgfar.eastus-01.azurewebsites.net/ask",
+        "https://ternakaja-ai-hceghrgdd3dtfjdz.eastus-01.azurewebsites.net/ask",
         {
           method: "POST",
           headers: {

@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   AlertTriangle,
   ArrowRight,
@@ -14,12 +14,18 @@ import {
   Plus,
   Search,
   Utensils,
-} from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,13 +33,14 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Progress } from "@/components/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+} from "@/components/ui/dropdown-menu";
+import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import FloatingChatbot from "@/components/Chatbot/floating-chatbot";
 
 export default function FeedingManagement() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [statusFilter, setStatusFilter] = useState("all")
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   // Sample feeding schedules
   const feedingSchedules = [
@@ -121,26 +128,32 @@ export default function FeedingManagement() {
         notes: "Check mineral blocks",
       },
     },
-  ]
+  ];
 
   // Filter schedules based on search query and status filter
   const filteredSchedules = feedingSchedules.filter((schedule) => {
     const matchesSearch =
       schedule.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       schedule.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      schedule.assignedTo.toLowerCase().includes(searchQuery.toLowerCase())
+      schedule.assignedTo.toLowerCase().includes(searchQuery.toLowerCase());
 
-    const matchesStatus = statusFilter === "all" || schedule.status === statusFilter
+    const matchesStatus =
+      statusFilter === "all" || schedule.status === statusFilter;
 
-    return matchesSearch && matchesStatus
-  })
+    return matchesSearch && matchesStatus;
+  });
 
   return (
     <div className="space-y-6">
+      <FloatingChatbot />
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Feeding Management</h1>
-          <p className="text-muted-foreground">Manage feeding schedules and nutrition for your livestock.</p>
+          <h1 className="text-2xl font-bold tracking-tight">
+            Feeding Management
+          </h1>
+          <p className="text-muted-foreground">
+            Manage feeding schedules and nutrition for your livestock.
+          </p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" className="gap-1">
@@ -168,7 +181,11 @@ export default function FeedingManagement() {
               <div>
                 <div className="text-sm text-gray-500">Completed Today</div>
                 <div className="text-2xl font-bold">
-                  {feedingSchedules.filter((schedule) => schedule.status === "completed").length}
+                  {
+                    feedingSchedules.filter(
+                      (schedule) => schedule.status === "completed"
+                    ).length
+                  }
                 </div>
               </div>
             </CardContent>
@@ -188,7 +205,11 @@ export default function FeedingManagement() {
               <div>
                 <div className="text-sm text-gray-500">Upcoming Today</div>
                 <div className="text-2xl font-bold">
-                  {feedingSchedules.filter((schedule) => schedule.status === "upcoming").length}
+                  {
+                    feedingSchedules.filter(
+                      (schedule) => schedule.status === "upcoming"
+                    ).length
+                  }
                 </div>
               </div>
             </CardContent>
@@ -206,7 +227,9 @@ export default function FeedingManagement() {
                 <AlertTriangle className="h-5 w-5 text-amber-600" />
               </div>
               <div>
-                <div className="text-sm text-gray-500">Feed Inventory Alert</div>
+                <div className="text-sm text-gray-500">
+                  Feed Inventory Alert
+                </div>
                 <div className="text-2xl font-bold">2</div>
               </div>
             </CardContent>
@@ -250,9 +273,19 @@ export default function FeedingManagement() {
                     <DropdownMenuContent align="end">
                       <DropdownMenuLabel>Filter by Status</DropdownMenuLabel>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem onClick={() => setStatusFilter("all")}>All Schedules</DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => setStatusFilter("completed")}>Completed</DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => setStatusFilter("upcoming")}>Upcoming</DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => setStatusFilter("all")}>
+                        All Schedules
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() => setStatusFilter("completed")}
+                      >
+                        Completed
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() => setStatusFilter("upcoming")}
+                      >
+                        Upcoming
+                      </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                   <Button variant="outline" className="gap-1">
@@ -274,7 +307,11 @@ export default function FeedingManagement() {
                     <Card key={schedule.id} className="overflow-hidden">
                       <CardContent className="p-0">
                         <div
-                          className={`h-1 ${schedule.status === "completed" ? "bg-green-500" : "bg-blue-500"}`}
+                          className={`h-1 ${
+                            schedule.status === "completed"
+                              ? "bg-green-500"
+                              : "bg-blue-500"
+                          }`}
                         ></div>
                         <div className="p-4">
                           <div className="flex items-start gap-4">
@@ -290,37 +327,67 @@ export default function FeedingManagement() {
                             <div className="flex-1">
                               <div className="flex items-center justify-between">
                                 <div>
-                                  <div className="font-medium">{schedule.name}</div>
-                                  <div className="text-sm text-gray-500">{schedule.location}</div>
+                                  <div className="font-medium">
+                                    {schedule.name}
+                                  </div>
+                                  <div className="text-sm text-gray-500">
+                                    {schedule.location}
+                                  </div>
                                 </div>
-                                <Badge className={schedule.status === "completed" ? "bg-green-500" : "bg-blue-500"}>
-                                  {schedule.status === "completed" ? "Completed" : "Upcoming"}
+                                <Badge
+                                  className={
+                                    schedule.status === "completed"
+                                      ? "bg-green-500"
+                                      : "bg-blue-500"
+                                  }
+                                >
+                                  {schedule.status === "completed"
+                                    ? "Completed"
+                                    : "Upcoming"}
                                 </Badge>
                               </div>
                               <div className="mt-2 grid grid-cols-1 md:grid-cols-3 gap-2">
                                 <div>
-                                  <div className="text-xs text-gray-500">Feed Type</div>
-                                  <div className="text-sm">{schedule.details.feedType}</div>
+                                  <div className="text-xs text-gray-500">
+                                    Feed Type
+                                  </div>
+                                  <div className="text-sm">
+                                    {schedule.details.feedType}
+                                  </div>
                                 </div>
                                 <div>
-                                  <div className="text-xs text-gray-500">Quantity</div>
-                                  <div className="text-sm">{schedule.details.quantity}</div>
+                                  <div className="text-xs text-gray-500">
+                                    Quantity
+                                  </div>
+                                  <div className="text-sm">
+                                    {schedule.details.quantity}
+                                  </div>
                                 </div>
                                 <div>
-                                  <div className="text-xs text-gray-500">Notes</div>
-                                  <div className="text-sm">{schedule.details.notes}</div>
+                                  <div className="text-xs text-gray-500">
+                                    Notes
+                                  </div>
+                                  <div className="text-sm">
+                                    {schedule.details.notes}
+                                  </div>
                                 </div>
                               </div>
                               <div className="flex items-center justify-between mt-3">
                                 <div className="flex items-center gap-2">
                                   <Avatar className="h-6 w-6">
                                     <AvatarImage
-                                      src={schedule.avatar || "/placeholder.svg"}
+                                      src={
+                                        schedule.avatar || "/placeholder.svg"
+                                      }
                                       alt={schedule.assignedTo}
                                     />
-                                    <AvatarFallback>{schedule.assignedTo.charAt(0)}</AvatarFallback>
+                                    <AvatarFallback>
+                                      {schedule.assignedTo.charAt(0)}
+                                    </AvatarFallback>
                                   </Avatar>
-                                  <span className="text-sm">{schedule.assignedTo}</span>
+                                  <span className="text-sm">
+                                    {schedule.assignedTo}
+                                  </span>
                                 </div>
                                 <div className="flex items-center gap-1 text-sm text-gray-500">
                                   <Clock className="h-3.5 w-3.5" />
@@ -335,13 +402,21 @@ export default function FeedingManagement() {
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
-                                <DropdownMenuItem>View Details</DropdownMenuItem>
-                                <DropdownMenuItem>Edit Schedule</DropdownMenuItem>
+                                <DropdownMenuItem>
+                                  View Details
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                  Edit Schedule
+                                </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 {schedule.status === "upcoming" ? (
-                                  <DropdownMenuItem>Mark as Completed</DropdownMenuItem>
+                                  <DropdownMenuItem>
+                                    Mark as Completed
+                                  </DropdownMenuItem>
                                 ) : (
-                                  <DropdownMenuItem>Mark as Incomplete</DropdownMenuItem>
+                                  <DropdownMenuItem>
+                                    Mark as Incomplete
+                                  </DropdownMenuItem>
                                 )}
                               </DropdownMenuContent>
                             </DropdownMenu>
@@ -354,8 +429,12 @@ export default function FeedingManagement() {
                   {filteredSchedules.length === 0 && (
                     <div className="text-center py-8">
                       <Utensils className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                      <h3 className="text-lg font-medium">No matching schedules found</h3>
-                      <p className="text-gray-500 mt-1">Try adjusting your search or filter criteria</p>
+                      <h3 className="text-lg font-medium">
+                        No matching schedules found
+                      </h3>
+                      <p className="text-gray-500 mt-1">
+                        Try adjusting your search or filter criteria
+                      </p>
                     </div>
                   )}
                 </TabsContent>
@@ -363,8 +442,12 @@ export default function FeedingManagement() {
                 <TabsContent value="tomorrow">
                   <div className="text-center py-8">
                     <Calendar className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium">Tomorrow's Schedules</h3>
-                    <p className="text-gray-500 mt-1">6 feeding schedules planned</p>
+                    <h3 className="text-lg font-medium">
+                      Tomorrow's Schedules
+                    </h3>
+                    <p className="text-gray-500 mt-1">
+                      6 feeding schedules planned
+                    </p>
                     <Button variant="outline" className="mt-4">
                       View All
                     </Button>
@@ -374,8 +457,12 @@ export default function FeedingManagement() {
                 <TabsContent value="week">
                   <div className="text-center py-8">
                     <Calendar className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium">This Week's Schedules</h3>
-                    <p className="text-gray-500 mt-1">42 feeding schedules planned</p>
+                    <h3 className="text-lg font-medium">
+                      This Week's Schedules
+                    </h3>
+                    <p className="text-gray-500 mt-1">
+                      42 feeding schedules planned
+                    </p>
                     <Button variant="outline" className="mt-4">
                       View All
                     </Button>
@@ -428,17 +515,27 @@ export default function FeedingManagement() {
                 </div>
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <div className="text-sm font-medium">Protein Supplement</div>
+                    <div className="text-sm font-medium">
+                      Protein Supplement
+                    </div>
                     <div className="text-sm text-gray-500">18% remaining</div>
                   </div>
-                  <Progress value={18} className="h-2" indicatorClassName="bg-amber-500" />
+                  <Progress
+                    value={18}
+                    className="h-2"
+                    indicatorClassName="bg-amber-500"
+                  />
                 </div>
                 <div>
                   <div className="flex items-center justify-between mb-1">
                     <div className="text-sm font-medium">Mineral Mix</div>
                     <div className="text-sm text-gray-500">9% remaining</div>
                   </div>
-                  <Progress value={9} className="h-2" indicatorClassName="bg-red-500" />
+                  <Progress
+                    value={9}
+                    className="h-2"
+                    indicatorClassName="bg-red-500"
+                  />
                 </div>
 
                 <div className="pt-2">
@@ -457,11 +554,19 @@ export default function FeedingManagement() {
               <CardContent className="space-y-4">
                 <div className="bg-gray-50 rounded-lg p-3">
                   <div className="flex items-center justify-between">
-                    <div className="font-medium">Dairy Cattle - High Production</div>
+                    <div className="font-medium">
+                      Dairy Cattle - High Production
+                    </div>
                     <Badge className="bg-[#328E6E]">Active</Badge>
                   </div>
-                  <div className="text-sm text-gray-500 mt-1">Last updated: 2 weeks ago</div>
-                  <Button variant="ghost" size="sm" className="mt-2 h-8 text-xs gap-1">
+                  <div className="text-sm text-gray-500 mt-1">
+                    Last updated: 2 weeks ago
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="mt-2 h-8 text-xs gap-1"
+                  >
                     <Edit className="h-3.5 w-3.5" />
                     <span>Edit Plan</span>
                   </Button>
@@ -469,11 +574,19 @@ export default function FeedingManagement() {
 
                 <div className="bg-gray-50 rounded-lg p-3">
                   <div className="flex items-center justify-between">
-                    <div className="font-medium">Beef Cattle - Growth Phase</div>
+                    <div className="font-medium">
+                      Beef Cattle - Growth Phase
+                    </div>
                     <Badge className="bg-[#328E6E]">Active</Badge>
                   </div>
-                  <div className="text-sm text-gray-500 mt-1">Last updated: 1 month ago</div>
-                  <Button variant="ghost" size="sm" className="mt-2 h-8 text-xs gap-1">
+                  <div className="text-sm text-gray-500 mt-1">
+                    Last updated: 1 month ago
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="mt-2 h-8 text-xs gap-1"
+                  >
                     <Edit className="h-3.5 w-3.5" />
                     <span>Edit Plan</span>
                   </Button>
@@ -484,8 +597,14 @@ export default function FeedingManagement() {
                     <div className="font-medium">Sheep - Maintenance</div>
                     <Badge className="bg-[#328E6E]">Active</Badge>
                   </div>
-                  <div className="text-sm text-gray-500 mt-1">Last updated: 3 weeks ago</div>
-                  <Button variant="ghost" size="sm" className="mt-2 h-8 text-xs gap-1">
+                  <div className="text-sm text-gray-500 mt-1">
+                    Last updated: 3 weeks ago
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="mt-2 h-8 text-xs gap-1"
+                  >
                     <Edit className="h-3.5 w-3.5" />
                     <span>Edit Plan</span>
                   </Button>
@@ -503,5 +622,5 @@ export default function FeedingManagement() {
         </motion.div>
       </div>
     </div>
-  )
+  );
 }

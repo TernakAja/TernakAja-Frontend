@@ -46,6 +46,7 @@ import LoadingScreenPage from "../../../utility/LoadingScreen";
 import { SensorDataWithLivestock } from "@/types/dataSchema";
 import { roundToTwoDecimals } from "@/utility/util";
 import { useTranslation } from "react-i18next";
+import FloatingChatbot from "@/components/Chatbot/floating-chatbot";
 
 export default function LivestockList() {
   const { t } = useTranslation();
@@ -97,6 +98,7 @@ export default function LivestockList() {
 
   return (
     <div className="space-y-6">
+      <FloatingChatbot />
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">

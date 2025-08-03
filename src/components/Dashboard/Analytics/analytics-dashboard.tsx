@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -11,10 +11,16 @@ import {
   LineChart,
   PieChart,
   RefreshCw,
-} from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,14 +28,15 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Progress } from "@/components/ui/progress"
+} from "@/components/ui/dropdown-menu";
+import { Progress } from "@/components/ui/progress";
 import {
   LineChart as LineChartComponent,
   BarChart as BarChartComponent,
   DonutChart,
-} from "@/components/Dashboard/charts"
-import { DailySensorStats, SpeciesCount } from "@/types/dataSchema"
+} from "@/components/Dashboard/charts";
+import { DailySensorStats, SpeciesCount } from "@/types/dataSchema";
+import FloatingChatbot from "@/components/Chatbot/floating-chatbot";
 
 const dailySensorStats: DailySensorStats[] = [
   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },
@@ -49,7 +56,7 @@ const speciesData: SpeciesCount[] = [
 ];
 
 export default function AnalyticsDashboard() {
-  const [, setTimeRange] = useState("7d")
+  const [, setTimeRange] = useState("7d");
 
   const performanceMetrics = [
     {
@@ -80,17 +87,27 @@ export default function AnalyticsDashboard() {
       change: "-25%",
       status: "increase",
     },
-  ]
+  ];
 
   return (
     <div className="space-y-6">
+      <FloatingChatbot />
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Analytics Dashboard</h1>
-          <p className="text-muted-foreground">Comprehensive analytics and insights for your livestock operation.</p>
+          <h1 className="text-2xl font-bold tracking-tight">
+            Analytics Dashboard
+          </h1>
+          <p className="text-muted-foreground">
+            Comprehensive analytics and insights for your livestock operation.
+          </p>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="h-8 gap-1 text-xs" onClick={() => window.location.reload()}>
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-8 gap-1 text-xs"
+            onClick={() => window.location.reload()}
+          >
             <RefreshCw className="h-3.5 w-3.5" />
             <span>Refresh</span>
           </Button>
@@ -102,11 +119,21 @@ export default function AnalyticsDashboard() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setTimeRange("24h")}>Last 24 hours</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTimeRange("7d")}>Last 7 days</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTimeRange("30d")}>Last 30 days</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTimeRange("90d")}>Last 90 days</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTimeRange("1y")}>Last year</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTimeRange("24h")}>
+                Last 24 hours
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTimeRange("7d")}>
+                Last 7 days
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTimeRange("30d")}>
+                Last 30 days
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTimeRange("90d")}>
+                Last 90 days
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTimeRange("1y")}>
+                Last year
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <Button variant="outline" size="sm" className="h-8 gap-1 text-xs">
@@ -127,30 +154,41 @@ export default function AnalyticsDashboard() {
           >
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">{metric.title}</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  {metric.title}
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">
-                  {metric.value} <span className="text-sm font-normal text-gray-500">{metric.unit}</span>
+                  {metric.value}{" "}
+                  <span className="text-sm font-normal text-gray-500">
+                    {metric.unit}
+                  </span>
                 </div>
                 <div className="flex items-center pt-1 text-xs">
                   {metric.status === "increase" ? (
                     <ArrowUpRight
                       className={`h-3.5 w-3.5 mr-1 ${
-                        metric.title === "Health Incidents" ? "text-red-500" : "text-green-500"
+                        metric.title === "Health Incidents"
+                          ? "text-red-500"
+                          : "text-green-500"
                       }`}
                     />
                   ) : (
                     <ArrowDownRight
                       className={`h-3.5 w-3.5 mr-1 ${
-                        metric.title === "Health Incidents" ? "text-green-500" : "text-red-500"
+                        metric.title === "Health Incidents"
+                          ? "text-green-500"
+                          : "text-red-500"
                       }`}
                     />
                   )}
                   <span
                     className={
-                      (metric.status === "increase" && metric.title !== "Health Incidents") ||
-                      (metric.status === "decrease" && metric.title === "Health Incidents")
+                      (metric.status === "increase" &&
+                        metric.title !== "Health Incidents") ||
+                      (metric.status === "decrease" &&
+                        metric.title === "Health Incidents")
                         ? "text-green-500 font-medium"
                         : "text-red-500 font-medium"
                     }
@@ -180,11 +218,17 @@ export default function AnalyticsDashboard() {
                     <LineChart className="h-5 w-5 text-[#328E6E]" />
                     Production Trends
                   </CardTitle>
-                  <CardDescription>Milk production and feed consumption over time</CardDescription>
+                  <CardDescription>
+                    Milk production and feed consumption over time
+                  </CardDescription>
                 </div>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm" className="h-8 gap-1 text-xs">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-8 gap-1 text-xs"
+                    >
                       <Filter className="h-3.5 w-3.5" />
                       <span>Filter</span>
                     </Button>
@@ -208,12 +252,12 @@ export default function AnalyticsDashboard() {
                 </TabsList>
                 <TabsContent value="milk" className="pt-4">
                   <div className="h-[300px]">
-                    <LineChartComponent dailySensorStats={dailySensorStats}/>
+                    <LineChartComponent dailySensorStats={dailySensorStats} />
                   </div>
                 </TabsContent>
                 <TabsContent value="feed" className="pt-4">
                   <div className="h-[300px]">
-                    <LineChartComponent dailySensorStats={dailySensorStats}/>
+                    <LineChartComponent dailySensorStats={dailySensorStats} />
                   </div>
                 </TabsContent>
               </Tabs>
@@ -234,9 +278,15 @@ export default function AnalyticsDashboard() {
                     <BarChart3 className="h-5 w-5 text-[#328E6E]" />
                     Comparative Analysis
                   </CardTitle>
-                  <CardDescription>Performance metrics by livestock group</CardDescription>
+                  <CardDescription>
+                    Performance metrics by livestock group
+                  </CardDescription>
                 </div>
-                <Button variant="outline" size="sm" className="h-8 gap-1 text-xs">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="h-8 gap-1 text-xs"
+                >
                   <Calendar className="h-3.5 w-3.5 mr-1" />
                   <span>This Month</span>
                 </Button>
@@ -264,11 +314,13 @@ export default function AnalyticsDashboard() {
                 <PieChart className="h-5 w-5 text-[#328E6E]" />
                 Health Distribution
               </CardTitle>
-              <CardDescription>Current health status of livestock</CardDescription>
+              <CardDescription>
+                Current health status of livestock
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="h-[250px] flex items-center justify-center">
-                <DonutChart speciesData={speciesData}/>
+                <DonutChart speciesData={speciesData} />
               </div>
               <div className="space-y-4 mt-4">
                 <div>
@@ -279,17 +331,27 @@ export default function AnalyticsDashboard() {
                     </div>
                     <span className="text-sm font-medium">231</span>
                   </div>
-                  <Progress value={93.5} className="h-2 bg-gray-100" indicatorClassName="bg-green-500" />
+                  <Progress
+                    value={93.5}
+                    className="h-2 bg-gray-100"
+                    indicatorClassName="bg-green-500"
+                  />
                 </div>
                 <div>
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2">
                       <div className="w-3 h-3 rounded-full bg-amber-500"></div>
-                      <span className="text-sm font-medium">Needs Attention</span>
+                      <span className="text-sm font-medium">
+                        Needs Attention
+                      </span>
                     </div>
                     <span className="text-sm font-medium">12</span>
                   </div>
-                  <Progress value={4.9} className="h-2 bg-gray-100" indicatorClassName="bg-amber-500" />
+                  <Progress
+                    value={4.9}
+                    className="h-2 bg-gray-100"
+                    indicatorClassName="bg-amber-500"
+                  />
                 </div>
                 <div>
                   <div className="flex items-center justify-between mb-1">
@@ -299,7 +361,11 @@ export default function AnalyticsDashboard() {
                     </div>
                     <span className="text-sm font-medium">4</span>
                   </div>
-                  <Progress value={1.6} className="h-2 bg-gray-100" indicatorClassName="bg-red-500" />
+                  <Progress
+                    value={1.6}
+                    className="h-2 bg-gray-100"
+                    indicatorClassName="bg-red-500"
+                  />
                 </div>
               </div>
             </CardContent>
@@ -318,36 +384,60 @@ export default function AnalyticsDashboard() {
                 <BarChart3 className="h-5 w-5 text-[#328E6E]" />
                 Performance Insights
               </CardTitle>
-              <CardDescription>Key performance indicators by category</CardDescription>
+              <CardDescription>
+                Key performance indicators by category
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <div className="font-medium">Milk Production Efficiency</div>
-                    <div className="text-sm text-gray-500">22.5 liters/day (avg)</div>
+                    <div className="font-medium">
+                      Milk Production Efficiency
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      22.5 liters/day (avg)
+                    </div>
                   </div>
                   <div className="space-y-2">
                     <div>
                       <div className="flex items-center justify-between mb-1">
                         <div className="text-sm">Holstein</div>
-                        <div className="text-sm text-gray-500">28.3 liters/day</div>
+                        <div className="text-sm text-gray-500">
+                          28.3 liters/day
+                        </div>
                       </div>
-                      <Progress value={94} className="h-2 bg-gray-100" indicatorClassName="bg-[#328E6E]" />
+                      <Progress
+                        value={94}
+                        className="h-2 bg-gray-100"
+                        indicatorClassName="bg-[#328E6E]"
+                      />
                     </div>
                     <div>
                       <div className="flex items-center justify-between mb-1">
                         <div className="text-sm">Jersey</div>
-                        <div className="text-sm text-gray-500">18.7 liters/day</div>
+                        <div className="text-sm text-gray-500">
+                          18.7 liters/day
+                        </div>
                       </div>
-                      <Progress value={62} className="h-2 bg-gray-100" indicatorClassName="bg-[#67AE6E]" />
+                      <Progress
+                        value={62}
+                        className="h-2 bg-gray-100"
+                        indicatorClassName="bg-[#67AE6E]"
+                      />
                     </div>
                     <div>
                       <div className="flex items-center justify-between mb-1">
                         <div className="text-sm">Brown Swiss</div>
-                        <div className="text-sm text-gray-500">20.5 liters/day</div>
+                        <div className="text-sm text-gray-500">
+                          20.5 liters/day
+                        </div>
                       </div>
-                      <Progress value={68} className="h-2 bg-gray-100" indicatorClassName="bg-[#90C67C]" />
+                      <Progress
+                        value={68}
+                        className="h-2 bg-gray-100"
+                        indicatorClassName="bg-[#90C67C]"
+                      />
                     </div>
                   </div>
                 </div>
@@ -355,29 +445,49 @@ export default function AnalyticsDashboard() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <div className="font-medium">Feed Conversion Ratio</div>
-                    <div className="text-sm text-gray-500">1.5 milk:feed (avg)</div>
+                    <div className="text-sm text-gray-500">
+                      1.5 milk:feed (avg)
+                    </div>
                   </div>
                   <div className="space-y-2">
                     <div>
                       <div className="flex items-center justify-between mb-1">
                         <div className="text-sm">Holstein</div>
-                        <div className="text-sm text-gray-500">1.6 milk:feed</div>
+                        <div className="text-sm text-gray-500">
+                          1.6 milk:feed
+                        </div>
                       </div>
-                      <Progress value={80} className="h-2 bg-gray-100" indicatorClassName="bg-[#328E6E]" />
+                      <Progress
+                        value={80}
+                        className="h-2 bg-gray-100"
+                        indicatorClassName="bg-[#328E6E]"
+                      />
                     </div>
                     <div>
                       <div className="flex items-center justify-between mb-1">
                         <div className="text-sm">Jersey</div>
-                        <div className="text-sm text-gray-500">1.4 milk:feed</div>
+                        <div className="text-sm text-gray-500">
+                          1.4 milk:feed
+                        </div>
                       </div>
-                      <Progress value={70} className="h-2 bg-gray-100" indicatorClassName="bg-[#67AE6E]" />
+                      <Progress
+                        value={70}
+                        className="h-2 bg-gray-100"
+                        indicatorClassName="bg-[#67AE6E]"
+                      />
                     </div>
                     <div>
                       <div className="flex items-center justify-between mb-1">
                         <div className="text-sm">Brown Swiss</div>
-                        <div className="text-sm text-gray-500">1.5 milk:feed</div>
+                        <div className="text-sm text-gray-500">
+                          1.5 milk:feed
+                        </div>
                       </div>
-                      <Progress value={75} className="h-2 bg-gray-100" indicatorClassName="bg-[#90C67C]" />
+                      <Progress
+                        value={75}
+                        className="h-2 bg-gray-100"
+                        indicatorClassName="bg-[#90C67C]"
+                      />
                     </div>
                   </div>
                 </div>
@@ -385,29 +495,49 @@ export default function AnalyticsDashboard() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <div className="font-medium">Reproductive Efficiency</div>
-                    <div className="text-sm text-gray-500">85% success rate (avg)</div>
+                    <div className="text-sm text-gray-500">
+                      85% success rate (avg)
+                    </div>
                   </div>
                   <div className="space-y-2">
                     <div>
                       <div className="flex items-center justify-between mb-1">
                         <div className="text-sm">Holstein</div>
-                        <div className="text-sm text-gray-500">82% success rate</div>
+                        <div className="text-sm text-gray-500">
+                          82% success rate
+                        </div>
                       </div>
-                      <Progress value={82} className="h-2 bg-gray-100" indicatorClassName="bg-[#328E6E]" />
+                      <Progress
+                        value={82}
+                        className="h-2 bg-gray-100"
+                        indicatorClassName="bg-[#328E6E]"
+                      />
                     </div>
                     <div>
                       <div className="flex items-center justify-between mb-1">
                         <div className="text-sm">Jersey</div>
-                        <div className="text-sm text-gray-500">88% success rate</div>
+                        <div className="text-sm text-gray-500">
+                          88% success rate
+                        </div>
                       </div>
-                      <Progress value={88} className="h-2 bg-gray-100" indicatorClassName="bg-[#67AE6E]" />
+                      <Progress
+                        value={88}
+                        className="h-2 bg-gray-100"
+                        indicatorClassName="bg-[#67AE6E]"
+                      />
                     </div>
                     <div>
                       <div className="flex items-center justify-between mb-1">
                         <div className="text-sm">Brown Swiss</div>
-                        <div className="text-sm text-gray-500">85% success rate</div>
+                        <div className="text-sm text-gray-500">
+                          85% success rate
+                        </div>
                       </div>
-                      <Progress value={85} className="h-2 bg-gray-100" indicatorClassName="bg-[#90C67C]" />
+                      <Progress
+                        value={85}
+                        className="h-2 bg-gray-100"
+                        indicatorClassName="bg-[#90C67C]"
+                      />
                     </div>
                   </div>
                 </div>
@@ -417,5 +547,5 @@ export default function AnalyticsDashboard() {
         </motion.div>
       </div>
     </div>
-  )
+  );
 }

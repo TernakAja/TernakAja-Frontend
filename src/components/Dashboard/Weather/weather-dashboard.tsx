@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Cloud,
   Droplets,
@@ -14,14 +14,28 @@ import {
   Calendar,
   ArrowRight,
   AlertTriangle,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
-import { Switch } from "@/components/ui/switch"
-import { Label } from "@/components/ui/label"
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import FloatingChatbot from "@/components/Chatbot/floating-chatbot";
 
 // Mock weather data
 const mockWeatherData = {
@@ -38,20 +52,70 @@ const mockWeatherData = {
     icon: "cloud-sun",
   },
   forecast: [
-    { day: "Today", high: 26, low: 18, condition: "Partly Cloudy", icon: "cloud-sun", precipitation: 10 },
-    { day: "Tomorrow", high: 28, low: 19, condition: "Sunny", icon: "sun", precipitation: 0 },
-    { day: "Wed", high: 27, low: 20, condition: "Sunny", icon: "sun", precipitation: 0 },
-    { day: "Thu", high: 25, low: 19, condition: "Cloudy", icon: "cloud", precipitation: 20 },
-    { day: "Fri", high: 23, low: 17, condition: "Rain", icon: "cloud-rain", precipitation: 80 },
-    { day: "Sat", high: 22, low: 16, condition: "Rain", icon: "cloud-rain", precipitation: 60 },
-    { day: "Sun", high: 24, low: 18, condition: "Partly Cloudy", icon: "cloud-sun", precipitation: 30 },
+    {
+      day: "Today",
+      high: 26,
+      low: 18,
+      condition: "Partly Cloudy",
+      icon: "cloud-sun",
+      precipitation: 10,
+    },
+    {
+      day: "Tomorrow",
+      high: 28,
+      low: 19,
+      condition: "Sunny",
+      icon: "sun",
+      precipitation: 0,
+    },
+    {
+      day: "Wed",
+      high: 27,
+      low: 20,
+      condition: "Sunny",
+      icon: "sun",
+      precipitation: 0,
+    },
+    {
+      day: "Thu",
+      high: 25,
+      low: 19,
+      condition: "Cloudy",
+      icon: "cloud",
+      precipitation: 20,
+    },
+    {
+      day: "Fri",
+      high: 23,
+      low: 17,
+      condition: "Rain",
+      icon: "cloud-rain",
+      precipitation: 80,
+    },
+    {
+      day: "Sat",
+      high: 22,
+      low: 16,
+      condition: "Rain",
+      icon: "cloud-rain",
+      precipitation: 60,
+    },
+    {
+      day: "Sun",
+      high: 24,
+      low: 18,
+      condition: "Partly Cloudy",
+      icon: "cloud-sun",
+      precipitation: 30,
+    },
   ],
   alerts: [
     {
       id: 1,
       type: "Heat",
       title: "Heat Advisory",
-      description: "High temperatures expected between 12:00-16:00. Ensure adequate shade and water for livestock.",
+      description:
+        "High temperatures expected between 12:00-16:00. Ensure adequate shade and water for livestock.",
       severity: "moderate",
       time: "12:00 - 16:00",
     },
@@ -59,7 +123,8 @@ const mockWeatherData = {
       id: 2,
       type: "Rain",
       title: "Heavy Rain Expected",
-      description: "Heavy rainfall expected on Friday. Consider moving sensitive livestock to covered areas.",
+      description:
+        "Heavy rainfall expected on Friday. Consider moving sensitive livestock to covered areas.",
       severity: "high",
       time: "Friday",
     },
@@ -68,59 +133,62 @@ const mockWeatherData = {
     {
       id: 1,
       title: "Increase Water Supply",
-      description: "Due to high temperatures, increase water supply by 20% for all livestock.",
+      description:
+        "Due to high temperatures, increase water supply by 20% for all livestock.",
       priority: "high",
       animalTypes: ["All"],
     },
     {
       id: 2,
       title: "Provide Extra Shade",
-      description: "Ensure adequate shade is available during peak sun hours (12:00-16:00).",
+      description:
+        "Ensure adequate shade is available during peak sun hours (12:00-16:00).",
       priority: "medium",
       animalTypes: ["Cattle", "Sheep"],
     },
     {
       id: 3,
       title: "Prepare for Rain",
-      description: "Heavy rain expected on Friday. Ensure proper drainage and shelter.",
+      description:
+        "Heavy rain expected on Friday. Ensure proper drainage and shelter.",
       priority: "medium",
       animalTypes: ["All"],
     },
   ],
-}
+};
 
 // Weather icon component
 const WeatherIcon = ({ condition }: { condition: string }) => {
   switch (condition.toLowerCase()) {
     case "sunny":
-      return <Sun className="h-8 w-8 text-yellow-500" />
+      return <Sun className="h-8 w-8 text-yellow-500" />;
     case "partly cloudy":
     case "cloud-sun":
-      return <Cloud className="h-8 w-8 text-gray-400" />
+      return <Cloud className="h-8 w-8 text-gray-400" />;
     case "cloudy":
     case "cloud":
-      return <Cloud className="h-8 w-8 text-gray-500" />
+      return <Cloud className="h-8 w-8 text-gray-500" />;
     case "rain":
     case "cloud-rain":
-      return <CloudRain className="h-8 w-8 text-blue-500" />
+      return <CloudRain className="h-8 w-8 text-blue-500" />;
     case "snow":
     case "cloud-snow":
-      return <CloudSnow className="h-8 w-8 text-blue-200" />
+      return <CloudSnow className="h-8 w-8 text-blue-200" />;
     case "thunderstorm":
     case "cloud-lightning":
-      return <CloudLightning className="h-8 w-8 text-purple-500" />
+      return <CloudLightning className="h-8 w-8 text-purple-500" />;
     case "fog":
     case "cloud-fog":
-      return <CloudFog className="h-8 w-8 text-gray-300" />
+      return <CloudFog className="h-8 w-8 text-gray-300" />;
     default:
-      return <Cloud className="h-8 w-8 text-gray-400" />
+      return <Cloud className="h-8 w-8 text-gray-400" />;
   }
-}
+};
 
 export default function WeatherDashboard() {
-  const [location, setLocation] = useState("Main Farm")
-  const [notificationsEnabled, setNotificationsEnabled] = useState(true)
-  const [weatherData, ] = useState(mockWeatherData)
+  const [location, setLocation] = useState("Main Farm");
+  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+  const [weatherData] = useState(mockWeatherData);
 
   // Animation variants
   const containerVariants = {
@@ -131,19 +199,29 @@ export default function WeatherDashboard() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
-  }
+  };
 
   return (
-    <motion.div initial="hidden" animate="visible" variants={containerVariants} className="w-full">
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      className="w-full"
+    >
+      <FloatingChatbot />
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Weather Monitoring</h1>
-          <p className="text-gray-600 mt-1">Real-time weather data and livestock care recommendations</p>
+          <h1 className="text-3xl font-bold text-gray-900">
+            Weather Monitoring
+          </h1>
+          <p className="text-gray-600 mt-1">
+            Real-time weather data and livestock care recommendations
+          </p>
         </div>
 
         <div className="flex items-center gap-4">
@@ -155,12 +233,18 @@ export default function WeatherDashboard() {
               <SelectItem value="Main Farm">Main Farm</SelectItem>
               <SelectItem value="North Pasture">North Pasture</SelectItem>
               <SelectItem value="South Field">South Field</SelectItem>
-              <SelectItem value="West Grazing Area">West Grazing Area</SelectItem>
+              <SelectItem value="West Grazing Area">
+                West Grazing Area
+              </SelectItem>
             </SelectContent>
           </Select>
 
           <div className="flex items-center space-x-2">
-            <Switch id="notifications" checked={notificationsEnabled} onCheckedChange={setNotificationsEnabled} />
+            <Switch
+              id="notifications"
+              checked={notificationsEnabled}
+              onCheckedChange={setNotificationsEnabled}
+            />
             <Label htmlFor="notifications">Alerts</Label>
           </div>
         </div>
@@ -173,11 +257,15 @@ export default function WeatherDashboard() {
               <div className="flex justify-between items-center">
                 <div>
                   <CardTitle className="text-2xl">Current Weather</CardTitle>
-                  <CardDescription className="text-white/80">{location} • Updated just now</CardDescription>
+                  <CardDescription className="text-white/80">
+                    {location} • Updated just now
+                  </CardDescription>
                 </div>
                 <div className="flex items-center">
                   <WeatherIcon condition={weatherData.current.condition} />
-                  <span className="text-4xl ml-2 font-bold">{weatherData.current.temperature}°C</span>
+                  <span className="text-4xl ml-2 font-bold">
+                    {weatherData.current.temperature}°C
+                  </span>
                 </div>
               </div>
             </CardHeader>
@@ -186,25 +274,33 @@ export default function WeatherDashboard() {
                 <div className="flex flex-col items-center p-3 bg-gray-50 rounded-lg">
                   <Thermometer className="h-6 w-6 text-orange-500 mb-1" />
                   <span className="text-sm text-gray-500">Feels Like</span>
-                  <span className="text-lg font-medium">{weatherData.current.feelsLike}°C</span>
+                  <span className="text-lg font-medium">
+                    {weatherData.current.feelsLike}°C
+                  </span>
                 </div>
 
                 <div className="flex flex-col items-center p-3 bg-gray-50 rounded-lg">
                   <Droplets className="h-6 w-6 text-blue-500 mb-1" />
                   <span className="text-sm text-gray-500">Humidity</span>
-                  <span className="text-lg font-medium">{weatherData.current.humidity}%</span>
+                  <span className="text-lg font-medium">
+                    {weatherData.current.humidity}%
+                  </span>
                 </div>
 
                 <div className="flex flex-col items-center p-3 bg-gray-50 rounded-lg">
                   <Wind className="h-6 w-6 text-teal-500 mb-1" />
                   <span className="text-sm text-gray-500">Wind</span>
-                  <span className="text-lg font-medium">{weatherData.current.windSpeed} km/h</span>
+                  <span className="text-lg font-medium">
+                    {weatherData.current.windSpeed} km/h
+                  </span>
                 </div>
 
                 <div className="flex flex-col items-center p-3 bg-gray-50 rounded-lg">
                   <Sun className="h-6 w-6 text-yellow-500 mb-1" />
                   <span className="text-sm text-gray-500">UV Index</span>
-                  <span className="text-lg font-medium">{weatherData.current.uvIndex}</span>
+                  <span className="text-lg font-medium">
+                    {weatherData.current.uvIndex}
+                  </span>
                 </div>
               </div>
             </CardContent>
@@ -225,14 +321,24 @@ export default function WeatherDashboard() {
                 <div
                   key={alert.id}
                   className={`p-3 rounded-lg border-l-4 ${
-                    alert.severity === "high" ? "border-red-500 bg-red-50" : "border-amber-500 bg-amber-50"
+                    alert.severity === "high"
+                      ? "border-red-500 bg-red-50"
+                      : "border-amber-500 bg-amber-50"
                   }`}
                 >
                   <div className="flex justify-between items-start">
                     <h4 className="font-medium">{alert.title}</h4>
-                    <Badge variant={alert.severity === "high" ? "destructive" : "outline"}>{alert.time}</Badge>
+                    <Badge
+                      variant={
+                        alert.severity === "high" ? "destructive" : "outline"
+                      }
+                    >
+                      {alert.time}
+                    </Badge>
                   </div>
-                  <p className="text-sm mt-1 text-gray-600">{alert.description}</p>
+                  <p className="text-sm mt-1 text-gray-600">
+                    {alert.description}
+                  </p>
                 </div>
               ))}
 
@@ -254,7 +360,9 @@ export default function WeatherDashboard() {
               <Calendar className="h-5 w-5 mr-2" />
               7-Day Forecast
             </CardTitle>
-            <CardDescription>Weather forecast for the upcoming week</CardDescription>
+            <CardDescription>
+              Weather forecast for the upcoming week
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
@@ -262,7 +370,9 @@ export default function WeatherDashboard() {
                 <div
                   key={index}
                   className={`flex flex-col items-center p-4 rounded-lg ${
-                    index === 0 ? "bg-[#E1EEBC]/30 border border-[#90C67C]" : "bg-gray-50"
+                    index === 0
+                      ? "bg-[#E1EEBC]/30 border border-[#90C67C]"
+                      : "bg-gray-50"
                   }`}
                 >
                   <span className="font-medium mb-2">{day.day}</span>
@@ -273,7 +383,9 @@ export default function WeatherDashboard() {
                       <span className="text-gray-400 text-sm">{day.low}°</span>
                     </div>
                     <div className="text-xs text-gray-500 mt-1">
-                      {day.precipitation > 0 ? `${day.precipitation}% precip.` : "No precip."}
+                      {day.precipitation > 0
+                        ? `${day.precipitation}% precip.`
+                        : "No precip."}
                     </div>
                   </div>
                 </div>
@@ -290,12 +402,17 @@ export default function WeatherDashboard() {
               <Bell className="h-5 w-5 mr-2 text-[#328E6E]" />
               Livestock Care Recommendations
             </CardTitle>
-            <CardDescription>Weather-based recommendations for optimal livestock care</CardDescription>
+            <CardDescription>
+              Weather-based recommendations for optimal livestock care
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {weatherData.recommendations.map((rec) => (
-                <div key={rec.id} className="p-4 rounded-lg border border-gray-100 bg-white shadow-sm">
+                <div
+                  key={rec.id}
+                  className="p-4 rounded-lg border border-gray-100 bg-white shadow-sm"
+                >
                   <div className="flex justify-between items-start">
                     <h4 className="font-medium flex items-center">
                       <Badge
@@ -303,17 +420,22 @@ export default function WeatherDashboard() {
                           rec.priority === "high"
                             ? "bg-red-100 text-red-800"
                             : rec.priority === "medium"
-                              ? "bg-amber-100 text-amber-800"
-                              : "bg-blue-100 text-blue-800"
+                            ? "bg-amber-100 text-amber-800"
+                            : "bg-blue-100 text-blue-800"
                         }`}
                       >
-                        {rec.priority.charAt(0).toUpperCase() + rec.priority.slice(1)}
+                        {rec.priority.charAt(0).toUpperCase() +
+                          rec.priority.slice(1)}
                       </Badge>
                       {rec.title}
                     </h4>
-                    <div className="text-sm text-gray-500">For: {rec.animalTypes.join(", ")}</div>
+                    <div className="text-sm text-gray-500">
+                      For: {rec.animalTypes.join(", ")}
+                    </div>
                   </div>
-                  <p className="text-sm mt-2 text-gray-600">{rec.description}</p>
+                  <p className="text-sm mt-2 text-gray-600">
+                    {rec.description}
+                  </p>
                 </div>
               ))}
             </div>
@@ -321,7 +443,8 @@ export default function WeatherDashboard() {
           <CardFooter className="border-t bg-gray-50">
             <div className="w-full flex justify-between items-center">
               <span className="text-sm text-gray-500">
-                Recommendations based on current and forecasted weather conditions
+                Recommendations based on current and forecasted weather
+                conditions
               </span>
               <Button variant="link" className="text-[#328E6E]">
                 View All Recommendations <ArrowRight className="ml-1 h-4 w-4" />
@@ -349,7 +472,9 @@ export default function WeatherDashboard() {
                   <div className="w-full h-full bg-gradient-to-b from-transparent to-gray-50 rounded-lg flex items-center justify-center">
                     <div className="text-center text-gray-500">
                       <p>Temperature chart visualization would appear here</p>
-                      <p className="text-sm mt-2">Shows temperature trends over time</p>
+                      <p className="text-sm mt-2">
+                        Shows temperature trends over time
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -362,7 +487,9 @@ export default function WeatherDashboard() {
                   <div className="w-full h-full bg-gradient-to-b from-transparent to-gray-50 rounded-lg flex items-center justify-center">
                     <div className="text-center text-gray-500">
                       <p>Precipitation chart visualization would appear here</p>
-                      <p className="text-sm mt-2">Shows rainfall patterns and forecasts</p>
+                      <p className="text-sm mt-2">
+                        Shows rainfall patterns and forecasts
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -375,7 +502,9 @@ export default function WeatherDashboard() {
                   <div className="w-full h-full bg-gradient-to-b from-transparent to-gray-50 rounded-lg flex items-center justify-center">
                     <div className="text-center text-gray-500">
                       <p>Humidity chart visualization would appear here</p>
-                      <p className="text-sm mt-2">Shows humidity levels and trends</p>
+                      <p className="text-sm mt-2">
+                        Shows humidity levels and trends
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -385,5 +514,5 @@ export default function WeatherDashboard() {
         </Tabs>
       </motion.div>
     </motion.div>
-  )
+  );
 }

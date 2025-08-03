@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Activity,
   AlertTriangle,
@@ -13,12 +13,18 @@ import {
   MoreHorizontal,
   Search,
   Thermometer,
-} from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,11 +32,12 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Progress } from "@/components/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { LineChart } from "@/components/Dashboard/charts"
-import { DailySensorStats } from "@/types/dataSchema"
+} from "@/components/ui/dropdown-menu";
+import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { LineChart } from "@/components/Dashboard/charts";
+import { DailySensorStats } from "@/types/dataSchema";
+import FloatingChatbot from "@/components/Chatbot/floating-chatbot";
 // import { useAuth } from "@/context/auth-context"
 // import LoadingScreenPage from "../../../utility/LoadingScreen";
 // import { gettAllNotifDetail } from "@/services/livestockService"
@@ -46,8 +53,8 @@ const dailySensorStats: DailySensorStats[] = [
 ];
 
 export default function HealthMonitoring() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [statusFilter, setStatusFilter] = useState("all")
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
   // const { user } = useAuth()
   // const [loading, setLoading] = useState(true);
   // const [notifications, setNotifications] = useState<INotificationData[]>([])
@@ -55,11 +62,11 @@ export default function HealthMonitoring() {
   // useEffect(() => {
   //     const fetchData = async () => {
   //       if (!user) return;
-    
+
   //       setLoading(true);
   //       try {
   //         const response = await gettAllNotifDetail(user.id);
-          
+
   //         if(response.data){
   //           setNotifications(response.data);
   //         }
@@ -70,7 +77,7 @@ export default function HealthMonitoring() {
   //         setLoading(false);
   //       }
   //     };
-    
+
   //     fetchData();
   //   }, [user]);
 
@@ -146,19 +153,20 @@ export default function HealthMonitoring() {
       severity: "low",
       location: "Pen 1",
     },
-  ]
+  ];
 
   // Filter alerts based on search query and status filter
   const filteredAlerts = healthAlerts.filter((alert) => {
     const matchesSearch =
       alert.animal.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       alert.animal.tag.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      alert.issue.toLowerCase().includes(searchQuery.toLowerCase())
+      alert.issue.toLowerCase().includes(searchQuery.toLowerCase());
 
-    const matchesSeverity = statusFilter === "all" || alert.severity === statusFilter
+    const matchesSeverity =
+      statusFilter === "all" || alert.severity === statusFilter;
 
-    return matchesSearch && matchesSeverity
-  })
+    return matchesSearch && matchesSeverity;
+  });
 
   // if (loading) {
   //   return <LoadingScreenPage />;
@@ -166,10 +174,15 @@ export default function HealthMonitoring() {
 
   return (
     <div className="space-y-6">
+      <FloatingChatbot />
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Health Monitoring</h1>
-          <p className="text-muted-foreground">Monitor the health status of all your livestock.</p>
+          <h1 className="text-2xl font-bold tracking-tight">
+            Health Monitoring
+          </h1>
+          <p className="text-muted-foreground">
+            Monitor the health status of all your livestock.
+          </p>
         </div>
         <Button className="bg-[#328E6E] hover:bg-[#67AE6E]">
           <Bell className="mr-2 h-4 w-4" />
@@ -191,7 +204,10 @@ export default function HealthMonitoring() {
               <div>
                 <div className="text-sm text-gray-500">High Priority</div>
                 <div className="text-2xl font-bold">
-                  {healthAlerts.filter((alert) => alert.severity === "high").length}
+                  {
+                    healthAlerts.filter((alert) => alert.severity === "high")
+                      .length
+                  }
                 </div>
               </div>
             </CardContent>
@@ -211,7 +227,10 @@ export default function HealthMonitoring() {
               <div>
                 <div className="text-sm text-gray-500">Medium Priority</div>
                 <div className="text-2xl font-bold">
-                  {healthAlerts.filter((alert) => alert.severity === "medium").length}
+                  {
+                    healthAlerts.filter((alert) => alert.severity === "medium")
+                      .length
+                  }
                 </div>
               </div>
             </CardContent>
@@ -231,7 +250,10 @@ export default function HealthMonitoring() {
               <div>
                 <div className="text-sm text-gray-500">Low Priority</div>
                 <div className="text-2xl font-bold">
-                  {healthAlerts.filter((alert) => alert.severity === "low").length}
+                  {
+                    healthAlerts.filter((alert) => alert.severity === "low")
+                      .length
+                  }
                 </div>
               </div>
             </CardContent>
@@ -249,7 +271,9 @@ export default function HealthMonitoring() {
           <Card>
             <CardHeader className="pb-3">
               <CardTitle>Health Alerts</CardTitle>
-              <CardDescription>Recent health issues requiring attention</CardDescription>
+              <CardDescription>
+                Recent health issues requiring attention
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col sm:flex-row justify-between gap-4 mb-6">
@@ -274,10 +298,18 @@ export default function HealthMonitoring() {
                   <DropdownMenuContent align="end">
                     <DropdownMenuLabel>Filter by Severity</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={() => setStatusFilter("all")}>All Alerts</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setStatusFilter("high")}>High Priority</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setStatusFilter("medium")}>Medium Priority</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setStatusFilter("low")}>Low Priority</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setStatusFilter("all")}>
+                      All Alerts
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setStatusFilter("high")}>
+                      High Priority
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setStatusFilter("medium")}>
+                      Medium Priority
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setStatusFilter("low")}>
+                      Low Priority
+                    </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
@@ -291,53 +323,66 @@ export default function HealthMonitoring() {
                           alert.severity === "high"
                             ? "bg-red-500"
                             : alert.severity === "medium"
-                              ? "bg-amber-500"
-                              : "bg-blue-500"
+                            ? "bg-amber-500"
+                            : "bg-blue-500"
                         }`}
                       ></div>
                       <div className="p-4">
                         <div className="flex items-start gap-4">
                           <Avatar>
-                            <AvatarImage src={alert.animal.image || "/placeholder.svg"} alt={alert.animal.name} />
-                            <AvatarFallback>{alert.animal.name.charAt(0)}</AvatarFallback>
+                            <AvatarImage
+                              src={alert.animal.image || "/placeholder.svg"}
+                              alt={alert.animal.name}
+                            />
+                            <AvatarFallback>
+                              {alert.animal.name.charAt(0)}
+                            </AvatarFallback>
                           </Avatar>
                           <div className="flex-1">
                             <div className="flex items-center justify-between">
                               <div>
-                                <div className="font-medium">{alert.animal.name}</div>
-                                <div className="text-sm text-gray-500">ID: {alert.animal.tag}</div>
+                                <div className="font-medium">
+                                  {alert.animal.name}
+                                </div>
+                                <div className="text-sm text-gray-500">
+                                  ID: {alert.animal.tag}
+                                </div>
                               </div>
                               <Badge
                                 className={
                                   alert.severity === "high"
                                     ? "bg-red-500"
                                     : alert.severity === "medium"
-                                      ? "bg-amber-500"
-                                      : "bg-blue-500"
+                                    ? "bg-amber-500"
+                                    : "bg-blue-500"
                                 }
                               >
                                 {alert.severity === "high"
                                   ? "High Priority"
                                   : alert.severity === "medium"
-                                    ? "Medium Priority"
-                                    : "Low Priority"}
+                                  ? "Medium Priority"
+                                  : "Low Priority"}
                               </Badge>
                             </div>
                             <div className="mt-2">
-                              <div className="font-medium text-gray-800">{alert.issue}</div>
+                              <div className="font-medium text-gray-800">
+                                {alert.issue}
+                              </div>
                               <div className="flex items-center gap-2 mt-1">
                                 <div
                                   className={`text-sm font-medium ${
                                     alert.severity === "high"
                                       ? "text-red-600"
                                       : alert.severity === "medium"
-                                        ? "text-amber-600"
-                                        : "text-blue-600"
+                                      ? "text-amber-600"
+                                      : "text-blue-600"
                                   }`}
                                 >
                                   Current: {alert.value}
                                 </div>
-                                <div className="text-sm text-gray-500">Normal: {alert.normal}</div>
+                                <div className="text-sm text-gray-500">
+                                  Normal: {alert.normal}
+                                </div>
                               </div>
                               <div className="flex items-center justify-between mt-2 text-sm text-gray-500">
                                 <div className="flex items-center gap-2">
@@ -353,7 +398,11 @@ export default function HealthMonitoring() {
                           </Button>
                         </div>
                         <div className="flex justify-end mt-2">
-                          <Button variant="outline" size="sm" className="text-xs">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="text-xs"
+                          >
                             View Details
                           </Button>
                         </div>
@@ -375,8 +424,12 @@ export default function HealthMonitoring() {
               {filteredAlerts.length === 0 && (
                 <div className="text-center py-8">
                   <CheckCircle2 className="h-12 w-12 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium">No matching alerts found</h3>
-                  <p className="text-gray-500 mt-1">Try adjusting your search or filter criteria</p>
+                  <h3 className="text-lg font-medium">
+                    No matching alerts found
+                  </h3>
+                  <p className="text-gray-500 mt-1">
+                    Try adjusting your search or filter criteria
+                  </p>
                 </div>
               )}
             </CardContent>
@@ -391,7 +444,9 @@ export default function HealthMonitoring() {
           <Card className="h-full">
             <CardHeader className="pb-3">
               <CardTitle>Health Overview</CardTitle>
-              <CardDescription>Current health status of your livestock</CardDescription>
+              <CardDescription>
+                Current health status of your livestock
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
@@ -407,7 +462,11 @@ export default function HealthMonitoring() {
                       </div>
                       <span className="text-sm text-gray-500">93.5%</span>
                     </div>
-                    <Progress value={93.5} className="h-2 bg-gray-100" indicatorClassName="bg-green-500" />
+                    <Progress
+                      value={93.5}
+                      className="h-2 bg-gray-100"
+                      indicatorClassName="bg-green-500"
+                    />
                   </div>
                   <div>
                     <div className="flex items-center justify-between mb-1">
@@ -417,7 +476,11 @@ export default function HealthMonitoring() {
                       </div>
                       <span className="text-sm text-gray-500">4.9%</span>
                     </div>
-                    <Progress value={4.9} className="h-2 bg-gray-100" indicatorClassName="bg-amber-500" />
+                    <Progress
+                      value={4.9}
+                      className="h-2 bg-gray-100"
+                      indicatorClassName="bg-amber-500"
+                    />
                   </div>
                   <div>
                     <div className="flex items-center justify-between mb-1">
@@ -427,7 +490,11 @@ export default function HealthMonitoring() {
                       </div>
                       <span className="text-sm text-gray-500">1.6%</span>
                     </div>
-                    <Progress value={1.6} className="h-2 bg-gray-100" indicatorClassName="bg-red-500" />
+                    <Progress
+                      value={1.6}
+                      className="h-2 bg-gray-100"
+                      indicatorClassName="bg-red-500"
+                    />
                   </div>
                 </div>
               </div>
@@ -445,7 +512,11 @@ export default function HealthMonitoring() {
                       </div>
                       <span className="text-sm text-gray-500">42%</span>
                     </div>
-                    <Progress value={42} className="h-2 bg-gray-100" indicatorClassName="bg-red-500" />
+                    <Progress
+                      value={42}
+                      className="h-2 bg-gray-100"
+                      indicatorClassName="bg-red-500"
+                    />
                   </div>
                   <div>
                     <div className="flex items-center justify-between mb-1">
@@ -455,7 +526,11 @@ export default function HealthMonitoring() {
                       </div>
                       <span className="text-sm text-gray-500">28%</span>
                     </div>
-                    <Progress value={28} className="h-2 bg-gray-100" indicatorClassName="bg-pink-500" />
+                    <Progress
+                      value={28}
+                      className="h-2 bg-gray-100"
+                      indicatorClassName="bg-pink-500"
+                    />
                   </div>
                   <div>
                     <div className="flex items-center justify-between mb-1">
@@ -465,7 +540,11 @@ export default function HealthMonitoring() {
                       </div>
                       <span className="text-sm text-gray-500">18%</span>
                     </div>
-                    <Progress value={18} className="h-2 bg-gray-100" indicatorClassName="bg-blue-500" />
+                    <Progress
+                      value={18}
+                      className="h-2 bg-gray-100"
+                      indicatorClassName="bg-blue-500"
+                    />
                   </div>
                   <div>
                     <div className="flex items-center justify-between mb-1">
@@ -475,14 +554,20 @@ export default function HealthMonitoring() {
                       </div>
                       <span className="text-sm text-gray-500">12%</span>
                     </div>
-                    <Progress value={12} className="h-2 bg-gray-100" indicatorClassName="bg-amber-500" />
+                    <Progress
+                      value={12}
+                      className="h-2 bg-gray-100"
+                      indicatorClassName="bg-amber-500"
+                    />
                   </div>
                 </div>
               </div>
 
               <Card>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-medium">Health Trends</CardTitle>
+                  <CardTitle className="text-sm font-medium">
+                    Health Trends
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Tabs defaultValue="week">
@@ -493,17 +578,17 @@ export default function HealthMonitoring() {
                     </TabsList>
                     <TabsContent value="week" className="pt-4">
                       <div className="h-[150px]">
-                        <LineChart dailySensorStats={dailySensorStats}/>
+                        <LineChart dailySensorStats={dailySensorStats} />
                       </div>
                     </TabsContent>
                     <TabsContent value="month" className="pt-4">
                       <div className="h-[150px]">
-                        <LineChart dailySensorStats={dailySensorStats}/>
+                        <LineChart dailySensorStats={dailySensorStats} />
                       </div>
                     </TabsContent>
                     <TabsContent value="year" className="pt-4">
                       <div className="h-[150px]">
-                        <LineChart dailySensorStats={dailySensorStats}/>
+                        <LineChart dailySensorStats={dailySensorStats} />
                       </div>
                     </TabsContent>
                   </Tabs>
@@ -514,5 +599,5 @@ export default function HealthMonitoring() {
         </motion.div>
       </div>
     </div>
-  )
+  );
 }

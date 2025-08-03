@@ -59,6 +59,7 @@ import {
 import { ComingSoon } from "@/components/coming-soon";
 import { livestockData } from "@/lib/data";
 import { useTranslation } from "react-i18next";
+import HealthMonitorChat from "@/components/Chatbot/chatbot-interactive";
 
 // const dailySensorStats: DailySensorStats[] = [
 //   { day: "Mon", avg_temperature: 101.5, avg_heart_rate: 65 },
@@ -360,7 +361,6 @@ export default function LivestockDetail() {
                     {t("dashboard.livestock.detail.tabs.genetics")}
                   </TabsTrigger>
                 </TabsList>
-
                 <TabsContent value="overview" className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <Card>
@@ -567,7 +567,10 @@ export default function LivestockDetail() {
                     </Card>
                   </div>
                 </TabsContent>
-
+                <HealthMonitorChat
+                  sensorData={livestock.sensor_data}
+                  healthStatus={livestock.livestock.status}
+                />
                 <TabsContent value="health" className="space-y-6">
                   <ComingSoon>
                     <Card>
@@ -676,7 +679,6 @@ export default function LivestockDetail() {
                     </Card>
                   </ComingSoon>
                 </TabsContent>
-
                 <TabsContent value="production" className="space-y-6">
                   <ComingSoon>
                     <Card>
@@ -796,7 +798,6 @@ export default function LivestockDetail() {
                     </Card>
                   </ComingSoon>
                 </TabsContent>
-
                 <TabsContent value="genetics" className="space-y-6">
                   <ComingSoon>
                     <Card>

@@ -245,8 +245,8 @@
     },
     "chatClearedMessage": "Chat cleared. How can I help you today?",
     "header": {
-      "title": "MooBot AI Assistant",
-      "subtitle": "Your intelligent livestock management companion",
+      "title": "Farchestra",
+      "subtitle": "TernakAja Personal AI Agent Assistant",
       "settingsButton": "Settings",
       "newChatButton": "New Chat"
     },
