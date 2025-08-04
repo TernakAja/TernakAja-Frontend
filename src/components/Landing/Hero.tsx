@@ -64,6 +64,9 @@ export default function Hero() {
               <Button
                 variant="outline"
                 className="border-[#328E6E] text-[#328E6E] hover:bg-[#328E6E] hover:text-white px-6 py-6 rounded-lg text-lg bg-transparent"
+                onClick={() =>
+                  window.open("https://youtu.be/X5y57hzjKeQ", "_blank")
+                }
               >
                 {t("landing.hero.buttons.watchDemo")}
               </Button>
