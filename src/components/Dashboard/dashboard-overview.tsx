@@ -2,13 +2,10 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Activity,
-  ArrowUpRight,
-  MilkIcon as Cow,
   Heart,
   MoreHorizontal,
   RefreshCw,
   Utensils,
-  BarChart3,
   BellOff,
   PieChart,
 } from "lucide-react";
@@ -440,7 +437,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* Quick access section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -572,7 +569,7 @@ export default function DashboardOverview() {
             </Card>
           </a>
         </motion.div>
-      </div>
+      </div> */}
     </div>
   );
 }

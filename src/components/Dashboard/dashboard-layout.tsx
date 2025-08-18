@@ -3,21 +3,13 @@ import type React from "react";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
-  Activity,
-  BarChart3,
   Bell,
   ChevronLeft,
   MilkIcon as Cow,
-  FileText,
   Globe,
-  Heart,
   Home,
   LogOut,
   Menu,
-  MessageSquare,
-  Settings,
-  Sun,
-  Utensils,
   X,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -86,46 +78,46 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       href: "/dashboard/livestock",
       icon: <Cow className="h-5 w-5" />,
     },
-    {
-      name: t("dashboard.layout.sidebar.nav.healthMonitoring"),
-      href: "/dashboard/health",
-      icon: <Heart className="h-5 w-5" />,
-    },
-    {
-      name: t("dashboard.layout.sidebar.nav.analytics"),
-      href: "/dashboard/analytics",
-      icon: <BarChart3 className="h-5 w-5" />,
-    },
-    {
-      name: t("dashboard.layout.sidebar.nav.activityTracking"),
-      href: "/dashboard/activity",
-      icon: <Activity className="h-5 w-5" />,
-    },
-    {
-      name: t("dashboard.layout.sidebar.nav.feedingManagement"),
-      href: "/dashboard/feeding",
-      icon: <Utensils className="h-5 w-5" />,
-    },
-    {
-      name: t("dashboard.layout.sidebar.nav.weather"),
-      href: "/dashboard/weather",
-      icon: <Sun className="h-5 w-5" />,
-    },
-    {
-      name: t("dashboard.layout.sidebar.nav.reports"),
-      href: "/dashboard/reports",
-      icon: <FileText className="h-5 w-5" />,
-    },
-    {
-      name: t("dashboard.layout.sidebar.nav.messages"),
-      href: "/dashboard/messages",
-      icon: <MessageSquare className="h-5 w-5" />,
-    },
-    {
-      name: t("dashboard.layout.sidebar.nav.settings"),
-      href: "/dashboard/settings",
-      icon: <Settings className="h-5 w-5" />,
-    },
+    // {
+    //   name: t("dashboard.layout.sidebar.nav.healthMonitoring"),
+    //   href: "/dashboard/health",
+    //   icon: <Heart className="h-5 w-5" />,
+    // },
+    // {
+    //   name: t("dashboard.layout.sidebar.nav.analytics"),
+    //   href: "/dashboard/analytics",
+    //   icon: <BarChart3 className="h-5 w-5" />,
+    // },
+    // {
+    //   name: t("dashboard.layout.sidebar.nav.activityTracking"),
+    //   href: "/dashboard/activity",
+    //   icon: <Activity className="h-5 w-5" />,
+    // },
+    // {
+    //   name: t("dashboard.layout.sidebar.nav.feedingManagement"),
+    //   href: "/dashboard/feeding",
+    //   icon: <Utensils className="h-5 w-5" />,
+    // },
+    // {
+    //   name: t("dashboard.layout.sidebar.nav.weather"),
+    //   href: "/dashboard/weather",
+    //   icon: <Sun className="h-5 w-5" />,
+    // },
+    // {
+    //   name: t("dashboard.layout.sidebar.nav.reports"),
+    //   href: "/dashboard/reports",
+    //   icon: <FileText className="h-5 w-5" />,
+    // },
+    // {
+    //   name: t("dashboard.layout.sidebar.nav.messages"),
+    //   href: "/dashboard/messages",
+    //   icon: <MessageSquare className="h-5 w-5" />,
+    // },
+    // {
+    //   name: t("dashboard.layout.sidebar.nav.settings"),
+    //   href: "/dashboard/settings",
+    //   icon: <Settings className="h-5 w-5" />,
+    // },
   ];
 
   return (
@@ -272,7 +264,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             </div>
 
             <div className="flex items-center gap-3">
-              <Button variant="ghost" size="icon" className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="relative"
+                onClick={() => navigate("/dashboard/notification")}
+              >
                 <Bell className="h-5 w-5" />
                 <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
               </Button>

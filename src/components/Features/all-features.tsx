@@ -100,8 +100,8 @@ const features = [
   },
   {
     id: 8,
-    name: "Farchestra [AI Agent]",
-    description: "TernakAja Personal AI Agent Assistant",
+    name: "Farchestra [Chatbot]",
+    description: "TernakAja Personal Chatbot",
     category: "Communication",
     tags: ["Advanced"],
     icon: Bot,
@@ -177,7 +177,7 @@ const categories = [
 ];
 
 // Feature tags
-const featureTags = ["Essential", "Premium", "Advanced", "New", "Coming Soon"];
+// const featureTags = ["Essential", "Premium", "Advanced", "New", "Coming Soon"];
 
 export default function AllFeatures() {
   // State variables
@@ -230,12 +230,12 @@ export default function AllFeatures() {
   );
   const totalPages = Math.ceil(filteredFeatures.length / featuresPerPage);
 
-  // Tag toggle handler
-  const toggleTag = (tag: string) => {
-    setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    );
-  };
+  // // Tag toggle handler
+  // const toggleTag = (tag: string) => {
+  //   setSelectedTags((prev) =>
+  //     prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+  //   );
+  // };
 
   // Reset all filters
   const resetFilters = () => {
@@ -353,7 +353,7 @@ export default function AllFeatures() {
                     <h3 className="font-medium text-gray-700 mb-3">
                       Feature Type
                     </h3>
-                    <div className="flex flex-wrap gap-2">
+                    {/* <div className="flex flex-wrap gap-2">
                       {featureTags.map((tag) => (
                         <button
                           key={tag}
@@ -367,7 +367,7 @@ export default function AllFeatures() {
                           {tag}
                         </button>
                       ))}
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </motion.div>
@@ -415,7 +415,7 @@ export default function AllFeatures() {
                         </div>
 
                         <div className="flex gap-2">
-                          {feature.tags.map((tag) => (
+                          {/* {feature.tags.map((tag) => (
                             <Badge
                               key={tag}
                               variant="outline"
@@ -433,7 +433,7 @@ export default function AllFeatures() {
                             >
                               {tag}
                             </Badge>
-                          ))}
+                          ))} */}
                         </div>
                       </div>
 
@@ -546,106 +546,98 @@ export default function AllFeatures() {
               <TabsTrigger value="health" className="flex-1 py-3">
                 Health
               </TabsTrigger>
-              <TabsTrigger value="analytics" className="flex-1 py-3">
-                Analytics
-              </TabsTrigger>
-              <TabsTrigger value="management" className="flex-1 py-3">
-                Management
-              </TabsTrigger>
-              <TabsTrigger value="weather" className="flex-1 py-3">
-                Weather
+              <TabsTrigger value="communication" className="flex-1 py-3">
+                Communication
               </TabsTrigger>
             </TabsList>
 
-            {["monitoring", "health", "analytics", "management", "weather"].map(
-              (category) => (
-                <TabsContent key={category} value={category}>
-                  <div className="grid md:grid-cols-3 gap-6">
-                    {features
-                      .filter(
-                        (feature) => feature.category.toLowerCase() === category
-                      )
-                      .slice(0, 3)
-                      .map((feature, index) => {
-                        const IconComponent = feature.icon;
+            {["monitoring", "health", "communication"].map((category) => (
+              <TabsContent key={category} value={category}>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {features
+                    .filter(
+                      (feature) => feature.category.toLowerCase() === category
+                    )
+                    .slice(0, 3)
+                    .map((feature, index) => {
+                      const IconComponent = feature.icon;
 
-                        return (
-                          <motion.div
-                            key={feature.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4, delay: index * 0.1 }}
-                          >
-                            <Card className="h-full flex flex-col hover:shadow-lg transition-shadow">
-                              <div className="p-6 flex-1 flex flex-col">
-                                <div className="flex items-start justify-between mb-4">
-                                  <div
-                                    className="p-2 rounded-lg"
-                                    style={{
-                                      backgroundColor: `${feature.color}20`,
-                                    }}
-                                  >
-                                    <IconComponent
-                                      className="h-6 w-6"
-                                      style={{ color: feature.color }}
-                                    />
-                                  </div>
-
-                                  <div className="flex gap-2">
-                                    {feature.tags.map((tag) => (
-                                      <Badge
-                                        key={tag}
-                                        variant="outline"
-                                        className={`${
-                                          tag === "Coming Soon"
-                                            ? "border-orange-500 text-orange-600"
-                                            : tag === "New"
-                                            ? "border-blue-500 text-blue-600"
-                                            : tag === "Premium"
-                                            ? "border-purple-500 text-purple-600"
-                                            : tag === "Advanced"
-                                            ? "border-yellow-500 text-yellow-600"
-                                            : "border-green-500 text-green-600"
-                                        }`}
-                                      >
-                                        {tag}
-                                      </Badge>
-                                    ))}
-                                  </div>
+                      return (
+                        <motion.div
+                          key={feature.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4, delay: index * 0.1 }}
+                        >
+                          <Card className="h-full flex flex-col hover:shadow-lg transition-shadow">
+                            <div className="p-6 flex-1 flex flex-col">
+                              <div className="flex items-start justify-between mb-4">
+                                <div
+                                  className="p-2 rounded-lg"
+                                  style={{
+                                    backgroundColor: `${feature.color}20`,
+                                  }}
+                                >
+                                  <IconComponent
+                                    className="h-6 w-6"
+                                    style={{ color: feature.color }}
+                                  />
                                 </div>
 
-                                <h3 className="text-xl font-semibold mb-2 text-gray-800">
-                                  {feature.name}
-                                </h3>
-                                <p className="text-gray-600 flex-1">
-                                  {feature.description}
-                                </p>
+                                {/* <div className="flex gap-2">
+                                  {feature.tags.map((tag) => (
+                                    <Badge
+                                      key={tag}
+                                      variant="outline"
+                                      className={`${
+                                        tag === "Coming Soon"
+                                          ? "border-orange-500 text-orange-600"
+                                          : tag === "New"
+                                          ? "border-blue-500 text-blue-600"
+                                          : tag === "Premium"
+                                          ? "border-purple-500 text-purple-600"
+                                          : tag === "Advanced"
+                                          ? "border-yellow-500 text-yellow-600"
+                                          : "border-green-500 text-green-600"
+                                      }`}
+                                    >
+                                      {tag}
+                                    </Badge>
+                                  ))}
+                                </div> */}
                               </div>
-                            </Card>
-                          </motion.div>
-                        );
-                      })}
-                  </div>
 
-                  <div className="text-center mt-8">
-                    <Button
-                      onClick={() => {
-                        setSelectedCategory(
-                          category.charAt(0).toUpperCase() + category.slice(1)
-                        );
-                        setIsFilterOpen(true);
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }}
-                      className="bg-[#328E6E] hover:bg-[#277559] text-white"
-                    >
-                      View All{" "}
-                      {category.charAt(0).toUpperCase() + category.slice(1)}{" "}
-                      Features
-                    </Button>
-                  </div>
-                </TabsContent>
-              )
-            )}
+                              <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                                {feature.name}
+                              </h3>
+                              <p className="text-gray-600 flex-1">
+                                {feature.description}
+                              </p>
+                            </div>
+                          </Card>
+                        </motion.div>
+                      );
+                    })}
+                </div>
+
+                <div className="text-center mt-8">
+                  <Button
+                    onClick={() => {
+                      setSelectedCategory(
+                        category.charAt(0).toUpperCase() + category.slice(1)
+                      );
+                      setIsFilterOpen(true);
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }}
+                    className="bg-[#328E6E] hover:bg-[#277559] text-white"
+                  >
+                    View All{" "}
+                    {category.charAt(0).toUpperCase() + category.slice(1)}{" "}
+                    Features
+                  </Button>
+                </div>
+              </TabsContent>
+            ))}
           </Tabs>
         </div>
       </section>

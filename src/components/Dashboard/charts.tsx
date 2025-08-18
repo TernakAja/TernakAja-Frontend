@@ -1,33 +1,37 @@
-import { useEffect, useRef } from "react"
-import { Chart, registerables } from "chart.js"
-import { DailySensorStats, SpeciesCount } from "@/types/dataSchema"
+import { useEffect, useRef } from "react";
+import { Chart, registerables } from "chart.js";
+import { DailySensorStats, SpeciesCount } from "@/types/dataSchema";
 
-Chart.register(...registerables)
+Chart.register(...registerables);
 
 interface LineChartProps {
   dailySensorStats: DailySensorStats[];
 }
 
 export function LineChart({ dailySensorStats }: LineChartProps) {
-  const chartRef = useRef<HTMLCanvasElement>(null)
-  const chartInstance = useRef<Chart | null>(null)
+  const chartRef = useRef<HTMLCanvasElement>(null);
+  const chartInstance = useRef<Chart | null>(null);
 
   useEffect(() => {
-    if (!chartRef.current) return
+    if (!chartRef.current) return;
 
     // Destroy existing chart
     if (chartInstance.current) {
-      chartInstance.current.destroy()
+      chartInstance.current.destroy();
     }
 
-    const ctx = chartRef.current.getContext("2d")
-    if (!ctx) return
+    const ctx = chartRef.current.getContext("2d");
+    if (!ctx) return;
 
     // const respiratoryRateData = [28, 27, 29, 30, 28, 26, 27]
 
     const labels = dailySensorStats.map((item) => item.day);
-    const temperatureData = dailySensorStats.map((item) => item.avg_temperature);
-    const heartRateData = dailySensorStats.map(item => Number(item.avg_heart_rate));
+    const temperatureData = dailySensorStats.map(
+      (item) => item.avg_temperature
+    );
+    const heartRateData = dailySensorStats.map((item) =>
+      Number(item.avg_heart_rate)
+    );
 
     // Create new chart
     chartInstance.current = new Chart(ctx, {
@@ -36,7 +40,7 @@ export function LineChart({ dailySensorStats }: LineChartProps) {
         labels,
         datasets: [
           {
-            label: "Temperature (°F)",
+            label: "Temperature (°C)",
             data: temperatureData,
             borderColor: "#328E6E",
             backgroundColor: "rgba(50, 142, 110, 0.1)",
@@ -126,37 +130,37 @@ export function LineChart({ dailySensorStats }: LineChartProps) {
           },
         },
       },
-    })
+    });
 
     return () => {
       if (chartInstance.current) {
-        chartInstance.current.destroy()
+        chartInstance.current.destroy();
       }
-    }
-  }, [dailySensorStats])
+    };
+  }, [dailySensorStats]);
 
-  return <canvas ref={chartRef} />
+  return <canvas ref={chartRef} />;
 }
 
 export function BarChart() {
-  const chartRef = useRef<HTMLCanvasElement>(null)
-  const chartInstance = useRef<Chart | null>(null)
+  const chartRef = useRef<HTMLCanvasElement>(null);
+  const chartInstance = useRef<Chart | null>(null);
 
   useEffect(() => {
-    if (!chartRef.current) return
+    if (!chartRef.current) return;
 
     // Destroy existing chart
     if (chartInstance.current) {
-      chartInstance.current.destroy()
+      chartInstance.current.destroy();
     }
 
-    const ctx = chartRef.current.getContext("2d")
-    if (!ctx) return
+    const ctx = chartRef.current.getContext("2d");
+    if (!ctx) return;
 
     // Sample data
-    const labels = ["Cattle", "Sheep", "Goats", "Pigs"]
+    const labels = ["Cattle", "Sheep", "Goats", "Pigs"];
     // const morningData = [75, 65, 70, 60]
-    const afternoonData = [85, 75, 80, 70]
+    const afternoonData = [85, 75, 80, 70];
     // const eveningData = [65, 55, 60, 50]
 
     // Create new chart
@@ -206,16 +210,16 @@ export function BarChart() {
           },
         },
       },
-    })
+    });
 
     return () => {
       if (chartInstance.current) {
-        chartInstance.current.destroy()
+        chartInstance.current.destroy();
       }
-    }
-  }, [])
+    };
+  }, []);
 
-  return <canvas ref={chartRef} />
+  return <canvas ref={chartRef} />;
 }
 
 interface DonutChartProps {
@@ -223,27 +227,26 @@ interface DonutChartProps {
 }
 
 export function DonutChart({ speciesData }: DonutChartProps) {
-  const chartRef = useRef<HTMLCanvasElement>(null)
-  const chartInstance = useRef<Chart | null>(null)
+  const chartRef = useRef<HTMLCanvasElement>(null);
+  const chartInstance = useRef<Chart | null>(null);
 
   useEffect(() => {
-    if (!chartRef.current) return
+    if (!chartRef.current) return;
 
     // Destroy existing chart
     if (chartInstance.current) {
-      chartInstance.current.destroy()
+      chartInstance.current.destroy();
     }
 
-    const ctx = chartRef.current.getContext("2d")
-    if (!ctx) return
+    const ctx = chartRef.current.getContext("2d");
+    if (!ctx) return;
 
     // Sample data
-    if(speciesData){
-
+    if (speciesData) {
       const labels = speciesData.map((item) => item.species);
       const data = speciesData.map((item) => item.total);
-      const colors = ["#328E6E", "#67AE6E", "#90C67C", "#E1EEBC"]
-  
+      const colors = ["#328E6E", "#67AE6E", "#90C67C", "#E1EEBC"];
+
       // Create new chart
       chartInstance.current = new Chart(ctx, {
         type: "doughnut",
@@ -268,15 +271,15 @@ export function DonutChart({ speciesData }: DonutChartProps) {
           },
           cutout: "65%",
         },
-      })
+      });
     }
 
     return () => {
       if (chartInstance.current) {
-        chartInstance.current.destroy()
+        chartInstance.current.destroy();
       }
-    }
-  }, [speciesData])
+    };
+  }, [speciesData]);
 
-  return <canvas ref={chartRef} />
+  return <canvas ref={chartRef} />;
 }

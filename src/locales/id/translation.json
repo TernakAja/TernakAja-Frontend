@@ -77,7 +77,7 @@
       },
       "farchestra": {
         "title": "Farchestra - Agen AI",
-        "description": "Asisten cerdas yang secara aktif berinteraksi dengan peternak. Secara otomatis memberi tahu pengguna jika ada sapi yang terdeteksi tidak sehat, menanyakan gejala yang terlihat, memberi saran pertolongan pertama, merekomendasikan obat yang tersedia, dan menghubungkan dengan dokter hewan."
+        "description": "Asisten cerdas yang secara aktif berinteraksi dengan peternak. Secara otomatis memberi tahu pengguna jika ada sapi yang terdeteksi tidak sehat, menanyakan gejala yang terlihat, memberi saran pertolongan pertama, dan merekomendasikan obat yang tersedia."
       },
       "diseaseClassification": {
         "title": "Klasifikasi Penyakit",

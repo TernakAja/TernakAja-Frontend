@@ -76,8 +76,8 @@
         "description": "Classifies cattle as healthy or unhealthy in real time using pulse rate, body temperature, and SpO2 data from sensors collected every minute. Helps track livestock health continuously and proactively."
       },
       "farchestra": {
-        "title": "Farchestra - AI Agent",
-        "description": "An intelligent assistant that actively engages with farmers. It automatically alerts users if a cow is unhealthy, asks follow-up questions about symptoms, offers first-aid suggestions, recommends available medications, and provides vet contact information."
+        "title": "Farchestra - Chatbot",
+        "description": "An intelligent assistant that actively engages with farmers. It automatically alerts users if a cow is unhealthy, asks follow-up questions about symptoms, offers first-aid suggestions, and recommends available medications."
       },
       "diseaseClassification": {
         "title": "Disease Classification",
@@ -211,7 +211,7 @@
     "chatClearedMessage": "Chat cleared. How can I help you today?",
     "header": {
       "title": "Farchestra",
-      "subtitle": "TernakAja Personal AI Agent Assistant",
+      "subtitle": "TernakAja Personal Chatbot",
       "settingsButton": "Settings",
       "newChatButton": "New Chat"
     },

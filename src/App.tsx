@@ -62,6 +62,7 @@ import DashboardPage from "./pages/Dashboard/page";
 
 import { AuthProvider } from "./context/auth-context";
 import ProtectedRoute from "./components/protectedRoute";
+import NotificationsPage from "./components/Notification/page";
 
 // Loading Screen Animation
 
@@ -132,7 +133,10 @@ function App() {
 
               <Route element={<ProtectedRoute />}>
                 <Route path="/dashboard" element={<DashboardPage />} />
-
+                <Route
+                  path="/dashboard/notification"
+                  element={<NotificationsPage />}
+                />
                 <Route
                   path="/dashboard/livestock"
                   element={<DashboardLivestockPage />}

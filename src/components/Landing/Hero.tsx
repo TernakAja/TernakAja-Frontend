@@ -111,7 +111,7 @@ export default function Hero() {
               whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
             />
             <motion.img
-              src="https://res.cloudinary.com/dqvlnzw9f/image/upload/v1754199720/device2_lbzcqw.jpg"
+              src="https://res.cloudinary.com/dqvlnzw9f/image/upload/v1755486089/device2_lbzcqw.png"
               alt="Cow with monitoring device on ear"
               className="rounded-xl shadow-lg object-cover aspect-square w-full h-auto"
               initial={{ opacity: 0, scale: 0.9 }}

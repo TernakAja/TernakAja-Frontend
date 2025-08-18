@@ -3,11 +3,6 @@ import { motion } from "framer-motion";
 import {
   LayoutDashboard,
   MilkIcon as Cow,
-  BarChart3,
-  CloudSun,
-  Heart,
-  Utensils,
-  Settings,
   Menu,
   X,
   PlusCircle,
@@ -33,31 +28,31 @@ const navItems = [
       },
     ],
   },
-  {
-    name: "Analytics",
-    href: "/dashboard/analytics",
-    icon: BarChart3,
-  },
-  {
-    name: "Weather",
-    href: "/dashboard/weather",
-    icon: CloudSun,
-  },
-  {
-    name: "Health",
-    href: "/dashboard/health",
-    icon: Heart,
-  },
-  {
-    name: "Feeding",
-    href: "/dashboard/feeding",
-    icon: Utensils,
-  },
-  {
-    name: "Settings",
-    href: "/dashboard/settings",
-    icon: Settings,
-  },
+  // {
+  //   name: "Analytics",
+  //   href: "/dashboard/analytics",
+  //   icon: BarChart3,
+  // },
+  // {
+  //   name: "Weather",
+  //   href: "/dashboard/weather",
+  //   icon: CloudSun,
+  // },
+  // {
+  //   name: "Health",
+  //   href: "/dashboard/health",
+  //   icon: Heart,
+  // },
+  // {
+  //   name: "Feeding",
+  //   href: "/dashboard/feeding",
+  //   icon: Utensils,
+  // },
+  // {
+  //   name: "Settings",
+  //   href: "/dashboard/settings",
+  //   icon: Settings,
+  // },
 ];
 
 export default function Sidebar() {
