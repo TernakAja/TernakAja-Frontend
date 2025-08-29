@@ -125,4 +125,4 @@ Frontend ini terintegrasi dengan:
 
 ## Live Demo
 
-[https://ternakaja.vercel.app/](https://ternakaja.vercel.app/)
+[http://ternakaja.my.id/](http://ternakaja.my.id/)
